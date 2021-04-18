@@ -1,0 +1,56 @@
+{% load static %}
+{% include 'template_blocks/head_css.html' %}
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="{% static 'images/logo.png' %}" alt="">
+      <span class="ml-5">| <i>Desh Ka Vyapar</i></span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav m-auto w-33">
+        <li class="nav-item">
+          <a class="nav-link" href="certificate.html"><span class="critificate-bg">Apply For Unique xxxxxxxxx Certification</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'dashboard:seller_dashboard' %}">Seller</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="buyer/dashboard.html">Buyer</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="help.html">Help</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto right">
+        <li class="nav-item login">
+          <a class="nav-link" href="">
+            <img src="{% static 'images/login.png' %}" alt="">
+            <span>Log in New User</span>
+          </a>
+        </li>
+        <li class="nav-item track-order">
+          <a class="nav-link" href="ordertrack.html">
+            <img src="{% static 'images/trackorder.png' %}" alt="">
+            <span>Track Order</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link cart" href="cart.html">
+            <img src="{% static 'images/cart.png' %}" alt="">
+            <span>My Cart</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link pr-0" href="advertise.html">
+            <img src="{% static 'images/advertizment.png' %}" alt="">
+            <span>Advertizment with us</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

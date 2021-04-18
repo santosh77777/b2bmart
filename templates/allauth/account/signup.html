@@ -1,0 +1,129 @@
+{% extends "account/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign up" %}{% endblock %}
+
+{% block content %}
+
+<!-- sidebar background image and content starts -->
+<div class="login-block">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 d-flex align-items-center justify-content-center" style="background-image: url('{% static "images/bg-01.jpg" %}')">
+        <h2 style=" color: #fff; padding: 25px; font-weight: 600; font-size: 36px; ">We are our wholesaler portal offering best 
+          price in the industry please sign up with gmail or mobile number</h2>
+        </div>
+<!-- sidebar background image and content endss -->
+
+<!-- right sidebar form content starts -->
+        <div class="col-md-8 banner-sec" style="background-image: initial;">
+
+          <form  class="login-form p-5" method="post" action="{% url 'account_signup' %}">
+            {% csrf_token %}{% if request.GET.next %}
+                    <input type="hidden" name="next" value="{{request.GET.next}}">
+                {% endif %}
+
+                {% if form.non_field_errors %}
+                <div class="fieldWrapper alert alert-danger">
+                    <ul>
+                    {% for error in form.non_field_errors %}
+                            <li>{{ error | lower}}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            <div class="row m-0">
+              <div class="form-group col">
+                <label for="first_name">First Name <sup class="text-danger">*</sup></label>
+                <input type="text" class="form-control" id="id_first_Name" name="first_name" placeholder="John">
+              </div>
+              <div class="form-group col">
+                <label for="id_last_name">Last Name <sup class="text-danger">*</sup></label>
+                <input type="text" class="form-control" id="id_last_name" name="last_name" placeholder="Doe">
+              </div>
+            </div>
+            <div class="row m-0">
+              <div class="form-group col">
+                <label for="id_email">Email <sup class="text-danger">*</sup></label>
+                <input type="email" class="form-control" id="id_email" name="email" placeholder="johndoe@mail.com">
+              </div>
+              <div class="form-group col">
+                <label for="id-mobile">Mobile No <sup class="text-danger">*</sup></label>
+                <input type="tel" class="form-control" id="id_mobile" name="mobile" placeholder="+91 0000000000">
+              </div>
+            </div>
+            <div class="row m-0">
+              <div class="form-group col">
+                <label for="id_state">State <sup class="text-danger">*</sup></label>
+                <input type="text" class="form-control" id="id_state" name="state" placeholder="Karnataka">
+              </div>
+              <div class="form-group col">
+                <label for="id_pincode">Pincode <sup class="text-danger">*</sup></label>
+                <input type="tel" class="form-control" id="id_pincode" name="pincode" placeholder="560058">
+              </div>
+            </div>
+            <div class="row m-0">
+              <div class="form-group col">
+                <label for="id_company_name">Company Name <sup class="text-danger">*</sup></label>
+                <input type="text" class="form-control" id="id_company_name" name="company_name" placeholder="XXXX Mart">
+              </div>
+            </div>
+            <div class="row m-0">
+              <div class="form-group col">
+                <label for="id_business_type">Business Type <sup class="text-danger">*</sup></label>
+                <select class="form-control" id="id_business_type" name="business_type">
+                  <option>Select Option</option>
+                  <option>Seller</option>
+                  <option>Buyer</option>
+                  <option>Logistic Advertisement</option>
+                </select>
+              </div>
+              <div class="form-group col">
+                <label for="id_nature_of_business">Nature Of Business <sup class="text-danger">*</sup></label>
+                <select class="form-control" id="id_nature_of_business" name="nature_of_business">
+                  <option>Select Option</option>
+                  <option>Manufacturer</option>
+                  <option>Retailer</option>
+                  <option>Distributer</option>
+                  <option>Wholeseller</option>
+                  <option>Exporter</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row m-0">
+              <div class="form-group col">
+                <label for="id_state">Password <sup class="text-danger">*</sup></label>
+                <input type="password" class="form-control" id="id_password1" name="password1" placeholder="password">
+              </div>
+              <div class="form-group col">
+                <label for="id_pincode">Confirm Password <sup class="text-danger">*</sup></label>
+                <input type="password" class="form-control" id="id_password2" name="password2" placeholder="Password(again)">
+              </div>
+            </div>
+
+            <div class="row m-0">
+              <div class="form-group col text-right">
+                <input type="submit" class="btn btn-primary"value="Register">
+              </div>
+            </div>
+            <p class="text-center pt-5">
+              <small>Already register login on XXXXX Mart</small>
+            </p>
+            <div class="row m-0">
+              <div class="form-group col-12 col-sm-6 offset-sm-3  text-right">
+                <a href="{% url 'account_login' %}" type="submit" class="btn btn-outline-dark btn-block">Sign In</a href="login.html">
+                <!-- <button type="submit" class="btn btn-outline-dark btn-block">Sign In</button> -->
+              </div>
+            </div> 
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  
+  <!-- {{form.as_p}} -->
+{% endblock %}

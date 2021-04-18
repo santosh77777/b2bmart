@@ -1,0 +1,1143 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+ 
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <ul class="category-menu mb-3">
+            <li>
+              <a href="kitchen-stoves.html">
+                <img src="{% static 'images/icons/kitchen-stoves.png' %}" alt="Kitchen stoves category">
+              </a>
+            </li>
+            <li>
+              <a href="mixer-grinder.html">
+                <img src="{% static 'images/icons/mixer-grinder.png' %}" alt="Mixer Grinder category">
+              </a>
+            </li>
+            <li>
+              <a href="category-rice.html">
+                <img src="{% static 'images/icons/rice-cookers.png' %}" alt="Rice cookers category">
+              </a>
+            </li>
+            <li>
+              <a href="food-processors.html">
+                <img src="{% static 'images/icons/food-processors.png' %}" alt="Food processors category">
+              </a>
+            </li>
+            <li>
+              <a href="electric-kettles.html">
+                <img src="{% static 'images/icons/electric-kettles.png' %}" alt="Electric kettles category">
+              </a>
+            </li>
+            <li>
+              <a href="electric-mixers.html">
+                <img src="{% static 'images/icons/electric-mixers.png' %}" alt="Electric mixers category">
+              </a>
+            </li>
+            <li>
+              <a href="juicers.html">
+                <img src="{% static 'images/icons/Juicers.png' %}" alt="Juicers category">
+              </a>
+            </li>
+            <li>
+              <a href="category.html">
+                <img src="{% static 'images/icons/blenders.png' %}" alt="Blenders category">
+              </a>
+            </li>
+            <li>
+              <a href="category.html">
+                <img src="{% static 'images/icons/water-heaters.png' %}" alt="Water heaters category">
+              </a>
+            </li>
+            <li>
+              <a href="category.html">
+                <img src="{% static 'images/icons/water-filters.png' %}" alt="Water filters category">
+              </a>
+            </li>
+            <li>
+              <a href="category.html">
+                <img src="{% static 'images/icons/induction-cookers.png' %}" alt="Induction cookers category">
+              </a>
+            </li>
+            <li>
+              <a href="category.html">
+                <img src="{% static 'images/icons/exhaust-hoods.png' %}" alt="Exhaust hoods category">
+              </a>
+            </li>
+            <li>
+              <a href="category.html">
+                <img src="{% static 'images/icons/sandwich-makers.png' %}" alt="Sandwich makers category">
+              </a>
+            </li>
+            <li>
+              <a href="category.html">
+                <img src="{% static 'images/icons/toaster.png' %}" alt="Toaster category">
+              </a>
+            </li>
+            <li>
+              <a href="category.html">
+                <img src="{% static 'images/icons/deep-fryers.png' %}" alt="Deep fryers category">
+              </a>
+            </li>
+            <li>
+              <a href="category.html">
+                <img src="{% static 'images/icons/dough-blenders.png' %}" alt="Dough Blenders category">
+              </a>
+            </li>
+            <li>
+              <a href="category.html">
+                <img src="{% static 'images/icons/coffe-makers.png' %}" alt="Coffee makers category">
+              </a>
+            </li>
+            <li>
+              <a href="category.html">
+                <img src="{% static 'images/icons/electric-iron.png' %}" alt="Electric iron category">
+              </a>
+            </li>
+            <li>
+              <a href="category.html">
+                <img src="{% static 'images/icons/vaccum-cleaner.png' %}" alt="Vacuum cleaner category">
+              </a>
+            </li>
+            <li>
+              <a href="category.html">
+                <img src="{% static 'images/icons/air-purifers.png' %}" alt="Air Purifiers category">
+              </a>
+            </li>
+            <li>
+              <a href="category.html">
+                <img src="{% static 'images/icons/hair-dryer.png' %}" alt="Hair straightener category">
+              </a>
+            </li>
+            <li>
+              <a href="category.html">
+                <img src="{% static 'images/icons/trimmers-shavers.png' %}" alt="Trimmers & Shavers category">
+              </a>
+            </li>
+            <li>
+              <a href="category.html">
+                <img src="{% static 'images/icons/hair-dryer.png' %}" alt="Hair Dryer category">
+              </a>
+            </li>
+            <!-- <li class="ml-auto">
+              <img src="./images/categoryRightIcon.png' %}" alt="">
+            </li> -->
+          </ul>
+        </div>
+      </div>
+      
+      <div class="row">  
+        <div class="col-md-4 col-lg-3">
+          <div class="feature">
+            <div class="feature__head">
+              <h6>SORT BY BRAND</h6>
+              <a href="#">Show all</a>
+            </div>
+            <form class="feature__form" action="">
+              <div class="form-group search">
+                  <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <div class="checkboxs">
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="brand1">
+                      <label class="custom-control-label" for="brand1">Royalstar</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="brand2">
+                      <label class="custom-control-label" for="brand2">Electrolux</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="brand3">
+                      <label class="custom-control-label" for="brand3">Whirlpool</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="brand4">
+                      <label class="custom-control-label" for="brand4">Panasonic</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="brand5">
+                      <label class="custom-control-label" for="brand5">Midea</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="brand6">
+                      <label class="custom-control-label" for="brand6">Joyoung</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="brand7">
+                      <label class="custom-control-label" for="brand7">Kenwood</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="brand8">
+                      <label class="custom-control-label" for="brand8"> Glen India</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="brand9">
+                      <label class="custom-control-label" for="brand9">Usha</label>
+                  </div>
+              </div>
+              <button class="btn btn-primary btn-block mt-3">Load More</button>
+            </form>
+          </div>
+
+          <div class="feature mt-3">
+            <div class="feature__head">
+              <h6>SORT BY CATEGORY</h6>
+              <a href="#">Show all</a>
+            </div>
+            <form class="feature__form" action="">
+              <div class="form-group search">
+                  <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <div class="checkboxs">
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="category1">
+                      <label class="custom-control-label" for="category1">Kitchen Stoves</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="category2">
+                      <label class="custom-control-label" for="category2">Mixer Grinder</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="category3">
+                      <label class="custom-control-label" for="category3">Rice Cookers</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="category4">
+                      <label class="custom-control-label" for="category4">Food Processors</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="category5">
+                      <label class="custom-control-label" for="category5">Electric Kettles</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="category6">
+                      <label class="custom-control-label" for="category6">Electric Mixers</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="category7">
+                      <label class="custom-control-label" for="category7">Juicers</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="category8">
+                      <label class="custom-control-label" for="category8">Blenders</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="category9">
+                      <label class="custom-control-label" for="category9">Water Heaters</label>
+                  </div>
+              </div>
+              <button class="btn btn-primary btn-block mt-3">Load More</button>
+          </form>
+          </div>
+
+          <!-- Related products promo part strat -->
+          <div id="awardCarousel" class="carousel slide award-carousel mt-3" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#awardCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#awardCarousel" data-slide-to="1"></li>
+              <!-- <li data-target="#awardCarousel" data-slide-to="2"></li> -->
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100" src="{% static 'images/tag.png' %}" alt="First slide">
+                <div class="carousel-caption award-caption">
+                  <p>BEST E-MART SHOPPE AWARD</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="{% static 'images/tag.png' %}" alt="Second slide">
+                <div class="carousel-caption award-caption">
+                  <p>BEST E-MART SHOPPE</p>
+                </div>
+              </div>
+              <!-- <div class="carousel-item">
+                <img class="d-block w-100" src="{% static '." alt="Third slide">
+              </div> -->
+            </div>
+
+            <a class="award-prev" href="#awardCarousel" role="button" data-slide="prev">
+              <i class="fas fa-angle-left" aria-hidden="true"></i>
+              <!-- <span class="award-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span> -->
+            </a>
+            <a class="award-next" href="#awardCarousel" role="button" data-slide="next">
+              <i class="fas fa-angle-right" aria-hidden="true"></i>
+              <!-- <span class="award-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span> -->
+            </a>
+          </div>
+          <!-- Related products promo part end -->
+
+          <!-- input slider -->
+          <!-- <div class="range-slider">
+            <h4>SORT BY PRICE RANGE</h4>
+            <form action="">
+              <div class="row">
+                <div class="col w-25">
+                  <input type="number" class="form-control" placeholder="100000">
+                </div>
+                <div class="col w-25">
+                  <input type="number" class="form-control" placeholder="10000000">
+                </div>
+              </div>
+              <div class="slider-input">
+                <div data-role="rangeslider">
+                  <label for="price-min">Price:</label>
+                  <input type="range" name="price-min" id="price-min" value="200" min="0" max="1000">
+                  <label for="price-max">Price:</label>
+                  <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
+                </div>
+              </div>
+            </form>
+          </div> -->
+          <!-- input slider -->
+
+          <div class="ad-big-box mt-3">
+            <div class="image">
+              <img class="ad-img" src="{% static 'images/cooker.jpg' %}" alt="">
+              <img class="stipe" src="{% static 'images/top-strip.png' %}" alt="">
+            </div>
+            <div class="content">
+              <div class="logo">logo</div>
+              <div class="center-text">
+                your content should be here
+              </div>
+              <button class="btn btn-light btn-lg">Click here <i class="fas fa-angle-right"></i></button>
+              <div class="link">
+                <a href="#">www.website.com</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="ad-small-box">
+            <div class="image">
+              <img class="ad-img" src="{% static 'images/sortBoxImage.png' %}" alt="">
+            </div>
+            <div class="content">
+              <img class="stipe" src="{% static 'images/left-strip.png' %}" alt="">
+              <div class="center-text">
+                your content should be here
+              </div>
+              <button class="btn btn-light">Click here <i class="fas fa-angle-right"></i></button>
+              <div class="link">
+                <a href="#">www.website.com</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-8 col-lg-9">
+          <!-- banner part start -->
+          <div id="mainCarousel" class="carousel slide main-carousel mt-3" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#mainCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#mainCarousel" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="banner">
+                  <h1>Lorem ipsum dolor sit amet consectetur adipisicing <br />  dolor sit amet consectetur, adipisicing.</h1>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="banner">
+                  <h1>Lorem ipsum dolor sit amet consectetur adipisicing <br />  dolor sit amet consectetur, adipisicing.</h1>
+                </div>
+              </div>
+            </div>
+        </div>
+          <!-- <div class="banner">
+            <h1>Lorem ipsum dolor sit amet consectetur adipisicing <br />  dolor sit amet consectetur, adipisicing.</h1>
+          </div> -->
+          <!-- banner part end -->
+
+          <div class="search-location mt-3">
+            <div class="form-inline">
+              <div class="form-group mr-3">
+                <input type="text" class="form-control" id="location" placeholder="Auto Select Location Dehi (set as default)">
+              </div>
+              <button id="find-me" type="submit" class="btn btn-success">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+            <span id = "status" style=" position: absolute; margin-bottom: -55px; color: #fff;"></span>
+            <a id = "map-link" target="_blank" style=" position: absolute; margin-bottom: -55px; color: #fff;"></a>
+            <form class="form-inline">
+              <div class="form-group mr-3">
+                <input type="text" class="form-control" id="location" placeholder="Product Type">
+              </div>
+              <button type="submit" class="btn btn-success">
+                <i class="fas fa-search"></i> Search
+              </button>
+            </form>
+          </div>
+
+          <!-- Recommended Products part start -->
+         <div class="product-list mt-3">
+          <form class="form-inline mb-3">
+            <div class="form-group w-50 mr-3">
+              <input type="text" class="form-control w-100" id="location" placeholder="TRUSTED BRANDS | SEARCH BY PRODUCT TYPE">
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-search"></i> Search
+            </button>
+          </form>
+
+          <div id="carouselExampleControls" class="carousel slide d-flex align-items-center " data-ride="carousel">
+            <a class="btn btn-primary mr-2 p-2 d-flex align-items-center" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row">
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a class="btn btn-primary ml-2 p-2 d-flex align-items-center" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
+          <!-- <div class="text-right">
+            <small>featuring trusted brands near you</small>
+          </div> -->
+         </div>
+          <!-- Recommended Products part end -->
+          
+          <!-- Promotional vedio start -->
+          <div class="promo-video">
+            <span>Play our promotional video here</span>
+            <i class="fas fa-play"></i>
+            <span>Make an impression with your customers</span>
+          </div>
+          <!-- Promotional vedio end -->
+          
+          <!-- term-cta start -->
+          <div class="term-cta">
+            <h1><span>30 day credit terms*</span> <br /> for wholesaller & institution</h1>
+            <button class="btn btn-light btn-lg">Click here <i class="fas fa-angle-right"></i></button>
+            <img src="{% static 'images/creadit.png' %}" alt="">
+          </div>
+          <!-- term-cta end -->
+
+          <!-- Recommended Products part start -->
+         <div class="product-list mt-3 mb-3">
+          <form class="form-inline mb-3">
+            <div class="form-group w-50 mr-3">
+              <input type="text" class="form-control w-100" id="location" placeholder="THIS WEEK TOP FOUR EDITORS CHOISE">
+            </div>
+          </form>
+          <div id="carouselExampleControls" class="carousel slide d-flex align-items-center " data-ride="carousel">
+            <a class="btn btn-primary mr-2 p-2 d-flex align-items-center" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row">
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a class="btn btn-primary ml-2 p-2 d-flex align-items-center" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+          <div class="row mt-4 mb-2">
+            <div class="col-sm-6 offset-sm-3">
+              <button class="btn btn-primary btn-lg btn-block">Know more about Editors Choice</button>
+            </div>
+          </div>
+          <!-- Row end -->
+         </div>
+          <!-- Recommended Products part end -->
+
+          <!-- Recommended Products part start -->
+         <div class="product-list">
+          <form class="form-inline mb-3">
+            <div class="form-group w-50 mr-3">
+              <input type="text" class="form-control w-100" id="location" placeholder="CATEGORY LEADERS | SEARCH BY PRODUCT TYPE">
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-search"></i> Search
+            </button>
+          </form>
+          <div id="carouselExampleControls" class="carousel slide d-flex align-items-center " data-ride="carousel">
+            <a class="btn btn-primary mr-2 p-2 d-flex align-items-center" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row">
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-3">
+                    <div class="product-item">
+                        <div class="image">
+                          <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
+                        </div>
+                        <div class="name">Product Name</div>
+                        <div class="type">Product Type</div>
+                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a class="btn btn-primary ml-2 p-2 d-flex align-items-center" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+          <!-- Row end -->
+         </div>
+          <!-- Recommended Products part end -->
+
+          <!-- Related products promo part strat -->
+          <h3 class="text-uppercase mt-3">Related products</h3>
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <!-- <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100" src="{% static 'images/promo-img-1.png' %}" alt="First slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="{% static 'images/promo-img-1.png' %}" alt="Second slide">
+              </div>
+              <!-- <div class="carousel-item">
+                <img class="d-block w-100" src="..." alt="Third slide">
+              </div> -->
+            </div>
+          </div>
+          <!-- Related products promo part end -->
+
+          <!-- register form start -->
+          <div class="register-form mt-3">
+            <h5 class="text-uppercase mb-3">we connect manufacturers with wholesale traders & institutions</h5>
+            <div class="row">
+              <div class="col-12 col-sm-8">
+                <form>
+                  <div class="row">
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" id="name" placeholder="Name">
+                    </div>
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="email">E-mail</label>
+                      <input type="email" class="form-control" id="email" placeholder="shotercarlos@gmail.com">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="phone">Mobile</label>
+                      <input type="tel" class="form-control" id="phone" placeholder="+91 0000000000">
+                    </div>
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="businessType">Business Types</label>
+                      <select class="form-control btn-primary" id="businessType">
+                        <option>Wholesaller</option>
+                        <option>Manufacturer</option>
+                        <option>Retailer</option>
+                        <option>Exporter</option>
+                        <option>Distributor</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" rows="5"></textarea>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-sm-6">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="sendCopy">
+                        <label class="custom-control-label" for="sendCopy">Send me a copy</label>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6 text-right">
+                      <button class="btn btn-primary btn-lg">Send</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-12 col-sm-4">
+                <div class="right-side">
+                  <div class="top">
+                    <span>become a</span>
+                    <span>Authorized</span>
+                    <span>member today</span>
+                    <span>1000 Ad Impressions Free</span>
+                  </div>
+                  <div class="bottom"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- register form part end -->
+
+          <!-- Recommended Products part start -->
+         <div class="product-list mt-3">
+          <form class="form-inline mb-3">
+            <div class="form-group w-50 mr-3">
+              <input type="text" class="form-control w-100" id="location" placeholder="FAETURED PRODUCT | SEARCH BY PRODUCT TYPE">
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-search"></i> Search
+            </button>
+          </form>
+          <div class="row">
+            <div class="col-12 col-sm-4 col-md-3">
+              <div class="product-item">
+                  <div class="image">
+                    <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+                  </div>
+                  <div class="name">Product Name</div>
+                  <div class="type">Product Type</div>
+                  <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4 col-md-3">
+              <div class="product-item">
+                  <div class="image">
+                    <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
+                  </div>
+                  <div class="name">Product Name</div>
+                  <div class="type">Product Type</div>
+                  <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4 col-md-3">
+              <div class="product-item">
+                  <div class="image">
+                    <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
+                  </div>
+                  <div class="name">Product Name</div>
+                  <div class="type">Product Type</div>
+                  <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4 col-md-3">
+              <div class="product-item">
+                  <div class="image">
+                    <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
+                  </div>
+                  <div class="name">Product Name</div>
+                  <div class="type">Product Type</div>
+                  <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4 col-md-3">
+              <div class="product-item">
+                  <div class="image">
+                    <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
+                  </div>
+                  <div class="name">Product Name</div>
+                  <div class="type">Product Type</div>
+                  <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4 col-md-3">
+              <div class="product-item">
+                  <div class="image">
+                    <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
+                  </div>
+                  <div class="name">Product Name</div>
+                  <div class="type">Product Type</div>
+                  <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4 col-md-3">
+              <div class="product-item">
+                  <div class="image">
+                    <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
+                  </div>
+                  <div class="name">Product Name</div>
+                  <div class="type">Product Type</div>
+                  <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4 col-md-3">
+              <div class="product-item">
+                  <div class="image">
+                    <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
+                  </div>
+                  <div class="name">Product Name</div>
+                  <div class="type">Product Type</div>
+                  <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+              </div>
+            </div>
+          </div>
+          <!-- Row end -->
+          <div class="text-center mt-4 mb-2">
+            <button class="btn btn-primary btn-lg">Load More</button>
+          </div>
+         </div>
+          <!-- Recommended Products part end -->
+          
+          <!-- CTA start -->
+          <div class="certificate-cta mt-3">
+            <div class="row no-gutters align-items-center">
+              <div class="col-12 col-sm-2 text-center">
+                <img src="{% static 'images/tag.png' %}" alt="">
+              </div>
+              <div class="col-12 col-sm-7">
+                <h5 class="text-uppercase mb-0">attention manufacturers</h5>
+                <h4 class="text-uppercase mb-0">get your xxxxxxxxxxxxxxxxx  </h4>
+                <h5 class="text-uppercase mb-0">trust certificate & imporve your bussiness</h5>
+              </div>
+              <div class="col-12 col-sm-3">
+                <button class="btn btn-light btn-lg">Apply Now <i class="fas fa-angle-right"></i></button>
+              </div>
+            </div>
+          </div>
+          <!-- CTA end -->
+
+          <!-- CTA start -->
+          <div class="mt-3">
+            <img src="{% static 'images/book-spot.png' %}" alt="">
+          </div>
+          <!-- CTA end -->
+
+          <!-- Recommended Products part start -->
+          <div class="product-list mt-3">
+            <form class="form-inline mb-3">
+              <div class="form-group w-75  mr-3">
+                <input type="text" class="form-control w-100" id="location" placeholder="MANUFACTURERS OFFERING CUSTOMIZED SOLUTIONS">
+              </div>
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i> Search
+              </button>
+            </form>
+
+            <div id="carouselExampleControls" class="carousel slide d-flex align-items-center " data-ride="carousel">
+              <a class="btn btn-primary mr-2 p-2 d-flex align-items-center" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="row">
+                    <div class="col-12 col-sm-4 col-md-3">
+                      <div class="product-item">
+                          <div class="image">
+                            <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+                          </div>
+                          <div class="name">Product Name</div>
+                          <div class="type">Product Type</div>
+                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-4 col-md-3">
+                      <div class="product-item">
+                          <div class="image">
+                            <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
+                          </div>
+                          <div class="name">Product Name</div>
+                          <div class="type">Product Type</div>
+                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-4 col-md-3">
+                      <div class="product-item">
+                          <div class="image">
+                            <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
+                          </div>
+                          <div class="name">Product Name</div>
+                          <div class="type">Product Type</div>
+                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-4 col-md-3">
+                      <div class="product-item">
+                          <div class="image">
+                            <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
+                          </div>
+                          <div class="name">Product Name</div>
+                          <div class="type">Product Type</div>
+                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="row">
+                    <div class="col-12 col-sm-4 col-md-3">
+                      <div class="product-item">
+                          <div class="image">
+                            <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+                          </div>
+                          <div class="name">Product Name</div>
+                          <div class="type">Product Type</div>
+                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-4 col-md-3">
+                      <div class="product-item">
+                          <div class="image">
+                            <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
+                          </div>
+                          <div class="name">Product Name</div>
+                          <div class="type">Product Type</div>
+                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-4 col-md-3">
+                      <div class="product-item">
+                          <div class="image">
+                            <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
+                          </div>
+                          <div class="name">Product Name</div>
+                          <div class="type">Product Type</div>
+                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-4 col-md-3">
+                      <div class="product-item">
+                          <div class="image">
+                            <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
+                          </div>
+                          <div class="name">Product Name</div>
+                          <div class="type">Product Type</div>
+                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a class="btn btn-primary ml-2 p-2 d-flex align-items-center" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+            <!-- Row end -->
+            <div class="text-center mt-4 mb-2">
+              <button class="btn btn-primary btn-lg">Load More</button>
+            </div>
+          </div>
+          <!-- Recommended Products part end -->
+
+          <!-- Recommended Products part start -->
+          <h3 class="mt-3">Recommended Products</h3>
+          <div class="position-relative">
+            <div class="product-list bg-light p-0">
+              <div class="row">
+                <div class="col">
+                  <div class="product-item">
+                      <div class="image">
+                        <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
+                      </div>
+                      <div class="name">Product Name</div>
+                      <div class="type">Product Type</div>
+                      <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="product-item">
+                      <div class="image">
+                        <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
+                      </div>
+                      <div class="name">Product Name</div>
+                      <div class="type">Product Type</div>
+                      <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="product-item">
+                      <div class="image">
+                        <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
+                      </div>
+                      <div class="name">Product Name</div>
+                      <div class="type">Product Type</div>
+                      <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="product-item">
+                      <div class="image">
+                        <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
+                      </div>
+                      <div class="name">Product Name</div>
+                      <div class="type">Product Type</div>
+                      <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                  </div>
+                </div>
+              </div>
+              <!-- Row end -->
+            </div>
+            <!-- <div class="searched-link">
+              <a href=""><img src="images/product/img-1.jpeg" alt=""></a>
+              <a href=""><img src="images/product/img-4.png' %}" alt=""></a>
+              <a href=""><img src="images/product/img-5.jpg" alt=""></a>
+              <a href=""><img src="images/product/img-6.png' %}" alt=""></a>
+              <a href="">Search 3</a>
+              <a href="">Search 4</a>
+              <a href="">Search 5</a>
+            </div> -->
+            <div class="fas fa-ellipsis-h position-absolute text-primary" style="right: 0; margin-top: -10px;"></div>
+            <div class="tag  position-absolute text-primary" style="right: 0;">refresh your search</div>
+          </div>
+          <!-- Recommended Products part end -->
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="chat">
+      <img src="{% static 'images/chat.png' %}" alt="">
+      <div class="content">
+        <small>Have a Requirement?</small>
+        <h3>Get Best Price</h3>
+      </div>
+    </div> -->
+
+   
+{% endblock content %}
