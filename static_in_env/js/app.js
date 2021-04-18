@@ -45,3 +45,37 @@ $(window).scroll(function() {
         }
     });
 });
+
+// Side bar (Sort By Brand)
+
+var count_brand=9; // Initialize a counter with 9
+$('#sort_brand').click(function(e){
+    for(var i=0;i<4;i++)
+    {
+        count_brand++;// Increment counter so that it will be used in further appended product id
+        template=`<div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="brand${count_brand}">
+                <label class="custom-control-label" for="brand${count_brand}">${count_brand}</label>
+          </div>`
+        $("#append_brand").append(template);
+    }
+    e.preventDefault();
+    });
+
+// Side bar (Sort by Category)
+
+var count_cat=9;
+$('#sort_cat').click(function(e){
+    for(var i=0;i<4;i++)
+    {
+        count_cat++;
+        template=`<div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="brand${count_cat}">
+                <label class="custom-control-label" for="brand${count_cat}">${count_cat}</label>
+          </div>`
+        $("#append_cat").append(template);
+    }
+    e.preventDefault();
+    });
+
+ 

@@ -21,8 +21,8 @@ def login_redirect_view(request):
     elif is_buyer(request.user):
         pass
 
-    if is_admin(request.user):
-        pass
+    # if is_admin(request.user):
+    #     pass
     else:
         if request.method == 'POST':
             u_form = UserUpdateForm(request.POST, instance=request.user)

@@ -3,6 +3,7 @@ from django.views.generic import View
 from accounts.models import Account
 from django.contrib.auth.models import User
 from .models import SellerProfile, Account
+from django.contrib import messages
 
 class SellerDashboardView(View):
     def get(self,request, *args, **kwargs):
@@ -33,7 +34,7 @@ class SellerContactProfileView(View):
         landline_no =request.POST['landline_no']
         alternative_landline_no =request.POST['alternative_landline_no']
         about_me =request.POST['about_me']
-        print("aboutttttttttttttttt", about_me)
+        print("aboutttttttttttttttt", about_me)  
         user = User.objects.get(username=request.user.username)
         user.first_name = first_name
         user.last_name = last_name
