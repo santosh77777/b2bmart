@@ -22,12 +22,12 @@
           <a class="nav-link" href="buyer/dashboard.html">Buyer</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="help.html">Help</a>
+          <a class="nav-link" href="{% url 'help' %}">Help</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto right">
         <li class="nav-item login">
-          <a class="nav-link" href="">
+          <a class="nav-link" href="{% url 'account_login' %}">
             <img src="{% static 'images/login.png' %}" alt="">
             <span>Log in New User</span>
           </a>

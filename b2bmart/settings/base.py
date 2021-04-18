@@ -148,7 +148,7 @@ ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 4
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 20
 LOGIN_REDIRECT_URL = '/useraccount/login-redirect/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
-
+LOGIN_REDIRECT_URL = '/accounts/redirect/'
 # LOGIN_URL = '/accounts/account_login/'
 LOGIN_URL = '/accounts/login/'
 
