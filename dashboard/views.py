@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 from accounts.models import Account
 from django.contrib.auth.models import User
-from .models import SellerProfile, Account
+from .models import *
+from .forms import *
 from django.contrib import messages
 
 class SellerDashboardView(View):
@@ -86,9 +87,9 @@ class SellerContactProfileView(View):
                    }
         return render(request, 'dashboard/seller/contact_profile.html', context)
 
-class SellerBusinessProfileView(View):
-    def get(self,request, *args, **kwargs):
-        return render(request, 'dashboard/seller/business_profile.html')
+# class SellerBusinessProfileView(View):
+#     def get(self,request, *args, **kwargs):
+#         return render(request, 'dashboard/seller/business_profile.html')
 
 class SellerStatutoryView(View):
     def get(self,request, *args, **kwargs):
@@ -97,4 +98,26 @@ class SellerStatutoryView(View):
 class SellerBankView(View):
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/seller/bank_details.html')
+
+        
+
+"""
+Business Profile Seller Information Save
+
+"""
+
+def SellerBusinessProfileView(request):
+	seller = request.user.businessprofile
+	form = BusinessProfileForm(instance= seller)
+
+	if request.method == 'POST':
+		form = BusinessProfileForm(request.POST, request.FILES,instance=seller)
+		if form.is_valid():
+			form.save()
+
+
+	context = {'form':form}
+	return render(request, 'dashboard/seller/business_profile.html', context)
+
+
 

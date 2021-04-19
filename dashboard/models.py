@@ -23,3 +23,23 @@ class SellerProfile(models.Model):
 
     def __str__(self):
         return self.user.first_name
+
+
+
+class BusinessProfile(models.Model):
+    CATEGORY = (
+			('Seller', 'Seller'),
+			('Manufacturer', 'Manufacturer'),
+			) 
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='businessprofile')
+    company_name = models.CharField(max_length=200, null=True)
+    year_of_establishment = models.DateField()
+    phone = models.CharField(max_length=200, blank=True, null=True)
+    category = models.CharField(max_length=200, null=True, choices=CATEGORY)
+    annual_turnover = models.DecimalField(max_digits=10, decimal_places=2)
+    company_card_front_view = models.FileField(upload_to='images/', null=True, blank=True)
+    company_card_back_view = models.FileField(upload_to='images/', null=True, blank=True)
+
+
+    def __str__(self):
+        return self.user.username

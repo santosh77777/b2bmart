@@ -77,19 +77,28 @@
                                     <h4 class="card-title">Business Profile</h4>
                                     <p class="card-category">Complete your business profile</p>
                                 </div>
+
                                 <div class="card-body">
-                                    <form>
+                                    <!-- Business Profile Form -->
+                                    <form method="POST" action="" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {{form.as_p}}
+                                
+                                    <input class="btn btn-primary" type="submit" name="Update Information">
+                                    </form>
+
+                                    <!-----
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Company Name</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control" {{form.company_name}}
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Year Of Establishment</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control" {{form.year_of_establishment}}
                                                 </div>
                                             </div>
                                             <!-- <div class="col-md-6">
@@ -104,21 +113,19 @@
                                                     <input type="email" class="form-control">
                                                 </div>
                                             </div> -->
-                                        </div>
+                                    <!-----    </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Additional Contact Name</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control" {{form.phone}}
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <!-- <label for="type">Business Type <sup class="text-danger">*</sup></label> -->
-                                                    <select class="form-control" id="type" name="type">
-                                                      <option>Select Option</option>
-                                                      <option>Manufacturer</option>
-                                                      <option></option>
+                                               <!-----     <select class="form-control" id="type" name="type"  {{form.category}}
+                                                     
                                                     </select>
                                                 </div>
                                             </div>
@@ -127,7 +134,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Annual Turnover</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control" {{form.annual_turnover}}
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -141,18 +148,21 @@
                                             <div class="col-md-6">
                                                 <label class="bmd-label-floating m-0"> Company Card Front View</label>
                                                 <div class="form-group form-file-upload form-file-simple m-0">
-                                                    <input type="text" class="form-control inputFileVisible" placeholder="Simple chooser...">
-                                                    <input type="file" class="inputFileHidden">
+                                                    <input type="file" class="form-control inputFileVisible" >
+                                                   
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="bmd-label-floating m-0"> Company Card Back View</label>
                                                 <div class="form-group form-file-upload form-file-simple m-0">
-                                                    <input type="text" class="form-control inputFileVisible" placeholder="Simple chooser...">
-                                                    <input type="file" class="inputFileHidden">
+                                                    <input type="file" class="form-control inputFileVisible" >
+                                                    
                                                 </div>
                                             </div>
                                         </div>
+
+                  
+
                                         <button type="submit" class="btn btn-primary pull-right">Save</button>
                                         <div class="clearfix"></div>
                                     </form>
