@@ -78,44 +78,45 @@
                                     <p class="card-category">Complete your Statutory Details</p>
                                 </div>
                                 <div class="card-body">
-                                    <form>
+                                    <form action="." method="post">
+                                        {% csrf_token %}
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Company GST No.</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="bmd-label-floating" for id="id_gst_no">Company GST No.</label>
+                                                    <input type="text" class="form-control" name="gst_no" id="id_gst_no" value="{{ statutory.gst_no }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">PAN No.</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="bmd-label-floating" for id="id_pan_no">PAN No.</label>
+                                                    <input type="text" class="form-control"name="pan_no"id="id_pan_no" value="{{ statutory.pan_no }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">TAN NO.</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="bmd-label-floating" for id="id_tan_no">TAN NO.</label>
+                                                    <input type="text" class="form-control"name="tan_no"id="id_tan_no" value="{{ statutory.tan_no }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">CIN No.</label>
-                                                    <input type="email" class="form-control">
+                                                    <label class="bmd-label-floating" for id="id_cin_no">CIN No.</label>
+                                                    <input type="text" class="form-control"name="cin_no"id="id_cin_no" value="{{ statutory.cin_no }}">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">DGFT/IE Code</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="bmd-label-floating" for id="id_dgft_ie_code">DGFT/IE Code</label>
+                                                    <input type="text" class="form-control"name="dgft_ie_code"id="id_dgft_ie_code" value="{{ statutory.dgft_ie_code }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Company Registration No.</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="bmd-label-floating" for id="id_company_registration_no">Company Registration No.</label>
+                                                    <input type="text" class="form-control"name="company_registration_no"id="id_company_registration_no" value="{{ statutory.company_registration_no }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -251,7 +252,7 @@
                                                 </div>
                                             </div>
                                         </div> -->
-                                        <button type="submit" class="btn btn-primary pull-right">Save</button>
+                                        <input type="submit" class="btn btn-primary pull-right"value="Save">
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
@@ -279,5 +280,7 @@
             </div>
         </div>
     </div>
+
+    <!-- <center>{{form.as_p}}</center> -->
     {% endblock content %}
         

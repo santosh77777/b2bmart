@@ -23,3 +23,48 @@ class SellerProfile(models.Model):
 
     def __str__(self):
         return self.user.first_name
+
+
+class SellerBusinessProfile(models.Model):
+    # user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # cimpany_name = models.CharField(max_length=50)
+    # year_of_establishment = models.DateField(auto_now_add=True)
+    # additional_contact_name = models.CharField(max_length=50)
+    # Manufacturer = models.CharField(max_length=100)
+    # annual_turnover = models.CharField(max_length=100)
+    # b2b_mart_catalog_uri = models.URLField(max_length=50)
+    # company_card_front_view = models.CharField(max_length=50)
+    # company_card_back_view = models.CharField(max_length=50)
+
+    # def __str__(self):
+    #     return self.user.first_name 
+    #     Statutory
+    pass
+class SellerStatutory(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    gst_no = models.CharField(max_length=50, null=True)
+    pan_no = models.CharField(max_length=50, null=True)
+    tan_no = models.CharField(max_length=50, null=True)
+    cin_no = models.CharField(max_length=100, null=True)
+    dgft_ie_code = models.CharField(max_length=100, null=True)
+    company_registration_no = models.URLField(max_length=50, null=True)
+
+    def __str__(self):
+        return self.user.first_name 
+    
+
+class SellerBank(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bank_name = models.CharField(max_length=50)
+    account_no = models.CharField(max_length=50)
+    bank_account_name = models.CharField(max_length=50)
+    ifsc_code = models.CharField(max_length=50)
+    account_type = models.CharField(max_length=50)
+    alternative_bank_name = models.CharField(max_length=50)
+    alternative_account_no = models.CharField(max_length=50)
+    alternative_bank_account_name = models.CharField(max_length=50)
+    alternative_bank_ifsc_code = models.CharField(max_length=50)
+    alternative_bank_account_type = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.user.first_name 
