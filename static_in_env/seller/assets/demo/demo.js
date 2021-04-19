@@ -235,3 +235,117 @@ demo = {
   }
 
 }
+
+// Validating Seller Contact form
+function validateformsellercontact()
+{
+  // Checking aboutme field is null or empty
+    var about=document.sellercontact.about_me.value;
+    if(about==null || about=="")
+    {
+        alert("About_me can't be blank");
+        return false;
+    }
+
+    // Validating From field for Special characters and Some Constraints
+    var Regex = "[@_!#$%^&*()<>?/\|}{~:]";
+    var validfirstname=document.sellercontact.first_name.value.match(Regex);
+    if(validfirstname!=null)
+    {
+      alert("first_name should not contain special characters");
+      return false;
+    }
+    var validlastname=document.sellercontact.last_name.value.match(Regex);
+    if(validlastname!=null)
+    {
+      alert("last_name should not contain special characters");
+      return false;
+    }
+    var promoter_first_name=document.sellercontact.promoter_first_name.value.match(Regex);
+    if(promoter_first_name!=null)
+    {
+      alert("promoter_first_name should not contain special characters");
+      return false;
+    }
+    var promoter_last_name=document.sellercontact.promoter_last_name.value.match(Regex);
+    if(promoter_last_name!=null)
+    {
+      alert("promoter_last_name should not contain special characters");
+      return false;
+    }
+    var designation=document.sellercontact.designation.value.match(Regex);
+    var designation1=document.sellercontact.designation.value;
+    if(designation!=null)
+    {
+      alert("designation should not contains special characters");
+      return false;
+    }
+    if(typeof designation1==="number"){
+      alert("Please enter a correct designation");
+      return false;
+    }
+    var address_area=document.sellercontact.address_area.value.match(Regex);
+    if(address_area!=null)
+    {
+      alert("address_area should not contains special characters");
+      return false;
+    }
+    var landmark=document.sellercontact.landmark.value.match(Regex);
+    var locality=document.sellercontact.locality.value.match(Regex);
+    if(landmark!=null ||locality!=null )
+    {
+      alert("landmark or locality should not contains special characters");
+      return false;
+    }
+    var city=document.sellercontact.city.value.match(Regex);
+    var state=document.sellercontact.state.value.match(Regex);
+    if(city!=null ||state!=null )
+    {
+      alert("city or state should not contains special characters");
+      return false;
+    }
+    var country=document.sellercontact.country.value.match(Regex);
+    if(country!=null)
+    {
+      alert("country should not contains special characters");
+      return false;
+    }
+    var pincode=document.sellercontact.pincode.value;
+    if(pincode.length!=6)
+    {
+      alert("Pincode should only contain 6 digit number");
+      return false;
+    }
+    var gstin=document.sellercontact.gstin.value.match(Regex);
+    if(gstin!=null)
+    {
+      alert("gstin should not contains special characters");
+      return false;
+    }
+    var gstin=document.sellercontact.gstin.value;
+    if(gstin.length!=15)
+    {
+      alert("Invalid GSTIN");
+      return false;
+    }
+    var mobile=document.sellercontact.mobile.value;
+    if(mobile.length!=10){
+      alert("Invalid Mobile Number..")
+      return false;
+    }
+    var alternative_mobile=document.sellercontact.alternative_mobile.value;
+    if(alternative_mobile.length!=10){
+      alert("Invalid alternative_mobile..")
+      return false;
+    }
+    var landline_no=document.sellercontact.landline_no.value;
+    if(landline_no.length>15){
+      alert("Invalid landline_no..")
+      return false;
+    }
+    var alternative_landline_no=document.sellercontact.alternative_landline_no.value;
+    if(alternative_landline_no.length>15){
+      alert("Invalid alternative_landline_no..")
+      return false;
+    }
+}
