@@ -11,6 +11,7 @@ from .forms import SellerBankForm, SellerStatutoryForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 
+class SellerDashboardView(View):
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/seller/dashboard.html')
 
