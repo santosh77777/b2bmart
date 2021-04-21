@@ -1,4 +1,4 @@
-
+console.log("ggg");
 const cords = document.querySelector('#find-me');
 // console.log(cords);
 
@@ -33,7 +33,7 @@ function geoFindMe() {
 
 }
 
-cords.addEventListener('click', geoFindMe);
+// cords.addEventListener('click', geoFindMe);
 
 $(window).scroll(function() {
     $('.fadedfx').each(function(){
