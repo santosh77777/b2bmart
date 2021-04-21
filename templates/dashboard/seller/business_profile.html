@@ -79,10 +79,10 @@
                                     <p class="card-category">Complete your business profile</p>
                                 </div>
                                 <div class="card-body">
-                                    {% if not authenticated %}
+                                  
                                     <form method="POST" action="" enctype="multipart/form-data">
                                         {% csrf_token %}
-                                        {{ form.user}}
+                                       
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -162,7 +162,7 @@
                                         <button type="submit" class="btn btn-primary pull-right">Save</button>
                                         <div class="clearfix"></div>
                                     </form>
-                                    {% endif %}
+                                    
                                 </div>
                             </div>
                         </div>

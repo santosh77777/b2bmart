@@ -1,3 +1,5 @@
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View
 from accounts.models import Account
@@ -183,12 +185,13 @@ class SellerStatutoryView(LoginRequiredMixin, UserPassesTestMixin, View):
 #Business Profile Seller Information Save
 
 
+@login_required()
 def SellerBusinessProfileView(request):
-	seller = request.user.businessprofile
+	seller = request.user.account
 	form = BusinessProfileForm(instance= seller)
 
 	if request.method == 'POST':
-		form = BusinessProfileForm(request.POST, request.FILES,instance=seller)
+		form = BusinessProfileForm(request.POST, request.FILES, instance=seller)
 		if form.is_valid():
 			form.save()
 
