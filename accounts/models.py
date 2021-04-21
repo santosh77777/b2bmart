@@ -27,7 +27,7 @@ class Account(models.Model):
     state = models.CharField(max_length=20)
     pincode = models.CharField(max_length=20)
     company_name = models.CharField(max_length=20)
-    business_type = models.CharField(max_length=20, choices=BUSINESS_TYPE_CHOICES)
+    business_type = models.CharField(max_length=50, choices=BUSINESS_TYPE_CHOICES)
     nature_of_business = models.CharField(max_length=20, choices=NATURE_OF_BUSINESS_CHOICES)
 
     def __str__(self):

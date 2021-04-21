@@ -2,16 +2,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View
 from accounts.models import Account
 from django.contrib.auth.models import User
+from .models import *
+from .forms import *
+from django.contrib import messages
 from .models import SellerProfile, Account, SellerStatutory, SellerBank
 from accounts.views import is_seller, is_buyer
 from .forms import SellerBankForm, SellerStatutoryForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
-
-
-class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
-    def test_func(self):
-        return is_seller(self.request.user)
 
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/seller/dashboard.html')
@@ -44,6 +42,7 @@ class SellerContactProfileView(LoginRequiredMixin, UserPassesTestMixin, View):
         landline_no =request.POST['landline_no']
         alternative_landline_no =request.POST['alternative_landline_no']
         about_me =request.POST['about_me']
+
         user = User.objects.get(username=request.user.username)
         user.first_name = first_name
         user.last_name = last_name
@@ -88,6 +87,7 @@ class SellerContactProfileView(LoginRequiredMixin, UserPassesTestMixin, View):
             return redirect(".")
 
     def get(self,request, *args, **kwargs):
+
         account = Account.objects.get(user=request.user)
         try:
             seller = SellerProfile.objects.get(user=request.user)
@@ -99,12 +99,42 @@ class SellerContactProfileView(LoginRequiredMixin, UserPassesTestMixin, View):
                     }
         return render(request, 'dashboard/seller/contact_profile.html', context)
 
-class SellerBusinessProfileView(LoginRequiredMixin, UserPassesTestMixin, View):
-    def test_func(self):
-        return is_seller
 
-    def get(self,request, *args, **kwargs):
-        return render(request, 'dashboard/seller/business_profile.html')
+# class SellerBusinessProfileView(View):
+#      def post(self,request, *args, **kwargs):
+#             company_name =request.POST['company_name']
+#             year_of_establishment =request.POST['year_of_establishment']
+#             phone =request.POST['phone']
+#             category ='type' in request.POST
+#             annual_turnover =request.POST['annual_turnover']
+#             company_card_front_view =request.POST['company_card_front_view']
+#             company_card_back_view =request.POST['company_card_back_view']
+
+#             business = BusinessProfile.objects.filter(user=request.user)[0]
+#             if business:
+#                 business.user = request.user
+#                 business.company_name= company_name
+#                 business. year_of_establishment =  year_of_establishment
+#                 business.phone =phone
+#                 business. category =  category
+#                 business.annual_turnover = annual_turnover
+#                 business.company_card_front_view = company_card_front_view
+#                 business.company_card_back_view = company_card_back_view
+#                 business.save()
+#                 return redirect(".")
+            
+#             business = BusinessProfile(user=request.user, company_name=company_name,
+#                         year_of_establishment=year_of_establishment, phone=phone,
+#                         annual_turnover=annual_turnover, company_card_front_view=company_card_front_view, company_card_back_view =company_card_back_view)
+#             business.save()
+#             return redirect(".")
+
+#      def get(self,request, *args, **kwargs):
+#             business = BusinessProfile.objects.get(user=request.user)
+#             context = {
+#                          'business': business
+#                         }
+#             return render(request, 'dashboard/seller/business_profile.html')
 
 class SellerStatutoryView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
@@ -136,12 +166,25 @@ class SellerStatutoryView(LoginRequiredMixin, UserPassesTestMixin, View):
             return redirect(".")  
 
     def get(self,request, *args, **kwargs):
-        try:
-            statutory = SellerStatutory.objects.get(user=request.user)
-            context = {'statutory':statutory}
-        except:
-            context=None
-        return render(request, 'dashboard/seller/statutory.html', context)
+        return render(request, 'dashboard/seller/bank_details.html')
+        
+
+
+#Business Profile Seller Information Save
+
+
+def SellerBusinessProfileView(request):
+	seller = request.user.businessprofile
+	form = BusinessProfileForm(instance= seller)
+
+	if request.method == 'POST':
+		form = BusinessProfileForm(request.POST, request.FILES,instance=seller)
+		if form.is_valid():
+			form.save()
+
+
+	context = {'form':form}
+	return render(request, 'dashboard/seller/business_profile.html', context)
 
 class SellerBankView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):

@@ -12,3 +12,4 @@ class SellerStatutoryForm(forms.ModelForm):
     class Meta:
         model = SellerStatutory
         fields = ['gst_no', 'pan_no', 'tan_no', 'cin_no', 'dgft_ie_code', 'company_registration_no']
+

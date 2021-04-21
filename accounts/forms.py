@@ -13,7 +13,6 @@ class SignUpForm(forms.Form):
     business_type = forms.CharField(max_length=20)
     nature_of_business = forms.CharField(max_length=20)
 
-
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email', 'mobile', 'state', 'pincode', 'company_name', 'business_type', 'nature_of_business']
