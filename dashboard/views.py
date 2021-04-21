@@ -2,21 +2,18 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View
 from accounts.models import Account
 from django.contrib.auth.models import User
-<<<<<<< HEAD
+
 from .models import SellerProfile, Account, SellerStatutory, SellerBank
 from accounts.views import is_seller, is_buyer
 from .forms import SellerBankForm, SellerStatutoryForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
+from django.contrib import messages
 
 
 class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
         return is_seller(self.request.user)
-=======
-from .models import SellerProfile, Account
-from django.contrib import messages
->>>>>>> e28f4022d044f872afbeb2b25db374d47b444011
 
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/seller/dashboard.html')
@@ -49,10 +46,6 @@ class SellerContactProfileView(LoginRequiredMixin, UserPassesTestMixin, View):
         landline_no =request.POST['landline_no']
         alternative_landline_no =request.POST['alternative_landline_no']
         about_me =request.POST['about_me']
-<<<<<<< HEAD
-=======
-        print("aboutttttttttttttttt", about_me)  
->>>>>>> e28f4022d044f872afbeb2b25db374d47b444011
         user = User.objects.get(username=request.user.username)
         user.first_name = first_name
         user.last_name = last_name
