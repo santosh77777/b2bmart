@@ -13,3 +13,10 @@ class SellerStatutoryForm(forms.ModelForm):
         model = SellerStatutory
         fields = ['gst_no', 'pan_no', 'tan_no', 'cin_no', 'dgft_ie_code', 'company_registration_no']
 
+from product.models import Product
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = "__all__"
+        exclude = ['user']

@@ -6,7 +6,7 @@ from django.contrib import messages
 
 from .models import SellerProfile, Account, SellerStatutory, SellerBank
 from accounts.views import is_seller, is_buyer
-from .forms import SellerBankForm, SellerStatutoryForm
+from .forms import SellerBankForm, SellerStatutoryForm, ProductForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -104,43 +104,6 @@ class SellerContactProfileView(LoginRequiredMixin, UserPassesTestMixin, View):
                     }
         return render(request, 'dashboard/seller/contact_profile.html', context)
 
-
-# class SellerBusinessProfileView(View):
-#      def post(self,request, *args, **kwargs):
-#             company_name =request.POST['company_name']
-#             year_of_establishment =request.POST['year_of_establishment']
-#             phone =request.POST['phone']
-#             category ='type' in request.POST
-#             annual_turnover =request.POST['annual_turnover']
-#             company_card_front_view =request.POST['company_card_front_view']
-#             company_card_back_view =request.POST['company_card_back_view']
-
-#             business = BusinessProfile.objects.filter(user=request.user)[0]
-#             if business:
-#                 business.user = request.user
-#                 business.company_name= company_name
-#                 business. year_of_establishment =  year_of_establishment
-#                 business.phone =phone
-#                 business. category =  category
-#                 business.annual_turnover = annual_turnover
-#                 business.company_card_front_view = company_card_front_view
-#                 business.company_card_back_view = company_card_back_view
-#                 business.save()
-#                 return redirect(".")
-            
-#             business = BusinessProfile(user=request.user, company_name=company_name,
-#                         year_of_establishment=year_of_establishment, phone=phone,
-#                         annual_turnover=annual_turnover, company_card_front_view=company_card_front_view, company_card_back_view =company_card_back_view)
-#             business.save()
-#             return redirect(".")
-
-#      def get(self,request, *args, **kwargs):
-#             business = BusinessProfile.objects.get(user=request.user)
-#             context = {
-#                          'business': business
-#                         }
-#             return render(request, 'dashboard/seller/business_profile.html')
-
 class SellerStatutoryView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
         return is_seller
@@ -178,10 +141,6 @@ class SellerStatutoryView(LoginRequiredMixin, UserPassesTestMixin, View):
             context=None
         return render(request, 'dashboard/seller/statutory.html', context)
         
-
-
-#Business Profile Seller Information Save
-
 
 def SellerBusinessProfileView(request):
 	seller = request.user.businessprofile
@@ -233,6 +192,14 @@ class SellerBankView(LoginRequiredMixin, UserPassesTestMixin, View):
         return render(request, 'dashboard/seller/bank_details.html', context)
 
 class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        form = ProductForm()
+        return render(request, 'dashboard/seller/add_product.html',{'form':form})
+
+class ProductCreateView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
         return is_seller(self.request.user)
 

@@ -64,19 +64,12 @@
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 <li class="nav-item"> <a class="nav-link active" href="#productDetail" data-toggle="tab">Product Details</a>
                                                 </li>
-                                                <li class="nav-item"> <a class="nav-link" href="#chooseProduct" data-toggle="tab">Choose A Category</a>
-                                                </li>
-                                                <li class="nav-item"> <a class="nav-link" href="#specification" data-toggle="tab">Specifications</a>
-                                                </li>
-                                                <li class="nav-item"> <a class="nav-link" href="#additionalDetail" data-toggle="tab">Additional Details</a>
-                                                </li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body">
                                     <div class="tab-content text-center">
-                                        <div class="tab-pane active" id="productDetail">
                                             <form action="">
                                                 <div class="input-group row">
                                                     <div class="input-group-prepend col-3"> <span class="input-group-text"> Name </span>
@@ -115,95 +108,7 @@
                                                 </div>
                                             </form>
                                         </div>
-                                        <div class="tab-pane" id="chooseProduct">
-                                            <form action="">
-                                                <div class="input-group row w-75 mx-auto mb-4">
-                                                    <div class="input-group-prepend col-3"> <span class="input-group-text"> Category Search</span>
-                                                    </div>
-                                                    <input type="text" class="form-control col-9" placeholder="Search Category Name">
-                                                </div>
-                                                <div class="category-item">
-                                                    <div class="image">
-                                                        <img class="img-fluid" src="../images/cooker.jpg" alt="">
-                                                    </div>
-                                                    <div class="contnet ml-3">
-                                                        <div class="title"> <strong>Category:</strong> Kitchen Stoves</div>
-                                                        <div class="sub-title"> <strong>Sub Category:</strong> Butterfly Stoves, Kaff KPH-78</div>
-                                                    </div>
-                                                    <div class="form-check ml-auto">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="checkbox" value=""> <span class="form-check-sign">
-                                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="category-item">
-                                                    <div class="image">
-                                                        <img class="img-fluid" src="../images/cooker.jpg" alt="">
-                                                    </div>
-                                                    <div class="contnet ml-3">
-                                                        <div class="title"> <strong>Category:</strong> Mixer Grinder</div>
-                                                        <div class="sub-title"> <strong>Sub Category:</strong> Kent Mixer, Padmini Mixer</div>
-                                                    </div>
-                                                    <div class="form-check ml-auto">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="checkbox" value=""> <span class="form-check-sign">
-                                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="category-item">
-                                                    <div class="image">
-                                                        <img class="img-fluid" src="../images/cooker.jpg" alt="">
-                                                    </div>
-                                                    <div class="contnet ml-3">
-                                                        <div class="title"> <strong>Category:</strong> Rice Cooker</div>
-                                                        <div class="sub-title"> <strong>Sub Category:</strong> Prestige Cooker, Brayden Cooker</div>
-                                                    </div>
-                                                    <div class="form-check ml-auto">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="checkbox" value=""> <span class="form-check-sign">
-                                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="category-item">
-                                                    <div class="image">
-                                                        <img class="img-fluid" src="../images/cooker.jpg" alt="">
-                                                    </div>
-                                                    <div class="contnet ml-3">
-                                                        <div class="title"> <strong>Category:</strong> Food Processor</div>
-                                                        <div class="sub-title"> <strong>Sub Category:</strong> Conflectionaries, Ice-cream</div>
-                                                    </div>
-                                                    <div class="form-check ml-auto">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="checkbox" value=""> <span class="form-check-sign">
-                                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="category-item">
-                                                    <div class="image">
-                                                        <img class="img-fluid" src="../images/cooker.jpg" alt="">
-                                                    </div>
-                                                    <div class="contnet ml-3">
-                                                        <div class="title"> <strong>Category:</strong> Blenders</div>
-                                                        <div class="sub-title"> <strong>Sub Category:</strong> Adam's Fertilizers,Paper Stumps</div>
-                                                    </div>
-                                                    <div class="form-check ml-auto">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="checkbox" value=""> <span class="form-check-sign">
-                                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
+                                        
                                         <div class="tab-pane" id="specification">
                                             <div class="row">
                                                 <div class="col-3">Capacity</div>
@@ -332,37 +237,33 @@
                                                 <div class="input-group-prepend col-3"> <span class="input-group-text"> Closure Type </span>
                                                 </div>
                                                 <input type="text" class="form-control col-9" placeholder="Enter Product Name">
+                                        </div>
+                                            <div class="input-group row">
+                                                <div class="input-group-prepend col-3"> <span class="input-group-text"> Product Code </span>
+                                                </div>
+                                                <input type="text" class="form-control col-9" placeholder="Ex- Pro12SXX45">
                                             </div>
-                                        </div>
-                                        <div class="tab-pane" id="additionalDetail">
-                                            <form action="">
-                                                <div class="input-group row">
-                                                    <div class="input-group-prepend col-3"> <span class="input-group-text"> Product Code </span>
-                                                    </div>
-                                                    <input type="text" class="form-control col-9" placeholder="Ex- Pro12SXX45">
+                                            <div class="input-group row">
+                                                <div class="input-group-prepend col-3"> <span class="input-group-text"> Delivery Time </span>
                                                 </div>
-                                                <div class="input-group row">
-                                                    <div class="input-group-prepend col-3"> <span class="input-group-text"> Delivery Time </span>
-                                                    </div>
-                                                    <input type="text" class="form-control col-9" placeholder="Ex- 1-Day">
+                                                <input type="text" class="form-control col-9" placeholder="Ex- 1-Day">
+                                            </div>
+                                            <div class=" input-group row ">
+                                                <div class="input-group-prepend col-3 "> <span class="input-group-text "> Packing Details </span>
                                                 </div>
-                                                <div class=" input-group row ">
-                                                    <div class="input-group-prepend col-3 "> <span class="input-group-text "> Packing Details </span>
-                                                    </div>
-                                                    <input type="text " class="form-control col-9 " placeholder="Give Product Details ">
+                                                <input type="text " class="form-control col-9 " placeholder="Give Product Details ">
+                                            </div>
+                                            <div class="input-group row ">
+                                                <div class="input-group-prepend col-3 "> <span class="input-group-text "> Attach PDF Brochure </span>
                                                 </div>
-                                                <div class="input-group row ">
-                                                    <div class="input-group-prepend col-3 "> <span class="input-group-text "> Attach PDF Brochure </span>
-                                                    </div>
-                                                    <input type="text " class="form-control col-9 " placeholder="Product pdf attach ">
+                                                <input type="text " class="form-control col-9 " placeholder="Product pdf attach ">
+                                            </div>
+                                            <div class="input-group row ">
+                                                <div class="input-group-prepend col-3 "> <span class="input-group-text "> Product Vedio URL </span>
                                                 </div>
-                                                <div class="input-group row ">
-                                                    <div class="input-group-prepend col-3 "> <span class="input-group-text "> Product Vedio URL </span>
-                                                    </div>
-                                                    <input type="text " class="form-control col-9 " placeholder="With Font Awesome Icons ">
-                                                </div>
-                                            </form>
-                                        </div>
+                                                <input type="text " class="form-control col-9 " placeholder="With Font Awesome Icons ">
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -372,4 +273,5 @@
             </div>
         </div>
     </div>
+    <center>{{ form.as_p }}</center>
     {% endblock content %}

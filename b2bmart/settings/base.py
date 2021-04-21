@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # created apps
     'accounts',
     'dashboard',
+    'product',
 
     # third party libraries
     'allauth',
