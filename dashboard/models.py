@@ -34,7 +34,7 @@ class BusinessProfile(models.Model):
     year_of_establishment = models.DateField(null=True)
     phone = models.CharField(max_length=200, blank=True, null=True)
     category = models.CharField(max_length=200, null=True, choices=CATEGORY)
-    annual_turnover = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    annual_turnover = models.CharField(max_length=200, null=True)
     company_card_front_view = models.ImageField(upload_to='images/', null=True, blank=True)
     company_card_back_view = models.ImageField(upload_to='images/', null=True, blank=True)
 

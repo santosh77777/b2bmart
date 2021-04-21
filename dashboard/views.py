@@ -13,6 +13,11 @@ from .forms import SellerBankForm, SellerStatutoryForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 
+   
+class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/seller/dashboard.html')
 
@@ -168,16 +173,16 @@ class SellerStatutoryView(LoginRequiredMixin, UserPassesTestMixin, View):
             return redirect(".")  
 
     def get(self,request, *args, **kwargs):
-        return render(request, 'dashboard/seller/bank_details.html')
+        return render(request, 'dashboard/seller/statutory.html')
         
 
 
 #Business Profile Seller Information Save
 
 
-@login_required()
+@login_required
 def SellerBusinessProfileView(request):
-	seller = request.user.account
+	seller = BusinessProfile.objects.get(user=request.user)
 	form = BusinessProfileForm(instance= seller)
 
 	if request.method == 'POST':
@@ -186,7 +191,7 @@ def SellerBusinessProfileView(request):
 			form.save()
 
 
-	context = {'form':form}
+	context = {'form':form, 'seller': seller }
 	return render(request, 'dashboard/seller/business_profile.html', context)
 
 class SellerBankView(LoginRequiredMixin, UserPassesTestMixin, View):
