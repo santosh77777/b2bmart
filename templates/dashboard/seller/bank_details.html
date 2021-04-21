@@ -1,6 +1,7 @@
 {% extends 'dashboard/seller/seller_base.html' %}
 {% load static %}
    {% block content %}
+   <!-- <h4 class="text-center">{{form.as_p}}</h4> -->
         <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
@@ -60,7 +61,7 @@
                                     <a class="dropdown-item" href="#">Profile</a>
                                     <a class="dropdown-item" href="#">Settings</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Log out</a>
+                                    <a class="dropdown-item" href="{% url 'account_logout' %}">Log out</a>
                                 </div>
                             </li>
                         </ul>
@@ -78,76 +79,77 @@
                                     <p class="card-category">Complete your bank details</p>
                                 </div>
                                 <div class="card-body">
-                                    <form>
+                                    <form action="." method="post">
+                                        {% csrf_token %}
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Bank Name</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="bmd-label-floating" for id="id_bank_name">Bank Name</label>
+                                                    <input type="text" class="form-control" name="bank_name"id="id_bank_name" value="{{ seller_bank.bank_name }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Bank Account No.</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="bmd-label-floating" for id="id_account_no">Bank Account No.</label>
+                                                    <input type="text" class="form-control" name="account_no"id="id_account_no" value="{{ seller_bank.account_no }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Bank According Your Name</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="bmd-label-floating"for id="id_bank_account_name">Bank According Your Name</label>
+                                                    <input type="text" class="form-control" name="bank_account_name"id="id_bank_account_name" value="{{ seller_bank.bank_account_name}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Bank IFSC Code</label>
-                                                    <input type="email" class="form-control">
+                                                    <label class="bmd-label-floating"for id="id_ifsc_code">Bank IFSC Code</label>
+                                                    <input type="text" class="form-control" name="ifsc_code"id="id_ifsc_code" value="{{ seller_bank.ifsc_code }}">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Account Type</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="bmd-label-floating"for id="id_account_type">Account Type</label>
+                                                    <input type="text" class="form-control" name="account_type"id="id_account_type" value="{{ seller_bank.account_type }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Alernative Bank Name</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="bmd-label-floating"for id="id_alternative_bank_name">Alernative Bank Name</label>
+                                                    <input type="text" class="form-control" name="alternative_bank_name"id="id_alternative_bank_name" value="{{ seller_bank.alternative_bank_name }}">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Alernative Bank Account No.</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="bmd-label-floating"for id="id_alternative_account_no">Alernative Bank Account No.</label>
+                                                    <input type="text" class="form-control" name="alternative_account_no"id="id_alternative_account_no" value="{{ seller_bank.alternative_account_no }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Alernative Bank According Your Name</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="bmd-label-floating"for id="id_alternative_bank_account_name">Alernative Bank According Your Name</label>
+                                                    <input type="text" class="form-control" name="alternative_bank_account_name"id="id_alternative_bank_account_name" value="{{ seller_bank.alternative_bank_account_name }}">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Alernative Bank IFSC Code</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="bmd-label-floating"for id="id_alternative_bank_ifsc_code">Alernative Bank IFSC Code</label>
+                                                    <input type="text" class="form-control" name="alternative_bank_ifsc_code"id="id_alternative_bank_ifsc_code" value="{{ seller_bank.alternative_bank_ifsc_code }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Alernative Account Type</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="bmd-label-floating"for id="id_alternative_bank_account_type">Alernative Account Type</label>
+                                                    <input type="text" class="form-control" name="alternative_bank_account_type"id="id_alternative_bank_account_type" value="{{ seller_bank.alternative_bank_account_type }}">
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary pull-right">Save</button>
+                                        <input type="submit" class="btn btn-primary pull-right" value="save">
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>

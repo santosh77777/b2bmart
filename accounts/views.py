@@ -14,6 +14,8 @@ def is_seller(user):
 def is_buyer(user):
     return user.account.business_type == 'Buyer'
 
+def is_admin(user):
+    pass
 def login_redirect_view(request):
     if is_seller(request.user):
         return redirect('/dashboard/seller-dashboard/')
