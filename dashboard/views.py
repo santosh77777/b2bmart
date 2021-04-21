@@ -80,6 +80,7 @@ class SellerContactProfileView(View):
         return redirect(".")
 
     def get(self,request, *args, **kwargs):
+
         account = Account.objects.get(user=request.user)
         seller = SellerProfile.objects.get(user=request.user)
         context = {'account': account,
@@ -88,8 +89,40 @@ class SellerContactProfileView(View):
         return render(request, 'dashboard/seller/contact_profile.html', context)
 
 # class SellerBusinessProfileView(View):
-#     def get(self,request, *args, **kwargs):
-#         return render(request, 'dashboard/seller/business_profile.html')
+#      def post(self,request, *args, **kwargs):
+#             company_name =request.POST['company_name']
+#             year_of_establishment =request.POST['year_of_establishment']
+#             phone =request.POST['phone']
+#             category ='type' in request.POST
+#             annual_turnover =request.POST['annual_turnover']
+#             company_card_front_view =request.POST['company_card_front_view']
+#             company_card_back_view =request.POST['company_card_back_view']
+
+#             business = BusinessProfile.objects.filter(user=request.user)[0]
+#             if business:
+#                 business.user = request.user
+#                 business.company_name= company_name
+#                 business. year_of_establishment =  year_of_establishment
+#                 business.phone =phone
+#                 business. category =  category
+#                 business.annual_turnover = annual_turnover
+#                 business.company_card_front_view = company_card_front_view
+#                 business.company_card_back_view = company_card_back_view
+#                 business.save()
+#                 return redirect(".")
+            
+#             business = BusinessProfile(user=request.user, company_name=company_name,
+#                         year_of_establishment=year_of_establishment, phone=phone,
+#                         annual_turnover=annual_turnover, company_card_front_view=company_card_front_view, company_card_back_view =company_card_back_view)
+#             business.save()
+#             return redirect(".")
+
+#      def get(self,request, *args, **kwargs):
+#             business = BusinessProfile.objects.get(user=request.user)
+#             context = {
+#                          'business': business
+#                         }
+#             return render(request, 'dashboard/seller/business_profile.html')
 
 class SellerStatutoryView(View):
     def get(self,request, *args, **kwargs):
@@ -98,13 +131,11 @@ class SellerStatutoryView(View):
 class SellerBankView(View):
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/seller/bank_details.html')
-
         
 
-"""
-Business Profile Seller Information Save
 
-"""
+#Business Profile Seller Information Save
+
 
 def SellerBusinessProfileView(request):
 	seller = request.user.businessprofile
@@ -118,6 +149,4 @@ def SellerBusinessProfileView(request):
 
 	context = {'form':form}
 	return render(request, 'dashboard/seller/business_profile.html', context)
-
-
 
