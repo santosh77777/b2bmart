@@ -231,3 +231,10 @@ class SellerBankView(LoginRequiredMixin, UserPassesTestMixin, View):
         except:
             context = None
         return render(request, 'dashboard/seller/bank_details.html', context)
+
+class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/seller/add_product.html')
