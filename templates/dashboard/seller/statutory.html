@@ -1,6 +1,13 @@
         {% extends 'dashboard/seller/seller_base.html' %}
         {% load static %}
         {% block content %}
+<style>
+.error{
+  color:red;
+  font-style:italic;
+}
+</style>
+
         <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
@@ -78,30 +85,30 @@
                                     <p class="card-category">Complete your Statutory Details</p>
                                 </div>
                                 <div class="card-body">
-                                    <form>
+                                    <form id="satutory_form">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Company GST No.</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" name="comapny_gst" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">PAN No.</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" name="pan" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">TAN NO.</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" name="tan" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">CIN No.</label>
-                                                    <input type="email" class="form-control">
+                                                    <input type="email" name="cin" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -109,171 +116,22 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">DGFT/IE Code</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" name="iecode" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Company Registration No.</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" name="reg_num" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Annual Turnover</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="type">B2BMart Catalog URl <sup class="text-danger">*</sup></label>
-                                                    <a href="#">https://www.b2bMart.com/art-craft/</a>
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                        <!-- <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Landmark</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Locality</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">City</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">State</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                        <!-- <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Country</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Pincode</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">GSTIN</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Company Website</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                        <!-- <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Mobile Number</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Alernative Mobile Number</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Email Id</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Alernative Email Id</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Landline No.</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Alternative Landline No</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                        <!-- <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Company Card</label>
-                                                    <div class="form-group">
-                                                        <label class="bmd-label-floating"> Front View</label>
-                                                        <form action="#">
-                                                            <input type="file" id="myFile" name="filename">
-                                                            <input type="submit">
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Company Card</label>
-                                                    <div class="form-group">
-                                                        <label class="bmd-label-floating"> Back View</label>
-                                                        <form action="#">
-                                                            <input type="file" id="myFile" name="filename">
-                                                            <input type="submit">
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> -->
                                         <button type="submit" class="btn btn-primary pull-right">Save</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-md-4">
-                            <div class="card card-profile">
-                                <div class="card-avatar">
-                                    <a href="javascript:;">
-                                        <img class="img" src="../images/cooker.jpg" />
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <h6 class="card-category text-gray">Company Name</h6>
-                                    <h4 class="card-title">XXXX Mart</h4>
-                                    <p class="card-description">
-                                        Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                                    </p>
-                                    <a href="javascript:;" class="btn btn-primary btn-round">Follow</a>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>

@@ -6,18 +6,23 @@ $.validator.addMethod('strongPassword', function(value, element) {
     return re.test(value);
   }, 'Your password must be at least 6 characters long and contain at least one number, one char and one special character.\'.')
 
-  $.validator.addMethod('checkemail', function(value, element) {
-    var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    return re.test(value);
-  }, 'Please enter a valid email address')
+$.validator.addMethod('checkemail', function(value, element) {
+var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+return re.test(value);
+}, 'Please enter a valid email address')
+
+$.validator.addMethod("lettersonly", function(value, element) {
+return this.optional(element) || /^[a-z]+$/i.test(value);
+}, "Letters only please"); 
+
 
 $("#register").validate({
     rules:{
         first_name:{
             required:true,
             minlength:2,
-            nowhitespace: true,
-            lettersonly: true
+            // nowhitespace: true,
+            lettersonly: true,
         },
         last_name:{
             required:true,
@@ -35,10 +40,12 @@ $("#register").validate({
             maxlength:10,
         },
         state:{
-            required:true
+            required:true,
+            lettersonly: true,
         },
         pincode:{
             required:true,
+            digits:true,
             minlength:6,
             maxlength:6,
         },
@@ -71,11 +78,11 @@ $("#register").validate({
         },
         pincode:{
             minlength:'Invalid pincode',
-            minlength:'Invalid pincode',
+            maxlength:'Invalid pincode',
         },
         mobile:{
             minlength:'Invalid mobile number',
-            minlength:'Invalid mobile number',
+            maxlength:'Invalid mobile number',
         },
     }
 });

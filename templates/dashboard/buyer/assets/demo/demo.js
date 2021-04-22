@@ -1,3 +1,27 @@
+$("#satutory_form").validate({
+  rules:{
+    comapny_gst:{
+      required:true,
+      minlength:15,
+    },
+    pan:{
+      required:true,
+    },
+    tan:{
+      required:true,
+    },
+    cin:{
+      required:true,
+    },
+    iecode:{
+      required:true,
+    },
+    reg_num:{
+      required:true,
+    },
+  }
+});
+
 demo = {
   initDocumentationCharts: function() {
     if ($('#dailySalesChart').length != 0 && $('#websiteViewsChart').length != 0) {
