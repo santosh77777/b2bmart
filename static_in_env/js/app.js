@@ -1,4 +1,4 @@
-console.log("ggg");
+
 const cords = document.querySelector('#find-me');
 // console.log(cords);
 
