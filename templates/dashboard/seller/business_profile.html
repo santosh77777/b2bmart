@@ -1,6 +1,7 @@
 {% extends 'dashboard/seller/seller_base.html' %}
 {% load static %}
    {% block content %}
+  
        <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
@@ -78,18 +79,22 @@
                                     <p class="card-category">Complete your business profile</p>
                                 </div>
                                 <div class="card-body">
-                                    <form>
+                                  
+                                    <form method="POST" action="" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                       
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Company Name</label>
-                                                    <input type="text" class="form-control">
+                                                    
+                                                    {{ form.company_name }}
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Year Of Establishment</label>
-                                                    <input type="text" class="form-control">
+                                                    {{ form.year_of_establishment }}
                                                 </div>
                                             </div>
                                             <!-- <div class="col-md-6">
@@ -109,17 +114,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Additional Contact Name</label>
-                                                    <input type="text" class="form-control">
+                                                    {{ form.phone }}
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <!-- <label for="type">Business Type <sup class="text-danger">*</sup></label> -->
-                                                    <select class="form-control" id="type" name="type">
-                                                      <option>Select Option</option>
-                                                      <option>Manufacturer</option>
-                                                      <option></option>
-                                                    </select>
+                                                    {{ form.category }}
                                                 </div>
                                             </div>
                                         </div>
@@ -127,7 +128,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Annual Turnover</label>
-                                                    <input type="text" class="form-control">
+                                                    {{ form.annual_turnover }}
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -139,23 +140,29 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label class="bmd-label-floating m-0"> Company Card Front View</label>
-                                                <div class="form-group form-file-upload form-file-simple m-0">
-                                                    <input type="text" class="form-control inputFileVisible" placeholder="Simple chooser...">
-                                                    <input type="file" class="inputFileHidden">
+                                                <label class=""> Company Card Front View</label>
+                                                <div class="">
+                                                    <!--<input type="text" class="form-control inputFileVisible" placeholder="Simple chooser...">
+                                                    <input type="file" class="inputFileHidden" name="company_card_front_view">-->
+                                                    {{ form.company_card_front_view }}
+                                                    
+			                                       <!---  <img class="profile-pic" src="{{ user.company_card_front_view.url }}" > -->
+
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="bmd-label-floating m-0"> Company Card Back View</label>
-                                                <div class="form-group form-file-upload form-file-simple m-0">
-                                                    <input type="text" class="form-control inputFileVisible" placeholder="Simple chooser...">
-                                                    <input type="file" class="inputFileHidden">
+                                                <label class=""> Company Card Back View</label>
+                                                <div class="z">
+                                                    <!--<input type="text" class="form-control inputFileVisible" placeholder="Simple chooser...">
+                                                    <input type="file" class="inputFileHidden" name="company_card_back_view">-->
+                                                    {{ form.company_card_back_view }}
                                                 </div>
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary pull-right">Save</button>
                                         <div class="clearfix"></div>
                                     </form>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -173,6 +180,8 @@
                                         Don't be scared of the truth because we need to restart the human foundation in truth And
                                          I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
                                     </p>
+
+
                                     <!-- <a href="javascript:;" class="btn btn-primary btn-round">Follow</a> -->
                                 </div>
                             </div>
