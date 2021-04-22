@@ -11,6 +11,7 @@ from accounts.views import is_seller, is_buyer
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
+from .forms import *
 from product.forms import ProductForm
 
 
@@ -152,17 +153,19 @@ class SellerStatutoryView(LoginRequiredMixin, UserPassesTestMixin, View):
 
 @login_required
 def SellerBusinessProfileView(request):
-	seller = BusinessProfile.objects.get(user=request.user)
-	form = BusinessProfileForm(instance= seller)
+    #seller = BusinessProfile.objects.get(user=request.user)
+    seller = request.user.businessprofile
+    form = BusinessProfileForm(instance= seller)
 
-	if request.method == 'POST':
-		form = BusinessProfileForm(request.POST, request.FILES, instance=seller)
-		if form.is_valid():
-			form.save()
+    if request.method == 'POST':
+        form = BusinessProfileForm(request.POST, request.FILES, instance=seller)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your profile was updated successfully')
 
 
-	context = {'form':form, 'seller': seller }
-	return render(request, 'dashboard/seller/business_profile.html', context)
+    context = {'form':form, 'seller': seller }
+    return render(request, 'dashboard/seller/business_profile.html', context)
 
 class SellerBankView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
