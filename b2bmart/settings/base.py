@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # created apps
     'accounts',
     'dashboard',
+    'product',
 
     # third party libraries
     'allauth',
@@ -140,7 +141,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # authentication part
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
 ACCOUNT_USERNAME_REQUIRED = False
 # ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
