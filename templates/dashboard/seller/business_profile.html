@@ -145,8 +145,7 @@
                                                     <!--<input type="text" class="form-control inputFileVisible" placeholder="Simple chooser...">
                                                     <input type="file" class="inputFileHidden" name="company_card_front_view">-->
                                                     {{ form.company_card_front_view }}
-                                                    
-			                                       <!---  <img class="profile-pic" src="{{ user.company_card_front_view.url }}" > -->
+                                                    <img class="profile-pic" src="{{ seller.company_card_front_view.url }}" >
 
                                                 </div>
                                             </div>
@@ -156,6 +155,7 @@
                                                     <!--<input type="text" class="form-control inputFileVisible" placeholder="Simple chooser...">
                                                     <input type="file" class="inputFileHidden" name="company_card_back_view">-->
                                                     {{ form.company_card_back_view }}
+                                                    <img class="profile-pic" src="{{ seller.company_card_back_view.url }}" >
                                                 </div>
                                             </div>
                                         </div>
@@ -174,13 +174,12 @@
                                     </a>
                                 </div>
                                 <div class="card-body">
-                                    <h6 class="card-category text-gray">Company Name</h6>
+                                    <h6 class="card-category text-gray">{{ seller.company_name }}</h6>
                                     <h4 class="card-title">XXXX Mart</h4>
                                     <p class="card-description">
                                         Don't be scared of the truth because we need to restart the human foundation in truth And
                                          I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
                                     </p>
-
 
                                     <!-- <a href="javascript:;" class="btn btn-primary btn-round">Follow</a> -->
                                 </div>
