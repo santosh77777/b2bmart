@@ -1,18 +1,24 @@
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View
 from accounts.models import Account
 from django.contrib.auth.models import User
 from django.contrib import messages
 
-from .models import SellerProfile, Account, SellerStatutory, SellerBank
+from .models import SellerProfile, Account, SellerStatutory, SellerBank, BusinessProfile
 from accounts.views import is_seller, is_buyer
-from .forms import SellerBankForm, SellerStatutoryForm, ProductForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
 
 
 
+class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+   
 class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
         return is_seller(self.request.user)
@@ -140,19 +146,21 @@ class SellerStatutoryView(LoginRequiredMixin, UserPassesTestMixin, View):
         except:
             context=None
         return render(request, 'dashboard/seller/statutory.html', context)
-        
 
+
+
+@login_required
 def SellerBusinessProfileView(request):
-	seller = request.user.businessprofile
+	seller = BusinessProfile.objects.get(user=request.user)
 	form = BusinessProfileForm(instance= seller)
 
 	if request.method == 'POST':
-		form = BusinessProfileForm(request.POST, request.FILES,instance=seller)
+		form = BusinessProfileForm(request.POST, request.FILES, instance=seller)
 		if form.is_valid():
 			form.save()
 
 
-	context = {'form':form}
+	context = {'form':form, 'seller': seller }
 	return render(request, 'dashboard/seller/business_profile.html', context)
 
 class SellerBankView(LoginRequiredMixin, UserPassesTestMixin, View):
