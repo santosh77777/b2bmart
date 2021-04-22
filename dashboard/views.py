@@ -11,6 +11,7 @@ from accounts.views import is_seller, is_buyer
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
+from product.forms import ProductForm
 
 
 
