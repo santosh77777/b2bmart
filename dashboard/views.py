@@ -4,14 +4,20 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View
 from accounts.models import Account
 from django.contrib.auth.models import User
-from .models import *
-from .forms import *
 from django.contrib import messages
+
 from .models import SellerProfile, Account, SellerStatutory, SellerBank
 from accounts.views import is_seller, is_buyer
 from .forms import SellerBankForm, SellerStatutoryForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
+from django.contrib import messages
+
+
+
+class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
 
    
 class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
@@ -49,7 +55,6 @@ class SellerContactProfileView(LoginRequiredMixin, UserPassesTestMixin, View):
         landline_no =request.POST['landline_no']
         alternative_landline_no =request.POST['alternative_landline_no']
         about_me =request.POST['about_me']
-
         user = User.objects.get(username=request.user.username)
         user.first_name = first_name
         user.last_name = last_name
@@ -173,8 +178,13 @@ class SellerStatutoryView(LoginRequiredMixin, UserPassesTestMixin, View):
             return redirect(".")  
 
     def get(self,request, *args, **kwargs):
-        return render(request, 'dashboard/seller/statutory.html')
-        
+        try:
+            statutory = SellerStatutory.objects.get(user=request.user)
+            context = { 'statutory':statutory}
+        except:
+            context=None
+        return render(request, 'dashboard/seller/statutory.html', context)
+
 
 
 #Business Profile Seller Information Save
@@ -229,3 +239,10 @@ class SellerBankView(LoginRequiredMixin, UserPassesTestMixin, View):
         except:
             context = None
         return render(request, 'dashboard/seller/bank_details.html', context)
+
+class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/seller/add_product.html')
