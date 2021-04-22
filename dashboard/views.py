@@ -6,9 +6,9 @@ from accounts.models import Account
 from django.contrib.auth.models import User
 from django.contrib import messages
 
-from .models import SellerProfile, Account, SellerStatutory, SellerBank
+from .models import SellerProfile, Account, SellerStatutory, SellerBank, BusinessProfile
 from accounts.views import is_seller, is_buyer
-from .forms import SellerBankForm, SellerStatutoryForm
+from .forms import SellerBankForm, SellerStatutoryForm, BusinessProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
