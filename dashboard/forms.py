@@ -14,16 +14,19 @@ class SellerStatutoryForm(forms.ModelForm):
         fields = ['gst_no', 'pan_no', 'tan_no', 'cin_no', 'dgft_ie_code', 'company_registration_no']
 
 
+        
+
+
 class BusinessProfileForm(forms.ModelForm):
     CATEGORY = (
 			('Seller', 'Seller'),
 			('Manufacturer', 'Manufacturer'),
 			) 
-    company_name = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control'}), required=False)
-    year_of_establishment = forms.DateField(widget=forms.DateInput( attrs={'class': 'form-control'}), required=False)
-    phone = forms.IntegerField(widget=forms.NumberInput( attrs={'class': 'form-control'}), required=False)
-    category = forms.ChoiceField(widget=forms.Select( attrs={'class': 'form-control'}), choices=CATEGORY,  required=False)
-    annual_turnover = forms.IntegerField(widget=forms.NumberInput( attrs={'class': 'form-control'}), required=False)
+    company_name = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control'}), required=True)
+    year_of_establishment = forms.DateField( localize=True, widget=forms.DateInput(format = '%Y-%m-%d', attrs={'class': 'form-control', 'type':'date'}), required=True)
+    phone = forms.IntegerField(widget=forms.NumberInput( attrs={'class': 'form-control'}), required=True)
+    category = forms.ChoiceField(initial='Select Value', widget=forms.Select( attrs={'class': 'form-control'}), choices=CATEGORY,  required=True)
+    annual_turnover = forms.IntegerField(widget=forms.NumberInput( attrs={'class': 'form-control'}), required=True)
     company_card_front_view = forms.ImageField(widget=forms.FileInput( attrs={'class': ''}), required=False)
     company_card_back_view = forms.ImageField(widget=forms.FileInput( attrs={'class': ''}), required=False)
 
@@ -31,4 +34,3 @@ class BusinessProfileForm(forms.ModelForm):
         model = BusinessProfile
         fields = "__all__"
         exclude = ['user']
-
