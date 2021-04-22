@@ -13,15 +13,6 @@ class SellerStatutoryForm(forms.ModelForm):
         model = SellerStatutory
         fields = ['gst_no', 'pan_no', 'tan_no', 'cin_no', 'dgft_ie_code', 'company_registration_no']
 
-<<<<<<< HEAD
-from product.models import Product
-
-class ProductForm(forms.ModelForm):
-    class Meta:
-        model = Product
-        fields = "__all__"
-        exclude = ['user']
-=======
 
 class BusinessProfileForm(forms.ModelForm):
     CATEGORY = (
@@ -41,8 +32,3 @@ class BusinessProfileForm(forms.ModelForm):
         fields = "__all__"
         exclude = ['user']
 
-
-
-
-
->>>>>>> dev
