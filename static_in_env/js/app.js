@@ -33,7 +33,7 @@ function geoFindMe() {
 
 }
 
-cords.addEventListener('click', geoFindMe);
+// cords.addEventListener('click', geoFindMe);
 
 $(window).scroll(function() {
     $('.fadedfx').each(function(){

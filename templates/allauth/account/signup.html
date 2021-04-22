@@ -2,10 +2,17 @@
 {% load static %}
 {% load i18n %}
 
-{% block head_title %}{% trans "Sign up" %}{% endblock %}
+{% block head_title %}{% trans "Sign up" %}
+
+{% endblock %}
 
 {% block content %}
-
+<style>
+.error{
+  color:red;
+  font-style:italic;
+}
+</style>
 <!-- sidebar background image and content starts -->
 <div class="login-block">
   <div class="container">
@@ -19,7 +26,7 @@
 <!-- right sidebar form content starts -->
         <div class="col-md-8 banner-sec" style="background-image: initial;">
 
-          <form  class="login-form p-5" method="post" action="{% url 'account_signup' %}">
+          <form  class="login-form p-5" id="register" method="post" action="{% url 'account_signup' %}">
             {% csrf_token %}{% if request.GET.next %}
                     <input type="hidden" name="next" value="{{request.GET.next}}">
                 {% endif %}
@@ -66,14 +73,14 @@
             <div class="row m-0">
               <div class="form-group col">
                 <label for="id_company_name">Company Name <sup class="text-danger">*</sup></label>
-                <input type="text" class="form-control" id="id_company_name" name="company_name" placeholder="XXXX Mart">
+                <input type="text" class="form-control" autocomplete="off" id="id_company_name" name="company_name" placeholder="XXXX Mart">
               </div>
             </div>
             <div class="row m-0">
               <div class="form-group col">
                 <label for="id_business_type">Business Type <sup class="text-danger">*</sup></label>
                 <select class="form-control" id="id_business_type" name="business_type">
-                  <option>Select Option</option>
+                  <option value="">Select Option</option>
                   <option>Seller</option>
                   <option>Buyer</option>
                   <option>Logistic Advertisement</option>
@@ -82,7 +89,7 @@
               <div class="form-group col">
                 <label for="id_nature_of_business">Nature Of Business <sup class="text-danger">*</sup></label>
                 <select class="form-control" id="id_nature_of_business" name="nature_of_business">
-                  <option>Select Option</option>
+                  <option value="">Select Option</option>
                   <option>Manufacturer</option>
                   <option>Retailer</option>
                   <option>Distributer</option>
@@ -122,8 +129,8 @@
       </div>
     </div>
   </div>
-  </div>
-
+</div>
   
+
   <!-- {{form.as_p}} -->
 {% endblock %}
