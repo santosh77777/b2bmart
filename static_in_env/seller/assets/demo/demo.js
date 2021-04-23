@@ -478,3 +478,104 @@ $('#Bank_detail').validate({
   }
 });
 
+// Validating Add_products-Detils
+// Validating From field for Special characters and Some Constraints using Jquery
+
+$('#add_product').validate({
+  rules: {
+    inlineRadioOptions1:{
+      required:true,
+    },
+    is_available:{
+      required:true,
+    },
+    product_group:{
+      required:true,
+    },
+    inlineRadioOptions2:{
+      required:true,
+    },
+    inlineRadioOptions3:{
+      required:true,
+    },
+    Product_name:{
+      required:true,
+      minlength:2,
+    },
+    color:{
+      required:true,
+    },
+    price:{
+      required:true,
+    },
+    unity_type:{
+      required:true,
+    },
+    min_order_qty:{
+      required:true,
+    },
+    product_grp:{
+      required:true,
+    },
+    desc:{
+      required:true,
+    },
+    packing_details:{
+      required:true,
+    },
+    size:{
+      required:true,
+    },
+    capacity:{
+      required:true,
+    },
+    product_type:{
+      required:true,
+    },
+    power:{
+      required:true,
+    },
+    warranty:{
+      required:true,
+    },
+    model_no:{
+      required:true,
+    },
+    rating:{
+      required:true,
+    },
+    neck_size:{
+      required:true,
+    },
+    closure_type:{
+      required:true,
+    },
+    product_code:{
+      required:true,
+    },
+    video_url:{
+      required:true,
+    },
+    image1:{
+      required:true,
+    },
+    image2:{
+      required:true,
+    },
+    image3:{
+      required:true,
+    },
+    mat_radio:{
+      required:true,
+    },
+    inlineRadioOptions:{
+      required:true,
+    },
+    cap_radio:{
+      required:true,
+    },
+    product_group:{
+      required:true,
+    }
+  }
+});
