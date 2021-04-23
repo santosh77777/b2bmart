@@ -12,6 +12,22 @@ urlpatterns = [
     
     
     path('seller/add-product/',views.SellerAddProductView.as_view(), name="seller_add_product"),
+    path('seller/manage-product/',views.SellerManageProductView.as_view(), name="seller_manage_product"),
+    path('seller/rearrange-product/',views.SellerReArrangeProductView.as_view(), name="seller_rearrange_product"),
+    path('seller/bulk-price-update/',views.SellerBulkPriceUpdateView.as_view(), name="seller_bulk_price_update"),
+    path('seller/category-report/',views.SellerCategoryReportView.as_view(), name="seller_category_report"),
+    path('seller/analytics/',views.SellerAnalyticView.as_view(), name="seller_analytics"),
+    
+
+    path('seller/business-outlook/',views.SellerBusinessOutlookView.as_view(), name="seller_business_outlook"),
+    path('seller/finance/',views.SellerFinancecView.as_view(), name="seller_finance"),
+    path('seller/history/',views.SellerHistoryView.as_view(), name="seller_history"),
+    path('seller/document/',views.SellerPhotoDocumentView.as_view(), name="seller_document"),
+    path('seller/membership/',views.SellerMembershipView.as_view(), name="seller_membership"),
+    path('seller/my-enquiry/',views.SellerMyEnquiryView.as_view(), name="seller_my_enquiry"),
+    path('seller/settings/',views.SellerSettingsView.as_view(), name="seller_settings"),
+    path('seller/paid-service/',views.SellerPaidServiceView.as_view(), name="seller_paid_service"),
+
 ]
 
 

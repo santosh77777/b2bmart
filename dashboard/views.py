@@ -20,7 +20,6 @@ class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
         return is_seller(self.request.user)
 
-   
 class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
         return is_seller(self.request.user)
@@ -150,7 +149,6 @@ class SellerStatutoryView(LoginRequiredMixin, UserPassesTestMixin, View):
         return render(request, 'dashboard/seller/statutory.html', context)
 
 
-
 @login_required
 def SellerBusinessProfileView(request):
     #seller = BusinessProfile.objects.get(user=request.user)
@@ -259,3 +257,95 @@ class ProductCreateView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/seller/add_product.html')
+
+class SellerManageProductView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/seller/manage_product.html')
+
+class SellerReArrangeProductView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/seller/rearrange_product.html')
+
+class SellerBulkPriceUpdateView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/seller/bulk_price_update.html')
+
+class SellerCategoryReportView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/seller/seller_category_report.html')
+
+class SellerAnalyticView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/seller/analytics.html')
+
+class SellerBusinessOutlookView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/seller/businessoutlook.html')
+
+class SellerFinancecView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/seller/finance.html')
+
+class SellerHistoryView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/seller/history.html')
+
+class SellerPhotoDocumentView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/seller/document.html')
+
+class SellerMembershipView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/seller/membership.html')
+
+class SellerMyEnquiryView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/seller/myenquiry.html')
+
+class SellerSettingsView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/seller/settings.html')
+    
+
+class SellerPaidServiceView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/certificate.html')
