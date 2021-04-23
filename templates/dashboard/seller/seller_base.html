@@ -52,7 +52,7 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../certificate.html">
+              <a class="nav-link" href="">
                 <i class="material-icons">&#8377;</i>
                 <p class="pt-1">paid  Services</p>
               </a>
@@ -64,60 +64,60 @@
               </a>
               <div class="collapse bg-primary ml-3 mr-3" id="manageEshop">
                 <a class="nav-link text-light m-0" href="{% url 'dashboard:seller_add_product' %}"><p>Add product</p></a>
-                <a class="nav-link text-light m-0" href="#"><p>Manage Product</p></a>
-                <a class="nav-link text-light m-0" href="#"><p>Rearrange Product</p></a>
+                <a class="nav-link text-light m-0" href="{% url 'dashboard:seller_manage_product' %}"><p>Manage Product</p></a>
+                <a class="nav-link text-light m-0" href="{% url 'dashboard:seller_rearrange_product' %}"><p>Rearrange Product</p></a>
                 <!-- <a class="nav-link text-light m-0" href="#"><p>Rearrange Groups</p></a> -->
                 <!-- <a class="nav-link text-light m-0" href="#"><p>Manage Product Groups</p></a> -->
-                <a class="nav-link text-light m-0" href="#"><p>Bulk price Update</p></a>
+                <a class="nav-link text-light m-0" href="{% url 'dashboard:seller_bulk_price_update' %}"><p>Bulk price Update</p></a>
                 <!-- <a class="nav-link text-light m-0" href="#"><p>Product Category</p></a> -->
                 <!-- <a class="nav-link text-light m-0" href="#"><p>Category Report</p></a> -->
-                <a class="nav-link text-light m-0" href="#"><p>Category Report</p></a>
+                <a class="nav-link text-light m-0" href=""><p>Category Report</p></a>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="analytics.html">
+              <a class="nav-link" href="{% url 'dashboard:seller_analytics' %}">
                 <i class="material-icons">analytics</i>
                 <p>Analytics</p>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="businessoutlook.html">
+              <a class="nav-link" href="{% url 'dashboard:seller_business_outlook' %}">
                 <i class="material-icons">business</i>
                 <p>Business Outlook</p>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="finance.html">
+              <a class="nav-link" href="{% url 'dashboard:seller_finance' %}">
                 <i class="material-icons">card_membership</i>
                 <p>Finance</p>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="history.html">
+              <a class="nav-link" href="{% url 'dashboard:seller_history' %}">
                 <i class="material-icons">history</i>
                 <p>History</p>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="document.html">
+              <a class="nav-link" href="{% url 'dashboard:seller_document' %}">
                 <i class="material-icons">document_scanner</i>
                 <p>Photo & Document</p>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="membership.html">
+              <a class="nav-link" href="{% url 'dashboard:seller_membership' %}">
                 <i class="material-icons">card_membership</i>
                 <p>Membership</p>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="myenquiry.html">
+              <a class="nav-link" href="{% url 'dashboard:seller_my_enquiry' %}">
                 <i class="material-icons">perm_phone_msg</i>
                 <p>My Enquiery</p>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="settings.html">
+              <a class="nav-link" href="{% url 'dashboard:seller_settings' %}">
                 <i class="material-icons">settings</i>
                 <p>Settings</p>
               </a>
