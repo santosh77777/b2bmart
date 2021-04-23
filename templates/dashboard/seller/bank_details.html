@@ -1,6 +1,17 @@
 {% extends 'dashboard/seller/seller_base.html' %}
 {% load static %}
    {% block content %}
+   <!-- Showing the Error message in red while validating form -->
+        <style>
+            .error{
+            color:red;
+            font-style:italic;
+                    }
+                    .bmd-form-group label {
+                        color: red;
+                        }
+        </style>
+        <!---->
    <!-- <h4 class="text-center">{{form.as_p}}</h4> -->
         <div class="main-panel">
             <!-- Navbar -->
@@ -79,7 +90,7 @@
                                     <p class="card-category">Complete your bank details</p>
                                 </div>
                                 <div class="card-body">
-                                    <form action="." method="post">
+                                    <form action="." method="post" id="Bank_detail">
                                         {% csrf_token %}
                                         <div class="row">
                                             <div class="col-md-6">
