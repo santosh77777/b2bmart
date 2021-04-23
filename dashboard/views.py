@@ -13,6 +13,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from .forms import *
 from product.forms import ProductForm
+from product.models import Product
 
 
 
@@ -249,8 +250,6 @@ class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
         form = ProductForm()
         return render(request, 'dashboard/seller/add_product.html',{'form':form})
 
-    
-
 class ProductCreateView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
         return is_seller(self.request.user)
@@ -270,7 +269,8 @@ class SellerReArrangeProductView(LoginRequiredMixin, UserPassesTestMixin, View):
         return is_seller(self.request.user)
 
     def get(self,request, *args, **kwargs):
-        return render(request, 'dashboard/seller/rearrange_product.html')
+        product = Product.objects.all()
+        return render(request, 'dashboard/seller/rearrange_product.html', {'product':product})
 
 class SellerBulkPriceUpdateView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
@@ -342,10 +342,43 @@ class SellerSettingsView(LoginRequiredMixin, UserPassesTestMixin, View):
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/seller/settings.html')
     
-
 class SellerPaidServiceView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
         return is_seller(self.request.user)
 
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/certificate.html')
+
+class SellerCompanyView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/company.html')
+
+class SellerProductDetailView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/productdetail.html')
+
+class SellerArangeProductView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        product = Product.objects.get(id=kwargs['pk'])
+        product.arrange = True
+        product.save()
+        return redirect('/dashboard/seller/rearrange-product/')
+
+class SellerUnArangeProductView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        product = Product.objects.get(id=kwargs['pk'])
+        product.arrange = False
+        product.save()
+        return redirect('/dashboard/seller/rearrange-product/')
