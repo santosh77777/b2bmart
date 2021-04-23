@@ -56,7 +56,6 @@ class Product(models.Model):
     brand = models.CharField(max_length=50, choices=Brand_CHOICES, null=True,blank=True)
     color = models.CharField(max_length=50, null=True,blank=True)
     size = models.CharField(max_length=50, null=True,blank=True)
-    product_type = models.CharField(max_length=50, null=True,blank=True)
     model_no = models.CharField(max_length=50, null=True,blank=True)
     power = models.CharField(max_length=50, null=True,blank=True)
     warranty = models.CharField(max_length=50, null=True,blank=True)
@@ -64,8 +63,12 @@ class Product(models.Model):
     neck_size = models.CharField(max_length=50, null=True,blank=True)
     closure_type = models.CharField(max_length=50, null=True,blank=True)
     product_code = models.CharField(max_length=50, null=True,blank=True)
+    packing_details = models.CharField(max_length=50, null=True,blank=True)
+    video_url = models.CharField(max_length=50, null=True,blank=True)
     is_available = models.BooleanField(default=False)
-
+    image1=models.ImageField(upload_to="products/",default='')
+    image2=models.ImageField(upload_to="products/",default='')
+    image3=models.ImageField(upload_to="products/",default='')
     def __str__(self):
-        return self.user
+        return str(self.user) 
     

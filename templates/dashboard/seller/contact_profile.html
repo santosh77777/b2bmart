@@ -2,6 +2,15 @@
         {% extends 'dashboard/seller/seller_base.html' %}
         {% load static %}
         {% block content %}
+        <style>
+            .error{
+            color:red;
+            font-style:italic;
+                    }
+                    .bmd-form-group label {
+                        color: red;
+                        }
+        </style>
         <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
@@ -79,31 +88,31 @@
                                     <p class="card-category">Complete your profile</p>
                                 </div>
                                 <div class="card-body">
-                                    <form name="sellercontact" action="." method="post" onsubmit="return validateformsellercontact()">
+                                    <form name="sellercontact" action="." method="post" onsubmit="return validateformsellercontact()" id="seller_form">
                                         {% csrf_token %}
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">First Name</label>
-                                                    <input type="text" class="form-control" name="first_name" value="{{ account.user.first_name }}" required>
+                                                    <input type="text" class="form-control" name="first_name" value="{{ account.user.first_name }}" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Last Name</label>
-                                                    <input type="text" class="form-control" name="last_name" value="{{ account.user.last_name }}" required>
+                                                    <input type="text" class="form-control" name="last_name" value="{{ account.user.last_name }}" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Promoter / CEO (First Name)</label>
-                                                    <input type="text" class="form-control" name="promoter_first_name" value="{{ seller.promoter_first_name }}" required>
+                                                    <input type="text" class="form-control" name="promoter_first_name" value="{{ seller.promoter_first_name }}" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Promoter / CEO (Last Name)</label>
-                                                    <input type="text" class="form-control" name="promoter_last_name" value="{{ seller.promoter_last_name }}" required>
+                                                    <input type="text" class="form-control" name="promoter_last_name" value="{{ seller.promoter_last_name }}" >
                                                 </div>
                                             </div>
                                         </div>
@@ -111,13 +120,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Company Name</label>
-                                                    <input type="text" class="form-control" name="company" value="{{ account.company_name }}" required>
+                                                    <input type="text" class="form-control" name="company" value="{{ account.company_name }}" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Designation</label>
-                                                    <input type="text" class="form-control" name="designation" value="{{ seller.designation }}" required>
+                                                    <input type="text" class="form-control" name="designation" value="{{ seller.designation }}" >
                                                 </div>
                                             </div>
                                         </div>
@@ -125,13 +134,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Adress (Building No./Floor)</label>
-                                                    <input type="text" class="form-control" name="address_building" value="{{ seller.address_building }}" required>
+                                                    <input type="text" class="form-control" name="address_building" value="{{ seller.address_building }}" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Address (Area/Street)</label>
-                                                    <input type="text" class="form-control" name="address_area" value="{{ seller.address_area }}" required>
+                                                    <input type="text" class="form-control" name="address_area" value="{{ seller.address_area }}" >
                                                 </div>
                                             </div>
                                         </div>
@@ -139,25 +148,25 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Landmark</label>
-                                                    <input type="text" class="form-control" name="landmark" value="{{ seller.landmark }}" required>
+                                                    <input type="text" class="form-control" name="landmark" value="{{ seller.landmark }}" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Locality</label>
-                                                    <input type="text" class="form-control" name="locality" value="{{ seller.locality }}" required>
+                                                    <input type="text" class="form-control" name="locality" value="{{ seller.locality }}" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">City</label>
-                                                    <input type="text" class="form-control" name="city" value="{{ seller.city }}" required>
+                                                    <input type="text" class="form-control" name="city" value="{{ seller.city }}" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">State</label>
-                                                    <input type="text" class="form-control" name="state" value="{{ account.state }}" required>
+                                                    <input type="text" class="form-control" name="state" value="{{ account.state }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -165,25 +174,25 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Country</label>
-                                                    <input type="text" class="form-control" name="country" value="{{ seller.country }}" required>
+                                                    <input type="text" class="form-control" name="country" value="{{ seller.country }}" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Pincode</label>
-                                                <input type="number" class="form-control" name="pincode" value="{{ account.pincode }}" required>
+                                                <input type="number" class="form-control" name="pincode" value="{{ account.pincode }}" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">GSTIN</label>
-                                                    <input type="text" class="form-control" name="gstin" value="{{ seller.gstin }}" required>
+                                                    <input type="text" class="form-control" name="gstin" value="{{ seller.gstin }}" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Company Website</label>
-                                                    <input type="text" class="form-control" name="company_website" value="{{ seller.company_website }}" required>
+                                                    <input type="text" class="form-control" name="company_website" value="{{ seller.company_website }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -191,25 +200,25 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Mobile Number</label>
-                                                    <input type="number" class="form-control" name="mobile" value="{{ account.mobile }}" required>
+                                                    <input type="number" class="form-control" name="mobile" value="{{ account.mobile }}" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Alernative Mobile Number</label>
-                                                    <input type="number" class="form-control" name="alternative_mobile" value="{{ seller.alternative_mobile }}" required>
+                                                    <input type="number" class="form-control" name="alternative_mobile" value="{{ seller.alternative_mobile }}" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Email Id</label>
-                                                    <input type="email" class="form-control" name="email" value="{{ account.user.email }}"readonly style="background: none;" required>
+                                                    <input type="email" class="form-control" name="email" value="{{ account.user.email }}"readonly style="background: none;" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Alernative Email Id</label>
-                                                    <input type="email" class="form-control" name="alternative_email" value="{{ seller.alternative_email }}" required>
+                                                    <input type="email" class="form-control" name="alternative_email" value="{{ seller.alternative_email }}" >
                                                 </div>
                                             </div>
                                         </div>
@@ -217,13 +226,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Landline No.</label>
-                                                    <input type="number" class="form-control" name="landline_no" value="{{ seller.landline_no }}" required>
+                                                    <input type="number" class="form-control" name="landline_no" value="{{ seller.landline_no }}" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Alternative Landline No</label>
-                                                    <input type="number" class="form-control" name="alternative_landline_no" value="{{ seller.alternative_landline_no }}" required>
+                                                    <input type="number" class="form-control" name="alternative_landline_no" value="{{ seller.alternative_landline_no }}" >
                                                 </div>
                                             </div>
                                         </div>

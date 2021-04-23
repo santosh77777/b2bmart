@@ -5,7 +5,7 @@ from django.views.generic import View
 from accounts.models import Account
 from django.contrib.auth.models import User
 from django.contrib import messages
-
+from product.models import Product
 from .models import SellerProfile, Account, SellerStatutory, SellerBank, BusinessProfile
 from accounts.views import is_seller, is_buyer
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -205,9 +205,51 @@ class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
         return is_seller(self.request.user)
 
+    def post(self,request, *args, **kwargs):
+        if request.method == "POST":  
+            user = request.user      
+            name=request.POST.get('Product_name')
+            price= request.POST.get('price','')   
+            min_order_quantity= request.POST.get('min_order_qty','') 
+            unity_type= request.POST.get('unity_type','')
+            product_group= request.POST.get('product_group','')
+            description= request.POST.get('desc','')
+            packing_details= request.POST.get('packing_details','')
+            product_video_url= request.POST.get('product_video_url','')
+            capacity= request.POST.get('inlineRadioOptions1','')     
+            material= request.POST.get('inlineRadioOptions2','') 
+            print(material)     
+            brand= request.POST.get('inlineRadioOptions3','')    
+            print(brand)  
+            color= request.POST.get('color','')      
+            size= request.POST.get('size','')      
+                  
+            model_no= request.POST.get('model_no','')      
+            power= request.POST.get('power','')      
+            warranty= request.POST.get('warranty','')      
+            rating= request.POST.get('rating','')      
+            neck_size= request.POST.get('neck_size','')
+            closure_type= request.POST.get('closure_type','')      
+            product_code= request.POST.get('product_code','')      
+            is_available= request.POST.get('is_available','')  
+            video_url= request.POST.get('video_url','')        
+
+            image1= request.FILES.get('image1','')
+            image2 =request.FILES.get('image2','')
+            image3 =request.FILES.get('image2','')
+        
+            product = Product(user=user,name=name,price=price,min_order_quantity=min_order_quantity,unity_type=unity_type,product_group=product_group,
+            description=description,capacity=capacity,material=material,color=color,brand=brand,warranty=warranty,
+            size=size,model_no=model_no,power=power,rating=rating,neck_size=neck_size,closure_type=closure_type,
+            product_code=product_code,is_available=is_available,image1=image1,image2=image2,image3=image3,packing_details=packing_details,video_url=video_url)
+            product.save()
+            messages.success(request,"Congratulations your details are successfully saved!")
+            return redirect(".")
     def get(self,request, *args, **kwargs):
         form = ProductForm()
         return render(request, 'dashboard/seller/add_product.html',{'form':form})
+
+    
 
 class ProductCreateView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
