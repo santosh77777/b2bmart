@@ -32,6 +32,9 @@ class Account(models.Model):
 
     def __str__(self):
         return str(self.user)
+    
+    
+
 
 
 # def slug_generator(sender, instance, *args, **kwargs):
