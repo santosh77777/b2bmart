@@ -1,6 +1,17 @@
 {% extends 'dashboard/seller/seller_base.html' %}
 {% load static %}
    {% block content %}
+   <!-- Showing the Error message in red while validating form -->
+        <style>
+            .error{
+            color:red;
+            font-style:italic;
+                    }
+                    .bmd-form-group label {
+                        color: red;
+                        }
+        </style>
+        <!---->
         <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
@@ -68,9 +79,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
+                                {% comment %} <div class="card-body">
                                     <div class="tab-content text-center">
-                                            <form action="">
+                                            <form action="" id="add_prod">
                                                 <div class="input-group row">
                                                     <div class="input-group-prepend col-3"> <span class="input-group-text"> Name </span>
                                                     </div>
@@ -80,7 +91,7 @@
                                                 <div class="input-group row">
                                                     <div class="input-group-prepend col-3"> <span class="input-group-text"> Image </span>
                                                     </div>
-                                                    <input type="text" class="form-control col-9" placeholder="With Font Awesome Icons">
+                                                    <input type="text" class="form-control col-9" placeholder="Image With Font Awesome Icons">
                                                 </div>
 
                                                 <div class="input-group row">
@@ -119,21 +130,21 @@
                                                     <div class="form-check form-check-radio form-check-inline">
                                                         <label class="form-check-label">
                                                             <input class="col-9 text-left form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">200ml <span class="circle">
-                                                                                <span class="check"></span>
+                                                                <span class="check"></span>
                                                             </span>
                                                         </label>
                                                     </div>
                                                     <div class="col-3 form-check form-check-radio form-check-inline">
                                                         <label class="form-check-label">
                                                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">500ml <span class="circle">
-                                                                                <span class="check"></span>
+                                                                <span class="check"></span>
                                                             </span>
                                                         </label>
                                                     </div>
                                                     <div class="form-check form-check-radio form-check-inline disabled">
                                                         <label class="form-check-label">
                                                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>1 ltr <span class="circle">
-                                                                                <span class="check"></span>
+                                                                <span class="check"></span>
                                                             </span>
                                                         </label>
                                                     </div>
@@ -145,21 +156,21 @@
                                                     <div class="form-check form-check-radio form-check-inline">
                                                         <label class="form-check-label">
                                                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">Polycarbonate <span class="circle">
-                                                                                <span class="check"></span>
+                                                                <span class="check"></span>
                                                             </span>
                                                         </label>
                                                     </div>
                                                     <div class="form-check form-check-radio form-check-inline">
                                                         <label class="form-check-label">
                                                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">PET <span class="circle">
-                                                                                <span class="check"></span>
+                                                                 <span class="check"></span>
                                                             </span>
                                                         </label>
                                                     </div>
                                                     <div class="form-check form-check-radio form-check-inline disabled">
                                                         <label class="form-check-label">
                                                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>Other <span class="circle">
-                                                                                <span class="check"></span>
+                                                                <span class="check"></span>
                                                             </span>
                                                         </label>
                                                     </div>
@@ -284,6 +295,281 @@
 
                                         </form>
                                     </div>
+                                </div> {% endcomment %}
+                                <div class="card-body">
+                                    <form action="." method="post" id="add_product">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Enter Product Name</label>
+                                                    <input type="text" class="form-control" name="Product_name" >
+                                                </div>
+                                            </div>
+                                             <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Color</label>
+                                                    <input type="text" class="form-control" name="color">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Price</label>
+                                                    <input type="number" class="form-control" name="price" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Unity Type</label>
+                                                    <input type="text" class="form-control" name="unity_type" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                 <div class="form-group">
+                                                    <label class="bmd-label-floating" >Minimum Order Quantity</label>
+                                                    <input type="text" class="form-control" name="min_order_qty" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                            <div class="form-group">
+                                                    <label class="bmd-label-floating" >Description</label>
+                                                    <input type="text" class="form-control" name="desc" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="id_nature_of_business" class="bmd-label-floating">Product Group</label>
+                                                        <select class="form-control" id="product_group" name="product_group">
+                                                        <option value="">Select Option</option>
+                                                        <option>Kitchen_stoves</option>
+                                                        <option>Mixture Grinder</option>
+                                                        <option>Rice Cookers</option>
+                                                        <option>Food Processors</option>
+                                                        <option>Juicers</option>
+                                                        <option>Blenders</option>
+                                                        <option>Water Heaters</option>
+                                                        <option>Water Filters</option>
+                                                        <option>Exhaust Hoods</option>
+                                                        <option>Sandwich Makers</option>
+                                                        <option>Toaster</option>
+                                                        <option>Deep Fryers</option>
+                                                        <option>Dough Blenders</option>
+                                                        <option>Coffee Makers</option>
+                                                        <option>Electric Iron</option>
+                                                        <option>Vaccum Cleaner</option>
+                                                        <option>Air Purifiers</option>
+                                                        <option>Trimmer And Savers</option>
+                                                        <option>Hair Drier</option>
+                                                        </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="tab-pane" id="specification">
+                                                    <div class="row">
+                                                        <div class="col-3" >Capacity</div>
+                                                            <div class="col-9 text-left">
+                                                                <div class="form-check form-check-radio form-check-inline">
+                                                                    <label class="form-check-label">
+                                                                        <input class="col-9 text-left form-check-input" type="radio" name="cap_radio" id="inlineRadio1" value="option1">200ml <span class="circle">
+                                                                        <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                             <div class="col-3 form-check form-check-radio form-check-inline">
+                                                            <label class="form-check-label">
+                                                                <input class="form-check-input" type="radio" name="cap_radio" id="inlineRadio2" value="option2">500ml <span class="circle">
+                                                                <span class="check"></span></span>
+                                                            </label>
+                                                        </div>
+                                                    <div class="form-check form-check-radio form-check-inline disabled">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="radio" name="cap_radio" id="inlineRadio3" value="option3" >1 ltr <span class="circle">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3">Material</div>
+                                                <div class="col-9 text-left">
+                                                    <div class="form-check form-check-radio form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="radio" name="mat_radio" id="mat_radio" value="option1">Polycarbonate <span class="circle">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-radio form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="radio" name="mat_radio" id="mat_radio" value="option2">PET <span class="circle">
+                                                                 <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-radio form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="radio" name="mat_radio" id="mat_radio" value="option3" >Other <span class="circle">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                <div class="row">
+                                                <div class="col-3">Brand</div>
+                                                <div class="col-9 text-left">
+                                                    <div class="form-check form-check-radio form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">Prestige <span class="circle">
+                                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-radio form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">Padmini <span class="circle">
+                                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-radio form-check-inline disabled">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" >Others <span class="circle">
+                                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Packing Details</label>
+                                                    <input type="text" class="form-control" name="packing_details" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Size</label>
+                                                    <input type="text" class="form-control" name="size" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Product Code</label>
+                                                    <input type="text" class="form-control" name="product_code" >
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-6">
+                                            <div class="form-group">
+                                                    <label class="bmd-label-floating" >Product video URL</label>
+                                                    <input type="text" class="form-control" name="product_vedio_url" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Power</label>
+                                                    <input type="text" class="form-control" name="power" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Warranty</label>
+                                                    <input type="text" class="form-control" name="warranty" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Model No.</label>
+                                                    <input type="number" class="form-control" name="model_no" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Rating</label>
+                                                    <input type="text" class="form-control" name="rating" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Neck Size</label>
+                                                    <input type="text" class="form-control" name="neck_size" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Closure Type</label>
+                                                    <input type="text" class="form-control" name="closure_type" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                            <div class="row" style="margin-top: 16px;">
+                                                <div class="col-6 "> Product is available</div>
+                                                <div class="col-6 text-left">
+                                                    <div class="col-3 form-check form-check-radio form-check-inline">
+                                                        <label class="form-check-label" name="is_available">
+                                                            <input class="form-check-input" type="radio" name="is_available" id="yes" value="option1">Yes <span class="circle">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-radio form-check-inline disabled">
+                                                        <label class="form-check-label" name="is_available">
+                                                            <input class="form-check-input" type="radio" name="is_available" id="no" value="option2" >No<span class="circle">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             </div>
+                                            </div>
+                                                    
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                               
+                                                    <label for="image1">Product Image 1</label>
+                                                    <input type="file" accept="image/*"  id="image1" name="image1">
+                                                
+                                            </div>
+                                            <div class="col-md-4">
+                                               
+                                                    <label for="image2" >Product Image 2</label>
+                                                    <input type="file" accept="image/*"  id="image2" name="image2">
+                                               
+                                            </div>
+                                            <div class="col-md-4">
+                                               
+                                                    <label for="image3" >Product Image 3</label>
+                                                    <input type="file" accept="image/*"  id="image3" name="image3">
+                                                
+                                            </div>
+                                        </div>
+                                        <input type="submit" class="btn btn-primary pull-right" value="save">
+                                        <div class="clearfix"></div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -292,5 +578,4 @@
             </div>
         </div>
     </div>
-    <center>{{ form.as_p }}</center>
     {% endblock content %}
