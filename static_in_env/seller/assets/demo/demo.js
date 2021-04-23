@@ -483,6 +483,21 @@ $('#Bank_detail').validate({
 
 $('#add_product').validate({
   rules: {
+    inlineRadioOptions1:{
+      required:true,
+    },
+    is_available:{
+      required:true,
+    },
+    product_group:{
+      required:true,
+    },
+    inlineRadioOptions2:{
+      required:true,
+    },
+    inlineRadioOptions3:{
+      required:true,
+    },
     Product_name:{
       required:true,
       minlength:2,
@@ -538,7 +553,7 @@ $('#add_product').validate({
     product_code:{
       required:true,
     },
-    product_vedio_url:{
+    video_url:{
       required:true,
     },
     image1:{
@@ -560,9 +575,6 @@ $('#add_product').validate({
       required:true,
     },
     product_group:{
-      required:true,
-    },
-    is_available:{
       required:true,
     }
   }
