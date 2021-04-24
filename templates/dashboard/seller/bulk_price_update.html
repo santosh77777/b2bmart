@@ -79,26 +79,16 @@
                                 </div>
                                 <div class="card-body">
 
-                                    <table class="table table-bordered">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">First</th>
-                                            <th scope="col">Last</th>
-                                            <th scope="col">Handle</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                        {% for i in "Dilip" %}                                              
-                                          <tr>
-                                            <th scope="row">{{ forloop.counter }}</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                          </tr>
+                                    <form action="" method="POST">
+                                        {% csrf_token %}
+                                        {{ form.management_form }}
+                                        {% for field in form %}
+                                            {{field}}
+                                            <hr>
                                         {% endfor %}
-                                        </tbody>
-                                    </table>
+                                        
+                                        <input type="submit" name="Submit">
+                                    </form>
 
                                 </div>
                             </div>
