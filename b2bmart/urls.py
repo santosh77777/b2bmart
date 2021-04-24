@@ -9,8 +9,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls', namespace="accounts")),
     path('accounts/', include('allauth.urls')),
-    path('', include('product.urls')),
-    path('help/', TemplateView.as_view(template_name="help.html"), name="help"),
+    path('', include('product.urls', namespace="product")),
+    path('help/', TemplateView.as_view(template_name="help.html")),
     path('dashboard/', include('dashboard.urls', namespace="dashboard")),
 ]
 

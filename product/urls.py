@@ -4,5 +4,5 @@ app_name = "product"
 
 
 urlpatterns = [
-    path('', views.indexView, name="index"),
+    path('', views.index, name="index"),
 ]
