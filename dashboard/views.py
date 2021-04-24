@@ -18,12 +18,6 @@ from product.forms import ProductForm
 from product.models import Product
 
 
-
-
-class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
-    def test_func(self):
-        return is_seller(self.request.user)
-
 class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
         return is_seller(self.request.user)
