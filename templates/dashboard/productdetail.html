@@ -62,17 +62,17 @@
           </div>
           <div class="col position-relative">
             <div class="product-detail">
-              <div class="title">KENT Electric Rice Cooker SS</div>
+              <div class="title">{{ object.name}}</div>
               <div class="sub-title">Cook & Serve Design with Keep Warm Fuction</div>
               <div class="text-mute">Homes</div>
               <ul class="list-unstyled">
-                <li class="text-mute"><span>Brand</span>:<span>KENT</span></li>
-                <li class="text-mute"><span>Capacity</span>:<span>1.8 Litre</span></li>
-                <li class="text-mute"><span>Model No</span>:<span>VTL-9060</span></li>
-                <li class="text-mute"><span>Warranty</span>:<span>1 Year Home Service</span></li>
-                <li class="text-mute"><span>Power</span>:<span>700 Watt</span></li>
+                <li class="text-mute"><span>Brand</span>:<span>{{ object.brand }}</span></li>
+                <li class="text-mute"><span>Capacity</span>:<span>{{ object.capacity }}</span></li>
+                <li class="text-mute"><span>Model No</span>:<span>{{ object.model_no }}</span></li>
+                <li class="text-mute"><span>Warranty</span>:<span>{{ object.warranty }}</span></li>
+                <li class="text-mute"><span>Power</span>:<span>{{ object.power }}</span></li>
               </ul>
-              <div class="price">MRP: Rs 3,500</div>
+              <div class="price">MRP: Rs {{ object.price }}/-</div>
               <div class="text-mute mb-3">(Inclusive of all taxes)</div>
             </div>
           </div>
