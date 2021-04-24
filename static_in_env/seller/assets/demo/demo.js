@@ -585,6 +585,6 @@ $('#add_product').validate({
     },
     product_group:{
       required:true,
-    }
+    },
   }
 });
