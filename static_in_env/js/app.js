@@ -1,4 +1,3 @@
-
 const cords = document.querySelector('#find-me');
 // console.log(cords);
 
@@ -45,23 +44,38 @@ $(window).scroll(function() {
         }
     });
 });
-
 // Side bar (Sort By Brand)
 
-var count_brand=9; // Initialize a counter with 9
-$('#sort_brand').click(function(e){
-    for(var i=0;i<4;i++)
-    {
-        count_brand++;// Increment counter so that it will be used in further appended product id
-        template=`<div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="brand${count_brand}">
-                <label class="custom-control-label" for="brand${count_brand}">${count_brand}</label>
-          </div>`
-        $("#append_brand").append(template);
-    }
-    e.preventDefault();
-    });
+// var count_brand=9; // Initialize a counter with 9
+// $('#sort_brand').click(function(e){
+//     for(var i=0;i<4;i++)
+//     {
+//         count_brand++;// Increment counter so that it will be used in further appended product id
+//         template=`<div class="custom-control custom-checkbox">
+//                 <input type="checkbox" class="custom-control-input" id="brand${count_brand}">
+//                 <label class="custom-control-label" for="brand${count_brand}">${count_brand}</label>
+//           </div>`
+//         $("#append_brand").append(template);
+//     }
+//     e.preventDefault();
+//     });
 
+    // $(document).ready(function () {
+    //     size_li = $("#append_brand div").size();
+    //     x=8;
+    //     $('#append_brand div:lt('+x+')').show();
+    //     $('#sort_brand').click(function () {
+    //         x= (x+4 <= size_li) ? x+4 : size_li;
+    //         $('#append_brand div:lt('+x+')').show();
+    //         e.preventDefault();
+    //     });
+        
+    // });
+// $(document).ready(function () {
+//     var total_size=$('#append_brand .brand').length;
+//     console.log(total_size);
+    
+// });
 // Side bar (Sort by Category)
 
 var count_cat=9;
