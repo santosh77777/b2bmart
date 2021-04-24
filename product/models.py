@@ -71,4 +71,9 @@ class Product(models.Model):
     image3=models.ImageField(upload_to="products/",default='')
     def __str__(self):
         return str(self.user) 
+
+
+        
     
+
+

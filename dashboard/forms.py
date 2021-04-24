@@ -1,6 +1,6 @@
 from django import forms
 from .models import *
-
+from product.models import Product
 class SellerBankForm(forms.ModelForm):
     class Meta:
         model = SellerBank
@@ -34,3 +34,11 @@ class BusinessProfileForm(forms.ModelForm):
         model = BusinessProfile
         fields = "__all__"
         exclude = ['user']
+
+
+
+# class SellerManageProductViewForm(forms.ModelForm):
+#      class Meta:
+#         model = Product
+#         fields = "__all__"
+#         exclude = ['user']

@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View
 from accounts.models import Account
 from django.contrib.auth.models import User
+from django.forms import inlineformset_factory
 from django.contrib import messages
 from product.models import Product
 from .models import SellerProfile, Account, SellerStatutory, SellerBank, BusinessProfile
@@ -13,6 +14,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from .forms import *
 from product.forms import ProductForm
+
 
 
 
@@ -258,12 +260,66 @@ class ProductCreateView(LoginRequiredMixin, UserPassesTestMixin, View):
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/seller/add_product.html')
 
-class SellerManageProductView(LoginRequiredMixin, UserPassesTestMixin, View):
-    def test_func(self):
-        return is_seller(self.request.user)
 
-    def get(self,request, *args, **kwargs):
-        return render(request, 'dashboard/seller/manage_product.html')
+@login_required
+def SellerManageProductView(request):
+        seller = User.objects.get(id=request.user.pk)
+        product = Product.objects.all()
+        products = product.filter(user=request.user)
+        #product_count = products.count()
+        context = {'products':products, 'seller':seller}
+        return render(request, 'dashboard/seller/manage_product.html', context)
+
+
+@login_required
+def SellerBulkPriceUpdateView(request, pk):
+        ProductFormSet = inlineformset_factory(User, Product, fields=('name', 'price'), extra=0,  can_delete = False )
+        seller = User.objects.get(id=pk)
+        formset = ProductFormSet(instance=seller)
+        if request.method == 'POST':
+            formset = ProductFormSet(request.POST, instance=seller)
+            if formset.is_valid():
+                formset.save()
+                return redirect('dashboard:seller_manage_product')
+
+        context = {'form':formset}
+        return render(request, 'dashboard/seller/bulk_price_update.html', context)
+
+
+"""
+@login_required
+def SellerBulkPriceUpdateView(request, pk):
+        product = Product.objects.get(id=pk)
+        form = SellerManageProductViewForm(instance=product)
+        if request.method == 'POST':
+            form = SellerManageProductViewForm(request.POST, request.FILES, instance=product)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Your price updated successfully')
+                return redirect('dashboard:seller_manage_product')
+
+
+        context = {'form':form, 'product': product }
+        return render(request, 'dashboard/seller/bulk_price_update.html', context)
+"""
+
+@login_required
+def sellerDeleteProduct(request, pk):
+    context ={} 
+    # fetch the object related to passed id 
+    obj = get_object_or_404(Product, id = pk) 
+  
+  
+    if request.method =="POST": 
+        # delete object 
+        obj.delete() 
+        # after deleting redirect to
+        return redirect('dashboard:seller_manage_product')
+  
+    return render(request, "dashboard/seller/delete.html", context) 
+
+
+
 
 class SellerReArrangeProductView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
@@ -271,13 +327,6 @@ class SellerReArrangeProductView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/seller/rearrange_product.html')
-
-class SellerBulkPriceUpdateView(LoginRequiredMixin, UserPassesTestMixin, View):
-    def test_func(self):
-        return is_seller(self.request.user)
-
-    def get(self,request, *args, **kwargs):
-        return render(request, 'dashboard/seller/bulk_price_update.html')
 
 class SellerCategoryReportView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
