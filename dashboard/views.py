@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import View
+from django.views.generic import View, ListView, DetailView
+from django.views.generic.detail import DetailView
 from accounts.models import Account
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -346,20 +347,35 @@ class SellerPaidServiceView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/certificate.html')
+from itertools import chain
+from operator import attrgetter
+class SellerCompanyView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    def test_func(self):
+        return is_seller(self.request.user)
+    model = Product
+    template_name = 'dashboard/company.html'
 
-class SellerCompanyView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def get_queryset(self):
+        return Product.objects.filter(arrange=True)
+
+    def get_context_data(self,**kwargs):
+        context = super(SellerCompanyView,self).get_context_data(**kwargs)
+        context['object_all_list'] = Product.objects.all()
+        return context
+
+
+class SellerProductDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):  
+    model = Product
+    template_name = 'dashboard/productdetail.html'
+
+    def get_object(self, queryset=None):
+        return Product.objects.get(pk=self.kwargs.get("pk"))
+
     def test_func(self):
         return is_seller(self.request.user)
 
-    def get(self,request, *args, **kwargs):
-        return render(request, 'dashboard/company.html')
-
-class SellerProductDetailView(LoginRequiredMixin, UserPassesTestMixin, View):
-    def test_func(self):
-        return is_seller(self.request.user)
-
-    def get(self,request, *args, **kwargs):
-        return render(request, 'dashboard/productdetail.html')
+    # def get(self,request, *args, **kwargs):
+    #     return render(request, 'dashboard/productdetail.html')
 
 class SellerArangeProductView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
