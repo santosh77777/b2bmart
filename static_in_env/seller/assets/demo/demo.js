@@ -492,6 +492,7 @@ $('#add_product').validate({
     product_group:{
       required:true,
     },
+
     inlineRadioOptions2:{
       required:true,
     },
@@ -526,7 +527,14 @@ $('#add_product').validate({
     size:{
       required:true,
     },
+
     capacity:{
+      required:true,
+    },
+    brandd:{
+      required:true,
+    },
+    mat:{
       required:true,
     },
     product_type:{
@@ -555,7 +563,7 @@ $('#add_product').validate({
     },
     video_url:{
       required:true,
-    },
+
     image1:{
       required:true,
     },
@@ -565,6 +573,7 @@ $('#add_product').validate({
     image3:{
       required:true,
     },
+
     mat_radio:{
       required:true,
     },

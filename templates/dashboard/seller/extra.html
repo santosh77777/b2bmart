@@ -88,7 +88,6 @@
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating" >Enter Product Name</label>
                                                     <input type="text" class="form-control" name="Product_name" >
-
                                                 </div>
                                             </div>
                                              <div class="col-md-6">
@@ -172,51 +171,49 @@
                                                                 <span class="check"></span></span>
                                                             </label>
                                                         </div>
-                                                    <div class="form-check form-check-radio form-check-inline disabled">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio1" value="1 ltr" >1 ltr <span class="circle">
-                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-
-                                          
-                                                    </div>
-                                                    
+                                                         <div class="form-check form-check-radio form-check-inline disabled">
+                                                            <label class="form-check-label">
+                                                                <input type="radio" name="inlineRadioOptions1" id="yesCheck1" onclick="javascript:yesnoCheck();"> Other
+                                                                <div id="ifYes1" style="visibility:hidden">
+                                                                <input type='text' id='yes' name="inlineRadioOptions1" >
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                            
                                                 </div>
                                             </div>
-
                                             </div>
                                             <div class="row">
                                                 <div class="col-3">Material</div>
                                                 <div class="col-9 text-left">
                                                     <div class="form-check form-check-radio form-check-inline">
                                                         <label class="form-check-label">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="mat_radio" value="polycarbonate">Polycarbonate <span class="circle">
-                                                                <span class="check"></span>
-                                                            </span>
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="mat_radio1"  onclick="javascript:yesnoCheck();" value="polycarbonate">Polycarbonate <span class="circle">
+                                                        <span class="check"></span>
+                                                           <input type='text' id='hid1' name="inline" style="visibility:hidden">
+                                                           
                                                         </label>
                                                     </div>
                                                     <div class="form-check form-check-radio form-check-inline">
                                                         <label class="form-check-label">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="mat_radio" value="PET">PET <span class="circle">
+                                                            <input class="form-check-input" type="radio"  onclick="javascript:yesnoCheck();"  name="inlineRadioOptions2" id="mat_radio2" value="PET">PET <span class="circle">
                                                                  <span class="check"></span>
-                                                            </span>
+                                                                  <input type='text' id='hid2' name="inlineRadioOptions2"style="visibility:hidden" >
+                                                            
                                                         </label>
                                                     </div>
-                                                    <div class="form-check form-check-radio form-check-inline">
+                                                    <div class="form-check form-check-radio form-check-inline disabled">
                                                         <label class="form-check-label">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="mat_radio" value="other" >Other <span class="circle">
-                                                                <span class="check"></span>
-                                                            </span>
+                                                             <input type="radio"  id="yesCheck" name="inlineRadioOptions2" onclick="javascript:yesnoCheck();"> Other
+                                                             <div id="ifYes" style="visibility:hidden">
+                                                            <input type='text' id='yes' name="inlineRadioOptions2" >
+                                                            </div>
                                                         </label>
-
-                                
                                                     </div>
-                                                
+                        
                                                 </div>
                                             </div>
-
-                                                <div class="row">
+                                                {% comment %} <div class="row">
                                                 <div class="col-3">Brand</div>
                                                 <div class="col-9 text-left">
                                                     <div class="form-check form-check-radio form-check-inline">
@@ -235,17 +232,14 @@
                                                     </div>
                                                     <div class="form-check form-check-radio form-check-inline disabled">
                                                         <label class="form-check-label">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio3" value="others" >Others <span class="circle">
-                                                                                <span class="check"></span>
-                                                            </span>
+                                                             <input type="radio" name="" id="yesCheck" onclick="javascript:yesnoCheck();"> Other 
+                                                             <div id="ifYes" style="visibility:hidden">
+                                                            <input type='text' id='yes' name="inlineRadioOptions3" >
+                                                            </div>
                                                         </label>
-
-                                     
                                                     </div>
-                                                
                                                 </div>
-                                            </div>
-
+                                            </div> {% endcomment %}
                                         </div>
                                         </div>
                                         <div class="row">
@@ -319,6 +313,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Brand</label>
+                                                    <input type="text" class="form-control" name="inlineRadioOptions3" >
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                             <div class="row" style="margin-top: 16px;">
@@ -362,7 +364,7 @@
                                                     <input type="file" accept="image/*"  id="image3" name="image3">
                                                 
                                             </div>
-                              </div>
+                                        </div>
                                         <input type="submit" class="btn btn-primary pull-right" value="save">
                                         <div class="clearfix"></div>
                                     </form>
@@ -374,7 +376,23 @@
             </div>
         </div>
     </div>
+<script>
 
+function yesnoCheck() {
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('ifYes').style.visibility = 'visible';
+    }
+    if (document.getElementById('mat_radio1').checked) {
+        document.getElementById('hid1').value = "polycarbonate";
+        //var x = document.getElementById('hid1').value;
+    }
+    if (document.getElementById('mat_radio2').checked) {
+        document.getElementById('hid2').value = "pet";
+        var y = document.getElementById('hid1').value;
+    }
+}
+
+</script>
 
     {% if messages %}
    <script>
