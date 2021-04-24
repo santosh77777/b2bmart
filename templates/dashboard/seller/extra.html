@@ -127,7 +127,6 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                            <div class="tab-pane" id="specification">
                                                 <div class="form-group">
                                                         <label for="product_group" class="bmd-label-floating">Product Group</label>
                                                         <select class="form-control" id="product_group1" name="product_group">
@@ -152,71 +151,96 @@
                                                         <option value="trimmers_&_savers">Trimmer And Savers</option>
                                                         <option value="hair_drier">Hair Drier</option>
                                                         </select>
-                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="tab-pane" id="specification">
-                                                {% comment %} <div class="row"> {% endcomment %}
-                                                    <input type="text" style="visibility:hidden;" id="capacity" name="capacity">
-                                                    <div class="form-group">
-                                                    <span class="add">
-                                                
-                                                        <label for="product_group" class="bmd-label-floating">Capacity</label>
-                                                        <select class="form-control" onclick="javascript:yesnoCheck();" id="yesCheck" name="cap">
-                                                        <option value="">Select Option</option>
-                                                        <option value="200ml" >200 ml</option>
-                                                        <option value="500ml" >500 ml</option>
-                                                        <option value="1 L" >1 L</option>
-                                                        <option value="other" >other</option>
-                                                         
-                                                        </select>
-                                                    </div>
-                                                
+                                                    <div class="row">
+                                                        <div class="col-3" >Capacity</div>
+                                                            <div class="col-9 text-left">
+                                                                <div class="form-check form-check-radio form-check-inline">
+                                                                    <label class="form-check-label">
+                                                                        <input class="col-9 text-left form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio1" value="200ml">200ml <span class="circle">
+                                                                        <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                             <div class="col-3 form-check form-check-radio form-check-inline">
+                                                            <label class="form-check-label">
+                                                                <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio1" value="500ml">500ml <span class="circle">
+                                                                <span class="check"></span></span>
+                                                            </label>
+                                                        </div>
+                                                         <div class="form-check form-check-radio form-check-inline disabled">
+                                                            <label class="form-check-label">
+                                                                <input type="radio" name="inlineRadioOptions1" id="yesCheck1" onclick="javascript:yesnoCheck();"> Other
+                                                                <div id="ifYes1" style="visibility:hidden">
+                                                                <input type='text' id='yes' name="inlineRadioOptions1" >
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                            
                                                 </div>
                                             </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3">Material</div>
+                                                <div class="col-9 text-left">
+                                                    <div class="form-check form-check-radio form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="mat_radio1"  onclick="javascript:yesnoCheck();" value="polycarbonate">Polycarbonate <span class="circle">
+                                                        <span class="check"></span>
+                                                           <input type='text' id='hid1' name="inline" style="visibility:hidden">
+                                                           
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-radio form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="radio"  onclick="javascript:yesnoCheck();"  name="inlineRadioOptions2" id="mat_radio2" value="PET">PET <span class="circle">
+                                                                 <span class="check"></span>
+                                                                  <input type='text' id='hid2' name="inlineRadioOptions2"style="visibility:hidden" >
+                                                            
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-radio form-check-inline disabled">
+                                                        <label class="form-check-label">
+                                                             <input type="radio"  id="yesCheck" name="inlineRadioOptions2" onclick="javascript:yesnoCheck();"> Other
+                                                             <div id="ifYes" style="visibility:hidden">
+                                                            <input type='text' id='yes' name="inlineRadioOptions2" >
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                        
+                                                </div>
+                                            </div>
+                                                {% comment %} <div class="row">
+                                                <div class="col-3">Brand</div>
+                                                <div class="col-9 text-left">
+                                                    <div class="form-check form-check-radio form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio3" value="prestige">Prestige <span class="circle">
+                                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-radio form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio3" value="padmini">Padmini <span class="circle">
+                                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-radio form-check-inline disabled">
+                                                        <label class="form-check-label">
+                                                             <input type="radio" name="" id="yesCheck" onclick="javascript:yesnoCheck();"> Other 
+                                                             <div id="ifYes" style="visibility:hidden">
+                                                            <input type='text' id='yes' name="inlineRadioOptions3" >
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div> {% endcomment %}
                                         </div>
-                                        <div class="row">
-                                        <div class="col-md-6">
-                                                <div class="tab-pane" id="specification">
-                                                {% comment %} <div class="row"> {% endcomment %}
-                                                    <input type="text" style="visibility:hidden;" id="brand" name="brand">
-                                                    <div class="form-group">
-                                                    <span class="add1">
-                                                
-                                                        <label for="brand" class="bmd-label-floating">Brand</label>
-                                                        <select class="form-control" onclick="javascript:yesnoCheck();" id="yesCheck1" name="brandd">
-                                                        <option value="">Select Option</option>
-                                                        <option value="prestige" >Prestige</option>
-                                                        <option value="padmini" >Padmini</option>
-                                                        <option value="other" >other</option>
-                                                         
-                                                        </select>
-                                                    </div>
-                                                
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="tab-pane" id="specification">
-                                                {% comment %} <div class="row"> {% endcomment %}
-                                                    <input type="text" style="visibility:hidden;" id="material" name="material">
-                                                    <div class="form-group">
-                                                    <span class="add2">
-                                                
-                                                        <label for="product_group" class="bmd-label-floating">Material</label>
-                                                        <select class="form-control" onclick="javascript:yesnoCheck();" id="yesCheck2" name="mat">
-                                                        <option value="">Select Option</option>
-                                                        <option value="polycarbonate" >Polycarbonate</option>
-                                                        <option value="pet" >PET</option>
-                                                        
-                                                        <option value="other" >other</option>
-                                                         
-                                                        </select>
-                                                    </div>
-                                                
-                                                </div>
-                                            </div>
-
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
@@ -289,6 +313,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Brand</label>
+                                                    <input type="text" class="form-control" name="inlineRadioOptions3" >
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                             <div class="row" style="margin-top: 16px;">
@@ -345,57 +377,23 @@
         </div>
     </div>
 <script>
+
 function yesnoCheck() {
-    var tem=""
-    if (document.getElementById('yesCheck').value == "other") {
-        $(".add").empty();
-        tem = `<label class="bmd-label-floating" >Capacity</label>
-        <input type="text" id="capacity" name="capacity" placeholder="Capacity">`
-        $('.add').append(tem)
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('ifYes').style.visibility = 'visible';
     }
-    else if (document.getElementById('yesCheck').value == "200ml") {
-        document.getElementById('capacity').value = "200 ml"
-        console.log(document.getElementById('capacity').value)
+    if (document.getElementById('mat_radio1').checked) {
+        document.getElementById('hid1').value = "polycarbonate";
+        //var x = document.getElementById('hid1').value;
     }
-    else if (document.getElementById('yesCheck').value == "500ml") {
-        document.getElementById('capacity').value = "500 ml"
+    if (document.getElementById('mat_radio2').checked) {
+        document.getElementById('hid2').value = "pet";
+        var y = document.getElementById('hid1').value;
     }
-    else if (document.getElementById('yesCheck').value == "1L") {
-        document.getElementById('capacity').value = "1 L "
-    } 
-     
-     //brand
-    if (document.getElementById('yesCheck1').value == "other") {
-        $(".add1").empty();
-        tem = `<label class="bmd-label-floating" >Brand</label>
-        <input type="text" id="brand" name="brand" placeholder="Brand">`
-        $('.add1').append(tem)
-    }
-    else if (document.getElementById('yesCheck1').value == "prestige") {
-        document.getElementById('brand').value = "Prestige"
-    }
-    else if (document.getElementById('yesCheck1').value == "padmini") {
-        document.getElementById('brand').value = "Padmini"
-    }
-
-    //material
-   if (document.getElementById('yesCheck2').value == "other") {
-        $(".add2").empty();
-        tem = `<label class="bmd-label-floating" >Material</label>
-        <input type="text" id="material" name="material" placeholder="Material">`
-        $('.add2').append(tem)
-    }
-    else if (document.getElementById('yesCheck2').value == "polycarbonate") {
-        
-        document.getElementById('material').value = "Polycarbonate"
-        
-    }
-    else if (document.getElementById('yesCheck2').value == "pet") {
-        document.getElementById('material').value = "PET"
-    }
-
 }
+
 </script>
+
     {% if messages %}
    <script>
     {% for message in messages %}
