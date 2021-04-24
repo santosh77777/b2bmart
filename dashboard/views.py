@@ -211,8 +211,10 @@ class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def post(self,request, *args, **kwargs):
         if request.method == "POST":  
-            user = request.user      
+            user = request.user   
+               
             name=request.POST.get('Product_name')
+            
             price= request.POST.get('price','')   
             min_order_quantity= request.POST.get('min_order_qty','') 
             unity_type= request.POST.get('unity_type','')
