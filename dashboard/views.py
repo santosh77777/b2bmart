@@ -221,11 +221,11 @@ class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
             packing_details= request.POST.get('packing_details','')
             product_video_url= request.POST.get('product_video_url','')
 
-            capacity= request.POST.get('inlineRadioOptions1','')     
-            material= request.POST.get('inlineRadioOptions2','') 
-            print(material)     
-            brand= request.POST.get('inlineRadioOptions3','')    
-            print(brand)  
+            capacity= request.POST.get('capacity','')     
+            material= request.POST.get('material','') 
+             
+            brand= request.POST.get('brand','')    
+           
             color= request.POST.get('color','')      
             size= request.POST.get('size','')      
                   
