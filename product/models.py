@@ -43,6 +43,14 @@ Brand_CHOICES = (
     ("other", "Other")
 )
 
+NATURE_OF_BUSINESS_CHOICES = (
+        ('Manufacturer', 'Manufacturer'),
+        ('Retailer', 'Retailer'),
+        ('Distributer', 'Distributer'),
+        ('Wholeseller', 'Wholeseller'),
+        ('Exporter', 'Exporter'),
+)
+
 class Product(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
@@ -69,7 +77,17 @@ class Product(models.Model):
     image1=models.ImageField(upload_to="products/",default='')
     image2=models.ImageField(upload_to="products/",default='')
     image3=models.ImageField(upload_to="products/",default='')
+    arrange = models.BooleanField(default=False)
     def __str__(self):
         return str(self.user) 
 
 
+class EshopeForm(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.CharField(max_length=100)
+    mobile = models.IntegerField()
+    nature_of_business = models.CharField(max_length=20, choices=NATURE_OF_BUSINESS_CHOICES)
+    messages = models.TextField(max_length=1000,null=True,blank=True)
+    send_copy = models.BooleanField(default=False)
+    def __str__(self):
+        return str(self.name) 

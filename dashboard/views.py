@@ -15,7 +15,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from .forms import *
 from product.forms import ProductForm
-from product.models import Product
+from product.models import Product,EshopeForm
 
 
 
@@ -211,10 +211,8 @@ class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def post(self,request, *args, **kwargs):
         if request.method == "POST":  
-            user = request.user   
-               
-            name=request.POST.get('Product_name')
-            
+            user = request.user                  
+            name=request.POST.get('Product_name')          
             price= request.POST.get('price','')   
             min_order_quantity= request.POST.get('min_order_qty','') 
             unity_type= request.POST.get('unity_type','')
@@ -222,15 +220,11 @@ class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
             description= request.POST.get('desc','')
             packing_details= request.POST.get('packing_details','')
             product_video_url= request.POST.get('product_video_url','')
-
             capacity= request.POST.get('capacity','')     
-            material= request.POST.get('material','') 
-             
-            brand= request.POST.get('brand','')    
-           
+            material= request.POST.get('material','')            
+            brand= request.POST.get('brand','')             
             color= request.POST.get('color','')      
-            size= request.POST.get('size','')      
-                  
+            size= request.POST.get('size','')                       
             model_no= request.POST.get('model_no','')      
             power= request.POST.get('power','')      
             warranty= request.POST.get('warranty','')      
@@ -243,8 +237,7 @@ class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
 
             image1= request.FILES.get('image1','')
             image2 =request.FILES.get('image2','')
-            image3 =request.FILES.get('image2','')
-        
+            image3 =request.FILES.get('image2','') 
             product = Product(user=user,name=name,price=price,min_order_quantity=min_order_quantity,unity_type=unity_type,product_group=product_group,
             description=description,capacity=capacity,material=material,color=color,brand=brand,warranty=warranty,
             size=size,model_no=model_no,power=power,rating=rating,neck_size=neck_size,closure_type=closure_type,
@@ -252,6 +245,9 @@ class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
             product.save()
             messages.success(request,"Congratulations your details are successfully saved!")
             return redirect(".")
+
+   
+
     def get(self,request, *args, **kwargs):
         form = ProductForm()
         return render(request, 'dashboard/seller/add_product.html',{'form':form})
@@ -424,6 +420,20 @@ class SellerProductDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailVie
 
     def get_object(self, queryset=None):
         return Product.objects.get(pk=self.kwargs.get("pk"))
+
+    def post(self,request, *args, **kwargs):
+        if request.method == "POST":
+            name = request.POST.get('name','')
+            email = request.POST.get('email','')
+            mobile = request.POST.get('phone','')
+            nature_of_business = request.POST.get('business','')
+            mesg = request.POST.get('msg','')
+            send_copy = request.POST.get('sendcopy','')
+
+            data = EshopeForm(name=name,email=email,mobile=mobile,nature_of_business=nature_of_business,messages=mesg,send_copy=send_copy)
+            data.save()
+            messages.success(request,"Congratulations your details are successfully saved!")
+            return redirect(".")
 
     def test_func(self):
         return is_seller(self.request.user)
