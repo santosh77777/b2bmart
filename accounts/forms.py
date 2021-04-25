@@ -21,9 +21,8 @@ class SignUpForm(forms.Form):
         user.last_name = self.cleaned_data['last_name']
         user.email = self.cleaned_data['email']
         email = self.cleaned_data['email']
-        print("hoo ttttttttttttt")         
-        if user.objects.filter(email = email):
-            print("hoo ttttttttttttt")          
+        print(email)         
+                 
         up = user.account
         up.mobile = self.cleaned_data['mobile']
         up.state = self.cleaned_data['state']
