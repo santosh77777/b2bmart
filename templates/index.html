@@ -139,6 +139,8 @@
             <form class="feature__form" action="">
               <div class="form-group search">
                   <input type="text" class="form-control" placeholder="Search">
+                  <button class="btn" type='submit'><i class="fa fa-search" aria-hidden="true"></i></button>
+
               </div>
               <div class="checkboxs" id="append_brand">
               {% comment %} {% for i in brand %}
@@ -1149,16 +1151,14 @@
     //if list length is less than 8 we assume initially 8 brand will be shown
     if(len<8 && len>0)
     {
-        var count_brand=0; // Initialize a counter with 9
         $('#sort_brand').click(function(e){
         for(var i=0;i<len;i++)
         {
         template=`<div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="brand${count_brand}">
-                <label class="custom-control-label" for="brand${count_brand}">${data[i]}</label>
+                <input type="checkbox" class="custom-control-input" id="brand${i}">
+                <label class="custom-control-label" for="brand${i}">${data[i]}</label>
           </div>`
         $("#append_brand").append(template);
-        count_brand++;// Increment counter so that it will be used in further appended product id
         }
         e.preventDefault();
         });
@@ -1166,26 +1166,27 @@
       // if len of the list is greater than 8 then it will come in eleseif part
     else if(len>0 && len>8)
     {
+      
       for(var i=0;i<8;i++)
         {
         template=`<div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="brand${count_brand}">
-                <label class="custom-control-label" for="brand${count_brand}">${data[i]}</label>
+                <input type="checkbox" class="custom-control-input" id="brand${i}">
+                <label class="custom-control-label" for="brand${i}">${data[i]}</label>
           </div>`
         $("#append_brand").append(template);
+        
         }
       var count=8;
       $('#sort_brand').click(function(e){
         var new_count=count+4;
-//Load more button clicked and checking brand_list+44 which is less than original list length
+//Load more button clicked and checking brand_list+4 which is less than original list length
         if(new_count<len)
         {
           for(var i=count;i<new_count;i++)
         {
-          console.log(data[i]);
         var template=`<div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="brand${count}">
-                <label class="custom-control-label" for="brand${count}">${data[i]}</label>
+                <input type="checkbox" class="custom-control-input" id="brand${i}">
+                <label class="custom-control-label" for="brand${i}">${data[i]}</label>
           </div>`
         count++;
         $("#append_brand").append(template);
