@@ -402,8 +402,7 @@ class SellerPaidServiceView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/certificate.html')
-from itertools import chain
-from operator import attrgetter
+
 class SellerCompanyView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     def test_func(self):
         return is_seller(self.request.user)
