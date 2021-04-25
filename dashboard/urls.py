@@ -29,7 +29,7 @@ urlpatterns = [
     path('seller/paid-service/',views.SellerPaidServiceView.as_view(), name="seller_paid_service"),
 
     path('seller/company/',views.SellerCompanyView.as_view(), name="seller_company"),
-    path('seller/product-detail/',views.SellerProductDetailView.as_view(), name="seller_product_detail"),
+    path('seller/product-detail/<int:pk>/',views.SellerProductDetailView.as_view(), name="seller_product_detail"),
 
     path('seller/arrange-product/<int:pk>/',views.SellerArangeProductView.as_view(), name="seller_arrange_product"),
     path('seller/unarrange-product/<int:pk>/',views.SellerUnArangeProductView.as_view(), name="seller_unarrange_product"),
