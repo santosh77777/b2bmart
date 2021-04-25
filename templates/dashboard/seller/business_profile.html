@@ -10,6 +10,19 @@
 		border-radius: 0%;
 	}
 </style>
+
+
+<!-- Showing the Error message in red while validating form -->
+<style>
+    .error{
+    color:red;
+    font-style:italic;
+            }
+            .bmd-form-group label {
+                color: red;
+                }
+</style>
+<!---->
   
        <div class="main-panel">
             <!-- Navbar -->
@@ -97,7 +110,7 @@
                                     </ul>
                                     {% endif %}
                                     
-                                    <form method="POST" action="" enctype="multipart/form-data">
+                                    <form method="POST" action="" id="add_product" enctype="multipart/form-data">
                                         {% csrf_token %}
                                        
                                         <div class="row">
@@ -130,7 +143,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Additional Contact Name</label>
+                                                    <label class="bmd-label-floating">Additional Contact Number</label>
                                                     {{ form.phone }}
                                                 </div>
                                             </div>
@@ -207,5 +220,14 @@
             </div>
         </div>
     </div>
-   {% endblock content %}
+
+
+    {% if messages %}
+    <script>
+     {% for message in messages %}
+         alert("{{ message }}");
+     {% endfor %}
+    </script>
+    {%endif%}
+{% endblock content %}
      
