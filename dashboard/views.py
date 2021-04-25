@@ -220,12 +220,15 @@ class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
             description= request.POST.get('desc','')
             packing_details= request.POST.get('packing_details','')
             product_video_url= request.POST.get('product_video_url','')
-            capacity= request.POST.get('capacity','')     
-            # material= request.POST.get('inlineRadioOptions2','')
-            material= request.POST.get('material','')    
-            brand= request.POST.get('brand','')     
+
+            capacity= request.POST.get('inlineRadioOptions1','')     
+            material= request.POST.get('inlineRadioOptions2','') 
+            print(material)     
+            brand= request.POST.get('inlineRadioOptions3','')    
+            print(brand)  
             color= request.POST.get('color','')      
-            size= request.POST.get('size','')             
+            size= request.POST.get('size','')      
+                  
             model_no= request.POST.get('model_no','')      
             power= request.POST.get('power','')      
             warranty= request.POST.get('warranty','')      
@@ -251,6 +254,8 @@ class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
         form = ProductForm()
         return render(request, 'dashboard/seller/add_product.html',{'form':form})
 
+    
+
 class ProductCreateView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
         return is_seller(self.request.user)
@@ -269,7 +274,10 @@ def SellerManageProductView(request):
         return render(request, 'dashboard/seller/manage_product.html', context)
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cd96a9c84a5def859ad391368f45e99ef917b78b
 @login_required
 def SellerBulkPriceUpdateView(request, pk):
         ProductFormSet = inlineformset_factory(User, Product, fields=('name', 'price'), extra=0,  can_delete = False )
@@ -301,7 +309,7 @@ def SellerBulkPriceUpdateView(request, pk):
         context = {'form':form, 'product': product }
         return render(request, 'dashboard/seller/bulk_price_update.html', context)
 """
-
+ 
 @login_required
 def sellerDeleteProduct(request, pk):
     context ={} 
