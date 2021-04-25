@@ -492,7 +492,7 @@ $('#add_product').validate({
     product_group:{
       required:true,
     },
-    inlineRadioOptions2:{
+    inline:{
       required:true,
     },
     inlineRadioOptions3:{
@@ -513,6 +513,7 @@ $('#add_product').validate({
     },
     min_order_qty:{
       required:true,
+      digits: true,
     },
     product_grp:{
       required:true,
@@ -526,7 +527,13 @@ $('#add_product').validate({
     size:{
       required:true,
     },
-    capacity:{
+    cap:{
+      required:true,
+    },
+    brandd:{
+      required:true,
+    },
+    mat:{
       required:true,
     },
     product_type:{
@@ -556,15 +563,15 @@ $('#add_product').validate({
     video_url:{
       required:true,
     },
-    image1:{
-      required:true,
-    },
-    image2:{
-      required:true,
-    },
-    image3:{
-      required:true,
-    },
+    // image1:{
+    //   required:true,
+    // },
+    // image2:{
+    //   required:true,
+    // },
+    // image3:{
+    //   required:true,
+    // },
     mat_radio:{
       required:true,
     },

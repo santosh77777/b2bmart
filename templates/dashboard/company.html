@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% load static %}
+    <div class="container">
+      
+      <div class="row mt-3">
+        <div class="col-12">
+          <!-- banner part start -->
+          <div class="banner company">
+            <div class="logo">logo</div>
+            <h3 class="name">COMPANY NAME</h3>
+            <p class="detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, unde.</p>
+          </div>
+        </div>
+      </div>
+      <!-- banner part end -->
+
+      <!-- Recommended Products part start -->
+      <div class="product-list mt-3">
+        <h3>FEATURED PRODUCTS</h3>
+        
+               
+        <div class="row">{% for object in object_list %}
+          <div class="col">
+            <div class="product-item">
+                <div class="image">
+                  <img src="{{ object.image1.url }}" alt="Image 1">
+                </div>
+                <div class="name">{{ object.name }}</div>
+                <div class="type">{{ object.product_group }}</div>
+                <a href="{% url 'dashboard:seller_product_detail' object.pk %}" class="btn btn-primary btn-block">Read More</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <!-- Row end -->
+        <div class="text-right">
+          <small>featuring trusted brands near you</small>
+        </div>
+      </div>
+      <!-- Recommended Products part end -->
+
+      <div class="row mt-5">
+        <div class="col-12 col-md-6">
+          <h3>ABOUT US</h3><hr>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias quae minima dolorem qui doloremque similique tenetur quas nobis nisi iure, illum, sequi consectetur? Incidunt dolorem itaque inventore suscipit reprehenderit natus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae nisi sed temporibus vel tempore qui odit accusamus facilis amet doloremque eius dignissimos, modi excepturi perferendis magni id quibusdam nihil quae. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt sint dignissimos tempora possimus, nemo porro modi soluta error tempore repellendus. Dicta praesentium est eligendi animi, quisquam perspiciatis facilis voluptatibus deleniti.</p>
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-default">Download E-catalogue</button>
+            <button class="btn btn-primary">+ Raed More</button>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <h3>BRAND VIDEO</h3>
+          <!-- Promotional vedio start -->
+          <div class="promo-video height">
+            <span>Play our promotional video here</span>
+            <i class="fas fa-play"></i>
+            <span>Make an impression with</span>
+          </div>
+          <!-- Promotional vedio end -->
+        </div>
+      </div>
+
+      <div class="company-info mt-5">
+        <div class="company-info-detail">
+          <p>Nature of Business</p>
+          <div class="image"></div>
+          <p>Manufacturer</p>
+        </div>
+        <div class="company-info-detail">
+          <p>No of Emplyees</p>
+          <div class="image"></div>
+          <p>100 to 200 people</p>
+        </div>
+        <div class="company-info-detail">
+          <p>Year of Establishment1999</p>
+          <div class="image"></div>
+          <p>Manufacturer</p>
+        </div>
+        <div class="company-info-detail">
+          <p>Legal Status os Firm</p>
+          <div class="image"></div>
+          <p>Partnership firm</p>
+        </div>
+        <div class="company-info-detail">
+          <p>Annual Revenue</p>
+          <div class="image"></div>
+          <p>5 cr</p>
+        </div>
+        <div class="company-info-detail">
+          <p>GSTIN NO</p>
+          <div class="image"></div>
+          <p>AKGHJX254796</p>
+        </div>
+      </div>
+
+      <!-- Recommended Products part start -->
+      <div class="product-list mt-3">
+        <h3 class="text-center pt-2 pb-3">OUR PRODUCTS RANGE</h3>
+      
+        <div class="row">{% for obj in object_all_list %}
+          <div class="col">
+            <div class="product-item">
+                <div class="image">
+                  <img src="{{ obj.image1.url }}" alt="Image 1">
+                </div>
+                <div class="name">{{ obj.name }}</div>
+                <div class="type">₹{{ obj.price }}</div>
+                <a href="{% url 'dashboard:seller_product_detail' obj.pk %}" class="btn btn-primary btn-block">Read More</a>
+            </div>
+          </div>
+          {% endfor %}
+          </div>
+  
+        <div class="text-center mt-4 mb-2">
+          <button class="btn btn-primary btn-lg">Load More</button>
+        </div>
+      <!-- Recommended Products part end -->
+
+      <div class="row mt-3">
+        <div class="col-12 col-sm-3 pt-3">
+          <h3>Get in touch</h3>
+          <div>Street, 510 Willis Avenue City, Jacksonville, State</div>
+          <div>divhone Number 386-524-1622</div>
+          <div>Mobile Number -904-382-8500</div>
+          <h5>Get our location</h5>
+          <h5>Ayush Garg (Sales Manager)</h5>
+          <button class="btn mt-3">SEND SMS</button>
+          <button class="btn btn-outline-dark mt-3 ml-4">SEND MAIL</button>
+        </div>
+        <div class="col-12 col-sm-9">
+          <!-- register form start -->
+          <div class="register-form">
+            <h3 class="mb-3">share the details we will call back you</h3>
+            <div class="row">
+              <div class="col-12 col-sm-8">
+                <form>
+                  <div class="row">
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" id="name" placeholder="Name">
+                    </div>
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="email">E-mail</label>
+                      <input type="email" class="form-control" id="email" placeholder="shotercarlos@gmail.com">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="phone">Mobile</label>
+                      <input type="tel" class="form-control" id="phone" placeholder="+91 0000000000">
+                    </div>
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="businessType">Business Types</label>
+                      <select class="form-control btn-primary" id="businessType">
+                        <option>Wholesaller</option>
+                        <option>Manufacturer</option>
+                        <option>Retailer</option>
+                        <option>Exporter</option>
+                        <option>Distributor</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" rows="5"></textarea>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-sm-6">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="sendCopy">
+                        <label class="custom-control-label" for="sendCopy">Send me a copy</label>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6 text-right">
+                      <button class="btn btn-primary btn-lg">Send</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-12 col-sm-4">
+                <div class="right-side">
+                  <div class="top">
+                    <span>become a</span>
+                    <span>xxxx Mart</span>
+                    <span>member today</span>
+                    <span>1000 Ad Impressions Free</span>
+                  </div>
+                  <div class="bottom"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- register form part end -->
+        </div>
+      </div>
+    </div>
+</div>
+    
+
+    <!-- <div class="chat">
+      <img src="{% static 'images/chat.png' %}" alt="">
+      <div class="content">
+        <small>Have a Requirement?</small>
+        <h3>Get Best Price</h3>
+      </div>
+    </div> -->
+
+    {% endblock content %}

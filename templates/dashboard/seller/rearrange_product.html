@@ -83,18 +83,26 @@
                                         <thead>
                                           <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">First</th>
-                                            <th scope="col">Last</th>
-                                            <th scope="col">Handle</th>
+                                            <th scope="col">name</th>
+                                            <th scope="col">price</th>
+                                            <th scope="col">Brand</th>
+                                            <th scope="col">Color</th>
+                                            <th scope="col">Warranty</th>
+                                            <th scope="col">Availability</th>
+                                            <th scope="col">Arrange</th>
                                           </tr>
                                         </thead>
                                         <tbody>
-                                        {% for i in "Dilip" %}                                              
+                                        {% for i in product %}                                              
                                           <tr>
                                             <th scope="row">{{ forloop.counter }}</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
+                                            <td>{{ i.name }}</td>
+                                            <td>{{ i.price }}</td>
+                                            <td>{{ i.brand }}</td>
+                                            <td>{{ i.color }}</td>
+                                            <td>{{ i.warranty }}</td>
+                                            <td>{{ i.warranty }}</td>
+                                            <td>{% if i.arrange %}<a href="{% url 'dashboard:seller_unarrange_product' i.id %}">{{ i.arrange }}</a>{% else %}<a href="{% url 'dashboard:seller_arrange_product' i.id %}">{{ i.arrange }}</a>{% endif %}</td>
                                           </tr>
                                         {% endfor %}
                                         </tbody>
