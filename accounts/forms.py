@@ -1,11 +1,15 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+
 
 class SignUpForm(forms.Form):
     first_name = forms.CharField(max_length=30, label='first_name')
     last_name = forms.CharField(max_length=30, label='last_name')
+
     email = forms.EmailField(max_length=30, label='email')
     mobile = forms.CharField(max_length=10, label='mobile')   
+
     state = forms.CharField(max_length=20)
     pincode = forms.CharField(max_length=20)
     company_name = forms.CharField(max_length=20)
@@ -21,8 +25,18 @@ class SignUpForm(forms.Form):
         user.last_name = self.cleaned_data['last_name']
         user.email = self.cleaned_data['email']
         email = self.cleaned_data['email']
-        print(email)         
+        
                  
+
+        # Check to see if any users already exist with this email as a username.
+        try:
+            match = User.objects.get(email=email)
+            raise forms.ValidationError('This email address is already in use.')
+        except User.DoesNotExist:
+            # Unable to find a user, this is fine
+            return email
+
+
         up = user.account
         up.mobile = self.cleaned_data['mobile']
         up.state = self.cleaned_data['state']
