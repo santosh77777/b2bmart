@@ -5,6 +5,7 @@ from django.views.generic import View, ListView, DetailView
 from django.views.generic.detail import DetailView
 from accounts.models import Account
 from django.contrib.auth.models import User
+from django.forms import inlineformset_factory
 from django.contrib import messages
 from product.models import Product
 from .models import SellerProfile, Account, SellerStatutory, SellerBank, BusinessProfile
@@ -15,6 +16,7 @@ from django.contrib import messages
 from .forms import *
 from product.forms import ProductForm
 from product.models import Product
+
 
 
 
@@ -218,12 +220,15 @@ class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
             description= request.POST.get('desc','')
             packing_details= request.POST.get('packing_details','')
             product_video_url= request.POST.get('product_video_url','')
+
             capacity= request.POST.get('capacity','')     
-            # material= request.POST.get('inlineRadioOptions2','')
-            material= request.POST.get('material','')    
-            brand= request.POST.get('brand','')     
+            material= request.POST.get('material','') 
+             
+            brand= request.POST.get('brand','')    
+           
             color= request.POST.get('color','')      
-            size= request.POST.get('size','')             
+            size= request.POST.get('size','')      
+                  
             model_no= request.POST.get('model_no','')      
             power= request.POST.get('power','')      
             warranty= request.POST.get('warranty','')      
@@ -249,6 +254,8 @@ class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
         form = ProductForm()
         return render(request, 'dashboard/seller/add_product.html',{'form':form})
 
+    
+
 class ProductCreateView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
         return is_seller(self.request.user)
@@ -256,27 +263,73 @@ class ProductCreateView(LoginRequiredMixin, UserPassesTestMixin, View):
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/seller/add_product.html')
 
-class SellerManageProductView(LoginRequiredMixin, UserPassesTestMixin, View):
-    def test_func(self):
-        return is_seller(self.request.user)
 
-    def get(self,request, *args, **kwargs):
-        return render(request, 'dashboard/seller/manage_product.html')
+@login_required
+def SellerManageProductView(request):
+        seller = User.objects.get(id=request.user.pk)
+        product = Product.objects.all()
+        products = product.filter(user=request.user)
+        #product_count = products.count()
+        context = {'products':products, 'seller':seller}
+        return render(request, 'dashboard/seller/manage_product.html', context)
+
+
+@login_required
+def SellerBulkPriceUpdateView(request, pk):
+        ProductFormSet = inlineformset_factory(User, Product, fields=('name', 'price'), extra=0,  can_delete = False )
+        seller = User.objects.get(id=pk)
+        formset = ProductFormSet(instance=seller)
+        if request.method == 'POST':
+            formset = ProductFormSet(request.POST, instance=seller)
+            if formset.is_valid():
+                formset.save()
+                return redirect('dashboard:seller_manage_product')
+
+        context = {'form':formset}
+        return render(request, 'dashboard/seller/bulk_price_update.html', context)
+
+
+"""
+@login_required
+def SellerBulkPriceUpdateView(request, pk):
+        product = Product.objects.get(id=pk)
+        form = SellerManageProductViewForm(instance=product)
+        if request.method == 'POST':
+            form = SellerManageProductViewForm(request.POST, request.FILES, instance=product)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Your price updated successfully')
+                return redirect('dashboard:seller_manage_product')
+
+
+        context = {'form':form, 'product': product }
+        return render(request, 'dashboard/seller/bulk_price_update.html', context)
+"""
+ 
+@login_required
+def sellerDeleteProduct(request, pk):
+    context ={} 
+    # fetch the object related to passed id 
+    obj = get_object_or_404(Product, id = pk) 
+  
+  
+    if request.method =="POST": 
+        # delete object 
+        obj.delete() 
+        # after deleting redirect to
+        return redirect('dashboard:seller_manage_product')
+  
+    return render(request, "dashboard/seller/delete.html", context) 
+
+
+
 
 class SellerReArrangeProductView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
         return is_seller(self.request.user)
 
     def get(self,request, *args, **kwargs):
-        product = Product.objects.all()
-        return render(request, 'dashboard/seller/rearrange_product.html', {'product':product})
-
-class SellerBulkPriceUpdateView(LoginRequiredMixin, UserPassesTestMixin, View):
-    def test_func(self):
-        return is_seller(self.request.user)
-
-    def get(self,request, *args, **kwargs):
-        return render(request, 'dashboard/seller/bulk_price_update.html')
+        return render(request, 'dashboard/seller/rearrange_product.html')
 
 class SellerCategoryReportView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
@@ -347,8 +400,7 @@ class SellerPaidServiceView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/certificate.html')
-from itertools import chain
-from operator import attrgetter
+
 class SellerCompanyView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     def test_func(self):
         return is_seller(self.request.user)

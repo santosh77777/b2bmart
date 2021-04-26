@@ -483,37 +483,26 @@ $('#Bank_detail').validate({
 
 $('#add_product').validate({
   rules: {
-    inlineRadioOptions1:{
-      required:true,
-    },
+    
     is_available:{
       required:true,
     },
     product_group:{
       required:true,
     },
-    inline:{
-      required:true,
-    },
-    inlineRadioOptions3:{
-      required:true,
-    },
+
+   
     Product_name:{
       required:true,
       minlength:2,
     },
-    color:{
-      required:true,
-    },
+    
     price:{
       required:true,
     },
-    unity_type:{
-      required:true,
-    },
+    
     min_order_qty:{
       required:true,
-      digits: true,
     },
     product_grp:{
       required:true,
@@ -522,12 +511,6 @@ $('#add_product').validate({
       required:true,
     },
     packing_details:{
-      required:true,
-    },
-    size:{
-      required:true,
-    },
-    cap:{
       required:true,
     },
     brandd:{
@@ -539,9 +522,7 @@ $('#add_product').validate({
     product_type:{
       required:true,
     },
-    power:{
-      required:true,
-    },
+   
     warranty:{
       required:true,
     },
@@ -550,39 +531,21 @@ $('#add_product').validate({
     },
     rating:{
       required:true,
-    },
-    neck_size:{
-      required:true,
-    },
-    closure_type:{
-      required:true,
-    },
+    },    
     product_code:{
       required:true,
-    },
-    video_url:{
-      required:true,
-    },
-    // image1:{
-    //   required:true,
-    // },
-    // image2:{
-    //   required:true,
-    // },
-    // image3:{
-    //   required:true,
-    // },
+    },   
+   
+
     mat_radio:{
       required:true,
     },
-    inlineRadioOptions:{
-      required:true,
-    },
+  
     cap_radio:{
       required:true,
     },
     product_group:{
       required:true,
-    }
+    },
   }
 });

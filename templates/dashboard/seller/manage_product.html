@@ -83,22 +83,25 @@
                                         <thead>
                                           <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">First</th>
-                                            <th scope="col">Last</th>
-                                            <th scope="col">Handle</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Order Quantity</th>
+                                            <th scope="col">Price</th>
                                           </tr>
                                         </thead>
                                         <tbody>
-                                        {% for i in "Dilip" %}                                              
+                                        {% for product in products %}                                              
                                           <tr>
-                                            <th scope="row">{{ forloop.counter }}</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
+                                            <th scope="row">{{ for loop.counter }}</th>
+                                            <td>{{product.name }}</td>
+                                            <td>{{product.min_order_quantity}}</td>
+                                            <td>{{product.price}}</td>
+                                            <!--<td><a class="btn btn-sm btn-info" href="{% url 'dashboard:seller_bulk_price_update' product.id %}">Update</a></td>-->
+                                            <td><a class="btn btn-sm btn-danger" href="{% url 'dashboard:seller_delete_product' product.id %}">Delete</a></td>
                                           </tr>
                                         {% endfor %}
                                         </tbody>
                                     </table>
+                                    <a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'dashboard:seller_bulk_price_update' seller.id %}">Bulk Price Update</a>
 
                                 </div>
                             </div>

@@ -185,7 +185,7 @@
                                                     <span class="add1">
                                                 
                                                         <label for="brand" class="bmd-label-floating">Brand</label>
-                                                        <select class="form-control" onclick="javascript:yesnoCheck();" id="yesCheck1" name="brandd">
+                                                        <select class="form-control" onclick="javascript:yesnoCheck1();" id="yesCheck1" name="brandd">
                                                         <option value="">Select Option</option>
                                                         <option value="prestige" >Prestige</option>
                                                         <option value="padmini" >Padmini</option>
@@ -204,7 +204,7 @@
                                                     <span class="add2">
                                                 
                                                         <label for="product_group" class="bmd-label-floating">Material</label>
-                                                        <select class="form-control" onclick="javascript:yesnoCheck();" id="yesCheck2" name="mat">
+                                                        <select class="form-control" onclick="javascript:yesnoCheck2();" id="yesCheck2" name="mat">
                                                         <option value="">Select Option</option>
                                                         <option value="polycarbonate" >Polycarbonate</option>
                                                         <option value="pet" >PET</option>
@@ -363,13 +363,15 @@ function yesnoCheck() {
     else if (document.getElementById('yesCheck').value == "1L") {
         document.getElementById('capacity').value = "1 L "
     } 
-     
+}
+function yesnoCheck1() {     
      //brand
+    var tem1=""
     if (document.getElementById('yesCheck1').value == "other") {
         $(".add1").empty();
-        tem = `<label class="bmd-label-floating" >Brand</label>
+        tem1 = `<label class="bmd-label-floating" >Brand</label>
         <input type="text" id="brand" name="brand" placeholder="Brand">`
-        $('.add1').append(tem)
+        $('.add1').append(tem1)
     }
     else if (document.getElementById('yesCheck1').value == "prestige") {
         document.getElementById('brand').value = "Prestige"
@@ -377,16 +379,19 @@ function yesnoCheck() {
     else if (document.getElementById('yesCheck1').value == "padmini") {
         document.getElementById('brand').value = "Padmini"
     }
+}
 
+function yesnoCheck2() {
     //material
+    var tem2 = ""
    if (document.getElementById('yesCheck2').value == "other") {
         $(".add2").empty();
-        tem = `<label class="bmd-label-floating" >Material</label>
+        tem2 = `<label class="bmd-label-floating" >Material</label>
         <input type="text" id="material" name="material" placeholder="Material">`
-        $('.add2').append(tem)
+        $('.add2').append(tem2)
     }
     else if (document.getElementById('yesCheck2').value == "polycarbonate") {
-        
+        console.log(document.getElementById('yesCheck2').value)
         document.getElementById('material').value = "Polycarbonate"
         
     }
