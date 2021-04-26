@@ -71,5 +71,5 @@ class Product(models.Model):
     is_available = models.BooleanField(default=False)
     arrange = models.BooleanField(default=False)
     def __str__(self):
-        return str(self.user) 
+        return str(self.id) 
     

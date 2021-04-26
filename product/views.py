@@ -8,9 +8,11 @@ import json
 def index(request):
     print("YEs")
     brand=Product.objects.values_list('brand', flat=True)
-    brand=list(brand)
+    brand_id=Product.objects.values_list('id',flat=True)
+    brand=json.dumps(list(brand))
+    brand_id=json.dumps(list(brand_id))
     if request.is_ajax():
        brand=request.POST.getlist('brand[]')
        print(brand)
        return HttpResponse('success') 
-    return render(request,'index.html',{'brand_data':json.dumps(brand)})
+    return render(request,'index.html',{'brand_data':brand,'brand_id':brand_id})

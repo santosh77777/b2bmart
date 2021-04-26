@@ -136,7 +136,7 @@
               <h6>SORT BY BRAND</h6>
               <a href="#" onclick="brand_sow_all()">Show all</a>
             </div>
-             <form class="feature__form" >
+             <form class="feature__form" id="brand_form">
               <div class="input-group" >
                   <input type="text" class="form-control" id="search_input" placeholder="Search" oninput="search()">
                   <div class="input-group-append">
@@ -1109,6 +1109,7 @@
     <script>
     {% comment %} document.getElementById('success').disabled = true; {% endcomment %}
     var data={{brand_data|safe}};
+    var data_id={{brand_id|safe}};
     var len=data.length;
     
     fetch_data();
@@ -1121,7 +1122,7 @@
         for(var i=0;i<len;i++)
         {
         template=`<div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input checking" id="brand${i}">
+                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()" id="${data_id[i]}">
                 <label class="custom-control-label" for="brand${i}">${data[i]}</label>
           </div>`
         $("#append_brand").append(template);
@@ -1137,8 +1138,8 @@
       for(var i=0;i<8;i++)
         {
         template=`<div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input checking" id="brand${i}">
-                <label class="custom-control-label" for="brand${i}">${data[i]}</label>
+                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()" id="${data_id[i]}">
+                <label class="custom-control-label" for="${data_id[i]}">${data[i]}</label>
           </div>`
         $("#append_brand").append(template);
         
@@ -1161,8 +1162,8 @@ $('#sort_brand').click(function(e){
           for(var i=count;i<new_count;i++)
         {
         var template=`<div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input checking" id="brand${i}">
-                <label class="custom-control-label" for="brand${i}">${data[i]}</label>
+                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()" id="${data_id[i]}">
+                <label class="custom-control-label" for="${data_id[i]}">${data[i]}</label>
           </div>`
         count++;
         $("#append_brand").append(template);
@@ -1174,8 +1175,8 @@ $('#sort_brand').click(function(e){
           for(var i=count;i<len;i++)
         {
         template=`<div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input checking" id="brand${count}">
-                <label class="custom-control-label" for="brand${count}">${data[i]}</label>
+                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()" id="${data_id[i]}">
+                <label class="custom-control-label" for="${data_id[i]}">${data[i]}</label>
           </div>`
         $("#append_brand").append(template);
         count++;
@@ -1190,8 +1191,8 @@ $('#sort_brand').click(function(e){
           for(var i=0;i<len;i++)
         {
         template=`<div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input checking"  id="brand${i}">
-                <label class="custom-control-label" for="brand${i}">${data[i]}</label>
+                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()" id="${data_id[i]}">
+                <label class="custom-control-label" for="${data_id[i]}">${data[i]}</label>
           </div>`
         $("#append_brand").append(template);
         }
@@ -1214,8 +1215,8 @@ $('#sort_brand').click(function(e){
           if(data1[j].includes(xx))
           {
             template=`<div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input checking"  id="brand${j}">
-                <label class="custom-control-label" for="brand${j}">${data[j]}</label>
+                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()"  id="${data_id[j]}">
+                <label class="custom-control-label" for="${data_id[j]}">${data[j]}</label>
           </div>`
           $("#append_brand").append(template);
           }
@@ -1248,7 +1249,17 @@ $('#sort_brand').click(function(e){
             }
         });
        })
-      
+       document.getElementById('success').disabled=true;
+       function is_checked(){
+      if ($("#brand_form input:checkbox:checked").length > 0)
+      {
+        document.getElementById('success').disabled=false;
+      }
+      else
+      {
+        document.getElementById('success').disabled=true;
+      }
+       }
         
         
       
