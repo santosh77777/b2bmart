@@ -5,4 +5,5 @@ app_name = "product"
 
 urlpatterns = [
     path('', views.index, name="index"),
+    path('category/',views.category, name="category"),
 ]
