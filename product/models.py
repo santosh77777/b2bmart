@@ -69,6 +69,9 @@ class Product(models.Model):
     image1=models.ImageField(upload_to="products/",default='')
     image2=models.ImageField(upload_to="products/",default='')
     image3=models.ImageField(upload_to="products/",default='')
+    arrange = models.BooleanField(default=False)
+    add_home = models.BooleanField(default=False)
+
     def __str__(self):
         return str(self.user) 
 
