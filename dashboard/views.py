@@ -272,10 +272,6 @@ def SellerManageProductView(request):
         return render(request, 'dashboard/seller/manage_product.html', context)
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> cd96a9c84a5def859ad391368f45e99ef917b78b
 @login_required
 def SellerBulkPriceUpdateView(request, pk):
         ProductFormSet = inlineformset_factory(User, Product, fields=('name', 'price'), extra=0,  can_delete = False )
