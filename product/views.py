@@ -30,3 +30,12 @@ class HomeProductList(ListView):
         context['object_list'] = Product.objects.filter(user=user)
         context['seller_company'] = SellerCompany.objects.filter(user=user)
         return context
+        
+import json
+
+    #     return redirect('http://127.0.0.1:8000/ecommerce/sell/')
+    # return render(request,'ecommerce/sell.html')
+def index(request):
+    brand=Product.objects.values_list('brand', flat=True)
+    brand=list(brand)
+    return render(request,'index.html',{'brand_data':json.dumps(brand)})
