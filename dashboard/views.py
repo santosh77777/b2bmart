@@ -304,12 +304,15 @@ def sellerDeleteProduct(request, pk):
     return render(request, "dashboard/seller/delete.html", context) 
 
 
-class SellerReArrangeProductView(LoginRequiredMixin, UserPassesTestMixin, View):
+class SellerReArrangeProductView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    model = Product
+    template_name = "dashboard/seller/rearrange_product.html"
+
+    def get_queryset(self):
+        return Product.objects.filter(user=self.request.user)
+
     def test_func(self):
         return is_seller(self.request.user)
-
-    def get(self,request, *args, **kwargs):
-        return render(request, 'dashboard/seller/rearrange_product.html')
 
 class SellerCategoryReportView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
@@ -423,14 +426,13 @@ class SellerProductDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailVie
     #     return render(request, 'dashboard/productdetail.html')
 
 class SellerArangeProductView(LoginRequiredMixin, UserPassesTestMixin, View):
-    def test_func(self):
-        return is_seller(self.request.user)
-
     def get(self,request, *args, **kwargs):
         product = Product.objects.get(id=kwargs['pk'])
         product.arrange = True
         product.save()
         return redirect('/dashboard/seller/rearrange-product/')
+    def test_func(self):
+        return is_seller(self.request.user)
 
 class SellerUnArangeProductView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
