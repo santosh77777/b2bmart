@@ -101,14 +101,7 @@
                                     <p class="card-category">Complete your business profile</p>
                                 </div>
                                 <div class="card-body">
-                                    {% if messages %}
-                                    <ul class="messages alert alert-success alert-dismissible">
-                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                        {% for message in messages %}
-                                        <ul  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </ul>
-                                        {% endfor %}
-                                    </ul>
-                                    {% endif %}
+                                    
                                     
                                     <form method="POST" action="" id="add_product" enctype="multipart/form-data">
                                         {% csrf_token %}
@@ -222,12 +215,6 @@
     </div>
 
 
-    {% if messages %}
-    <script>
-     {% for message in messages %}
-         alert("{{ message }}");
-     {% endfor %}
-    </script>
-    {%endif%}
+   
 {% endblock content %}
      
