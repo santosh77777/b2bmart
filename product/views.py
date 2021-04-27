@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from . models import Product
-from dashboard.models import SellerCompany
+from dashboard.models import SellerCompany, BusinessProfile
 from django.views.generic import ListView
 from django.contrib.auth.models import User
 from django.http import HttpResponse
@@ -40,23 +40,16 @@ def category(request):
     context={"search_product":queryset}
     return render(request,'category.html',context)
 
-        
-    # def get_context_data(self, **kwargs):
-            
-    #     # Call the base implementation first to get a context
-    #     context = super().get_queryset(**kwargs)
-        
-    #     # context['brand']=Product.objects.filter('brand', flat=True)
-    #     # context['brand_id']=Product.objects.filter('id',flat=True)
-    #     # print(context)
-        
-    #     # brand=json.dumps(list(brand))
-    #     # brand_id=json.dumps(list(brand_id))
-        
-    #     return context
-    #     # return Product.objects.filter(user=user)
-    
+################################## this is for displaying the home page ################################## 
+class HomeView(ListView):
+    model = Product
+    template_name = "index.html"
 
+    # def get_queryset(self):
+        # return Product.objects.filter(add_home=True)
+    #     # return Product.objects.raw('SELECT  DISTINCT user_id from product_product WHERE add_home=True')
+    #     return Product.objects.order_by('user_id').values_list('user_id', flat=True).distinct()
+    
 class HomeProductList(ListView):
     model = Product
     template_name = "dashboard/company.html"
@@ -73,5 +66,6 @@ class HomeProductList(ListView):
         
         context['object_list'] = Product.objects.filter(user=user)
         context['seller_company'] = SellerCompany.objects.filter(user=user)
+        context['business_profile'] = BusinessProfile.objects.filter(user=user)
         return context
         

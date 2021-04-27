@@ -8,11 +8,11 @@
         <div class="col-12">
           {% for seler in seller_company %}
           <!-- banner part start -->
-          <div class="banner company" >
+          <div class="banner company"style="background-image: url({{ seler.banner_image.url }})" >
             <!-- <div class="logo">Logo</div> -->
             <div class="logo"><img src="{{ seler.logo.url }}"></div>
             <h3 class="name">{{seler.user.account.company_name}}</h3>
-            <p class="detail">{{seler.about_seller }}</p>
+            <p class="detail">{{ seler.caption }}</p>
           </div>
         </div>
         {% endfor %}
