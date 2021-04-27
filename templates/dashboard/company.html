@@ -8,10 +8,10 @@
         <div class="col-12">
           {% for seler in seller_company %}
           <!-- banner part start -->
-          <div class="banner company">
+          <div class="banner company" >
             <!-- <div class="logo">Logo</div> -->
             <div class="logo"><img src="{{ seler.logo.url }}"></div>
-            <h3 class="name">{{seler.user.businessprofile.company_name}}</h3>
+            <h3 class="name">{{seler.user.account.company_name}}</h3>
             <p class="detail">{{seler.about_seller }}</p>
           </div>
         </div>
@@ -60,11 +60,14 @@
         <div class="col-12 col-md-6">
           <h3>BRAND VIDEO</h3>
           <!-- Promotional vedio start -->
-          <div class="promo-video height">
-            {% video branded_video "large" %}
-            <span>Play our promotional video here</span>
-            <i class="fas fa-play"></i>
-            <span>Make an impression with</span>
+          <div class="">  
+            
+            {% video company.branded_video as my_video %}  
+              {% video my_video 'small' %}
+            {% endvideo %}
+
+
+
           </div>
           <!-- Promotional vedio end -->
         </div>
@@ -94,7 +97,7 @@
         <div class="company-info-detail">
           <p>Annual Revenue</p>
           <div class="image"></div>
-          <p>5 cr</p>
+          <p>{{ company.user.businessprofile.annual_turnover }} cr</p>
         </div>
         <div class="company-info-detail">
           <p>GSTIN NO</p>
@@ -125,13 +128,18 @@
           <button class="btn btn-primary btn-lg">Load More</button>
         </div>
       <!-- Recommended Products part end -->
-
+      {% for company in seller_company %}
       <div class="row mt-3">
         <div class="col-12 col-sm-3 pt-3">
           <h3>Get in touch</h3>
-          <div>Street, 510 Willis Avenue City, Jacksonville, State</div>
-          <div>divhone Number 386-524-1622</div>
-          <div>Mobile Number -904-382-8500</div>
+          <div>{{ company.user.sellerprofile.address_building }}</div>
+          <div>{{ company.user.sellerprofile.address_area }}</div>
+          <div>{{ company.user.sellerprofile.landmark }}</div>
+          <div>{{ company.user.sellerprofile.locality }}</div>
+          <div>{{ company.user.sellerprofile.country }}</div>
+          <div>{{ company.user.sellerprofile.city }}</div>
+          <div>Mobile Number- {{ company.user.sellerprofile.alternative_mobile }}</div>
+          <div>Landline- {{ company.user.sellerprofile.landline_no }}</div>
           <h5>Get our location</h5>
           <h5>Ayush Garg (Sales Manager)</h5>
           <button class="btn mt-3">SEND SMS</button>
@@ -200,6 +208,7 @@
               </div>
             </div>
           </div>
+          {% endfor %}
           <!-- register form part end -->
         </div>
       </div>
