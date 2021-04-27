@@ -4,15 +4,17 @@ from dashboard.models import SellerCompany
 from django.views.generic import ListView
 from django.contrib.auth.models import User
 
+
+################################## this is for displaying the home page ################################## 
 class HomeView(ListView):
     model = Product
     template_name = "index.html"
 
-    def get_queryset(self):
-        return Product.objects.filter(add_home=True)
-        # return Product.objects.filter(user=user)
+    # def get_queryset(self):
+        # return Product.objects.filter(add_home=True)
+    #     # return Product.objects.raw('SELECT  DISTINCT user_id from product_product WHERE add_home=True')
+    #     return Product.objects.order_by('user_id').values_list('user_id', flat=True).distinct()
     
-
 class HomeProductList(ListView):
     model = Product
     template_name = "dashboard/company.html"

@@ -34,6 +34,10 @@ urlpatterns = [
 
     path('seller/arrange-product/<int:pk>/',views.SellerArangeProductView.as_view(), name="seller_arrange_product"),
     path('seller/unarrange-product/<int:pk>/',views.SellerUnArangeProductView.as_view(), name="seller_unarrange_product"),
+
+    path('seller/add-home-product/<int:pk>/',views.SellerAddHomeView.as_view(), name="seller_add_home_product"),
+    path('seller/remove-home-product/<int:pk>/',views.SellerRemoveHomeView.as_view(), name="seller_remove_home_product"),
+
     path('seller/companey-add/',views.SellersCompanyView, name="seller_company_add"),
 
 ]

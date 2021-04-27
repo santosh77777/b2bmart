@@ -444,6 +444,25 @@ class SellerUnArangeProductView(LoginRequiredMixin, UserPassesTestMixin, View):
         product.save()
         return redirect('/dashboard/seller/rearrange-product/')
 
+class SellerAddHomeView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def get(self,request, *args, **kwargs):
+        product = Product.objects.get(id=kwargs['pk'])
+        product.add_home = True
+        product.save()
+        return redirect('/dashboard/seller/rearrange-product/')
+    def test_func(self):
+        return is_seller(self.request.user)
+
+class SellerRemoveHomeView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        product = Product.objects.get(id=kwargs['pk'])
+        product.add_home = False
+        product.save()
+        return redirect('/dashboard/seller/rearrange-product/')
+
 
 from .models import SellerCompany
 @login_required

@@ -26,14 +26,12 @@ class SignUpForm(forms.Form):
         user.email = self.cleaned_data['email']
         email = self.cleaned_data['email']
         
-                 
-
-        # Check to see if any users already exist with this email as a username.
-        try:
-            match = User.objects.get(email=email)
-            raise forms.ValidationError('This email address is already in use.')
-        except User.DoesNotExist:
-            # Unable to find a user, this is fine
+        def clean_email(self):
+            email = self.cleaned_data.get('email')
+            try:
+                match = User.objects.get(email=email)
+            except ObjectDoesNotExist:
+                raise forms.ValidationError('This email is already registered') 
             return email
 
 
