@@ -26,9 +26,19 @@ def HomeView(request):
     
         
 def category(request):
-    print("category")
-    print(id_brand)
-    return render(request,'category.html')
+    print("cat")
+    show_brand=[]
+    queryset=[]
+    for i in id_brand:
+        productt= Product.objects.get(id=i)
+        show_brand.append(productt.brand)
+    print("show_brand",show_brand)
+    for i in show_brand:
+        product_detail=Product.objects.filter(brand=i)
+        queryset.append(product_detail)
+    
+    context={"search_product":queryset}
+    return render(request,'category.html',context)
 
         
     # def get_context_data(self, **kwargs):
