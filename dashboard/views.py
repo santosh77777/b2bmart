@@ -8,21 +8,15 @@ from django.contrib.auth.models import User
 from django.forms import inlineformset_factory
 from django.contrib import messages
 from product.models import Product
-from .models import SellerProfile, Account, SellerStatutory, SellerBank, BusinessProfile
+from .models import SellerProfile, Account, SellerStatutory, SellerBank, BusinessProfile, SellerCompany
 from accounts.views import is_seller, is_buyer
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
 from .forms import *
 from product.forms import ProductForm
-from product.models import Product
+from product.models import Product,EshopeForm
 
-
-
-
-class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
-    def test_func(self):
-        return is_seller(self.request.user)
 
 class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
@@ -211,8 +205,8 @@ class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def post(self,request, *args, **kwargs):
         if request.method == "POST":  
-            user = request.user      
-            name=request.POST.get('Product_name')
+            user = request.user                  
+            name=request.POST.get('Product_name')          
             price= request.POST.get('price','')   
             min_order_quantity= request.POST.get('min_order_qty','') 
             unity_type= request.POST.get('unity_type','')
@@ -220,15 +214,11 @@ class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
             description= request.POST.get('desc','')
             packing_details= request.POST.get('packing_details','')
             product_video_url= request.POST.get('product_video_url','')
-
-            capacity= request.POST.get('inlineRadioOptions1','')     
-            material= request.POST.get('inlineRadioOptions2','') 
-            print(material)     
-            brand= request.POST.get('inlineRadioOptions3','')    
-            print(brand)  
+            capacity= request.POST.get('capacity','')     
+            material= request.POST.get('material','')            
+            brand= request.POST.get('brand','')             
             color= request.POST.get('color','')      
-            size= request.POST.get('size','')      
-                  
+            size= request.POST.get('size','')                       
             model_no= request.POST.get('model_no','')      
             power= request.POST.get('power','')      
             warranty= request.POST.get('warranty','')      
@@ -241,8 +231,7 @@ class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
 
             image1= request.FILES.get('image1','')
             image2 =request.FILES.get('image2','')
-            image3 =request.FILES.get('image2','')
-        
+            image3 =request.FILES.get('image2','') 
             product = Product(user=user,name=name,price=price,min_order_quantity=min_order_quantity,unity_type=unity_type,product_group=product_group,
             description=description,capacity=capacity,material=material,color=color,brand=brand,warranty=warranty,
             size=size,model_no=model_no,power=power,rating=rating,neck_size=neck_size,closure_type=closure_type,
@@ -250,19 +239,12 @@ class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
             product.save()
             messages.success(request,"Congratulations your details are successfully saved!")
             return redirect(".")
+
+   
+
     def get(self,request, *args, **kwargs):
         form = ProductForm()
         return render(request, 'dashboard/seller/add_product.html',{'form':form})
-
-    
-
-class ProductCreateView(LoginRequiredMixin, UserPassesTestMixin, View):
-    def test_func(self):
-        return is_seller(self.request.user)
-
-    def get(self,request, *args, **kwargs):
-        return render(request, 'dashboard/seller/add_product.html')
-
 
 @login_required
 def SellerManageProductView(request):
@@ -321,8 +303,6 @@ def sellerDeleteProduct(request, pk):
         return redirect('dashboard:seller_manage_product')
   
     return render(request, "dashboard/seller/delete.html", context) 
-
-
 
 
 class SellerReArrangeProductView(LoginRequiredMixin, UserPassesTestMixin, View):
@@ -401,8 +381,7 @@ class SellerPaidServiceView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/certificate.html')
-from itertools import chain
-from operator import attrgetter
+
 class SellerCompanyView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     def test_func(self):
         return is_seller(self.request.user)
@@ -417,13 +396,26 @@ class SellerCompanyView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         context['object_all_list'] = Product.objects.all()
         return context
 
-
 class SellerProductDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):  
     model = Product
     template_name = 'dashboard/productdetail.html'
 
     def get_object(self, queryset=None):
         return Product.objects.get(pk=self.kwargs.get("pk"))
+
+    def post(self,request, *args, **kwargs):
+        if request.method == "POST":
+            name = request.POST.get('name','')
+            email = request.POST.get('email','')
+            mobile = request.POST.get('phone','')
+            nature_of_business = request.POST.get('business','')
+            mesg = request.POST.get('msg','')
+            send_copy = request.POST.get('sendcopy','')
+
+            data = EshopeForm(name=name,email=email,mobile=mobile,nature_of_business=nature_of_business,messages=mesg,send_copy=send_copy)
+            data.save()
+            messages.success(request,"Congratulations your details are successfully saved!")
+            return redirect(".")
 
     def test_func(self):
         return is_seller(self.request.user)
@@ -450,3 +442,57 @@ class SellerUnArangeProductView(LoginRequiredMixin, UserPassesTestMixin, View):
         product.arrange = False
         product.save()
         return redirect('/dashboard/seller/rearrange-product/')
+
+
+# from .models import SellerCompany
+# @login_required
+# def SellersCompanyView(request):
+#     if request.method == 'POST':
+#         logo = request.FILES['logo']
+#         banner_image = request.FILES['banner_image']
+#         about_seller = request.POST['about_seller']
+#         branded_video = request.POST['branded_video']
+#         catalogue = request.FILES['catalogue']
+#         no_of_employees = request.POST['no_of_employees']
+#         legal_status_of_firm = request.POST['legal_status_of_firm']
+#         try:
+#             seller_company = SellerCompany.objects.get(user=request.user)
+#             seller_company.logo = logo
+#             seller_company.banner_image = banner_image
+#             seller_company.about_seller = about_seller
+#             seller_company.branded_video = branded_video
+#             seller_company.catalogue = catalogue
+#             seller_company.no_of_employees = no_of_employees
+#             seller_company.legal_status_of_firm = legal_status_of_firm
+#             seller_company.save()
+#         except:
+#             seller_company = SellerCompany(user=request.user, logo=logo, banner_image=banner_image, about_seller=about_seller, 
+#                             branded_video=branded_video, catalogue=catalogue, no_of_employees=no_of_employees,
+#                             legal_status_of_firm=legal_status_of_firm) 
+#             seller_company.save()
+#         messages.success(request, 'Your profile was updated successfully')
+#     try:
+#         seller_company = SellerCompany.objects.get(user=request.user)
+#         context = {'seller_company':seller_company}
+#     except:
+#         context=None
+#     return render(request, 'dashboard/seller/seller_company.html', context)
+
+
+@login_required
+def SellersCompanyView(request):
+        seller = request.user.sellercompany
+        form = SellerCompanyForm(instance= seller)
+
+        if request.method == 'POST':
+            form = SellerCompanyForm(request.POST, request.FILES, instance=seller)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Your Company Details was updated successfully')
+
+
+        context = {'form':form, 'seller': seller }
+        return render(request, 'dashboard/seller/seller_company.html', context)
+
+
+

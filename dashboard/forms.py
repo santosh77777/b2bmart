@@ -36,9 +36,18 @@ class BusinessProfileForm(forms.ModelForm):
         exclude = ['user']
 
 
+class SellerCompanyForm(forms.ModelForm):
+    about_seller = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':'about_seller'}), required=True)
+    no_of_employees = forms.IntegerField(widget=forms.NumberInput( attrs={'class': 'form-control', 'id':'noofemployees'}), required=True)
+    legal_status_of_firm = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':'legal_status_of_firm'}), required=True)
+    catalogue = forms.FileField(widget=forms.FileInput( attrs={'class': 'form-control', 'id':"catalogue"}), required=False)
+    branded_video = forms.URLField(widget=forms.URLInput(attrs={'class': 'form-control',  'id':"branded_video"}), required=True)
+    logo = forms.ImageField(widget=forms.FileInput( attrs={'class': 'form-control'}), required=False)
+    banner_image = forms.ImageField(widget=forms.FileInput( attrs={'class': 'form-control'}), required=False)
 
-# class SellerManageProductViewForm(forms.ModelForm):
-#      class Meta:
-#         model = Product
-#         fields = "__all__"
-#         exclude = ['user']
+
+
+    class Meta:
+        model = SellerCompany
+        fields = "__all__"
+        exclude = ['user']
