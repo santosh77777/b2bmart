@@ -41,9 +41,9 @@ def category(request):
     return render(request,'category.html',context)
 
 ################################## this is for displaying the home page ################################## 
-class HomeView(ListView):
-    model = Product
-    template_name = "index.html"
+# class HomeView(ListView):
+#     model = Product
+#     template_name = "index.html"
 
     # def get_queryset(self):
         # return Product.objects.filter(add_home=True)
