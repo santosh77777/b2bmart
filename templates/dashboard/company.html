@@ -1,17 +1,21 @@
 {% extends 'base.html' %}
+{% load embed_video_tags %}
 {% block content %}
   {% load static %}
     <div class="container">
       
       <div class="row mt-3">
         <div class="col-12">
+          {% for seler in seller_company %}
           <!-- banner part start -->
           <div class="banner company">
-            <div class="logo">logo</div>
+            <!-- <div class="logo">Logo</div> -->
+            <div class="logo"><img src="{{ seler.logo.url }}"></div>
             <h3 class="name">COMPANY NAME</h3>
             <p class="detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, unde.</p>
           </div>
         </div>
+        {% endfor %}
       </div>
       <!-- banner part end -->
 
@@ -40,10 +44,14 @@
       </div>
       <!-- Recommended Products part end -->
 
+{% for company in seller_company %}
+  
+
+  
       <div class="row mt-5">
         <div class="col-12 col-md-6">
           <h3>ABOUT US</h3><hr>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias quae minima dolorem qui doloremque similique tenetur quas nobis nisi iure, illum, sequi consectetur? Incidunt dolorem itaque inventore suscipit reprehenderit natus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae nisi sed temporibus vel tempore qui odit accusamus facilis amet doloremque eius dignissimos, modi excepturi perferendis magni id quibusdam nihil quae. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt sint dignissimos tempora possimus, nemo porro modi soluta error tempore repellendus. Dicta praesentium est eligendi animi, quisquam perspiciatis facilis voluptatibus deleniti.</p>
+          <p>{{ company.about_seller }}</p>
           <div class="d-flex justify-content-between">
             <button class="btn btn-default">Download E-catalogue</button>
             <button class="btn btn-primary">+ Raed More</button>
@@ -53,6 +61,7 @@
           <h3>BRAND VIDEO</h3>
           <!-- Promotional vedio start -->
           <div class="promo-video height">
+            {% video branded_video "large" %}
             <span>Play our promotional video here</span>
             <i class="fas fa-play"></i>
             <span>Make an impression with</span>
@@ -70,7 +79,7 @@
         <div class="company-info-detail">
           <p>No of Emplyees</p>
           <div class="image"></div>
-          <p>100 to 200 people</p>
+          <p>{{ company.no_of_employees }} people</p>
         </div>
         <div class="company-info-detail">
           <p>Year of Establishment1999</p>
@@ -80,7 +89,7 @@
         <div class="company-info-detail">
           <p>Legal Status os Firm</p>
           <div class="image"></div>
-          <p>Partnership firm</p>
+          <p>{{ company.legal_status_of_firm }}</p>
         </div>
         <div class="company-info-detail">
           <p>Annual Revenue</p>
@@ -93,12 +102,12 @@
           <p>AKGHJX254796</p>
         </div>
       </div>
-
+      {% endfor %}
       <!-- Recommended Products part start -->
       <div class="product-list mt-3">
         <h3 class="text-center pt-2 pb-3">OUR PRODUCTS RANGE</h3>
       
-        <div class="row">{% for obj in object_all_list %}
+        <div class="row">{% for obj in object_list %}
           <div class="col">
             <div class="product-item">
                 <div class="image">

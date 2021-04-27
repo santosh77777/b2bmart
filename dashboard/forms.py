@@ -35,10 +35,3 @@ class BusinessProfileForm(forms.ModelForm):
         fields = "__all__"
         exclude = ['user']
 
-
-
-# class SellerManageProductViewForm(forms.ModelForm):
-#      class Meta:
-#         model = Product
-#         fields = "__all__"
-#         exclude = ['user']
