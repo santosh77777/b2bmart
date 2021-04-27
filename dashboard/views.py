@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.forms import inlineformset_factory
 from django.contrib import messages
 from product.models import Product
-from .models import SellerProfile, Account, SellerStatutory, SellerBank, BusinessProfile
+from .models import SellerProfile, Account, SellerStatutory, SellerBank, BusinessProfile, SellerCompany
 from accounts.views import is_seller, is_buyer
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
@@ -256,6 +256,7 @@ def SellerManageProductView(request):
         return render(request, 'dashboard/seller/manage_product.html', context)
 
 
+
 @login_required
 def SellerBulkPriceUpdateView(request, pk):
         ProductFormSet = inlineformset_factory(User, Product, fields=('name', 'price'), extra=0,  can_delete = False )
@@ -445,36 +446,55 @@ class SellerUnArangeProductView(LoginRequiredMixin, UserPassesTestMixin, View):
         return redirect('/dashboard/seller/rearrange-product/')
 
 
-from .models import SellerCompany
+# from .models import SellerCompany
+# @login_required
+# def SellersCompanyView(request):
+#     if request.method == 'POST':
+#         logo = request.FILES['logo']
+#         banner_image = request.FILES['banner_image']
+#         about_seller = request.POST['about_seller']
+#         branded_video = request.POST['branded_video']
+#         catalogue = request.FILES['catalogue']
+#         no_of_employees = request.POST['no_of_employees']
+#         legal_status_of_firm = request.POST['legal_status_of_firm']
+#         try:
+#             seller_company = SellerCompany.objects.get(user=request.user)
+#             seller_company.logo = logo
+#             seller_company.banner_image = banner_image
+#             seller_company.about_seller = about_seller
+#             seller_company.branded_video = branded_video
+#             seller_company.catalogue = catalogue
+#             seller_company.no_of_employees = no_of_employees
+#             seller_company.legal_status_of_firm = legal_status_of_firm
+#             seller_company.save()
+#         except:
+#             seller_company = SellerCompany(user=request.user, logo=logo, banner_image=banner_image, about_seller=about_seller, 
+#                             branded_video=branded_video, catalogue=catalogue, no_of_employees=no_of_employees,
+#                             legal_status_of_firm=legal_status_of_firm) 
+#             seller_company.save()
+#         messages.success(request, 'Your profile was updated successfully')
+#     try:
+#         seller_company = SellerCompany.objects.get(user=request.user)
+#         context = {'seller_company':seller_company}
+#     except:
+#         context=None
+#     return render(request, 'dashboard/seller/seller_company.html', context)
+
+
 @login_required
 def SellersCompanyView(request):
-    if request.method == 'POST':
-        logo = request.FILES['logo']
-        banner_image = request.FILES['banner_image']
-        about_seller = request.POST['about_seller']
-        branded_video = request.POST['branded_video']
-        catalogue = request.FILES['catalogue']
-        no_of_employees = request.POST['no_of_employees']
-        legal_status_of_firm = request.POST['legal_status_of_firm']
-        try:
-            seller_company = SellerCompany.objects.get(user=request.user)
-            seller_company.logo = logo
-            seller_company.banner_image = banner_image
-            seller_company.about_seller = about_seller
-            seller_company.branded_video = branded_video
-            seller_company.catalogue = catalogue
-            seller_company.no_of_employees = no_of_employees
-            seller_company.legal_status_of_firm = legal_status_of_firm
-            seller_company.save()
-        except:
-            seller_company = SellerCompany(user=request.user, logo=logo, banner_image=banner_image, about_seller=about_seller, 
-                            branded_video=branded_video, catalogue=catalogue, no_of_employees=no_of_employees,
-                            legal_status_of_firm=legal_status_of_firm) 
-            seller_company.save()
-        messages.success(request, 'Your profile was updated successfully')
-    try:
-        seller_company = SellerCompany.objects.get(user=request.user)
-        context = {'seller_company':seller_company}
-    except:
-        context=None
-    return render(request, 'dashboard/seller/seller_company.html', context)
+        seller = request.user.sellercompany
+        form = SellerCompanyForm(instance= seller)
+
+        if request.method == 'POST':
+            form = SellerCompanyForm(request.POST, request.FILES, instance=seller)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Your Company Details was updated successfully')
+
+
+        context = {'form':form, 'seller': seller }
+        return render(request, 'dashboard/seller/seller_company.html', context)
+
+
+

@@ -24,7 +24,8 @@ class SellerProfile(models.Model):
     about_me = models.TextField()
 
     def __str__(self):
-        return self.user.first_name
+        return self.user.username
+
 
 
 def validate_image(fieldfile_obj):
@@ -62,7 +63,7 @@ class SellerStatutory(models.Model):
     company_registration_no = models.URLField(max_length=50, null=True)
 
     def __str__(self):
-        return self.user.first_name 
+        return self.user.username
     
 
 class SellerBank(models.Model):
@@ -79,7 +80,7 @@ class SellerBank(models.Model):
     alternative_bank_account_type = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.user.first_name 
+        return self.user.username
 
 
 
@@ -93,19 +94,22 @@ post_save.connect(businessprofile_receiver, sender=User)
 
 from product.models import Product
 class SellerCompany(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
-    # seller_bank = models.OneToOneField(SellerBank, on_delete=models.CASCADE)
-    # seller_statutory = models.OneToOneField(SellerStatutory, on_delete=models.CASCADE)
-    # seller_business_profile = models.OneToOneField(BusinessProfile, on_delete=models.CASCADE)
-    # seller_profile = models.OneToOneField(SellerProfile, on_delete=models.CASCADE)
-    about_seller = models.TextField()
-    no_of_employees = models.PositiveIntegerField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='sellercompany')
+    about_seller = models.TextField(blank=True, null=True)
+    no_of_employees = models.PositiveIntegerField(blank=True, null=True)
     legal_status_of_firm = models.CharField(max_length=50)
-    catalogue = models.FileField(upload_to="files/seller_catalogues")
+    catalogue = models.FileField(upload_to="files/seller_catalogues", blank=True, null=True)
     branded_video = EmbedVideoField()
-    logo = models.ImageField(upload_to="images/seller_logos")
-    banner_image =models.ImageField(upload_to="images/seller_banner_images")
+    logo = models.ImageField(default="company_card.png", upload_to="images/seller_logos")
+    banner_image =models.ImageField(default="company_card.png", upload_to="images/seller_banner_images")
      
     def __str__(self):
         return self.user.username
+
+
+def sellercompany_receiver(sender, instance, created, *args, **kwargs):
+    if created:
+        userprofile = SellerCompany.objects.create(user=instance)
+
+
+post_save.connect(sellercompany_receiver, sender=User)

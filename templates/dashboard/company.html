@@ -11,8 +11,8 @@
           <div class="banner company">
             <!-- <div class="logo">Logo</div> -->
             <div class="logo"><img src="{{ seler.logo.url }}"></div>
-            <h3 class="name">COMPANY NAME</h3>
-            <p class="detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, unde.</p>
+            <h3 class="name">{{seler.user.businessprofile.company_name}}</h3>
+            <p class="detail">{{seler.about_seller }}</p>
           </div>
         </div>
         {% endfor %}
@@ -74,7 +74,7 @@
         <div class="company-info-detail">
           <p>Nature of Business</p>
           <div class="image"></div>
-          <p>Manufacturer</p>
+          <p>{{ company.user.account.nature_of_business }}</p>
         </div>
         <div class="company-info-detail">
           <p>No of Emplyees</p>
@@ -82,9 +82,9 @@
           <p>{{ company.no_of_employees }} people</p>
         </div>
         <div class="company-info-detail">
-          <p>Year of Establishment1999</p>
+          <p>Year of Establishment</p>
           <div class="image"></div>
-          <p>Manufacturer</p>
+          <p>{{company.user.businessprofile.year_of_establishment }}</p>
         </div>
         <div class="company-info-detail">
           <p>Legal Status os Firm</p>
@@ -99,7 +99,7 @@
         <div class="company-info-detail">
           <p>GSTIN NO</p>
           <div class="image"></div>
-          <p>AKGHJX254796</p>
+          <p>{{ company.user.sellerprofile.gstin }}</p>
         </div>
       </div>
       {% endfor %}

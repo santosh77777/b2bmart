@@ -89,7 +89,27 @@
                                     <p class="card-category">Complete your Company Details</p>
                                 </div>
                                 <div class="card-body">
-                                    <form action="." method="post" id="satutory_form" enctype="multipart/form-data">
+                                    {% if messages %}
+                                    <ul class="messages alert alert-success alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        {% for message in messages %}
+                                        <ul  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </ul>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+
+
+
+                                    <form method="POST" action="" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {{form.as_p}}
+                                
+                                    <input class="btn btn-primary" type="submit" name="Update Information">
+                                    </form>
+
+
+
+                                <!---    <form action="." method="post" id="satutory_form" enctype="multipart/form-data">
                                         {% csrf_token %}
                                         <form>
                                             <div class="mb-3">
@@ -128,7 +148,7 @@
                                                   <input type="file" class="custom-file-input" name="banner_image" value=""  id="inputGroupFile02">
                                                   <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"><p class="text-left">Banner Image</p></label>
                                                 </div>
-                                              </div>
+                                              </div> -->
 
                                             
                                         <!-- <div class="row">
@@ -263,9 +283,10 @@
                                                 </div>
                                             </div>
                                         </div> -->
-                                        <input type="submit" class="btn btn-primary pull-right"value="Save">
+                                   <!---     <input type="submit" class="btn btn-primary pull-right"value="Save">
                                         <div class="clearfix"></div>
-                                    </form>
+                                    </form>-->
+
                                 </div>
                             </div>
                         </div>
