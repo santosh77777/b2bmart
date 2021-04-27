@@ -24,6 +24,15 @@ class SignUpForm(forms.Form):
     def signup(self, request, user):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
+       
+        
+        up = user.account
+        up.mobile = self.cleaned_data['mobile']
+        up.state = self.cleaned_data['state']
+        up.pincode = self.cleaned_data['pincode']
+        up.company_name = self.cleaned_data['company_name']
+        up.business_type = self.cleaned_data['business_type']
+        up.nature_of_business = self.cleaned_data['nature_of_business']
         email = self.cleaned_data['email']
         try:
             user_email = email
@@ -33,14 +42,7 @@ class SignUpForm(forms.Form):
             return user_email
     
         user.email = user_email
-        
-        up = user.account
-        up.mobile = self.cleaned_data['mobile']
-        up.state = self.cleaned_data['state']
-        up.pincode = self.cleaned_data['pincode']
-        up.company_name = self.cleaned_data['company_name']
-        up.business_type = self.cleaned_data['business_type']
-        up.nature_of_business = self.cleaned_data['nature_of_business']
+
         user.save()
         up.save()
 

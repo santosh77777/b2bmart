@@ -272,13 +272,13 @@ def SellerBulkPriceUpdateView(request, pk):
         return render(request, 'dashboard/seller/bulk_price_update.html', context)
 
 
-"""
+
 @login_required
-def SellerBulkPriceUpdateView(request, pk):
+def SellerSingleProductUpdateView(request, pk):
         product = Product.objects.get(id=pk)
-        form = SellerManageProductViewForm(instance=product)
+        form = SellerSingleProductViewForm(instance=product)
         if request.method == 'POST':
-            form = SellerManageProductViewForm(request.POST, request.FILES, instance=product)
+            form = SellerSingleProductViewForm(request.POST, request.FILES, instance=product)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Your price updated successfully')
@@ -286,8 +286,8 @@ def SellerBulkPriceUpdateView(request, pk):
 
 
         context = {'form':form, 'product': product }
-        return render(request, 'dashboard/seller/bulk_price_update.html', context)
-"""
+        return render(request, 'dashboard/seller/seller_single_product_update.html', context)
+
  
 @login_required
 def sellerDeleteProduct(request, pk):

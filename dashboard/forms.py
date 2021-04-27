@@ -23,7 +23,7 @@ class BusinessProfileForm(forms.ModelForm):
 			('Manufacturer', 'Manufacturer'),
 			) 
     company_name = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control'}), required=True)
-    year_of_establishment = forms.DateField( localize=True, widget=forms.DateInput(format = '%Y-%m-%d', attrs={'class': 'form-control', 'type':'date'}), required=True)
+    year_of_establishment = forms.DateField( localize=True, widget=forms.DateInput(format = '%Y-%m-%d', attrs={'class': '', 'type':'date'}), required=True)
     phone = forms.IntegerField(widget=forms.NumberInput( attrs={'class': 'form-control'}), required=True)
     category = forms.ChoiceField(initial='Select Value', widget=forms.Select( attrs={'class': 'form-control'}), choices=CATEGORY,  required=True)
     annual_turnover = forms.IntegerField(widget=forms.NumberInput( attrs={'class': 'form-control'}), required=True)
@@ -49,5 +49,13 @@ class SellerCompanyForm(forms.ModelForm):
 
     class Meta:
         model = SellerCompany
+        fields = "__all__"
+        exclude = ['user']
+
+
+
+class SellerSingleProductViewForm(forms.ModelForm):
+    class Meta:
+        model = Product
         fields = "__all__"
         exclude = ['user']

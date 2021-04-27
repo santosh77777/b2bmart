@@ -100,6 +100,7 @@ class SellerCompany(models.Model):
     legal_status_of_firm = models.CharField(max_length=50)
     catalogue = models.FileField(upload_to="files/seller_catalogues", blank=True, null=True)
     branded_video = EmbedVideoField()
+    caption = models.CharField(max_length=200, blank=True, null=True)
     logo = models.ImageField(default="company_card.png", upload_to="images/seller_logos")
     banner_image =models.ImageField(default="company_card.png", upload_to="images/seller_banner_images")
      
