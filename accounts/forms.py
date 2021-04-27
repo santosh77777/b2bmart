@@ -24,14 +24,14 @@ class SignUpForm(forms.Form):
     def signup(self, request, user):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
-       
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        try:
-            user = User.objects.get(email=email)
-        except ObjectDoesNotExist:
-            raise forms.ValidationError('This email is already registered') 
-        return email
+
+        def clean_email(self):
+            email = self.cleaned_data.get('email')
+            try:
+                user = User.objects.get(email=email)
+            except ObjectDoesNotExist:
+                raise forms.ValidationError('This email is already registered') 
+            return email
 
         up = user.account
         up.mobile = self.cleaned_data['mobile']
@@ -46,8 +46,7 @@ class SignUpForm(forms.Form):
         user.save()
         up.save()
 
-
-
+    
         
 
     

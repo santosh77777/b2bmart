@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from . models import Product
-from dashboard.models import SellerCompany
+from dashboard.models import SellerCompany, BusinessProfile
 from django.views.generic import ListView
 from django.contrib.auth.models import User
 
@@ -31,6 +31,7 @@ class HomeProductList(ListView):
         
         context['object_list'] = Product.objects.filter(user=user)
         context['seller_company'] = SellerCompany.objects.filter(user=user)
+        context['business_profile'] = BusinessProfile.objects.filter(user=user)
         return context
         
 from django.http import HttpResponse
