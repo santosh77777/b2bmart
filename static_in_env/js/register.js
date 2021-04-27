@@ -26,12 +26,10 @@ $("#register").validate({
         first_name:{
             required:true,
             minlength:2,
-            // nowhitespace: true,
             lettersonly: true,
         },
         last_name:{
             required:true,
-            nowhitespace: true,
             lettersonly: true,
         },
         email:{
@@ -42,7 +40,7 @@ $("#register").validate({
             required:true,
             digits: true,
             minlength:10,
-            maxlength:10,
+            maxlength:13,
         },
         state:{
             required:true,

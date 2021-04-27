@@ -18,9 +18,13 @@ def HomeView(request):
         print(id_brand)
         return HttpResponse('success') 
     object_list=Product.objects.filter(add_home=True)
+    # data = list(object_list.values())
+    print(type(object_list))
+        # name.append(i.user)
     context={'brand_data':brand,
              'brand_id':brand_id,
-             'object_list':object_list
+             'object_list':object_list,
+             
              }
     return render(request,'index.html',  context)
     

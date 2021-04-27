@@ -484,9 +484,7 @@ $('#Bank_detail').validate({
 $('#add_product').validate({
   rules: {
     
-    is_available:{
-      required:true,
-    },
+   
     product_group:{
       required:true,
     },
@@ -504,48 +502,11 @@ $('#add_product').validate({
     min_order_qty:{
       required:true,
     },
-    product_grp:{
-      required:true,
-    },
+   
     desc:{
       required:true,
     },
-    packing_details:{
-      required:true,
-    },
-    brandd:{
-      required:true,
-    },
-    mat:{
-      required:true,
-    },
-    product_type:{
-      required:true,
-    },
-   
-    warranty:{
-      required:true,
-    },
-    model_no:{
-      required:true,
-    },
-    rating:{
-      required:true,
-    },    
-    product_code:{
-      required:true,
-    },   
-   
-
-    mat_radio:{
-      required:true,
-    },
   
-    cap_radio:{
-      required:true,
-    },
-    product_group:{
-      required:true,
-    },
+    
   }
 });
