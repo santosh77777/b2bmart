@@ -15,6 +15,7 @@ urlpatterns = [
     path('seller/manage-product/',views.SellerManageProductView, name="seller_manage_product"),
     path('seller/rearrange-product/',views.SellerReArrangeProductView.as_view(), name="seller_rearrange_product"),
     path('seller/bulk-price-update/<str:pk>',views.SellerBulkPriceUpdateView, name="seller_bulk_price_update"),
+    path('seller/single-product-update/<str:pk>', views.SellerSingleProductUpdateView, name="seller_single_product_update"),
     path('<int:pk>/delete_product/', views.sellerDeleteProduct, name="seller_delete_product"),
     path('seller/category-report/',views.SellerCategoryReportView.as_view(), name="seller_category_report"),
     path('seller/analytics/',views.SellerAnalyticView.as_view(), name="seller_analytics"),
