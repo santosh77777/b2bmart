@@ -3,7 +3,42 @@ from . models import Product
 from dashboard.models import SellerCompany, BusinessProfile
 from django.views.generic import ListView
 from django.contrib.auth.models import User
-
+from django.http import HttpResponse
+import json
+id_brand=[]
+def HomeView(request):
+    print("YEs")
+    brand=Product.objects.values_list('brand', flat=True)
+    brand_id=Product.objects.values_list('id',flat=True)
+    brand=json.dumps(list(brand))
+    brand_id=json.dumps(list(brand_id))
+    if request.is_ajax():
+        global id_brand
+        id_brand=request.POST.getlist('brand[]')
+        print(id_brand)
+        return HttpResponse('success') 
+    object_list=Product.objects.filter(add_home=True)
+    context={'brand_data':brand,
+             'brand_id':brand_id,
+             'object_list':object_list
+             }
+    return render(request,'index.html',  context)
+    
+        
+def category(request):
+    print("cat")
+    show_brand=[]
+    queryset=[]
+    for i in id_brand:
+        productt= Product.objects.get(id=i)
+        show_brand.append(productt.brand)
+    print("show_brand",show_brand)
+    for i in show_brand:
+        product_detail=Product.objects.filter(brand=i)
+        queryset.append(product_detail)
+    
+    context={"search_product":queryset}
+    return render(request,'category.html',context)
 
 ################################## this is for displaying the home page ################################## 
 class HomeView(ListView):
@@ -34,19 +69,3 @@ class HomeProductList(ListView):
         context['business_profile'] = BusinessProfile.objects.filter(user=user)
         return context
         
-from django.http import HttpResponse
-import json
-
-    #     return redirect('http://127.0.0.1:8000/ecommerce/sell/')
-    # return render(request,'ecommerce/sell.html')
-def index(request):
-    print("YEs")
-    brand=Product.objects.values_list('brand', flat=True)
-    brand=list(brand)
-    return render(request,'index.html',{'brand_data':json.dumps(brand)})
-
-    if request.is_ajax():
-       brand=request.POST.getlist('brand[]')
-       print(brand)
-       return HttpResponse('success') 
-    return render(request,'index.html',{'brand_data':json.dumps(brand)})

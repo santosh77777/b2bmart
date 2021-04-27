@@ -80,7 +80,8 @@ class Product(models.Model):
     arrange = models.BooleanField(default=False)
     add_home = models.BooleanField(default=False)
     def __str__(self):
-        return self.name 
+        return str(self.id) 
+
 
 class EshopeForm(models.Model):
     name = models.CharField(max_length=50)
