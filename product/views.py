@@ -4,6 +4,7 @@ from dashboard.models import SellerCompany, BusinessProfile
 from django.views.generic import ListView
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from accounts.models import *
 import json
 id_brand=[]
 def HomeView(request):
@@ -69,3 +70,4 @@ class HomeProductList(ListView):
         context['business_profile'] = BusinessProfile.objects.filter(user=user)
         return context
         
+
