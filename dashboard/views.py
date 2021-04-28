@@ -15,8 +15,8 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from .forms import *
 from product.forms import ProductForm
-from product.models import Product,EshopeForm
-
+from product.models import Product, EshopeForm
+from accounts.models import ProfilePicture
 
 class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
@@ -399,7 +399,7 @@ class SellerCompanyView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         context['object_all_list'] = Product.objects.all()
         return context
 
-class SellerProductDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):  
+class SellerProductDetailView(DetailView):  
     model = Product
     template_name = 'dashboard/productdetail.html'
 
@@ -410,7 +410,7 @@ class SellerProductDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailVie
         if request.method == "POST":
             name = request.POST.get('name','')
             email = request.POST.get('email','')
-            mobile = request.POST.get('phone','')
+            mobile = request.POST.get('mobile','')
             nature_of_business = request.POST.get('business','')
             mesg = request.POST.get('msg','')
             send_copy = request.POST.get('sendcopy','')
@@ -419,9 +419,6 @@ class SellerProductDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailVie
             data.save()
             messages.success(request,"Congratulations your details are successfully saved!")
             return redirect(".")
-
-    def test_func(self):
-        return is_seller(self.request.user)
 
     # def get(self,request, *args, **kwargs):
     #     return render(request, 'dashboard/productdetail.html')
@@ -517,3 +514,123 @@ def SellersCompanyView(request):
 
 
 
+################################################### Buyer #####################################################
+class BuyerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_buyer(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/buyer/dashboard.html')
+
+class BuyerProfileView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_buyer(self.request.user)
+    def post(self, *args, **kwargs):
+        first_name = self.request.POST['first_name']
+        last_name = self.request.POST['last_name']
+        email = self.request.POST['email']
+        mobile = self.request.POST['mobile']
+        gender = self.request.POST['gender']
+        profile = self.request.FILES['profile']
+        state = self.request.POST['state']
+        pincode = self.request.POST['pincode']
+        about = self.request.POST['about']
+        try:
+            user = User(first_name=first_name, last_name=last_name, email=email)
+            user.save()
+        except:
+            user = User.objects.get(id=self.request.user.id)
+            user.first_name = first_name
+            user.last_name = last_name
+            user.email = email
+            user.save()
+            
+        try:
+            account = Account(user=self.request.user, state=state, pincode=pincode, mobile=mobile)
+            account.save()
+        except:
+            account = Account.objects.get(user=self.request.user)
+            account.state=state
+            account.pincode=pincode
+            account.mobile=mobile
+            account.save()
+
+        try:
+            profile = ProfilePicture(user=self.request.user, gender=gender, profile=profile, about_me=about)
+            profile.save()
+        except:
+            profile = ProfilePicture.objects.get(user=self.request.user)
+            profile.profile = profile
+            profile.gender = gender
+            profile.about_me = about
+            profile.save()
+
+        return redirect(".")
+    def get(self, *args, **kwargs):
+        try:
+            profile = ProfilePicture.objects.get(user=self.request.user)
+            context = {'profile': profile}
+        except:
+            context=None
+
+        return render(self.request, 'dashboard/buyer/buyerprofile.html', context)
+        
+
+class BuyerOrderView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_buyer(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/buyer/order.html')
+
+class BuyerMessageView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_buyer(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/buyer/message.html')
+
+class BuyerOfferRequestDetailsView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_buyer(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/buyer/offer-request-details.html')
+
+class BuyerEnquiryView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_buyer(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        # return render(request, 'dashboard/buyer/buyerprofile.html')
+        pass
+
+class BuyerRecentActivityView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_buyer(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        # return render(request, 'dashboard/buyer/buyerprofile.html')
+        pass
+
+class BuyerFavouriteView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_buyer(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        # return render(request, 'dashboard/buyer/buyerprofile.html')
+        pass
+
+class BuyerDownloadsView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_buyer(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/buyer/documents.html')
+
+class BuyerShareView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_buyer(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/buyer/share.html')

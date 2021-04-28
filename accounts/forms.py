@@ -45,19 +45,3 @@ class SignUpForm(forms.Form):
 
         user.save()
         up.save()
-
-    
-        
-
-    
-   
-
-    
-
-
-class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField(disabled=True)
-
-    class Meta:
-        model = User
-        fields = ['email', 'first_name', 'last_name']

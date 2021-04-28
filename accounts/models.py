@@ -33,6 +33,20 @@ class Account(models.Model):
 
     def __str__(self):
         return self.user.username
+
+GENDER_CHOICES = (
+        ("male", "male"),
+        ("female", "female"),
+        ("others", "others"),
+)
+class ProfilePicture(models.Model):
+        user = models.OneToOneField(User, on_delete=models.CASCADE)
+        gender = models.CharField(max_length=20, choices=GENDER_CHOICES)
+        profile = models.ImageField(upload_to="profile_pics")
+        about_me = models.TextField(blank=True)
+        def __str__(self):
+            return self.user.username
+        
     
     
 def slug_generator(sender, instance, *args, **kwargs):

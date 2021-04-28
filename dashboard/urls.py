@@ -41,6 +41,19 @@ urlpatterns = [
 
     path('seller/companey-add/',views.SellersCompanyView, name="seller_company_add"),
 
+
+    ####################################### Buyer #####################################
+    path('buyer-dashboard/',views.BuyerDashboardView.as_view(), name="buyer_dashboard"),
+    path('buyer-profile/',views.BuyerProfileView.as_view(), name="buyer_profile"),
+    path('buyer-order/',views.BuyerOrderView.as_view(), name="buyer_order"),
+    path('buyer-message/',views.BuyerMessageView.as_view(), name="buyer_message"),
+    path('buyer-offer-request-detail/',views.BuyerOfferRequestDetailsView.as_view(), name="buyer_offer_request_detail"),
+    path('buyer-enquiry/',views.BuyerEnquiryView.as_view(), name="buyer_enquiry"),
+    path('buyer-recent-activity/',views.BuyerRecentActivityView.as_view(), name="buyer_recent_activity"),
+    path('buyer-favourite/',views.BuyerFavouriteView.as_view(), name="buyer_favourite"),
+    path('buyer-downloads/',views.BuyerDownloadsView.as_view(), name="buyer_downloads"),
+    path('buyer-share/',views.BuyerShareView.as_view(), name="buyer_share"),
+
 ]
 
 
