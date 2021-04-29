@@ -1116,9 +1116,9 @@
     
     function fetch_data(){
     //if list length is less than 8 we assume initially 8 brand will be shown
-    if(len<8 && len>0 )
+    if(len<=8 && len>0 )
     {
-        $('#sort_brand').click(function(e){
+        
         for(var i=0;i<len;i++)
         {
         template=`<div class="custom-control custom-checkbox">
@@ -1127,8 +1127,7 @@
           </div>`
         $("#append_brand").append(template);
         }
-        e.preventDefault();
-        });
+  
     }
      
       // if len of the list is greater than 8 then it will come in eleseif part
