@@ -18,7 +18,9 @@ def HomeView(request):
         id_brand=request.POST.getlist('brand[]')
         print(id_brand)
         return HttpResponse('success') 
-    object_list=Product.objects.filter(add_home=True)
+    user = User.objects.all()
+    object_list=Product.objects.filter(add_home=True).distinct()
+    # object_list=Product.objects.raw('SELECT DISTINCT  product_product.user WHERE(add_home=True)')
     context={'brand_data':brand,
              'brand_id':brand_id,
              'object_list':object_list
@@ -51,7 +53,7 @@ def category(request):
     #     # return Product.objects.raw('SELECT  DISTINCT user_id from product_product WHERE add_home=True')
     #     return Product.objects.order_by('user_id').values_list('user_id', flat=True).distinct()
     
-class HomeProductList(ListView):
+class WebsiteHomeList(ListView):
     model = Product
     template_name = "dashboard/company.html"
 
@@ -60,7 +62,9 @@ class HomeProductList(ListView):
 
         user = get_object_or_404(User, account__slug=self.kwargs.get("slug"))
         
-        context['object_list'] = Product.objects.filter(user=user)
+        # context['object_list'] = Product.objects.filter(user=user)
+        context['object_list'] = Product.objects.filter(user=user, arrange=True)
+        context['all_object_list'] = Product.objects.filter(user=user, arrange=True)
         context['seller_company'] = SellerCompany.objects.filter(user=user)
         context['business_profile'] = BusinessProfile.objects.filter(user=user)
         return context
