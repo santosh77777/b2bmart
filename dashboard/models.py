@@ -114,3 +114,21 @@ def sellercompany_receiver(sender, instance, created, *args, **kwargs):
         userprofile = SellerCompany.objects.create(user=instance)
 
 post_save.connect(sellercompany_receiver, sender=User)
+
+BUSINESS_TYPE_CHOICES = (
+        ('Manufacturer', 'Manufacturer'),
+        ('Retailer', 'Retailer'),
+        ('Distributer', 'Distributer'),
+        ('Wholeseller', 'Wholeseller'),
+        ('Exporter', 'Exporter'),
+)
+class ShareDetail(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=100)
+    mobile = models.IntegerField()
+    business_type = models.CharField(max_length=20, choices=BUSINESS_TYPE_CHOICES)
+    message = models.TextField()
+    send_copy = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return str(self.name) 

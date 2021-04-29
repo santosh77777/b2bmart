@@ -60,18 +60,3 @@ class ProfilePicture(models.Model):
         about_me = models.TextField(blank=True)
         def __str__(self):
             return self.user.username
-
-        def save(self, *args, **kwargs):
-                if self.slug:
-                        # edit
-                        if slugify(self.company_name) != self.slug:
-                                self.slug = generate_unique_slug(Account, self.company_name)
-                else: 
-                                # create
-                        self.slug = generate_unique_slug(Account, self.company_name)
-                super(Account, self).save(*args, **kwargs)
-
-    
-
-
-

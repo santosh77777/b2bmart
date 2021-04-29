@@ -15,8 +15,9 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from .forms import *
 from product.forms import ProductForm
-from product.models import Product, EshopeForm
+from product.models import Product
 from accounts.models import ProfilePicture
+from django.http import HttpResponseRedirect
 
 class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
@@ -634,3 +635,36 @@ class BuyerShareView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/buyer/share.html')
+
+from django.core.mail import send_mail
+from django.http import HttpResponse
+
+def sendSimpleEmail(request,emailto):
+   res = send_mail("hello paul", "comment tu vas?", "paul@polo.com", [emailto])
+   return HttpResponse('%s'%res)
+
+from django.conf import settings
+from django.core.mail import send_mail
+from b2bmart.settings import EMAIL_HOST_USER
+class ShareDetailView(View):
+    def post(self, *args, **kwargs):
+        name = self.request.POST['name']
+        email = self.request.POST['email']
+        mobile = self.request.POST['mobile']
+        business_type = self.request.POST['business_type']
+        message = self.request.POST['message']
+        send_copy = self.request.POST.get('send_copy',"")
+        print(send_copy)
+        if send_copy == "on":
+            sub = 'Welcome to my company'
+            message = message
+            subject = "hi"
+            recepient = email
+            send_mail(subject, message, settings.EMAIL_HOST_USER, [recepient])
+
+            share_detail = ShareDetail(name=name, email=email, mobile=mobile, business_type=business_type, message=message, send_copy=True)
+            share_detail.save()
+        else:
+            share_detail = ShareDetail(name=name, email=email, mobile=mobile, business_type=business_type, message=message)
+            share_detail.save()
+        return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
