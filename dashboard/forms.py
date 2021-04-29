@@ -80,23 +80,25 @@ class SellerSingleProductViewForm(forms.ModelForm):
     )
     name = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=True)
     price = forms.IntegerField(widget=forms.NumberInput( attrs={'class': 'form-control', 'id':''}), required=True)
-    unit_type = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=True)
-    min_order_quantity = forms.IntegerField(widget=forms.NumberInput( attrs={'class': 'form-control', 'id':''}), required=True)
+    unit_type = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=False)
+    min_order_quantity = forms.IntegerField(widget=forms.NumberInput( attrs={'class': 'form-control', 'id':''}), required=False)
     product_group = forms.ChoiceField(initial='Select Value', widget=forms.Select( attrs={'class': 'form-control'}), choices=PRODUCT_GROUP_CHOICES,  required=True)
     description = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=True)
-    capacity = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=True)
-    material = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=True)
-    brand = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=True)
-    color = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=True)
-    size = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=True)
-    model_no = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=True)
-    power = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=True)
+    capacity = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=False)
+    material = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=False)
+    brand = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':'brand', 'name':'brand'}), required=True)
+    color = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=False)
+    size = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=False)
+    model_no = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=False)
+    power = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=False)
     warranty = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=True)
-    neck_size = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=True)
-    closure_type = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=True)
+    neck_size = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=False)
+    closure_type = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=False)
     product_code = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=True)
-    packing_details = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=True)
-    video_url = forms.URLField(widget=forms.URLInput(attrs={'class': 'form-control',  'id':""}), required=True)
+    packing_details = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=False)
+    rating = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':''}), required=False)
+
+    video_url = forms.URLField(widget=forms.URLInput(attrs={'class': 'form-control',  'id':""}), required=False)
     image1 = forms.ImageField(widget=forms.FileInput( attrs={'class': 'form-control'}), required=False)
     image2 = forms.ImageField(widget=forms.FileInput( attrs={'class': 'form-control'}), required=False)
     image3 = forms.ImageField(widget=forms.FileInput( attrs={'class': 'form-control'}), required=False)
@@ -105,6 +107,6 @@ class SellerSingleProductViewForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['name', 'price', 'unit_type', 'min_order_quantity', 'product_group', 'description', 
-        'description', 'capacity','material','brand','color','size', 'model_no', 'power', 'warranty', 'neck_size', 'closure_type', 'product_code', 'packing_details'
+        'description', 'capacity','material','brand','color','size', 'model_no', 'power', 'warranty', 'neck_size', 'closure_type', 'product_code', 'packing_details','rating'
           ,'video_url', 'is_available', 'image1', 'image2', 'image3', 'arrange', 'add_home' ]
         

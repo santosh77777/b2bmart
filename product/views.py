@@ -21,10 +21,18 @@ def HomeView(request):
     # data = list(object_list.values())
     print(type(object_list))
         # name.append(i.user)
+    x = list(object_list)
+    l = len(x)
+    i=0
+    while(l%4!=0):
+        x.append(x[i])
+        l=l+1
+        i=i+1
+
+
     context={'brand_data':brand,
              'brand_id':brand_id,
-             'object_list':object_list,
-             
+             'x':x,           
              }
     return render(request,'index.html',  context)
     

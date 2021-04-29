@@ -483,13 +483,11 @@ $('#Bank_detail').validate({
 
 $('#add_product').validate({
   rules: {
-    
-   
+     
     product_group:{
       required:true,
     },
-
-   
+  
     Product_name:{
       required:true,
       minlength:2,
@@ -507,6 +505,13 @@ $('#add_product').validate({
       required:true,
     },
   
-    
+    brandd:{
+      required:true,
+    },
+
+    image1:{
+      required:true,
+    },
+
   }
 });
