@@ -6,47 +6,43 @@
         <h5>CATEGORY NAME - RICE COOKER <small>(1500 PRODUCTS AVAILABLE)</small></h5>
       </div>
       
-      <div class="state-list">  
-        <i class="fas fa-map-marker-alt pl-2 pr-2"></i>
-        <span class="pr-2">Location</span>
-        <input type="text" class="mr-2" style=" width: 100px; height: 25px; ">
-        <i class="fas fa-compass"></i>
-
-        <ul>
+      <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <ul class="category-menu mb-4"> 
           <li>
-            <a href="#">Near me</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">All India</a>
           </li>
           <li>
-            <a href="#">All India</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Andhra Pradesh</a>
           </li>
           <li>
-            <a href="#">state 1</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Assam</a>
           </li>
           <li>
-            <a href="#">state 2</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Bihar</a>
           </li>
           <li>
-            <a href="#">state 3</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Chhattisgarh</a>
           </li>
           <li>
-            <a href="#">state 4</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Goa</a>
           </li>
           <li>
-            <a href="#">state 5</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Gujarat</a>
           </li>
           <li>
-            <a href="#">state 6</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Haryana</a>
           </li>
           <li>
-            <a href="#">state 7</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Himachal Pradesh</a>
           </li>
           <li>
-            <a href="#">state 8</a>
-          </li>
-          <li>
-            <a href="#">state 9</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Madhya Pradesh</a>
           </li>
         </ul>
+      </div>
+      </div>
       </div>
 
       <!-- <div class="row">  
@@ -56,24 +52,24 @@
         <div class="row no-gutters">
           <div class="col border">
             <div class="image">
-              <img src="{{ object.image1.url }}" alt="">
+              <img src="{{ object.image1.url }}" id="main_image" alt="">
               <div class="img-caption">Rice Cooker 15 Ltr</div>
             </div>
           </div>
           <div class="col position-relative">
             <div class="product-detail">
               <div class="title">{{ object.name}}</div>
-              <div class="sub-title">Cook & Serve Design with Keep Warm Fuction</div>
-              <div class="text-mute">Homes</div>
+              <div class="">Cook & Serve Design with Keep Warm Fuction</div>
+              <div class="text">Homes</div>
               <ul class="list-unstyled">
-                <li class="text-mute"><span>Brand</span>:<span>{{ object.brand }}</span></li>
-                <li class="text-mute"><span>Capacity</span>:<span>{{ object.capacity }}</span></li>
-                <li class="text-mute"><span>Model No</span>:<span>{{ object.model_no }}</span></li>
-                <li class="text-mute"><span>Warranty</span>:<span>{{ object.warranty }}</span></li>
-                <li class="text-mute"><span>Power</span>:<span>{{ object.power }}</span></li>
+                <li class="text"><span>Brand</span>:<span>{{ object.brand }}</span></li>
+                <li class="text"><span>Capacity</span>:<span>{{ object.capacity }}</span></li>
+                <li class="text"><span>Model No</span>:<span>{{ object.model_no }}</span></li>
+                <li class="text"><span>Warranty</span>:<span>{{ object.warranty }}</span></li>
+                <li class="text"><span>Power</span>:<span>{{ object.power }}</span></li>
               </ul>
               <div class="price">MRP: Rs {{ object.price }}/-</div>
-              <div class="text-mute mb-3">(Inclusive of all taxes)</div>
+              <div class="text mb-3">(Inclusive of all taxes)</div>
             </div>
           </div>
           <div class="col background">
@@ -87,7 +83,20 @@
           </div>
         </div>
         <div class="row no-gutters mt-2">
-          <div class="col-4"><img src="{% static 'images/4-star.png' %} " alt=""></div>
+          <div class="col-3">
+          <div class="row"  id="sec_img">
+                            <div class="col-lg-4 thumbnails_col">
+                              <img src="{{object.image1.url}}"  alt="">
+                            </div>
+                            <div class="col-lg-4 thumbnails_col">
+                              <img src="{{object.image2.url}}" alt="">
+                            </div>
+                            <div class="col-lg-4 thumbnails_col">
+                              <img src="{{object.image3.url}}"  alt="">
+                            </div>
+                          </div>
+          </div>
+          <div class="col-1"></div>
           <div class="col-8">
             <a href="cart.html" class="btn btn-primary mr-2">Add to cart</a>
             <a href="cart.html" class="btn btn-primary">Buy Now</a>
@@ -433,6 +442,16 @@ function send(){
         <small>Have a Requirement?</small>
         <h3>Get Best Price</h3>
       </div>
-    </div> -->    
+    </div> -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>    
+    <script>
+    $("#sec_img img").click(function (e) {
+          // Displays the source of the image clicked
+          var img=$(this).attr("src");
+          $("#main_image").attr("src",img);
+          e.preventDefault();
+        });
+
+    </script>
   {% endblock content %}
     

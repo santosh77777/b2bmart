@@ -56,7 +56,6 @@ def HomeView(request):
         l=l+1
         i=i+1
 
-
     context={'brand_data':brand,
              'brand_id':brand_id,
              'x':x,  
