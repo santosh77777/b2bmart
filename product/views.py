@@ -45,11 +45,24 @@ def HomeView(request):
     object_list=Product.objects.raw('select distinct user_id, id from product_product where add_home=True')
     for o in object_list:
         print(o.user.id)
+    # data = list(object_list.values())
+    print(type(object_list))
+        # name.append(i.user)
+    x = list(object_list)
+    l = len(x)
+    i=0
+    while(l%4!=0):
+        x.append(x[i])
+        l=l+1
+        i=i+1
+
+
     context={'brand_data':brand,
              'brand_id':brand_id,
              'object_list':object_list,
              'cat_data':cat_data,
              'cat_id':cat_id
+             'x':x,           
              }
     return render(request,'index.html',  context)
     
