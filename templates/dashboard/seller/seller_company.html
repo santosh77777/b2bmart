@@ -4,12 +4,12 @@
         <!-- Showing the Error message in red while validating form -->
         <style>
             .error{
-            color:red;
-            font-style:italic;
-                    }
-                    .bmd-form-group label {
-                        color: red;
-                        }
+                color:red;
+                font-style:italic;
+            }
+            .bmd-form-group label {
+                color: red;
+            }   
         </style>
         <!---->
         <div class="main-panel">
@@ -93,7 +93,63 @@
 
                                     <form method="POST" id="company" action="" enctype="multipart/form-data">
                                         {% csrf_token %}
-                                        {{form.as_p}}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="product_name" class="bmd-label-floating">About Seller</label>
+                                                    {{form.about_seller}}
+                                                </div>
+                                            </div>
+                                             <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label class="bmd-label-floating" >No. of employees</label>
+                                                    {{form.no_of_employees}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="product_name" class="bmd-label-floating">Legal status of firm</label>
+                                                    {{form.legal_status_of_firm}}
+                                                </div>
+                                            </div>
+                                             <div class="col-md-6">
+                                               
+                                                <label class="bmd-label-floating" >Catalogue</label>
+                                                    {{form.catalogue}}
+                                             
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="product_name" class="bmd-label-floating">Branded video</label>
+                                                    {{form.branded_video}}
+                                                </div>
+                                            </div>
+                                             <div class="col-md-6">
+                                                
+                                                <label class="bmd-label-floating" >Logo</label>
+                                                    {{form.logo}}
+                                                <div style="color:red">
+                                                 Image dimension must be 180x200**
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                
+                                                <label class="bmd-label-floating" >Banner image</label>
+                                                    {{form.banner_image}}
+                                                
+                                            </div>
+                                        </div>
+                                        
                                 
                                     <input class="btn btn-primary" type="submit" name="Update Information">
                                     </form>

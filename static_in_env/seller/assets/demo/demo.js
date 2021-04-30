@@ -493,6 +493,7 @@ $('#add_product').validate({
     Product_name:{
       required:true,
       minlength:2,
+      maxlength:36,
     },
     
     price:{
@@ -510,8 +511,17 @@ $('#add_product').validate({
     image1:{
       required:true,
     },
+
+    image2:{
+      required:true,
+    },
+
+    image3:{
+      required:true,
+    },
   }
 });
+
 
 
 $('#company').validate({
@@ -519,13 +529,12 @@ $('#company').validate({
     about:{
       required:true,
     },
-  
     logo:{
       required:true,
+      img:true,
     },
     banner:{
       required:true,
     },
   }
-
 });
