@@ -18,7 +18,8 @@ def HomeView(request):
         id_brand=request.POST.getlist('brand[]')
         print(id_brand)
         return HttpResponse('success') 
-    object_list=Product.objects.filter(add_home=True)
+    object_list=Product.objects.filter(add_home=True).order_by('?')[:8]
+    print(object_list.count())
     # data = list(object_list.values())
     print(type(object_list))
         # name.append(i.user)

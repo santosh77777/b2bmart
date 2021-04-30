@@ -372,9 +372,9 @@
                           <div class="image">
                             <img src="{{object.image1.url}}" alt="Image 4">
                           </div>
-                          <div class="name">Product Name</div>
+                          <div class="name">{{ object.name }}</div>
                           
-                          <div class="type">Product Type</div>
+                          <div class="type">{{ object.product_group }}</div>
                           <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
                       </div>
                     </div>
@@ -440,9 +440,9 @@
                           <div class="image">
                             <img src="{{object.image1.url}}" alt="Image 4">
                           </div>
-                          <div class="name">Product Name</div>
+                          <div class="name">{{ object.name }}</div>
                           
-                          <div class="type">Product Type</div>
+                          <div class="type">{{ object.product_group }}</div>
                           <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
                       </div>
                     </div>
@@ -497,9 +497,9 @@
                           <div class="image">
                             <img src="{{object.image1.url}}" alt="Image 4">
                           </div>
-                          <div class="name">Product Name</div>
+                          <div class="name">{{ object.name }}</div>
                           
-                          <div class="type">Product Type</div>
+                          <div class="type">{{ object.product_group }}</div>
                           <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
                       </div>
                     </div>
@@ -636,9 +636,9 @@
                           <div class="image">
                             <img src="{{object.image1.url}}" alt="Image 4">
                           </div>
-                          <div class="name">Product Name</div>
+                          <div class="name">{{ object.name }}</div>
                           
-                          <div class="type">Product Type</div>
+                          <div class="type">{{ object.product_group }}</div>
                           <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
                       </div>
                     </div>
@@ -704,9 +704,11 @@
                 <span class="sr-only">Previous</span>
               </a>
               <div class="carousel-inner">
-                <div class="carousel-item active">
+                {% for obj in x %}
+                {% if forloop.counter0|divisibleby:"4" %}
+                <div class="carousel-item {% if forloop.first %} active {% endif %}">
                   <div class="row">
-                    {% for obj in object_list %}
+                    {% endif %}
                     <div class="col-12 col-sm-4 col-md-3">
                       <div class="product-item">
                           <div class="image">
@@ -717,9 +719,11 @@
                           <a href="{% url 'product:website_home_list' obj.user.account.slug %}" class="btn btn-primary btn-block">Visit Our Store</a>
                       </div>
                     </div>
-                    {% endfor %}
+                    {% if forloop.counter|divisibleby:"4" or forloop.counter0 == object_list.count|add:-1 %}
                   </div>
-                </div>
+                </div> 
+                {% endif %}
+                {% endfor %}
               </div>
               <a class="btn btn-primary ml-2 p-2 d-flex align-items-center" href="#carouselExampleControls" role="button" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
@@ -738,7 +742,7 @@
           <div class="position-relative">
             <div class="product-list bg-light p-0">
               <div class="row">
-                {% for obj in object_list %}
+                {% for obj in x %}
                 <div class="col">
                   <div class="product-item">
                       <div class="image">
