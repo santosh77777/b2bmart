@@ -1,6 +1,17 @@
 {% extends 'dashboard/seller/seller_base.html' %}
 {% load static %}
    {% block content %}
+   <!-- Showing the Error message in red while validating form -->
+        <style>
+            .error{
+                color:red;
+                font-style:italic;
+            }
+            .bmd-form-group label {
+                color: red;
+            }
+        </style>
+        <!---->
         <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
@@ -62,228 +73,256 @@
                                     <div class="nav-tabs-navigation">
                                         <div class="nav-tabs-wrapper">
                                             <ul class="nav nav-tabs" data-tabs="tabs">
-                                                <li class="nav-item"> <a class="nav-link active" href="#productDetail" data-toggle="tab">Product Details</a>
+                                                <li class="nav-item"> <a class="nav-link active" href="#productDetail" data-toggle="tab">Add Product</a>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
+                               
                                 <div class="card-body">
-                                    <div class="tab-content text-center">
-                                            <form action="">
-                                                <div class="input-group row">
-                                                    <div class="input-group-prepend col-3"> <span class="input-group-text"> Name </span>
+                                    <form action="." method="post" id="add_product" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Enter Product Name</label>
+                                                    <input type="text" class="form-control" name="Product_name" >
+                                                </div>
+                                            </div>
+                                             <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Color</label>
+                                                    <input type="text" class="form-control" name="color">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Price</label>
+                                                    <input type="number" class="form-control" name="price" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Unity Type</label>
+                                                    <input type="text" class="form-control" name="unity_type" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                 <div class="form-group">
+                                                    <label class="bmd-label-floating" >Minimum Order Quantity</label>
+                                                    <input type="text" class="form-control" name="min_order_qty" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                            <div class="form-group">
+                                                    <label class="bmd-label-floating" >Description</label>
+                                                    <input type="text" class="form-control" name="desc" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                            
+                                                <div class="form-group" style="margin-top:39px;">
+                                                        <label for="product_group" class="bmd-label-floating">Product Group</label>
+                                                        <select class="form-control" id="product_group1" name="product_group">
+                                                        <option value="">Select Option</option>
+                                                        <option value="Kitchen_stoves" >Kitchen stoves</option>
+                                                        <option value="mixture_grinder" >Mixture Grinder</option>
+                                                        <option value="rice_cookers" >Rice Cookers</option>
+                                                        <option value="food_processors">Food Processors</option>
+                                                        <option value="juicers">Juicers</option>
+                                                        <option value="blenders" >Blenders</option>
+                                                        <option value="water_heaters" >Water Heaters</option>
+                                                        <option value="water_filters">Water Filters</option>
+                                                        <option value="exhaust_hoods">Exhaust Hoods</option>
+                                                        <option value="sandwich_makers">Sandwich Makers</option>
+                                                        <option value="toaster">Toaster</option>
+                                                        <option value="deep_fryers">Deep Fryers</option>
+                                                        <option value="dough_blenders">Dough Blenders</option>
+                                                        <option value="coffee_makers">Coffee Makers</option>
+                                                        <option value="electric_iron">Electric Iron</option>
+                                                        <option value="vaccum_cleaner">Vaccum Cleaner</option>
+                                                        <option value="air_purifiers">Air Purifiers</option>
+                                                        <option value="trimmers_&_savers">Trimmer And Savers</option>
+                                                        <option value="hair_drier">Hair Drier</option>
+                                                        </select>
                                                     </div>
-                                                    <input type="text" class="form-control col-9" placeholder="Enter Product Name">
-                                                </div>
-
-                                                <div class="input-group row">
-                                                    <div class="input-group-prepend col-3"> <span class="input-group-text"> Image </span>
+                                             
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="tab-pane" id="specification">
+                                                {% comment %} <div class="row"> {% endcomment %}
+                                                    <input type="text" style="visibility:hidden;" id="capacity" name="capacity">
+                                                    <div class="form-group">
+                                                    <span class="add">
+                                                
+                                                        <label for="product_group" class="bmd-label-floating">Capacity</label>
+                                                        <select class="form-control" onclick="javascript:yesnoCheck();" id="yesCheck" name="cap">
+                                                        <option value="">Select Option</option>
+                                                        <option value="200ml" >200 ml</option>
+                                                        <option value="500ml" >500 ml</option>
+                                                        <option value="1 L" >1 L</option>
+                                                        <option value="other" >other</option>
+                                                         
+                                                        </select>
                                                     </div>
-                                                    <input type="text" class="form-control col-9" placeholder="With Font Awesome Icons">
+                                                
                                                 </div>
-
-                                                <div class="input-group row">
-                                                    <div class="input-group-prepend col-3"> <span class="input-group-text"> Price </span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-6">
+                                                <div class="tab-pane" id="specification">
+                                                {% comment %} <div class="row"> {% endcomment %}
+                                                    <input type="text" style="visibility:hidden;" id="brand" name="brand">
+                                                    <div class="form-group">
+                                                    <span class="add1">
+                                                
+                                                        <label for="brand" class="bmd-label-floating">Brand</label>
+                                                        <select class="form-control" onclick="javascript:yesnoCheck1();" id="yesCheck1" name="brandd">
+                                                        <option value="">Select Option</option>
+                                                        <option value="prestige" >Prestige</option>
+                                                        <option value="padmini" >Padmini</option>
+                                                        <option value="other" >other</option>
+                                                         
+                                                        </select>
                                                     </div>
-                                                    <input type="text" class="form-control col-9" placeholder="Example-500/-">
+                                                
                                                 </div>
-
-                                                <div class="input-group row">
-                                                    <div class="input-group-prepend col-3"> <span class="input-group-text"> Unity Type </span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="tab-pane" id="specification">
+                                                {% comment %} <div class="row"> {% endcomment %}
+                                                    <input type="text" style="visibility:hidden;" id="material" name="material">
+                                                    <div class="form-group">
+                                                    <span class="add2">
+                                                
+                                                        <label for="product_group" class="bmd-label-floating">Material</label>
+                                                        <select class="form-control" onclick="javascript:yesnoCheck2();" id="yesCheck2" name="mat">
+                                                        <option value="">Select Option</option>
+                                                        <option value="polycarbonate" >Polycarbonate</option>
+                                                        <option value="pet" >PET</option>
+                                                        
+                                                        <option value="other" >other</option>
+                                                         
+                                                        </select>
                                                     </div>
-                                                    <input type="text" class="form-control col-9" placeholder="Example-Piece, Pair">
+                                                
                                                 </div>
+                                            </div>
 
-                                                <div class="input-group row">
-                                                    <div class="input-group-prepend col-3"> <span class="input-group-text"> Minimum Order Quantity </span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Packing Details</label>
+                                                    <input type="text" class="form-control" name="packing_details" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Size</label>
+                                                    <input type="text" class="form-control" name="size" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Product Code</label>
+                                                    <input type="text" class="form-control" name="product_code" >
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-6">
+                                            <div class="form-group">
+                                                    <label class="bmd-label-floating" >Product video URL</label>
+                                                    <input type="text" class="form-control" name="video_url" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Power</label>
+                                                    <input type="text" class="form-control" name="power" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Warranty</label>
+                                                    <input type="text" class="form-control" name="warranty" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Model No.</label>
+                                                    <input type="text" class="form-control" name="model_no" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Rating</label>
+                                                    <input type="text" class="form-control" name="rating" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Neck Size</label>
+                                                    <input type="text" class="form-control" name="neck_size" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Closure Type</label>
+                                                    <input type="text" class="form-control" name="closure_type" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                                    
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                               
+                                                    <label for="image1">Product Image 1</label>
+                                                    <input type="file" accept="image/*"  id="image1" name="image1">
+                                                     <div style="color:red;">
+                                                    Image must be of size 142x145 **
                                                     </div>
-                                                    <input type="text" class="form-control col-9" placeholder="Example-70">
-                                                </div>
-
-                                                <div class="input-group row">
-                                                    <div class="input-group-prepend col-3"> <span class="input-group-text"> Product Group </span>
+                                                
+                                            </div>
+                                            <div class="col-md-4">
+                                               
+                                                    <label for="image2" >Product Image 2</label>
+                                                    <input type="file" accept="image/*"  id="image2" name="image2">
+                                                     <div style="color:red;">
+                                                    Image must be of size 142x145 **
                                                     </div>
-                                                    <input type="text" class="form-control col-9" placeholder="Example-Rice Cooker">
-                                                </div>
-
-                                                <div class="input-group row">
-                                                    <div class="input-group-prepend col-3"> <span class="input-group-text"> Description </span>
+                                               
+                                            </div>
+                                            <div class="col-md-4">
+                                               
+                                                    <label for="image3" >Product Image 3</label>
+                                                    <input type="file" accept="image/*"  id="image3" name="image3">
+                                                    <div style="color:red;">
+                                                    Image must be of size 142x145 **
                                                     </div>
-                                                    <input type="text" class="form-control col-9" placeholder="Give Product Description">
-                                                </div>
-                                            <div class="tab-pane" id="specification">
-                                            <div class="row">
-                                                <div class="col-3">Capacity</div>
-                                                <div class="col-9 text-left">
-                                                    <div class="form-check form-check-radio form-check-inline">
-                                                        <label class="form-check-label">
-                                                            <input class="col-9 text-left form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">200ml <span class="circle">
-                                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-3 form-check form-check-radio form-check-inline">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">500ml <span class="circle">
-                                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check form-check-radio form-check-inline disabled">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>1 ltr <span class="circle">
-                                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
+                                                
                                             </div>
-                                            <div class="row">
-                                                <div class="col-3">Material</div>
-                                                <div class="col-9 text-left">
-                                                    <div class="form-check form-check-radio form-check-inline">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">Polycarbonate <span class="circle">
-                                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check form-check-radio form-check-inline">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">PET <span class="circle">
-                                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check form-check-radio form-check-inline disabled">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>Other <span class="circle">
-                                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-3">Brand</div>
-                                                <div class="col-9 text-left">
-                                                    <div class="form-check form-check-radio form-check-inline">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">Prestige <span class="circle">
-                                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check form-check-radio form-check-inline">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">Padmini <span class="circle">
-                                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check form-check-radio form-check-inline disabled">
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>Others <span class="circle">
-                                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="input-group row">
-                                                <div class="input-group-prepend col-3"> <span class="input-group-text"> Color </span>
-                                                </div>
-                                                <input type="text" class="form-control col-9" placeholder="Ex-Blue, Red, Etc">
-                                            </div>
-
-                                            <div class="input-group row">
-                                                <div class="input-group-prepend col-3"> <span class="input-group-text"> Size </span>
-                                                </div>
-                                                <input type="text" class="form-control col-9" placeholder="Enter Product Size">
-                                            </div>
-
-                                            <div class="input-group row">
-                                                <div class="input-group-prepend col-3"> <span class="input-group-text"> Capacity </span>
-                                                </div>
-                                                <input type="text" class="form-control col-9" placeholder="Ex- 1-liter">
-                                            </div>
-
-                                            <div class="input-group row">
-                                                <div class="input-group-prepend col-3"> <span class="input-group-text"> Product Type </span>
-                                                </div>
-                                                <input type="text" class="form-control col-9" placeholder="Enter Product Type">
-                                            </div>
-
-                                            <div class="input-group row">
-                                                <div class="input-group-prepend col-3"> <span class="input-group-text"> Model No. </span>
-                                                </div>
-                                                <input type="text" class="form-control col-9" placeholder="Enter Product Model No.">
-                                            </div>
-
-                                            <div class="input-group row">
-                                                <div class="input-group-prepend col-3"> <span class="input-group-text"> Power </span>
-                                                </div>
-                                                <input type="text" class="form-control col-9" placeholder="Ex- 120w">
-                                            </div>
-
-                                            <div class="input-group row">
-                                                <div class="input-group-prepend col-3"> <span class="input-group-text"> Warranty </span>
-                                                </div>
-                                                <input type="text" class="form-control col-9" placeholder="Ex- 1year">
-                                            </div>
-
-                                            <div class="input-group row">
-                                                <div class="input-group-prepend col-3"> <span class="input-group-text"> Rating </span>
-                                                </div>
-                                                <input type="text" class="form-control col-9" placeholder="Ex- 4star">
-                                            </div>
-
-                                            <div class="input-group row">
-                                                <div class="input-group-prepend col-3"> <span class="input-group-text"> Neck Size </span>
-                                                </div>
-                                                <input type="text" class="form-control col-9" placeholder="Enter Product Neck Size">
-                                            </div>
-
-                                            <div class="input-group row">
-                                                <div class="input-group-prepend col-3"> <span class="input-group-text"> Closure Type </span>
-                                                </div>
-                                                <input type="text" class="form-control col-9" placeholder="Enter Product Name">
-                                            </div>
-
-                                            <div class="input-group row">
-                                                <div class="input-group-prepend col-3"> <span class="input-group-text"> Product Code </span>
-                                                </div>
-                                                <input type="text" class="form-control col-9" placeholder="Ex- Pro12SXX45">
-                                            </div>
-
-                                            <div class="input-group row">
-                                                <div class="input-group-prepend col-3"> <span class="input-group-text"> Delivery Time </span>
-                                                </div>
-                                                <input type="text" class="form-control col-9" placeholder="Ex- 1-Day">
-                                            </div>
-
-                                            <div class=" input-group row ">
-                                                <div class="input-group-prepend col-3 "> <span class="input-group-text "> Packing Details </span>
-                                                </div>
-                                                <input type="text " class="form-control col-9 " placeholder="Give Product Details ">
-                                            </div>
-
-                                            <div class="input-group row ">
-                                                <div class="input-group-prepend col-3 "> <span class="input-group-text "> Attach PDF Brochure </span>
-                                                </div>
-                                                <input type="text " class="form-control col-9 " placeholder="Product pdf attach ">
-                                            </div>
-
-                                            <div class="input-group row ">
-                                                <div class="input-group-prepend col-3 "> <span class="input-group-text "> Product Vedio URL </span>
-                                                </div>
-                                                <input type="text " class="form-control col-9 " placeholder="With Font Awesome Icons ">
-                                            </div>
-
-                                        </form>
-                                    </div>
+                                        </div>
+                                        <input type="submit" class="btn btn-primary pull-right" value="save">
+                                        <div class="clearfix"></div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -292,5 +331,62 @@
             </div>
         </div>
     </div>
-    <center>{{ form.as_p }}</center>
+<script>
+function yesnoCheck() {
+    var tem=""
+    if (document.getElementById('yesCheck').value == "other") {
+        $(".add").empty();
+        tem = `<label class="bmd-label-floating" >Capacity</label>
+        <input type="text" class="form-control" id="capacity" name="capacity" placeholder="Capacity">`
+        $('.add').append(tem)
+    }
+    else if (document.getElementById('yesCheck').value == "200ml") {
+        document.getElementById('capacity').value = "200 ml"
+        console.log(document.getElementById('capacity').value)
+    }
+    else if (document.getElementById('yesCheck').value == "500ml") {
+        document.getElementById('capacity').value = "500 ml"
+    }
+    else if (document.getElementById('yesCheck').value == "1L") {
+        document.getElementById('capacity').value = "1 L "
+    } 
+}
+function yesnoCheck1() {     
+     //brand
+    var tem1=""
+    if (document.getElementById('yesCheck1').value == "other") {
+        $(".add1").empty();
+        tem1 = `<label class="bmd-label-floating" >Brand</label>
+        <input type="text" class="form-control" id="brand" name="brand" placeholder="Brand">`
+        $('.add1').append(tem1)
+    }
+    else if (document.getElementById('yesCheck1').value == "prestige") {
+        document.getElementById('brand').value = "Prestige"
+    }
+    else if (document.getElementById('yesCheck1').value == "padmini") {
+        document.getElementById('brand').value = "Padmini"
+    }
+}
+
+function yesnoCheck2() {
+    //material
+    var tem2 = ""
+   if (document.getElementById('yesCheck2').value == "other") {
+        $(".add2").empty();
+        tem2 = `<label class="bmd-label-floating" >Material</label>
+        <input type="text" class="form-control" id="material" name="material" placeholder="Material">`
+        $('.add2').append(tem2)
+    }
+    else if (document.getElementById('yesCheck2').value == "polycarbonate") {
+        console.log(document.getElementById('yesCheck2').value)
+        document.getElementById('material').value = "Polycarbonate"
+        
+    }
+    else if (document.getElementById('yesCheck2').value == "pet") {
+        document.getElementById('material').value = "PET"
+    }
+
+}
+</script>
+ 
     {% endblock content %}

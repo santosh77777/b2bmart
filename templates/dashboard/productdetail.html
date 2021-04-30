@@ -1,0 +1,457 @@
+{% extends 'base.html' %}
+  {% load static %}
+  {% block content %}
+    <div class="container">
+      <div class="head mt-4">
+        <h5>CATEGORY NAME - RICE COOKER <small>(1500 PRODUCTS AVAILABLE)</small></h5>
+      </div>
+      
+      <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <ul class="category-menu mb-4"> 
+          <li>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">All India</a>
+          </li>
+          <li>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Andhra Pradesh</a>
+          </li>
+          <li>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Assam</a>
+          </li>
+          <li>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Bihar</a>
+          </li>
+          <li>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Chhattisgarh</a>
+          </li>
+          <li>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Goa</a>
+          </li>
+          <li>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Gujarat</a>
+          </li>
+          <li>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Haryana</a>
+          </li>
+          <li>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Himachal Pradesh</a>
+          </li>
+          <li>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Madhya Pradesh</a>
+          </li>
+        </ul>
+      </div>
+      </div>
+      </div>
+
+      <!-- <div class="row">  
+        <div class="col-12"> -->
+          <!-- Product detail part start -->
+      <div class="product mt-3">
+        <div class="row no-gutters">
+          <div class="col border">
+            <div class="image">
+              <img src="{{ object.image1.url }}" id="main_image" alt="">
+              <div class="img-caption">Rice Cooker 15 Ltr</div>
+            </div>
+          </div>
+          <div class="col position-relative">
+            <div class="product-detail">
+              <div class="title">{{ object.name}}</div>
+              <div class="">Cook & Serve Design with Keep Warm Fuction</div>
+              <div class="text">Homes</div>
+              <ul class="list-unstyled">
+                <li class="text"><span>Brand</span>:<span>{{ object.brand }}</span></li>
+                <li class="text"><span>Capacity</span>:<span>{{ object.capacity }}</span></li>
+                <li class="text"><span>Model No</span>:<span>{{ object.model_no }}</span></li>
+                <li class="text"><span>Warranty</span>:<span>{{ object.warranty }}</span></li>
+                <li class="text"><span>Power</span>:<span>{{ object.power }}</span></li>
+              </ul>
+              <div class="price">MRP: Rs {{ object.price }}/-</div>
+              <div class="text mb-3">(Inclusive of all taxes)</div>
+            </div>
+          </div>
+          <div class="col background">
+            <img src="{% static 'images/tag.png' %} " alt="">
+            <div class="address">
+              <div class="name">Stove Kraft Ltd.</div>
+              <div class="address-detail">81/1, Harohalli Indrustrial Area, Kanakapura Taluk, Ramanagara, Bangalore, Karnataka 562112, India</div>
+            </div>
+            
+            <button class="btn btn-default btn-block" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-cart"></i> Request a quote for Bulk Order</button>
+          </div>
+        </div>
+        <div class="row no-gutters mt-2">
+          <div class="col-3">
+          <div class="row"  id="sec_img">
+                            <div class="col-lg-4 thumbnails_col">
+                              <img src="{{object.image1.url}}"  alt="">
+                            </div>
+                            <div class="col-lg-4 thumbnails_col">
+                              <img src="{{object.image2.url}}" alt="">
+                            </div>
+                            <div class="col-lg-4 thumbnails_col">
+                              <img src="{{object.image3.url}}"  alt="">
+                            </div>
+                          </div>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-8">
+            <a href="cart.html" class="btn btn-primary mr-2">Add to cart</a>
+            <a href="cart.html" class="btn btn-primary">Buy Now</a>
+          </div>
+        </div>
+      </div>
+      <!-- Product detail part end -->
+      
+      <!-- Recommended Products part start -->
+      <div class="product-list mt-3 mb-3">
+        <h5>THIS WEEK TOP FOUR EDITORS CHOISE</h5>
+        <div class="row">
+          <div class="col-12 col-sm-4 col-md-3">
+            <div class="product-item">
+                <div class="image">
+                  <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+                </div>
+                <div class="name">Product Name</div>
+                <div class="type">Product Type</div>
+                <a href="#" class="btn btn-primary btn-block">Read More</a>
+            </div>
+          </div>
+          <div class="col-12 col-sm-4 col-md-3">
+            <div class="product-item">
+                <div class="image">
+                  <img src="{% static 'images/product/img-2.png' %} " alt="Image 2">
+                </div>
+                <div class="name">Product Name</div>
+                <div class="type">Product Type</div>
+                <a href="#" class="btn btn-primary btn-block">Read More</a>
+            </div>
+          </div>
+          <div class="col-12 col-sm-4 col-md-3">
+            <div class="product-item">
+                <div class="image">
+                  <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
+                </div>
+                <div class="name">Product Name</div>
+                <div class="type">Product Type</div>
+                <a href="#" class="btn btn-primary btn-block">Read More</a>
+            </div>
+          </div>
+          <div class="col-12 col-sm-4 col-md-3">
+            <div class="product-item">
+                <div class="image">
+                  <img src="{% static 'images/product/img-4.png' %} " alt="Image 4">
+                </div>
+                <div class="name">Product Name</div>
+                <div class="type">Product Type</div>
+                <a href="#" class="btn btn-primary btn-block">Read More</a>
+            </div>
+          </div>
+        </div>
+        <!-- Row end -->
+        <div class="text-right">
+          <small>featuring trusted brands near you</small>
+        </div>
+      </div>
+      <!-- Recommended Products part start -->
+
+      <div class="row">
+        <div class="col-12 col-md-5">
+          <div class="details">
+            <h2>PRODUCT DETAILS</h2>
+            <ul class="list-unstyled">
+              <li class="text-mute"><span class="w-50 d-inline-block">Brand</span>:<span class="pl-3">KENT</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">Capacity</span>:<span class="pl-3">1.8 Litre</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">Model No/Number</span class="pl-3">:<span class="pl-3">VTL-9060</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">Warranty</span>:<span class="pl-3">1 Year Home Service</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">Power</span>:<span class="pl-3">700 Watt</span></li>
+            </ul>
+            <h2>PRODUCT SPECIFICATION</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, maxime saepe in illo, voluptas veritatis voluptatibus modi maiores adipisci eum commodi nihil nam, nobis beatae placeat eos sed cum? Dicta. Lore</p>
+            <h2>COMPANY DETAILS</h2>
+            <ul class="list-unstyled">
+              <li class="text-mute"><span class="w-50 d-inline-block">Year of Establishment</span>:<span class="pl-4">2019</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">Legal Status os Firm</span>:<span class="pl-4">Partnership firm</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">Nature of Business</span>:<span class="pl-4">Manufacturer</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">No of Emplyees</span>:<span class="pl-4">100 to 200 people</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">Annual Revenue</span>:<span class="pl-4">5 Cr</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">GSTIN NO</span>:<span class="pl-4">AKGHJX254796</span></li>
+            </ul>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, maxime saepe in illo, voluptas veritatis voluptatibus modi maiores adipisci eum commodi nihil nam, nobis beatae placeat eos sed cum? Dicta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel impedit repudiandae repellendus perspiciatis ipsum porro quod fugit autem voluptatibus excepturi!</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, maxime saepe in illo, Dicta.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-7">
+          <!-- Promotional vedio start -->
+          <div class="promo-video height mt-0">
+            <span>Play our promotional video here</span>
+            <i class="fas fa-play"></i>
+            <span>Make an impression with your customers</span>
+          </div>
+          <!-- Promotional vedio end -->
+
+          <!-- register form start -->
+          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+
+          <div class="register-form mt-3" >
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            <h5 class="text-uppercase mb-3">we connect manufacturers with wholesale traders & institutions</h5>
+            <div class="row">
+              <div class="col-12 col-sm-8">
+                <form method="post" action="." id="eshopeform">
+                {% csrf_token %}
+                  <div class="row">
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                    </div>
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="email">E-mail</label>
+                      <input type="email" class="form-control" name="email" id="email" placeholder="shotercarlos@gmail.com">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="phone">Mobile</label>
+                      <input type="tel" class="form-control" name="phone" id="phone" placeholder="+91 0000000000">
+                    </div>
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="businessType">Business Types</label>
+                      <select class="form-control btn-primary" name="business" id="businessType">
+                        <option value="">Select Option</option>
+                        <option value="Wholesaller">Wholesaller</option>
+                        <option value="Manufacturer">Manufacturer</option>
+                        <option value="Retailer">Retailer</option>
+                        <option value="Exporter">Exporter</option>
+                        <option value="Distributor">Distributor</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" name="msg" id="message" rows="5"></textarea>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-sm-6">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" name="sendcopy" class="custom-control-input" onclick="javascript:send();" value="False" id="sendCopy">
+                        <label class="custom-control-label" for="sendCopy">Send me a copy</label>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6 text-right">
+                    <input type="submit" class="btn btn-primary pull-right" value="Send">
+                      
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-12 col-sm-4">
+                <div class="right-side">
+                  <div class="top">
+                    <span>become a</span>
+                    <span>xxxx Mart</span>
+                    <span>member today</span>
+                    <span>1000 Ad Impressions Free</span>
+                  </div>
+                  <div class="bottom"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          
+          <!-- register form part end -->
+        </div>
+      </div>
+            
+      <!-- term-cta start -->
+      <div class="term-cta mt-3">
+        <h1><span>30 day credit terms*</span> <br /> for wholesaller & institution</h1>
+        <button class="btn btn-light btn-lg">Click here <i class="fas fa-angle-right"></i></button>
+        <img src="{% static 'images/creadit.png' %} " alt="">
+      </div>
+      <!-- term-cta end -->
+
+      <!-- Related products promo part strat -->
+      <h3 class="text-uppercase mt-3">Related products</h3>
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <!-- <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="{% static 'images/promo-img-1.png' %} " alt="First slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="{% static 'images/promo-img-1.png' %} " alt="Second slide">
+          </div>
+        </div>
+      </div>
+    
+     <div class="product-list mt-3">
+
+      <h5>FAETURED PRODUCT</h5>
+      <div class="row">
+        <div class="col-12 col-sm-4 col-md-3">
+          <div class="product-item">
+              <div class="image">
+                <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+              </div>
+              <div class="name">Product Name</div>
+              <div class="type">Product Type</div>
+              <a href="#" class="btn btn-primary btn-block">Read More</a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-3">
+          <div class="product-item">
+              <div class="image">
+                <img src="{% static 'images/product/img-2.png' %} " alt="Image 2">
+              </div>
+              <div class="name">Product Name</div>
+              <div class="type">Product Type</div>
+              <a href="#" class="btn btn-primary btn-block">Read More</a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-3">
+          <div class="product-item">
+              <div class="image">
+                <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
+              </div>
+              <div class="name">Product Name</div>
+              <div class="type">Product Type</div>
+              <a href="#" class="btn btn-primary btn-block">Read More</a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-3">
+          <div class="product-item">
+              <div class="image">
+                <img src="{% static 'images/product/img-4.png' %} " alt="Image 4">
+              </div>
+              <div class="name">Product Name</div>
+              <div class="type">Product Type</div>
+              <a href="#" class="btn btn-primary btn-block">Read More</a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-3">
+          <div class="product-item">
+              <div class="image">
+                <img src="{% static 'images/product/img-4.png' %} " alt="Image 4">
+              </div>
+              <div class="name">Product Name</div>
+              <div class="type">Product Type</div>
+              <a href="#" class="btn btn-primary btn-block">Read More</a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-3">
+          <div class="product-item">
+              <div class="image">
+                <img src="{% static 'images/product/img-4.png' %} " alt="Image 4">
+              </div>
+              <div class="name">Product Name</div>
+              <div class="type">Product Type</div>
+              <a href="#" class="btn btn-primary btn-block">Read More</a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-3">
+          <div class="product-item">
+              <div class="image">
+                <img src="{% static 'images/product/img-4.png' %} " alt="Image 4">
+              </div>
+              <div class="name">Product Name</div>
+              <div class="type">Product Type</div>
+              <a href="#" class="btn btn-primary btn-block">Read More</a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-3">
+          <div class="product-item">
+              <div class="image">
+                <img src="{% static 'images/product/img-4.png' %} " alt="Image 4">
+              </div>
+              <div class="name">Product Name</div>
+              <div class="type">Product Type</div>
+              <a href="#" class="btn btn-primary btn-block">Read More</a>
+          </div>
+        </div>
+      </div>
+      <!-- Row end -->
+      <div class="text-center mt-4 mb-2">
+        <button class="btn btn-primary btn-lg">Load More</button>
+      </div>
+     </div>
+      <!-- Recommended Products part end -->
+      
+      <!-- CTA start -->
+      <div class="certificate-cta mt-3">
+        <div class="row no-gutters align-items-center">
+          <div class="col-12 col-sm-2 text-center">
+            <img src="{% static 'images/tag.png' %} " alt="">
+          </div>
+          <div class="col-12 col-sm-7">
+            <h5 class="text-uppercase mb-0">attention manufacturers</h5>
+            <h4 class="text-uppercase mb-0">get your xxxxxxxxxxxxxxxxx  </h4>
+            <h5 class="text-uppercase mb-0">trust certificate & imporve your bussiness</h5>
+          </div>
+          <div class="col-12 col-sm-3">
+            <button class="btn btn-light btn-lg">Apply Now <i class="fas fa-angle-right"></i></button>
+          </div>
+        </div>
+      </div>
+      <!-- CTA end -->
+
+      <!-- CTA start -->
+      <div class="mt-3">
+        <img src="{% static 'images/book-spot.png' %} " class="w-100" alt="">
+      </div>
+      <!-- CTA end -->
+    </div>
+
+
+<script>
+
+function send(){
+  var temp = document.getElementById("sendCopy")
+  if (temp.checked == true)
+    temp.value = "True";
+  else
+    temp.value = "False";
+}
+</script>
+
+{% if messages %}
+  <script>
+    {% for message in messages %}
+      <div class="alert alert-success" role="alert">
+        {{message}}
+      </div>
+    {% endfor %}
+  </script>
+{%endif%}
+    <!-- <div class="chat">
+      <img src="{% static 'images/chat.png' %}  " alt="">
+      <div class="content">
+        <small>Have a Requirement?</small>
+        <h3>Get Best Price</h3>
+      </div>
+    </div> -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>    
+    <script>
+    $("#sec_img img").click(function (e) {
+          // Displays the source of the image clicked
+          var img=$(this).attr("src");
+          $("#main_image").attr("src",img);
+          e.preventDefault();
+        });
+
+    </script>
+  {% endblock content %}
+    

@@ -237,115 +237,304 @@ demo = {
 }
 
 // Validating Seller Contact form
-function validateformsellercontact()
-{
-  // Checking aboutme field is null or empty
-    var about=document.sellercontact.about_me.value;
-    if(about==null || about=="")
-    {
-        alert("About_me can't be blank");
-        return false;
-    }
+// Validating From field for Special characters and Some Constraints using Jquery
+$.validator.addMethod("lettersonly", function(value, element) {
+  return this.optional(element) || /^[a-z]+$/i.test(value);
+}, "Letters only please"); 
 
-    // Validating From field for Special characters and Some Constraints
-    var Regex = "[@_!#$%^&*()<>?/\|}{~:]";
-    var validfirstname=document.sellercontact.first_name.value.match(Regex);
-    if(validfirstname!=null)
-    {
-      alert("first_name should not contain special characters");
-      return false;
+$.validator.addMethod("loginRegex", function(value, element) {
+  return this.optional(element) || /^[a-z0-9]+$/i.test(value);
+}, "Should not contain special characters");
+
+$.validator.addMethod('checkemail', function(value, element) {
+  var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  return re.test(value);
+}, 'Please enter a valid email address')
+
+$.validator.addMethod("emailnotequal", function(value, element, param) {
+  return this.optional(element) || value != $(param).val();
+ }, "alternative_email and email should not be the same");
+
+ $.validator.addMethod("mobnotequal", function(value, element, param) {
+  return this.optional(element) || value != $(param).val();
+ }, "alternative_mobile_no and mobile_no should not be the same");
+
+ $.validator.addMethod("landlinenotequal", function(value, element, param) {
+  return this.optional(element) || value != $(param).val();
+ }, "alternative_landline_no and landline_no should not be the same");
+
+
+
+$('#seller_form').validate({
+  rules: {
+    first_name:{
+      // required:true,
+      lettersonly:true,
+      minlength:2,
+    },
+    last_name:{
+      // required:true,
+      lettersonly:true,
+      minlength:2,
+    },
+    // promoter_first_name:{
+    //   required:true,
+    //   lettersonly:true,
+    //   minlength:2,
+    // },
+    // promoter_last_name:{
+    //   required:true,
+    //   lettersonly:true,
+    //   minlength:2,
+    // },
+    // company:{
+    //   required:true,
+    // },
+    // designation:{
+    //   required:true,
+    // },
+    // address_building:{
+    //   required:true,
+    // },
+    // address_area:{
+    //   required:true,
+    // },
+    // landmark:{
+    //   required:true,
+    // },
+    // locality:{
+    //   required:true,
+    // },
+    city:{
+      // required:true,
+      lettersonly:true,
+    },
+    state:{
+      // required:true,
+      lettersonly:true,
+    },
+    country:{
+      // required:true,
+      lettersonly:true,
+    },
+    pincode:{
+      // required:true,
+      minlength:6,
+    },
+    gstin:{
+      // required:true,
+      minlength:15,
+      loginRegex:true,
+    },
+    // company_website:{
+    //   required:true,
+    // },
+    mobile:{
+      // required:true,
+      minlength:10,
+      mobnotequal:"#alternative_mobile",
+    },
+    alternative_mobile:{
+      // required:true,
+      minlength:10,
+      mobnotequal:"#mobile",
+    },
+    alternative_email:{
+      // required:true,
+      minlength:10,
+      // checkemail:true,
+      emailnotequal:"#email",
+    },
+    landline_no:{
+      // required:true,
+      landlinenotequal:"#alternative_landline_no",
+    },
+    alternative_landline_no:{
+     
+      landlinenotequal:"#landline_no",
+    },
+    // about_me:{
+    //   required:true,
+    // }
+
+  }
+});
+
+// Validating Business Profile Form
+// Validating From field for Special characters and Some Constraints using Jquery
+
+$('#business_profile').validate({
+  rules: {
+    comapny_name:{
+      required:true,
+      minlength:2,
+    },
+    year_of_est:{
+      required:true,
+      
+      
+    },
+    add_contact_name:{
+      required:true,
+      minlength:2,
+      
+    },
+    annual_turn:{
+      required:true,
+    },
+    company_card_front:{
+      required:true,
+    
+    },
+    company_card_back:{
+      required:true,
+     
     }
-    var validlastname=document.sellercontact.last_name.value.match(Regex);
-    if(validlastname!=null)
-    {
-      alert("last_name should not contain special characters");
-      return false;
+  }
+});
+
+
+// Validating Satutory_form
+// Validating From field for Special characters and Some Constraints using Jquery
+
+$("#satutory_form").validate({
+  rules:{
+    gst_no:{
+      required:true,
+      minlength:15,
+      loginRegex:true,
+    },
+    pan_no:{
+      required:true,
+      minlength:10,
+      loginRegex:true,
+    },
+    tan_no:{
+      required:true,
+      minlength:10,
+      loginRegex:true,
+    },
+    cin_no:{
+      required:true,
+    },
+    dgft_ie_code:{
+      required:true,
+    },
+    company_registration_no:{
+      required:true,
+    },
+  }
+});
+
+
+
+// Validating Bank Details
+// Validating From field for Special characters and Some Constraints using Jquery
+
+$('#Bank_detail').validate({
+  rules: {
+    bank_name:{
+      required:true,
+      minlength:3,
+    },
+    account_no:{
+      required:true,
+      loginRegex:true,
+      
+    },
+    bank_account_name:{
+      required:true,
+      minlength:2,
+      
+    },
+    ifsc_code:{
+      required:true,
+    },
+    account_type:{
+      required:true,
+    
+    },
+    alternative_bank_name:{
+      // required:true,
+      minlength:3,
+     
+    },
+    alternative_account_no:{
+      // required:true,
+      loginRegex:true,
+    
+    },
+    alternative_bank_account_name:{
+      // required:true,
+      minlength:2,
+     
+    },
+    alternative_bank_ifsc_code:{
+      // required:true,
+    
+    },
+    alternative_bank_account_type:{
+      // required:true,
+     
     }
-    var promoter_first_name=document.sellercontact.promoter_first_name.value.match(Regex);
-    if(promoter_first_name!=null)
-    {
-      alert("promoter_first_name should not contain special characters");
-      return false;
-    }
-    var promoter_last_name=document.sellercontact.promoter_last_name.value.match(Regex);
-    if(promoter_last_name!=null)
-    {
-      alert("promoter_last_name should not contain special characters");
-      return false;
-    }
-    var designation=document.sellercontact.designation.value.match(Regex);
-    var designation1=document.sellercontact.designation.value;
-    if(designation!=null)
-    {
-      alert("designation should not contains special characters");
-      return false;
-    }
-    if(typeof designation1==="number"){
-      alert("Please enter a correct designation");
-      return false;
-    }
-    var address_area=document.sellercontact.address_area.value.match(Regex);
-    if(address_area!=null)
-    {
-      alert("address_area should not contains special characters");
-      return false;
-    }
-    var landmark=document.sellercontact.landmark.value.match(Regex);
-    var locality=document.sellercontact.locality.value.match(Regex);
-    if(landmark!=null ||locality!=null )
-    {
-      alert("landmark or locality should not contains special characters");
-      return false;
-    }
-    var city=document.sellercontact.city.value.match(Regex);
-    var state=document.sellercontact.state.value.match(Regex);
-    if(city!=null ||state!=null )
-    {
-      alert("city or state should not contains special characters");
-      return false;
-    }
-    var country=document.sellercontact.country.value.match(Regex);
-    if(country!=null)
-    {
-      alert("country should not contains special characters");
-      return false;
-    }
-    var pincode=document.sellercontact.pincode.value;
-    if(pincode.length!=6)
-    {
-      alert("Pincode should only contain 6 digit number");
-      return false;
-    }
-    var gstin=document.sellercontact.gstin.value.match(Regex);
-    if(gstin!=null)
-    {
-      alert("gstin should not contains special characters");
-      return false;
-    }
-    var gstin=document.sellercontact.gstin.value;
-    if(gstin.length!=15)
-    {
-      alert("Invalid GSTIN");
-      return false;
-    }
-    var mobile=document.sellercontact.mobile.value;
-    if(mobile.length!=10){
-      alert("Invalid Mobile Number..")
-      return false;
-    }
-    var alternative_mobile=document.sellercontact.alternative_mobile.value;
-    if(alternative_mobile.length!=10){
-      alert("Invalid alternative_mobile..")
-      return false;
-    }
-    var landline_no=document.sellercontact.landline_no.value;
-    if(landline_no.length>15){
-      alert("Invalid landline_no..")
-      return false;
-    }
-    var alternative_landline_no=document.sellercontact.alternative_landline_no.value;
-    if(alternative_landline_no.length>15){
-      alert("Invalid alternative_landline_no..")
-      return false;
-    }
-}
+  }
+});
+
+// Validating Add_products-Detils
+// Validating From field for Special characters and Some Constraints using Jquery
+
+$('#add_product').validate({
+  rules: {
+     
+    product_group:{
+      required:true,
+    },
+  
+    Product_name:{
+      required:true,
+      minlength:2,
+      maxlength:20,
+    },
+    
+    price:{
+      required:true,
+    },
+  
+    desc:{
+      required:true,
+    },
+  
+    brandd:{
+      required:true,
+    },
+
+    image1:{
+      required:true,
+    },
+
+    image2:{
+      required:true,
+    },
+
+    image3:{
+      required:true,
+    },
+  }
+});
+
+
+
+$('#company').validate({
+  rules: {
+    about:{
+      required:true,
+    },
+    logo:{
+      required:true,
+      img:true,
+    },
+    banner:{
+      required:true,
+    },
+  }
+});

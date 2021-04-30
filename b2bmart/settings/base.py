@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'embed_video',
+    
 
     # providers
     'allauth.socialaccount.providers.google',
@@ -136,12 +138,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # authentication part
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_USERNAME_REQUIRED = False
 # ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
@@ -161,3 +163,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'vishnusumavausinfotech@gmail.com'
 EMAIL_HOST_PASSWORD = 'xyzvausinfotechxyz'
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False

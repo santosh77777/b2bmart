@@ -1,6 +1,17 @@
         {% extends 'dashboard/seller/seller_base.html' %}
         {% load static %}
         {% block content %}
+        <!-- Showing the Error message in red while validating form -->
+        <style>
+            .error{
+            color:red;
+            font-style:italic;
+                    }
+                    .bmd-form-group label {
+                        color: red;
+                        }
+        </style>
+        <!---->
         <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
@@ -78,31 +89,31 @@
                                     <p class="card-category">Complete your Statutory Details</p>
                                 </div>
                                 <div class="card-body">
-                                    <form action="." method="post">
+                                    <form action="." method="post" id="satutory_form">
                                         {% csrf_token %}
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating" for id="id_gst_no">Company GST No.</label>
-                                                    <input type="text" class="form-control" name="gst_no" id="id_gst_no" value="{{ statutory.gst_no }}">
+                                                    <input type="text" class="form-control" name="gst_no" id="id_gst_no" value="{{ statutory.gst_no }}" maxlength = "15" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); ">
                                                 </div>
-                                            </div>
+                                            </div> 
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating" for id="id_pan_no">PAN No.</label>
-                                                    <input type="text" class="form-control"name="pan_no"id="id_pan_no" value="{{ statutory.pan_no }}">
+                                                    <input type="text" class="form-control"name="pan_no"id="id_pan_no" value="{{ statutory.pan_no }}" maxlength = "10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); ">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating" for id="id_tan_no">TAN NO.</label>
-                                                    <input type="text" class="form-control"name="tan_no"id="id_tan_no" value="{{ statutory.tan_no }}">
+                                                    <input type="text" class="form-control"name="tan_no"id="id_tan_no" value="{{ statutory.tan_no }}" maxlength = "10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); ">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating" for id="id_cin_no">CIN No.</label>
-                                                    <input type="text" class="form-control"name="cin_no"id="id_cin_no" value="{{ statutory.cin_no }}">
+                                                    <input type="text" class="form-control"name="cin_no"id="id_cin_no" value="{{ statutory.cin_no }}" maxlength = "21" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); ">
                                                 </div>
                                             </div>
                                         </div>
@@ -258,23 +269,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-md-4">
-                            <div class="card card-profile">
-                                <div class="card-avatar">
-                                    <a href="javascript:;">
-                                        <img class="img" src="../images/cooker.jpg" />
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <h6 class="card-category text-gray">Company Name</h6>
-                                    <h4 class="card-title">XXXX Mart</h4>
-                                    <p class="card-description">
-                                        Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                                    </p>
-                                    <a href="javascript:;" class="btn btn-primary btn-round">Follow</a>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>

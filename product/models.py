@@ -51,12 +51,11 @@ class Product(models.Model):
     min_order_quantity = models.IntegerField(null=True,blank=True)
     product_group = models.CharField(max_length=50, choices=PRODUCT_GROUP_CHOICES, null=True,blank=True)
     description = models.TextField()
-    capacity = models.CharField(max_length=50, choices=CAPACITY_CHOICES, null=True,blank=True)
-    material = models.CharField(max_length=50, choices=MATERIAL_CHOICES, null=True,blank=True)
-    brand = models.CharField(max_length=50, choices=Brand_CHOICES, null=True,blank=True)
+    capacity = models.CharField(max_length=50, null=True,blank=True)
+    material = models.CharField(max_length=50, null=True,blank=True)
+    brand = models.CharField(max_length=50, null=True,blank=True)
     color = models.CharField(max_length=50, null=True,blank=True)
     size = models.CharField(max_length=50, null=True,blank=True)
-    product_type = models.CharField(max_length=50, null=True,blank=True)
     model_no = models.CharField(max_length=50, null=True,blank=True)
     power = models.CharField(max_length=50, null=True,blank=True)
     warranty = models.CharField(max_length=50, null=True,blank=True)
@@ -64,8 +63,13 @@ class Product(models.Model):
     neck_size = models.CharField(max_length=50, null=True,blank=True)
     closure_type = models.CharField(max_length=50, null=True,blank=True)
     product_code = models.CharField(max_length=50, null=True,blank=True)
-    is_available = models.BooleanField(default=False)
-
+    packing_details = models.CharField(max_length=50, null=True,blank=True)
+    video_url = models.CharField(max_length=50, null=True,blank=True)
+    is_available = models.BooleanField(default=False,null=True,blank=True)
+    image1=models.ImageField(upload_to="products/",default='')
+    image2=models.ImageField(upload_to="products/",default='')
+    image3=models.ImageField(upload_to="products/",default='')
+    arrange = models.BooleanField(default=False)
+    add_home = models.BooleanField(default=False)
     def __str__(self):
-        return self.user
-    
+        return str(self.id) 

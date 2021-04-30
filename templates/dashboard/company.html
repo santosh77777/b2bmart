@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+{% load embed_video_tags %}
+{% block content %}
+  {% load static %}
+    <div class="container">
+      
+      <div class="row mt-3">
+        <div class="col-12">
+          {% for seler in seller_company %}
+          <!-- banner part start -->
+          <div class="banner company"style="background-image: url({{ seler.banner_image.url }})" >
+            <!-- <div class="logo">Logo</div> -->
+            <div class="logo"><img src="{{ seler.logo.url }}"></div>
+            <h3 class="name">{{seler.user.account.company_name}}</h3>
+            <p class="detail">{{ seler.caption }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <!-- banner part end -->
+
+      <!-- Recommended Products part start -->
+      <div class="product-list mt-3">
+        <h3>FEATURED PRODUCTS</h3>
+        
+               
+        <div class="row">{% for object in object_list %}
+          <div class="col">
+            <div class="product-item">
+                <div class="image">
+                  <img src="{{ object.image1.url }}" alt="Image 1">
+                </div>
+                <div class="name">{{ object.name }}</div>
+                <div class="type">{{ object.product_group }}</div>
+                <a href="{% url 'dashboard:seller_product_detail' object.pk %}" class="btn btn-primary btn-block">Read More</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <!-- Row end -->
+        <div class="text-right">
+          <small>featuring trusted brands near you</small>
+        </div>
+      </div>
+      <!-- Recommended Products part end -->
+
+{% for company in seller_company %}
+  
+
+  
+      <div class="row mt-5">
+        <div class="col-12 col-md-6">
+          <h3>ABOUT US</h3><hr>
+          <p>{{ company.about_seller }}</p>
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-default">Download E-catalogue</button>
+            <button class="btn btn-primary">+ Raed More</button>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <h3>BRAND VIDEO</h3>
+          <!-- Promotional vedio start -->
+          <div class="">  
+            
+            {% video company.branded_video as my_video %}  
+              {% video my_video 'small' %}
+            {% endvideo %}
+
+
+
+          </div>
+          <!-- Promotional vedio end -->
+        </div>
+      </div>
+
+      <div class="company-info mt-5">
+        <div class="company-info-detail">
+          <p>Nature of Business</p>
+          <div class="image"></div>
+          <p>{{ company.user.account.nature_of_business }}</p>
+        </div>
+        <div class="company-info-detail">
+          <p>No of Emplyees</p>
+          <div class="image"></div>
+          <p>{{ company.no_of_employees }} people</p>
+        </div>
+        <div class="company-info-detail">
+          <p>Year of Establishment</p>
+          <div class="image"></div>
+          <p>{{company.user.businessprofile.year_of_establishment }}</p>
+        </div>
+        <div class="company-info-detail">
+          <p>Legal Status os Firm</p>
+          <div class="image"></div>
+          <p>{{ company.legal_status_of_firm }}</p>
+        </div>
+        <div class="company-info-detail">
+          <p>Annual Revenue</p>
+          <div class="image"></div>
+          <p>{{ company.user.businessprofile.annual_turnover }} cr</p>
+        </div>
+        <div class="company-info-detail">
+          <p>GSTIN NO</p>
+          <div class="image"></div>
+          <p>{{ company.user.sellerprofile.gstin }}</p>
+        </div>
+      </div>
+      {% endfor %}
+      <!-- Recommended Products part start -->
+      <div class="product-list mt-3">
+        <h3 class="text-center pt-2 pb-3">OUR PRODUCTS RANGE</h3>
+      
+        <div class="row">{% for obj in all_object_list %}
+          <div class="col">
+            <div class="product-item">
+                <div class="image">
+                  <img src="{{ obj.image1.url }}" alt="Image 1">
+                </div>
+                <div class="name">{{ obj.name }}</div>
+                <div class="type">₹{{ obj.price }}</div>
+                <a href="{% url 'dashboard:seller_product_detail' obj.pk %}" class="btn btn-primary btn-block">Read More</a>
+            </div>
+          </div>
+          {% endfor %}
+          </div>
+  
+        <div class="text-center mt-4 mb-2">
+          <button class="btn btn-primary btn-lg">Load More</button>
+        </div>
+      <!-- Recommended Products part end -->
+      {% for company in seller_company %}
+      <div class="row mt-3">
+        <div class="col-12 col-sm-3 pt-3">
+          <h3>Get in touch</h3>
+          <div>{{ company.user.sellerprofile.address_building }}</div>
+          <div>{{ company.user.sellerprofile.address_area }}</div>
+          <div>{{ company.user.sellerprofile.landmark }}</div>
+          <div>{{ company.user.sellerprofile.locality }}</div>
+          <div>{{ company.user.sellerprofile.country }}</div>
+          <div>{{ company.user.sellerprofile.city }}</div>
+          <div>Mobile Number- {{ company.user.sellerprofile.alternative_mobile }}</div>
+          <div>Landline- {{ company.user.sellerprofile.landline_no }}</div>
+          <h5>Get our location</h5>
+          <h5>Ayush Garg (Sales Manager)</h5>
+          <button class="btn mt-3">SEND SMS</button>
+          <button class="btn btn-outline-dark mt-3 ml-4">SEND MAIL</button>
+        </div>
+        <div class="col-12 col-sm-9">
+          <!-- register form start -->
+          <div class="register-form">
+            <h3 class="mb-3">share the details we will call back you</h3>
+            <div class="row">
+              <div class="col-12 col-sm-8">
+                <form action="{% url 'dashboard:share_detail' %}" method="post">
+                  {% csrf_token %}
+                  <div class="row">
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                    </div>
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="email">E-mail</label>
+                      <input type="email" class="form-control" name="email" id="email" placeholder="shotercarlos@gmail.com">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="mobile">Mobile</label>
+                      <input type="tel" class="form-control" name="mobile" id="mobile" placeholder="+91 0000000000">
+                    </div>
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="businessType">Business Types</label>
+                      <select class="form-control btn-primary" name="business_type" id="businessType">
+                        <option>Wholesaller</option>
+                        <option>Manufacturer</option>
+                        <option>Retailer</option>
+                        <option>Exporter</option>
+                        <option>Distributor</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" name="message" id="message" rows="5"></textarea>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-sm-6">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" name="send_copy" id="sendCopy">
+                        <label class="custom-control-label" for="sendCopy">Send me a copy</label>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6 text-right">
+                      <button class="btn btn-primary btn-lg">Send</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-12 col-sm-4">
+                <div class="right-side">
+                  <div class="top">
+                    <span>become a</span>
+                    <span>xxxx Mart</span>
+                    <span>member today</span>
+                    <span>1000 Ad Impressions Free</span>
+                  </div>
+                  <div class="bottom"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <!-- register form part end -->
+        </div>
+      </div>
+    </div>
+</div>
+    
+
+    <!-- <div class="chat">
+      <img src="{% static 'images/chat.png' %}" alt="">
+      <div class="content">
+        <small>Have a Requirement?</small>
+        <h3>Get Best Price</h3>
+      </div>
+    </div> -->
+
+    {% endblock content %}

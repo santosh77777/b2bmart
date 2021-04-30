@@ -1,6 +1,28 @@
 {% extends 'dashboard/seller/seller_base.html' %}
 {% load static %}
    {% block content %}
+
+   <style>
+	.profile-pic{
+		max-width: 200px;
+		max-height:200px;
+		margin: 0 auto;
+		border-radius: 0%;
+	}
+</style>
+
+
+<!-- Showing the Error message in red while validating form -->
+<style>
+    .error{
+    color:red;
+    font-style:italic;
+            }
+            .bmd-form-group label {
+                color: red;
+                }
+</style>
+<!---->
   
        <div class="main-panel">
             <!-- Navbar -->
@@ -79,8 +101,9 @@
                                     <p class="card-category">Complete your business profile</p>
                                 </div>
                                 <div class="card-body">
-                                  
-                                    <form method="POST" action="" enctype="multipart/form-data">
+                                    
+                                    
+                                    <form method="POST" action="" id="add_product" enctype="multipart/form-data">
                                         {% csrf_token %}
                                        
                                         <div class="row">
@@ -113,7 +136,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">Additional Contact Name</label>
+                                                    <label class="bmd-label-floating">Additional Contact Number</label>
                                                     {{ form.phone }}
                                                 </div>
                                             </div>
@@ -144,8 +167,8 @@
                                                 <div class="">
                                                     <!--<input type="text" class="form-control inputFileVisible" placeholder="Simple chooser...">
                                                     <input type="file" class="inputFileHidden" name="company_card_front_view">-->
-                                                    {{ form.company_card_front_view }}
-                                                    <img class="profile-pic" src="{{ seller.company_card_front_view.url }}" >
+                                                    <img onerror="this.style.display='none'" class="profile-pic" src="{{ seller.company_card_front_view.url }}" alt="your company logo">
+                                                    {{ form.company_card_front_view }} 
 
                                                 </div>
                                             </div>
@@ -154,8 +177,8 @@
                                                 <div class="z">
                                                     <!--<input type="text" class="form-control inputFileVisible" placeholder="Simple chooser...">
                                                     <input type="file" class="inputFileHidden" name="company_card_back_view">-->
+                                                    <img onerror="this.style.display='none'" class="profile-pic" src="{{ seller.company_card_back_view.url }}" >
                                                     {{ form.company_card_back_view }}
-                                                    <img class="profile-pic" src="{{ seller.company_card_back_view.url }}" >
                                                 </div>
                                             </div>
                                         </div>
@@ -174,7 +197,7 @@
                                     </a>
                                 </div>
                                 <div class="card-body">
-                                    <h6 class="card-category text-gray">{{ seller.company_name }}</h6>
+                                    <h6 class="card-category text-gray">{{ request.user.account.company_name }}</h6>
                                     <h4 class="card-title">XXXX Mart</h4>
                                     <p class="card-description">
                                         Don't be scared of the truth because we need to restart the human foundation in truth And
@@ -190,5 +213,8 @@
             </div>
         </div>
     </div>
-   {% endblock content %}
+
+
+   
+{% endblock content %}
      

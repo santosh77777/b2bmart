@@ -46,13 +46,14 @@
                   <a class="nav-link text-light m-0 pl-4" href="{% url 'dashboard:seller_business_profile' %}"><p>Business Profile</p> </a>
                   <a class="nav-link text-light m-0 pl-4" href="{% url 'dashboard:seller_statutory' %}"><p>Statutory</p> </a>
                   <a class="nav-link text-light m-0 pl-4" href="{% url 'dashboard:seller_bank' %}"><p>Bank details</p> </a>
+                  <a class="nav-link text-light m-0 pl-4" href="{% url 'dashboard:seller_company_add' %}"><p>Company</p> </a>
                 </div>
-                <a class="nav-link text-light m-0" href="../company.html"> <i class="material-icons">public</i> <p>Website</p> </a>
+                <a class="nav-link text-light m-0" href="{% url 'product:website_home_list' request.user.account.slug %}"> <i class="material-icons">public</i> <p>Website</p> </a>
                 <a class="nav-link text-light m-0" href="share.html"> <i class="material-icons">share</i> <p>Social Share</p> </a>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../certificate.html">
+              <a class="nav-link" href="">
                 <i class="material-icons">&#8377;</i>
                 <p class="pt-1">paid  Services</p>
               </a>
@@ -64,66 +65,66 @@
               </a>
               <div class="collapse bg-primary ml-3 mr-3" id="manageEshop">
                 <a class="nav-link text-light m-0" href="{% url 'dashboard:seller_add_product' %}"><p>Add product</p></a>
-                <a class="nav-link text-light m-0" href="#"><p>Manage Product</p></a>
-                <a class="nav-link text-light m-0" href="#"><p>Rearrange Product</p></a>
+                <a class="nav-link text-light m-0" href="{% url 'dashboard:seller_manage_product' %}"><p>Manage Product</p></a>
+                <a class="nav-link text-light m-0" href="{% url 'dashboard:seller_rearrange_product' %}"><p>Rearrange Product</p></a>
                 <!-- <a class="nav-link text-light m-0" href="#"><p>Rearrange Groups</p></a> -->
                 <!-- <a class="nav-link text-light m-0" href="#"><p>Manage Product Groups</p></a> -->
-                <a class="nav-link text-light m-0" href="#"><p>Bulk price Update</p></a>
+             
                 <!-- <a class="nav-link text-light m-0" href="#"><p>Product Category</p></a> -->
                 <!-- <a class="nav-link text-light m-0" href="#"><p>Category Report</p></a> -->
-                <a class="nav-link text-light m-0" href="#"><p>Category Report</p></a>
+                <a class="nav-link text-light m-0" href=""><p>Category Report</p></a>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="analytics.html">
+              <a class="nav-link" href="{% url 'dashboard:seller_analytics' %}">
                 <i class="material-icons">analytics</i>
                 <p>Analytics</p>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="businessoutlook.html">
+              <a class="nav-link" href="{% url 'dashboard:seller_business_outlook' %}">
                 <i class="material-icons">business</i>
                 <p>Business Outlook</p>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="finance.html">
+              <a class="nav-link" href="{% url 'dashboard:seller_finance' %}">
                 <i class="material-icons">card_membership</i>
                 <p>Finance</p>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="history.html">
+              <a class="nav-link" href="{% url 'dashboard:seller_history' %}">
                 <i class="material-icons">history</i>
                 <p>History</p>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="document.html">
+              <a class="nav-link" href="{% url 'dashboard:seller_document' %}">
                 <i class="material-icons">document_scanner</i>
                 <p>Photo & Document</p>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="membership.html">
+              <a class="nav-link" href="{% url 'dashboard:seller_membership' %}">
                 <i class="material-icons">card_membership</i>
                 <p>Membership</p>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="myenquiry.html">
+              <a class="nav-link" href="{% url 'dashboard:seller_my_enquiry' %}">
                 <i class="material-icons">perm_phone_msg</i>
                 <p>My Enquiery</p>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="settings.html">
+              <a class="nav-link" href="{% url 'dashboard:seller_settings' %}">
                 <i class="material-icons">settings</i>
                 <p>Settings</p>
               </a>
             </li>
             <li class="nav-item home">
-              <a class="nav-link" href="{% url 'index' %}">
+              <a class="nav-link" href="{% url 'product:home_list' %}">
                 <i class="material-icons">home</i>
                 <p>Home</p>
               </a>
@@ -135,6 +136,10 @@
     
 {% endblock content %}
 <!--   Core JS Files   -->
+{% comment %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> {% endcomment %}
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 <script src="{% static 'seller/assets/js/core/jquery.min.js' %}"></script>
 <script src="{% static 'seller/assets/js/core/popper.min.js' %}"></script>
 <script src="{% static 'seller/assets/js/core/bootstrap-material-design.min.js' %}"></script>
