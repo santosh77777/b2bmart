@@ -447,91 +447,21 @@
             </a>
             <div class="carousel-inner">
               <div class="carousel-item active">
+                
                 <div class="row">
-                  <div class="col-12 col-sm-4 col-md-3">
+                {% for obj in object_list %}                  
+                <div class="col-12 col-sm-4 col-md-3">
                     <div class="product-item">
                         <div class="image">
-                          <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+                          <a href="{% url 'dashboard:seller_product_detail' obj.pk %}"><a href="{% url 'dashboard:seller_product_detail' obj.pk %}"><img src="{{ obj.image1.url }}" alt="Image 1"></a></a>
                         </div>
-                        <div class="name">Product Name</div>
+                        <div class="name">{{ obj.name}}</div>
                         <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                        <a href="{% url 'product:website_home_list' obj.user.account.slug %}" class="btn btn-primary btn-block">Visit Our Store</a>
                     </div>
                   </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row">
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
+                {% endfor %}
+              
                 </div>
               </div>
             </div>
@@ -577,91 +507,20 @@
             </a>
             <div class="carousel-inner">
               <div class="carousel-item active">
+                
                 <div class="row">
+                  {% for obj in object_list %}
                   <div class="col-12 col-sm-4 col-md-3">
                     <div class="product-item">
                         <div class="image">
-                          <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+                          <a href="{% url 'dashboard:seller_product_detail' obj.pk %}"><img src="{{ obj.image1.url }}" alt="Image 1"></a>
                         </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                        <div class="name">{{ obj.name }}</div>
+                        <div class="type">{{ obj.product_group }}</div>
+                        <a href="{% url 'product:website_home_list' obj.user.account.slug %}" class="btn btn-primary btn-block">Visit Our Store</a>
                     </div>
                   </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row">
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -697,90 +556,18 @@
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="row">
-                  <div class="col-12 col-sm-4 col-md-3">
+                  {% for obj in object_list %}
+                 <div class="col-12 col-sm-4 col-md-3">
                     <div class="product-item">
                         <div class="image">
-                          <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+                          <a href="{% url 'dashboard:seller_product_detail' obj.pk %}"><img src="{{ obj.image1.url }}" alt="Image 4"></a>
                         </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                        <div class="name">{{ obj.name }}</div>
+                        <div class="type">{{ obj.product_group }}</div>
+                        <a href="{% url 'product:website_home_list' obj.user.account.slug %}" class="btn btn-primary btn-block">Visit Our Store</a>
                     </div>
                   </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row">
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-4 col-md-3">
-                    <div class="product-item">
-                        <div class="image">
-                          <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
-                        </div>
-                        <div class="name">Product Name</div>
-                        <div class="type">Product Type</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -889,87 +676,19 @@
               <i class="fas fa-search"></i> Search
             </button>
           </form>
-          <div class="row">
+          <div class="row">  
+            {% for obj in object_list %}      
             <div class="col-12 col-sm-4 col-md-3">
               <div class="product-item">
                   <div class="image">
-                    <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+                    <a href="{% url 'dashboard:seller_product_detail' obj.pk %}"><img src="{{ obj.image1.url }}" alt="Image 4"></a>
                   </div>
-                  <div class="name">Product Name</div>
-                  <div class="type">Product Type</div>
-                  <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                  <div class="name">{{ obj.name }}</div>
+                  <div class="type">{{ obj.product_group }}</div>
+                  <a href="{% url 'product:website_home_list' obj.user.account.slug %}" class="btn btn-primary btn-block">Visit Our Store</a>
               </div>
             </div>
-            <div class="col-12 col-sm-4 col-md-3">
-              <div class="product-item">
-                  <div class="image">
-                    <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
-                  </div>
-                  <div class="name">Product Name</div>
-                  <div class="type">Product Type</div>
-                  <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-              </div>
-            </div>
-            <div class="col-12 col-sm-4 col-md-3">
-              <div class="product-item">
-                  <div class="image">
-                    <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
-                  </div>
-                  <div class="name">Product Name</div>
-                  <div class="type">Product Type</div>
-                  <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-              </div>
-            </div>
-            <div class="col-12 col-sm-4 col-md-3">
-              <div class="product-item">
-                  <div class="image">
-                    <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
-                  </div>
-                  <div class="name">Product Name</div>
-                  <div class="type">Product Type</div>
-                  <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-              </div>
-            </div>
-            <div class="col-12 col-sm-4 col-md-3">
-              <div class="product-item">
-                  <div class="image">
-                    <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
-                  </div>
-                  <div class="name">Product Name</div>
-                  <div class="type">Product Type</div>
-                  <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-              </div>
-            </div>
-            <div class="col-12 col-sm-4 col-md-3">
-              <div class="product-item">
-                  <div class="image">
-                    <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
-                  </div>
-                  <div class="name">Product Name</div>
-                  <div class="type">Product Type</div>
-                  <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-              </div>
-            </div>
-            <div class="col-12 col-sm-4 col-md-3">
-              <div class="product-item">
-                  <div class="image">
-                    <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
-                  </div>
-                  <div class="name">Product Name</div>
-                  <div class="type">Product Type</div>
-                  <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-              </div>
-            </div>
-            <div class="col-12 col-sm-4 col-md-3">
-              <div class="product-item">
-                  <div class="image">
-                    <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
-                  </div>
-                  <div class="name">Product Name</div>
-                  <div class="type">Product Type</div>
-                  <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-              </div>
-            </div>
+            {% endfor %}
           </div>
           <!-- Row end -->
           <div class="text-center mt-4 mb-2">
@@ -1021,90 +740,18 @@
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <div class="row">
+                    {% for obj in object_list %}
                     <div class="col-12 col-sm-4 col-md-3">
                       <div class="product-item">
                           <div class="image">
-                            <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+                            <a href="{% url 'dashboard:seller_product_detail' obj.pk %}"><img src="{{ obj.image1.url }}" alt="Image 4"></a>
                           </div>
-                          <div class="name">Product Name</div>
-                          <div class="type">Product Type</div>
-                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                          <div class="name">{{ obj.name }}</div>
+                          <div class="type">{{ obj.product_group }}</div>
+                          <a href="{% url 'product:website_home_list' obj.user.account.slug %}" class="btn btn-primary btn-block">Visit Our Store</a>
                       </div>
                     </div>
-                    <div class="col-12 col-sm-4 col-md-3">
-                      <div class="product-item">
-                          <div class="image">
-                            <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
-                          </div>
-                          <div class="name">Product Name</div>
-                          <div class="type">Product Type</div>
-                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                      </div>
-                    </div>
-                    <div class="col-12 col-sm-4 col-md-3">
-                      <div class="product-item">
-                          <div class="image">
-                            <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
-                          </div>
-                          <div class="name">Product Name</div>
-                          <div class="type">Product Type</div>
-                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                      </div>
-                    </div>
-                    <div class="col-12 col-sm-4 col-md-3">
-                      <div class="product-item">
-                          <div class="image">
-                            <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
-                          </div>
-                          <div class="name">Product Name</div>
-                          <div class="type">Product Type</div>
-                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="row">
-                    <div class="col-12 col-sm-4 col-md-3">
-                      <div class="product-item">
-                          <div class="image">
-                            <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
-                          </div>
-                          <div class="name">Product Name</div>
-                          <div class="type">Product Type</div>
-                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                      </div>
-                    </div>
-                    <div class="col-12 col-sm-4 col-md-3">
-                      <div class="product-item">
-                          <div class="image">
-                            <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
-                          </div>
-                          <div class="name">Product Name</div>
-                          <div class="type">Product Type</div>
-                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                      </div>
-                    </div>
-                    <div class="col-12 col-sm-4 col-md-3">
-                      <div class="product-item">
-                          <div class="image">
-                            <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
-                          </div>
-                          <div class="name">Product Name</div>
-                          <div class="type">Product Type</div>
-                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                      </div>
-                    </div>
-                    <div class="col-12 col-sm-4 col-md-3">
-                      <div class="product-item">
-                          <div class="image">
-                            <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
-                          </div>
-                          <div class="name">Product Name</div>
-                          <div class="type">Product Type</div>
-                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                      </div>
-                    </div>
+                    {% endfor %}
                   </div>
                 </div>
               </div>
@@ -1125,46 +772,18 @@
           <div class="position-relative">
             <div class="product-list bg-light p-0">
               <div class="row">
+                {% for obj in object_list %}
                 <div class="col">
                   <div class="product-item">
                       <div class="image">
-                        <img src="{% static 'images/product/img-2.png' %}" alt="Image 2">
+                        <a href="{% url 'dashboard:seller_product_detail' obj.pk %}"><img src="{{ obj.image1.url }}" alt="Image 4"></a>
                       </div>
-                      <div class="name">Product Name</div>
-                      <div class="type">Product Type</div>
-                      <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                      <div class="name">{{ obj.name }}</div>
+                      <div class="type">{{ obj.product_group }}</div>
+                      <a href="{% url 'product:website_home_list' obj.user.account.slug %}" class="btn btn-primary btn-block">Visit Our Store</a>
                   </div>
                 </div>
-                <div class="col">
-                  <div class="product-item">
-                      <div class="image">
-                        <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
-                      </div>
-                      <div class="name">Product Name</div>
-                      <div class="type">Product Type</div>
-                      <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="product-item">
-                      <div class="image">
-                        <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
-                      </div>
-                      <div class="name">Product Name</div>
-                      <div class="type">Product Type</div>
-                      <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="product-item">
-                      <div class="image">
-                        <img src="{% static 'images/product/img-4.png' %}" alt="Image 4">
-                      </div>
-                      <div class="name">Product Name</div>
-                      <div class="type">Product Type</div>
-                      <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
-                  </div>
-                </div>
+                {% endfor %}
               </div>
               <!-- Row end -->
             </div>
@@ -1203,9 +822,9 @@
     
     function fetch_data(){
     //if list length is less than 8 we assume initially 8 brand will be shown
-    if(len<8 && len>0 )
+    if(len<=8 && len>0 )
     {
-        $('#sort_brand').click(function(e){
+        
         for(var i=0;i<len;i++)
         {
         template=`<div class="custom-control custom-checkbox">
@@ -1214,8 +833,7 @@
           </div>`
         $("#append_brand").append(template);
         }
-        e.preventDefault();
-        });
+  
     }
      
       // if len of the list is greater than 8 then it will come in eleseif part
