@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
   {% load static %}
   {% block content %}
+  {% load embed_video_tags %}
     <div class="container">
       <div class="head mt-4">
         <h5>CATEGORY NAME - RICE COOKER <small>(1500 PRODUCTS AVAILABLE)</small></h5>
@@ -89,8 +90,8 @@
         <div class="row no-gutters mt-2">
           <div class="col-4"><img src="{% static 'images/4-star.png' %} " alt=""></div>
           <div class="col-8">
-            <a href="cart.html" class="btn btn-primary mr-2">Add to cart</a>
-            <a href="cart.html" class="btn btn-primary">Buy Now</a>
+            <a href="{% url 'cart' %}" class="btn btn-primary mr-2">Add to cart</a>
+            <a href="{% url 'cart' %}" class="btn btn-primary">Buy Now</a>
           </div>
         </div>
       </div>
@@ -100,46 +101,18 @@
       <div class="product-list mt-3 mb-3">
         <h5>THIS WEEK TOP FOUR EDITORS CHOISE</h5>
         <div class="row">
+          {% for obj in object_list %}
           <div class="col-12 col-sm-4 col-md-3">
             <div class="product-item">
                 <div class="image">
-                  <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+                  <a href="{% url 'dashboard:seller_product_detail' obj.pk %}"><img src="{{ obj.image1.url }} " alt="Image 2"></a>
                 </div>
-                <div class="name">Product Name</div>
-                <div class="type">Product Type</div>
-                <a href="#" class="btn btn-primary btn-block">Read More</a>
+                <div class="name">{{ obj.name }}</div>
+                <div class="type">{{ obj.product_group }}</div>
+                <a href="{% url 'product:website_home_list' obj.user.account.slug %}" class="btn btn-primary btn-block">Visit Our Shop</a>
             </div>
           </div>
-          <div class="col-12 col-sm-4 col-md-3">
-            <div class="product-item">
-                <div class="image">
-                  <img src="{% static 'images/product/img-2.png' %} " alt="Image 2">
-                </div>
-                <div class="name">Product Name</div>
-                <div class="type">Product Type</div>
-                <a href="#" class="btn btn-primary btn-block">Read More</a>
-            </div>
-          </div>
-          <div class="col-12 col-sm-4 col-md-3">
-            <div class="product-item">
-                <div class="image">
-                  <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
-                </div>
-                <div class="name">Product Name</div>
-                <div class="type">Product Type</div>
-                <a href="#" class="btn btn-primary btn-block">Read More</a>
-            </div>
-          </div>
-          <div class="col-12 col-sm-4 col-md-3">
-            <div class="product-item">
-                <div class="image">
-                  <img src="{% static 'images/product/img-4.png' %} " alt="Image 4">
-                </div>
-                <div class="name">Product Name</div>
-                <div class="type">Product Type</div>
-                <a href="#" class="btn btn-primary btn-block">Read More</a>
-            </div>
-          </div>
+          {% endfor %}
         </div>
         <!-- Row end -->
         <div class="text-right">
@@ -153,25 +126,24 @@
           <div class="details">
             <h2>PRODUCT DETAILS</h2>
             <ul class="list-unstyled">
-              <li class="text-mute"><span class="w-50 d-inline-block">Brand</span>:<span class="pl-3">KENT</span></li>
-              <li class="text-mute"><span class="w-50 d-inline-block">Capacity</span>:<span class="pl-3">1.8 Litre</span></li>
-              <li class="text-mute"><span class="w-50 d-inline-block">Model No/Number</span class="pl-3">:<span class="pl-3">VTL-9060</span></li>
-              <li class="text-mute"><span class="w-50 d-inline-block">Warranty</span>:<span class="pl-3">1 Year Home Service</span></li>
-              <li class="text-mute"><span class="w-50 d-inline-block">Power</span>:<span class="pl-3">700 Watt</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">Brand</span>:<span class="pl-3">{{ object.brand }}</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">Capacity</span>:<span class="pl-3">{{ object.capacity }}</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">Model No/Number</span class="pl-3">:<span class="pl-3">{{ object.model_no }}</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">Warranty</span>:<span class="pl-3">{{ object.warranty }}</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">Power</span>:<span class="pl-3">{{ object.power }}</span></li>
             </ul>
             <h2>PRODUCT SPECIFICATION</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, maxime saepe in illo, voluptas veritatis voluptatibus modi maiores adipisci eum commodi nihil nam, nobis beatae placeat eos sed cum? Dicta. Lore</p>
+            <p>{{ object.description }}</p>
             <h2>COMPANY DETAILS</h2>
             <ul class="list-unstyled">
-              <li class="text-mute"><span class="w-50 d-inline-block">Year of Establishment</span>:<span class="pl-4">2019</span></li>
-              <li class="text-mute"><span class="w-50 d-inline-block">Legal Status os Firm</span>:<span class="pl-4">Partnership firm</span></li>
-              <li class="text-mute"><span class="w-50 d-inline-block">Nature of Business</span>:<span class="pl-4">Manufacturer</span></li>
-              <li class="text-mute"><span class="w-50 d-inline-block">No of Emplyees</span>:<span class="pl-4">100 to 200 people</span></li>
-              <li class="text-mute"><span class="w-50 d-inline-block">Annual Revenue</span>:<span class="pl-4">5 Cr</span></li>
-              <li class="text-mute"><span class="w-50 d-inline-block">GSTIN NO</span>:<span class="pl-4">AKGHJX254796</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">Year of Establishment</span>:<span class="pl-4">{{ object.user.businessprofile.year_of_establishment }}</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">Legal Status os Firm</span>:<span class="pl-4">{{ object.user.sellercompany.legal_status_of_firm }}</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">Nature of Business</span>:<span class="pl-4">{{ object.user.businessprofile.category }}</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">No of Emplyees</span>:<span class="pl-4">{{ object.user.sellercompany.no_of_employees }} people</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">Annual Revenue</span>:<span class="pl-4">{{ object.user.businessprofile.annual_turnover }} cr</span></li>
+              <li class="text-mute"><span class="w-50 d-inline-block">GSTIN NO</span>:<span class="pl-4">{{ object.user.sellerstatutory.gst_no }}</span></li>
             </ul>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, maxime saepe in illo, voluptas veritatis voluptatibus modi maiores adipisci eum commodi nihil nam, nobis beatae placeat eos sed cum? Dicta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel impedit repudiandae repellendus perspiciatis ipsum porro quod fugit autem voluptatibus excepturi!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, maxime saepe in illo, Dicta.</p>
+            <p>{{ object.user.sellercompany.about_seller }}</p>
           </div>
         </div>
         <div class="col-12 col-md-7">
@@ -293,86 +265,19 @@
 
       <h5>FAETURED PRODUCT</h5>
       <div class="row">
+        
+        {% for obj in object_lists %}
         <div class="col-12 col-sm-4 col-md-3">
           <div class="product-item">
               <div class="image">
-                <img src="{% static 'images/product/img-1.jpeg' %}" alt="Image 1">
+                <a href="{% url 'dashboard:seller_product_detail' obj.pk %}"><img src="{{ obj.image1.url }}" alt="Image 4"></a>
               </div>
-              <div class="name">Product Name</div>
-              <div class="type">Product Type</div>
-              <a href="#" class="btn btn-primary btn-block">Read More</a>
+              <div class="name">{{ obj.name }}</div>
+              <div class="type">{{ obj.product_group }}</div>
+              <a href="{% url 'product:website_home_list' obj.user.account.slug %}" class="btn btn-primary btn-block">View Our Store</a>
           </div>
         </div>
-        <div class="col-12 col-sm-4 col-md-3">
-          <div class="product-item">
-              <div class="image">
-                <img src="{% static 'images/product/img-2.png' %} " alt="Image 2">
-              </div>
-              <div class="name">Product Name</div>
-              <div class="type">Product Type</div>
-              <a href="#" class="btn btn-primary btn-block">Read More</a>
-          </div>
-        </div>
-        <div class="col-12 col-sm-4 col-md-3">
-          <div class="product-item">
-              <div class="image">
-                <img src="{% static 'images/product/img-3.jpg' %}" alt="Image 3">
-              </div>
-              <div class="name">Product Name</div>
-              <div class="type">Product Type</div>
-              <a href="#" class="btn btn-primary btn-block">Read More</a>
-          </div>
-        </div>
-        <div class="col-12 col-sm-4 col-md-3">
-          <div class="product-item">
-              <div class="image">
-                <img src="{% static 'images/product/img-4.png' %} " alt="Image 4">
-              </div>
-              <div class="name">Product Name</div>
-              <div class="type">Product Type</div>
-              <a href="#" class="btn btn-primary btn-block">Read More</a>
-          </div>
-        </div>
-        <div class="col-12 col-sm-4 col-md-3">
-          <div class="product-item">
-              <div class="image">
-                <img src="{% static 'images/product/img-4.png' %} " alt="Image 4">
-              </div>
-              <div class="name">Product Name</div>
-              <div class="type">Product Type</div>
-              <a href="#" class="btn btn-primary btn-block">Read More</a>
-          </div>
-        </div>
-        <div class="col-12 col-sm-4 col-md-3">
-          <div class="product-item">
-              <div class="image">
-                <img src="{% static 'images/product/img-4.png' %} " alt="Image 4">
-              </div>
-              <div class="name">Product Name</div>
-              <div class="type">Product Type</div>
-              <a href="#" class="btn btn-primary btn-block">Read More</a>
-          </div>
-        </div>
-        <div class="col-12 col-sm-4 col-md-3">
-          <div class="product-item">
-              <div class="image">
-                <img src="{% static 'images/product/img-4.png' %} " alt="Image 4">
-              </div>
-              <div class="name">Product Name</div>
-              <div class="type">Product Type</div>
-              <a href="#" class="btn btn-primary btn-block">Read More</a>
-          </div>
-        </div>
-        <div class="col-12 col-sm-4 col-md-3">
-          <div class="product-item">
-              <div class="image">
-                <img src="{% static 'images/product/img-4.png' %} " alt="Image 4">
-              </div>
-              <div class="name">Product Name</div>
-              <div class="type">Product Type</div>
-              <a href="#" class="btn btn-primary btn-block">Read More</a>
-          </div>
-        </div>
+        {% endfor %}
       </div>
       <!-- Row end -->
       <div class="text-center mt-4 mb-2">

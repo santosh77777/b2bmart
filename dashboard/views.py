@@ -404,8 +404,20 @@ class SellerProductDetailView(DetailView):
     model = Product
     template_name = 'dashboard/productdetail.html'
 
-    def get_object(self, queryset=None):
-        return Product.objects.get(pk=self.kwargs.get("pk"))
+    # def get_object(self, queryset=None):
+    #     return Product.objects.get(pk=self.kwargs.get("pk"))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['object'] = Product.objects.get(pk=self.kwargs.get("pk"))
+        # user = get_object_or_404(User, account__slug=self.kwargs.get("slug"))
+        # context['object_list'] = Product.objects.filter(user=user)
+        context['object_list'] = Product.objects.filter().order_by("?")[:4]
+        context['object_lists'] = Product.objects.filter().order_by("?")[:8]
+        
+        return context
+
+        
 
     def post(self,request, *args, **kwargs):
         if request.method == "POST":

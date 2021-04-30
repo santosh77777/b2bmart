@@ -100,12 +100,15 @@ def category(request):
     cat_data=json.dumps(list(cat))
     cat_id=json.dumps(list(cat_id_obj))
 
-
+    product = Product.objects.filter().order_by("?")[:4]
+    product1 = Product.objects.filter().order_by("?")[:8]
     context={"search_product":queryset,
              'brand_data':brand,
              'brand_id':brand_id,
              'cat_data':cat_data,
-             'cat_id':cat_id
+             'cat_id':cat_id,
+             'product':product,
+             'product1':product1
             }
     return render(request,'category.html',context)
 
