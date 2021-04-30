@@ -3,6 +3,8 @@ from accounts.models import Account
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from embed_video.fields import EmbedVideoField
+from product.models import Product
+
 
 class SellerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -92,7 +94,6 @@ def businessprofile_receiver(sender, instance, created, *args, **kwargs):
 
 post_save.connect(businessprofile_receiver, sender=User)
 
-from product.models import Product
 class SellerCompany(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='sellercompany')
     about_seller = models.TextField(blank=True, null=True)
@@ -112,5 +113,22 @@ def sellercompany_receiver(sender, instance, created, *args, **kwargs):
     if created:
         userprofile = SellerCompany.objects.create(user=instance)
 
-
 post_save.connect(sellercompany_receiver, sender=User)
+
+BUSINESS_TYPE_CHOICES = (
+        ('Manufacturer', 'Manufacturer'),
+        ('Retailer', 'Retailer'),
+        ('Distributer', 'Distributer'),
+        ('Wholeseller', 'Wholeseller'),
+        ('Exporter', 'Exporter'),
+)
+class ShareDetail(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=100)
+    mobile = models.IntegerField()
+    business_type = models.CharField(max_length=20, choices=BUSINESS_TYPE_CHOICES)
+    message = models.TextField()
+    send_copy = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return str(self.name) 

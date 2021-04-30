@@ -48,7 +48,7 @@
                   <a class="nav-link text-light m-0 pl-4" href="{% url 'dashboard:seller_bank' %}"><p>Bank details</p> </a>
                   <a class="nav-link text-light m-0 pl-4" href="{% url 'dashboard:seller_company_add' %}"><p>Company</p> </a>
                 </div>
-                <a class="nav-link text-light m-0" href="{% url 'product:home_list' request.user.username %}"> <i class="material-icons">public</i> <p>Website</p> </a>
+                <a class="nav-link text-light m-0" href="{% url 'product:website_home_list' request.user.account.slug %}"> <i class="material-icons">public</i> <p>Website</p> </a>
                 <a class="nav-link text-light m-0" href="share.html"> <i class="material-icons">share</i> <p>Social Share</p> </a>
               </div>
             </li>
@@ -124,7 +124,7 @@
               </a>
             </li>
             <li class="nav-item home">
-              <a class="nav-link" href="{% url 'product:home' %}">
+              <a class="nav-link" href="{% url 'product:home_list' %}">
                 <i class="material-icons">home</i>
                 <p>Home</p>
               </a>

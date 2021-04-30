@@ -4,6 +4,7 @@ from dashboard.models import SellerCompany, BusinessProfile
 from django.views.generic import ListView
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from accounts.models import *
 import json
 id_brand=[]
 def HomeView(request):
@@ -62,22 +63,20 @@ def category(request):
     #     # return Product.objects.raw('SELECT  DISTINCT user_id from product_product WHERE add_home=True')
     #     return Product.objects.order_by('user_id').values_list('user_id', flat=True).distinct()
     
-class HomeProductList(ListView):
+class WebsiteHomeList(ListView):
     model = Product
     template_name = "dashboard/company.html"
-    # def get_queryset(self):
-    #     user = get_object_or_404(User, username=self.kwargs.get('username'))
-    #     # return Product.objects.filter(add_home=True, user=user).first()
-
-    #     return Product.objects.filter(user=user)
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        user = get_object_or_404(User, username=self.kwargs.get('username'))
+
+        user = get_object_or_404(User, account__slug=self.kwargs.get("slug"))
         
-        context['object_list'] = Product.objects.filter(user=user)
+        # context['object_list'] = Product.objects.filter(user=user)
+        context['object_list'] = Product.objects.filter(user=user, arrange=True)
+        context['all_object_list'] = Product.objects.filter(user=user, arrange=True)
         context['seller_company'] = SellerCompany.objects.filter(user=user)
         context['business_profile'] = BusinessProfile.objects.filter(user=user)
         return context
         
+
