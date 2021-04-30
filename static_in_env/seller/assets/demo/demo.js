@@ -510,6 +510,14 @@ $('#add_product').validate({
     image1:{
       required:true,
     },
+
+    image2:{
+      required:true,
+    },
+
+    image3:{
+      required:true,
+    },
   }
 });
 

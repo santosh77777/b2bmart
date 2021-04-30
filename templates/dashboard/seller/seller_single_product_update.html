@@ -305,7 +305,7 @@
     if (document.getElementById('yesCheck').value == "other") {
         $(".add").empty();
         tem = `<label class="bmd-label-floating" >Capacity</label>
-        <input type="text" id="capacity" name="capacity" placeholder="Capacity">`
+        <input type="text" class="form-control" id="capacity" name="capacity" placeholder="Capacity">`
         $('.add').append(tem)
     }
     else if (document.getElementById('yesCheck').value == "200ml") {
@@ -325,7 +325,7 @@ function yesnoCheck1() {
     if (document.getElementById('yesCheck1').value == "other") {
         $(".add1").empty();
         tem1 = `<label class="bmd-label-floating" >Brand</label>
-        <input type="text" id="brand" name="brand" placeholder="Brand">`
+        <input type="text" class="form-control" id="brand" name="brand" placeholder="Brand">`
         $('.add1').append(tem1)
     }
     else if (document.getElementById('yesCheck1').value == "prestige") {
@@ -342,7 +342,7 @@ function yesnoCheck2() {
    if (document.getElementById('yesCheck2').value == "other") {
         $(".add2").empty();
         tem2 = `<label class="bmd-label-floating" >Material</label>
-        <input type="text" id="material" name="material" placeholder="Material">`
+        <input type="text" class="form-control"  id="material" name="material" placeholder="Material">`
         $('.add2').append(tem2)
     }
     else if (document.getElementById('yesCheck2').value == "polycarbonate") {

@@ -42,7 +42,7 @@ class SellerCompanyForm(forms.ModelForm):
     legal_status_of_firm = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control','name':'legal', 'id':'legal_status_of_firm'}), required=True)
     catalogue = forms.FileField(widget=forms.FileInput( attrs={'class': 'form-control','name':'catalogue','id':"catalogue"}), required=False)
     branded_video = forms.URLField(widget=forms.URLInput(attrs={'class': 'form-control', 'name':'video' ,'id':"branded_video"}), required=True)
-    logo = forms.ImageField(widget=forms.FileInput( attrs={'class': 'form-control' ,'name':'logo','id':'logo'}), required=False)
+    logo = forms.ImageField(widget=forms.FileInput( attrs={'class': 'form-control','name':'logo','id':'logo'}), required=False)
     banner_image = forms.ImageField(widget=forms.FileInput( attrs={'class': 'form-control','name':'banner','id':'banner'}), required=False)
 
     class Meta:
