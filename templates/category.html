@@ -278,16 +278,16 @@
         <div class="row no-gutters">
           <div class="col border">
             <div class="image">
-              <img src="http://127.0.0.1:8000/media/{{j.image1}}" alt="">
+              <img src="http://127.0.0.1:8000/media/{{j.image1}}"alt="">
               <div class="img-caption">{{j.name}}</div>
             </div>
           </div>
           <div class="col position-relative">
             <div class="product-detail">
               <div class="title">{{j.brand}}</div>
-              <div class="sub-title mb-3">{{j.product_group}}</div>
+              <div class="mb-3">{{j.product_group}}</div>
               <div class="price">MRP: Rs {{j.price}}</div>
-              <div class="text-mute">(Inclusive of all taxes)</div>
+              <div class="text">(Inclusive of all taxes)</div>
             </div>
           </div>
           <div class="col background">
@@ -969,9 +969,5 @@ $('#sort_brand').click(function(e){
         document.getElementById('success_cat').disabled=true;
       }
        }
-        
-        
-      
-      
     </script>
 {% endblock content %}
