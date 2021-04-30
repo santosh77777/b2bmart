@@ -7,121 +7,208 @@
       <div class="row">
         <div class="col-12">
           <ul class="category-menu mb-3">
+           
+            <form action="{% url 'dashboard:category' %}" method="get">
             <li>
-              <a href="kitchen-stoves.html">
-                <img src="{% static 'images/icons/kitchen-stoves.png' %}" alt="Kitchen stoves category">
-              </a>
-            </li>
-            <li>
-              <a href="mixer-grinder.html">
-                <img src="{% static 'images/icons/mixer-grinder.png' %}" alt="Mixer Grinder category">
-              </a>
-            </li>
-            <li>
-              <a href="category-rice.html">
-                <img src="{% static 'images/icons/rice-cookers.png' %}" alt="Rice cookers category">
-              </a>
-            </li>
-            <li>
-              <a href="food-processors.html">
-                <img src="{% static 'images/icons/food-processors.png' %}" alt="Food processors category">
-              </a>
-            </li>
-            <li>
-              <a href="electric-kettles.html">
-                <img src="{% static 'images/icons/electric-kettles.png' %}" alt="Electric kettles category">
-              </a>
-            </li>
-            <li>
-              <a href="electric-mixers.html">
-                <img src="{% static 'images/icons/electric-mixers.png' %}" alt="Electric mixers category">
-              </a>
-            </li>
-            <li>
-              <a href="juicers.html">
-                <img src="{% static 'images/icons/Juicers.png' %}" alt="Juicers category">
-              </a>
-            </li>
-            <li>
-              <a href="category.html">
-                <img src="{% static 'images/icons/blenders.png' %}" alt="Blenders category">
-              </a>
-            </li>
-            <li>
-              <a href="category.html">
-                <img src="{% static 'images/icons/water-heaters.png' %}" alt="Water heaters category">
-              </a>
-            </li>
-            <li>
-              <a href="category.html">
-                <img src="{% static 'images/icons/water-filters.png' %}" alt="Water filters category">
-              </a>
-            </li>
-            <li>
-              <a href="category.html">
-                <img src="{% static 'images/icons/induction-cookers.png' %}" alt="Induction cookers category">
-              </a>
-            </li>
-            <li>
-              <a href="category.html">
-                <img src="{% static 'images/icons/exhaust-hoods.png' %}" alt="Exhaust hoods category">
-              </a>
-            </li>
-            <li>
-              <a href="category.html">
-                <img src="{% static 'images/icons/sandwich-makers.png' %}" alt="Sandwich makers category">
-              </a>
-            </li>
-            <li>
-              <a href="category.html">
-                <img src="{% static 'images/icons/toaster.png' %}" alt="Toaster category">
-              </a>
-            </li>
-            <li>
-              <a href="category.html">
-                <img src="{% static 'images/icons/deep-fryers.png' %}" alt="Deep fryers category">
-              </a>
-            </li>
-            <li>
-              <a href="category.html">
-                <img src="{% static 'images/icons/dough-blenders.png' %}" alt="Dough Blenders category">
-              </a>
-            </li>
-            <li>
-              <a href="category.html">
-                <img src="{% static 'images/icons/coffe-makers.png' %}" alt="Coffee makers category">
-              </a>
-            </li>
-            <li>
-              <a href="category.html">
-                <img src="{% static 'images/icons/electric-iron.png' %}" alt="Electric iron category">
-              </a>
-            </li>
-            <li>
-              <a href="category.html">
-                <img src="{% static 'images/icons/vaccum-cleaner.png' %}" alt="Vacuum cleaner category">
-              </a>
-            </li>
-            <li>
-              <a href="category.html">
-                <img src="{% static 'images/icons/air-purifers.png' %}" alt="Air Purifiers category">
-              </a>
-            </li>
-            <li>
-              <a href="category.html">
-                <img src="{% static 'images/icons/hair-dryer.png' %}" alt="Hair straightener category">
-              </a>
-            </li>
-            <li>
-              <a href="category.html">
-                <img src="{% static 'images/icons/trimmers-shavers.png' %}" alt="Trimmers & Shavers category">
-              </a>
-            </li>
-            <li>
-              <a href="category.html">
-                <img src="{% static 'images/icons/hair-dryer.png' %}" alt="Hair Dryer category">
-              </a>
-            </li>
+              <a href='#'>
+               <img src="{% static 'images/icons/kitchen-stoves.png' %}" alt="Kitchen stoves category">
+               <button type="submit" name='category' value='kitchenstoves'>Kitchen Stoves</button>
+               </a>
+               </li>
+               </form>
+
+               <form action="{% url 'dashboard:category' %}" method="get">
+                <li>
+                  <a href='#'>
+                    <img src="{% static 'images/icons/mixer-grinder.png' %}" alt="Mixer Grinder category">
+                   <button type="submit" name='category' value='mixturegrinder'>Mixer Grinder</button>
+                   </a>
+                   </li>
+                   </form>
+
+                   
+               <form action="{% url 'dashboard:category' %}" method="get">
+                <li>
+                  <a href='#'>
+                    <img src="{% static 'images/icons/rice-cookers.png' %}" alt="Rice cookers category">
+                   <button type="submit" name='category' value='ricecookers'>Rice Cookers</button>
+                   </a>
+                   </li>
+                   </form>
+
+
+                   <form action="{% url 'dashboard:category' %}" method="get">
+                    <li>
+                      <a href='#'>
+                        <img src="{% static 'images/icons/food-processors.png' %}" alt="Food processors category">
+                       <button type="submit" name='category' value='foodprocessors'>FoodProccessors</button>
+                       </a>
+                       </li>
+                       </form>
+                  
+                       <form action="{% url 'dashboard:category' %}" method="get">
+                        <li>
+                          <a href='#'>
+                            <img src="{% static 'images/icons/electric-kettles.png' %}" alt="Electric kettles category">
+                           <button type="submit" name='category' value='electrickettles'>Electric Kettles</button>
+                           </a>
+                           </li>
+                           </form>
+                    <form action="{% url 'dashboard:category' %}" method="get">
+                    <li>
+                      <a href='#'>
+                        <img src="{% static 'images/icons/electric-mixers.png' %}" alt="Electric mixers category">
+                        <button type="submit" name='category' value='electricmixers'>Electric Mixers</button>
+                        </a>
+                        </li>
+                        </form>
+               
+
+                        <form action="{% url 'dashboard:category' %}" method="get">
+                          <li>
+                            <a href='#'>
+                              <img src="{% static 'images/icons/Juicers.png' %}" alt="Juicers category">
+                              <button type="submit" name='category' value='juicers'>Juicers</button>
+                              </a>
+                              </li>
+                              </form>
+                
+                              <form action="{% url 'dashboard:category' %}" method="get">
+                                <li>
+                                  <a href='#'>
+                                    <img src="{% static 'images/icons/blenders.png' %}" alt="Blenders category">
+                                    <button type="submit" name='category' value='blenders'>Blenders</button>
+                                    </a>
+                                    </li>
+                                    </form>
+                                    <form action="{% url 'dashboard:category' %}" method="get">
+                                      <li>
+                                        <a href='#'>
+                                          <img src="{% static 'images/icons/water-heaters.png' %}" alt="Water heaters category">
+                                          <button type="submit" name='category' value='waterheaters'>Water Heaters</button>
+                                          </a>
+                                          </li>
+                                          </form>
+                          <form action="{% url 'dashboard:category' %}" method="get">
+                            <li>
+                              <a href='#'>
+                                <img src="{% static 'images/icons/water-filters.png' %}" alt="Water filters category">
+                                <button type="submit" name='category' value='mixturegrinder'>waterfilters</button>
+                                </a>
+                                </li>
+                                </form>
+                                <form action="{% url 'dashboard:category' %}" method="get">
+                                  <li>
+                                    <a href='#'>
+                                      <img src="{% static 'images/icons/induction-cookers.png' %}" alt="Induction cookers category">
+                                      <button type="submit" name='category' value='inductioncookers'>Induction Cookers</button>
+                                      </a>
+                                      </li>
+                                      </form>
+              
+                                      <form action="{% url 'dashboard:category' %}" method="get">
+                                        <li>
+                                          <a href='#'>
+                                            <img src="{% static 'images/icons/exhaust-hoods.png' %}" alt="Exhaust hoods category">
+                                            <button type="submit" name='category' value='exhausthoods'>Exhaust Hoods</button>
+                                            </a>
+                                            </li>
+                                            </form>
+                                            <form action="{% url 'dashboard:category' %}" method="get">
+                                              <li>
+                                                <a href='#'>
+                                                  <img src="{% static 'images/icons/sandwich-makers.png' %}" alt="Sandwich makers category">
+                                                  <button type="submit" name='category' value='sandwichmakers'>Sandwich Makers</button>
+                                                  </a>
+                                                  </li>
+                                                  </form>
+                                        <form action="{% url 'dashboard:category' %}" method="get">
+                                          <li>
+                                            <a href='#'>
+                                              <img src="{% static 'images/icons/toaster.png' %}" alt="Toaster category">
+                                              <button type="submit" name='category' value='toaster'>Toaster</button>
+                                              </a>
+                                              </li>
+                                              </form>
+
+                                              <form action="{% url 'dashboard:category' %}" method="get">
+                                                <li>
+                                                  <a href='#'>
+                                                    <img src="{% static 'images/icons/deep-fryers.png' %}" alt="Deep fryers category">
+                                                    <button type="submit" name='category' value='deepfryers'>Deep Fryers</button>
+                                                    </a>
+                                                    </li>
+                                                    </form>
+                                                    <form action="{% url 'dashboard:category' %}" method="get">
+                                                      <li>
+                                                        <a href='#'>
+                                                          <img src="{% static 'images/icons/dough-blenders.png' %}" alt="Dough Blenders category">
+                                                          <button type="submit" name='category' value='doughblenders'>Dough Blenders</button>
+                                                          </a>
+                                                          </li>
+                                                          </form>
+                                                          <form action="{% url 'dashboard:category' %}" method="get">
+                                                            <li>
+                                                              <a href='#'>
+                                                                <img src="{% static 'images/icons/coffe-makers.png' %}" alt="Coffee makers category">
+                                                                <button type="submit" name='category' value='coffemakers'>Coffee Makers</button>
+                                                                </a>
+                                                                </li>
+                                                                </form>
+    
+                                                                <form action="{% url 'dashboard:category' %}" method="get">
+                                                                  <li>
+                                                                    <a href='#'>
+                                                                      <img src="{% static 'images/icons/electric-iron.png' %}" alt="Electric iron category">
+                                                                      <button type="submit" name='category' value='electriciron'>Electric Iron</button>
+                                                                      </a>
+                                                                      </li>
+                                                                      </form>
+                                                                      <form action="{% url 'dashboard:category' %}" method="get">
+                                                                        <li>
+                                                                          <a href='#'>
+                                                                            <img src="{% static 'images/icons/vaccum-cleaner.png' %}" alt="Vacuum cleaner category">
+                                                                            <button type="submit" name='category' value='vaccumcleaner'>Vaccum Cleaner</button>
+                                                                            </a>
+                                                                            </li>
+                                                                            </form>
+
+                                  <form action="{% url 'dashboard:category' %}" method="get">
+                                    <li>
+                                      <a href='#'>
+                                        <img src="{% static 'images/icons/air-purifers.png' %}" alt="Air Purifiers category">
+                                        <button type="submit" name='category' value='airpurifers'>Air Purifiers</button>
+                                        </a>
+                                        </li>
+                                        </form>
+                                        <form action="{% url 'dashboard:category' %}" method="get">
+                                          <li>
+                                            <a href='#'>
+                                              <img src="{% static 'images/icons/hair-dryer.png' %}" alt="Hair straightener category">
+                                              <button type="submit" name='category' value='hairstraightener'>Hair Straightener</button>
+                                              </a>
+                                              </li>
+                                              </form>
+
+                                              <form action="{% url 'dashboard:category' %}" method="get">
+                                                <li>
+                                                  <a href='#'>
+                                                    <img src="{% static 'images/icons/trimmers-shavers.png' %}" alt="Trimmers & Shavers category">
+                                                    <button type="submit" name='category' value='trimmersandshavers'>Trimmers & shavers</button>
+                                                    </a>
+                                                    </li>
+                                                    </form>
+                      
+                                                    <form action="{% url 'dashboard:category' %}" method="get">
+                                                      <li>
+                                                        <a href='#'>
+                                                          <img src="{% static 'images/icons/hair-dryer.png' %}" alt="Hair Dryer category">
+                                                          <button type="submit" name='category' value='hairdrier'>Hair Dryer</button>
+                                                          </a>
+                                                          </li>
+                                                          </form>
+                
+      
             <!-- <li class="ml-auto">
               <img src="./images/categoryRightIcon.png' %}" alt="">
             </li> -->

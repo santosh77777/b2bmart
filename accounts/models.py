@@ -64,4 +64,3 @@ class ProfilePicture(models.Model):
     
 
 
-

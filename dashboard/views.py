@@ -15,8 +15,9 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from .forms import *
 from product.forms import ProductForm
-from product.models import Product, EshopeForm
+from product.models import Product
 from accounts.models import ProfilePicture
+from django.http import HttpResponseRedirect
 
 class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
@@ -634,3 +635,67 @@ class BuyerShareView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/buyer/share.html')
+
+from django.core.mail import send_mail
+from django.http import HttpResponse
+
+def sendSimpleEmail(request,emailto):
+   res = send_mail("hello paul", "comment tu vas?", "paul@polo.com", [emailto])
+   return HttpResponse('%s'%res)
+
+from django.conf import settings
+from django.core.mail import send_mail
+from b2bmart.settings import EMAIL_HOST_USER
+class ShareDetailView(View):
+    def post(self, *args, **kwargs):
+        name = self.request.POST['name']
+        email = self.request.POST['email']
+        mobile = self.request.POST['mobile']
+        business_type = self.request.POST['business_type']
+        message = self.request.POST['message']
+        send_copy = self.request.POST.get('send_copy',"")
+        print(send_copy)
+        if send_copy == "on":
+            sub = 'Welcome to my company'
+            message = message
+            subject = "hi"
+            recepient = email
+            send_mail(subject, message, settings.EMAIL_HOST_USER, [recepient])
+
+            share_detail = ShareDetail(name=name, email=email, mobile=mobile, business_type=business_type, message=message, send_copy=True)
+            share_detail.save()
+        else:
+            share_detail = ShareDetail(name=name, email=email, mobile=mobile, business_type=business_type, message=message)
+            share_detail.save()
+        return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
+
+
+def category(request):
+    kitchen_stoves = Product.objects.filter(product_group__icontains='Kitchen_stoves')
+    mixture_grinder = Product.objects.filter(product_group__icontains='mixture_grinder')
+    rice_cookers = Product.objects.filter(product_group__icontains='rice_cookers')
+    food_processors = Product.objects.filter(product_group__icontains='food_processors')
+    electric_mixers = Product.objects.filter(product_group__icontains='electric_mixers')
+    juicers = Product.objects.filter(product_group__icontains='juicers')
+    blenders = Product.objects.filter(product_group__icontains='blenders')
+    water_heaters = Product.objects.filter(product_group__icontains='water_heaters')
+    water_filters = Product.objects.filter(product_group__icontains='water_filters')
+    induction_cookers = Product.objects.filter(product_group__icontains='induction_cookers')
+    exhaust_hoods = Product.objects.filter(product_group__icontains='exhaust_hoods')
+    sandwich_makers = Product.objects.filter(product_group__icontains='sandwich_makers')
+    toaster = Product.objects.filter(product_group__icontains='toaster')
+    deep_fryers = Product.objects.filter(product_group__icontains='deep_fryers')
+    dough_blenders = Product.objects.filter(product_group__icontains='dough_blenders')
+    coffee_makers = Product.objects.filter(product_group__icontains='coffee_makers')
+    electric_iron = Product.objects.filter(product_group__icontains='electric_iron')
+    vaccum_cleaner = Product.objects.filter(product_group__icontains='vaccum_cleaner')
+    air_purifiers = Product.objects.filter(product_group__icontains='air_purifiers')
+    trimmers_and_savers = Product.objects.filter(product_group__icontains='trimmers_and_savers')
+    hair_drier = Product.objects.filter(product_group__icontains='hair_drier')
+    category = request.GET['category']
+    context = {'kitchen_stoves': kitchen_stoves, 'mixture_grinder':mixture_grinder, 'rice_cookers':rice_cookers, 'food_processors':food_processors, 'electric_mixers':electric_mixers, 
+               'juicers':juicers, 'blenders': blenders, 'water_heaters': water_heaters, 'water_filters': water_filters, 'induction_cookers': induction_cookers,
+               'exhaust_hoods': exhaust_hoods, 'sandwich_makers': sandwich_makers, 'toaster': toaster, 'deep_fryers': deep_fryers, 'dough_blenders':dough_blenders,
+               'coffee_makers': coffee_makers, 'electric_iron': electric_iron, 'vaccum_cleaner': vaccum_cleaner, 'air_purifiers': air_purifiers,
+               'trimmers_and_savers': trimmers_and_savers, 'hair_drier': hair_drier, 'category': category  }
+    return render(request, 'categories.html', context)

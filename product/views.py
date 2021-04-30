@@ -8,7 +8,6 @@ from accounts.models import *
 import json
 id_brand=[]
 def HomeView(request):
-    print("YEs")
     brand=Product.objects.values_list('brand', flat=True)
     brand_id=Product.objects.values_list('id',flat=True)
     brand=json.dumps(list(brand))
@@ -54,16 +53,11 @@ def category(request):
 class HomeProductList(ListView):
     model = Product
     template_name = "dashboard/company.html"
-    # def get_queryset(self):
-    #     user = get_object_or_404(User, username=self.kwargs.get('username'))
-    #     # return Product.objects.filter(add_home=True, user=user).first()
-
-    #     return Product.objects.filter(user=user)
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        user = get_object_or_404(User, username=self.kwargs.get('username'))
+
+        user = get_object_or_404(User, account__slug=self.kwargs.get("slug"))
         
         context['object_list'] = Product.objects.filter(user=user)
         context['seller_company'] = SellerCompany.objects.filter(user=user)
