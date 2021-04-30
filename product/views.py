@@ -18,16 +18,22 @@ def HomeView(request):
         id_brand=request.POST.getlist('brand[]')
         print(id_brand)
         return HttpResponse('success') 
-    user = User.objects.all()
-    user = User.objects.raw('SELECT * from accounts_account WHERE user_id')
-    
-    # object_list=Product.objects.filter(add_home=True).distinct()
-    object_list=Product.objects.raw('select distinct user_id, id from product_product where add_home=True')
-    for o in object_list:
-        print(o.user.id)
+    object_list=Product.objects.filter(add_home=True)
+    # data = list(object_list.values())
+    print(type(object_list))
+        # name.append(i.user)
+    x = list(object_list)
+    l = len(x)
+    i=0
+    while(l%4!=0):
+        x.append(x[i])
+        l=l+1
+        i=i+1
+
+
     context={'brand_data':brand,
              'brand_id':brand_id,
-             'object_list':object_list
+             'x':x,           
              }
     return render(request,'index.html',  context)
     
