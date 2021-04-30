@@ -48,6 +48,11 @@ def HomeView(request):
     
         
 def category(request):
+    if request.is_ajax():
+        global id_brand
+        global id_category
+        id_brand=request.POST.getlist('brand[]')
+        id_category=request.POST.getlist('cat[]')
     show_res=[]
     queryset=[]
     print("cat",id_brand)
@@ -87,7 +92,12 @@ def category(request):
     cat_id=json.dumps(list(cat_id_obj))
 
 
-    context={"search_product":queryset}
+    context={"search_product":queryset,
+             'brand_data':brand,
+             'brand_id':brand_id,
+             'cat_data':cat_data,
+             'cat_id':cat_id
+            }
     return render(request,'category.html',context)
 
 ################################## this is for displaying the home page ################################## 
