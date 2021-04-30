@@ -19,8 +19,12 @@ def HomeView(request):
         print(id_brand)
         return HttpResponse('success') 
     user = User.objects.all()
-    object_list=Product.objects.filter(add_home=True).distinct()
-    # object_list=Product.objects.raw('SELECT DISTINCT  product_product.user WHERE(add_home=True)')
+    user = User.objects.raw('SELECT * from accounts_account WHERE user_id')
+    
+    # object_list=Product.objects.filter(add_home=True).distinct()
+    object_list=Product.objects.raw('select distinct user_id, id from product_product where add_home=True')
+    for o in object_list:
+        print(o.user.id)
     context={'brand_data':brand,
              'brand_id':brand_id,
              'object_list':object_list
