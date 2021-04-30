@@ -1,24 +1,50 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from . models import Product
 from dashboard.models import SellerCompany, BusinessProfile
 from django.views.generic import ListView
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from accounts.models import *
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 import json
 id_brand=[]
+id_category=[]
 def HomeView(request):
-    print("YEs")
-    brand=Product.objects.values_list('brand', flat=True)
-    brand_id=Product.objects.values_list('id',flat=True)
+    brand=[]
+    brand_id=[]
+    cat=[]
+    cat_id_obj=[]
+    prd=Product.objects.all()
+    for i in prd:
+        if(i.brand not in brand):
+            brand.append(i.brand)
+            brand_id.append(i.id)
+        if(i.product_group not in cat):
+            cat.append(i.product_group)
+            cat_id_obj.append(i.id)
+    
     brand=json.dumps(list(brand))
     brand_id=json.dumps(list(brand_id))
+    cat_data=json.dumps(list(cat))
+    cat_id=json.dumps(list(cat_id_obj))
+
     if request.is_ajax():
         global id_brand
+        global id_category
         id_brand=request.POST.getlist('brand[]')
+        id_category=request.POST.getlist('cat[]')
         print(id_brand)
-        return HttpResponse('success') 
+        print(id_category)
+    
     object_list=Product.objects.filter(add_home=True)
+    user = User.objects.all()
+    user = User.objects.raw('SELECT * from accounts_account WHERE user_id')
+    
+    # object_list=Product.objects.filter(add_home=True).distinct()
+    object_list=Product.objects.raw('select distinct user_id, id from product_product where add_home=True')
+    for o in object_list:
+        print(o.user.id)
     # data = list(object_list.values())
     print(type(object_list))
         # name.append(i.user)
@@ -33,24 +59,65 @@ def HomeView(request):
 
     context={'brand_data':brand,
              'brand_id':brand_id,
-             'x':x,           
+             'object_list':object_list,
+             'cat_data':cat_data,
+             'cat_id':cat_id,
+             'x':x       
              }
     return render(request,'index.html',  context)
     
         
 def category(request):
-    print("cat")
-    show_brand=[]
+    if request.is_ajax():
+        global id_brand
+        global id_category
+        id_brand=request.POST.getlist('brand[]')
+        id_category=request.POST.getlist('cat[]')
+    show_res=[]
     queryset=[]
-    for i in id_brand:
-        productt= Product.objects.get(id=i)
-        show_brand.append(productt.brand)
-    print("show_brand",show_brand)
-    for i in show_brand:
-        product_detail=Product.objects.filter(brand=i)
-        queryset.append(product_detail)
+    print("cat",id_brand)
+    if(len(id_brand)>0):
+        show_res=id_brand
+    elif(len(id_category)>0):
+        show_res=id_category
+    temp=[]
+    temp=show_res
+    show_res=[]
+    for i in temp:
+        show_res.append(i.replace("category",""))
+
+    show_res=list(dict.fromkeys(show_res))
     
-    context={"search_product":queryset}
+    for i in show_res:
+        product_detail=Product.objects.filter(id=i)
+        queryset.append(product_detail)
+
+
+    brand=[]
+    brand_id=[]
+    cat=[]
+    cat_id_obj=[]
+    prd=Product.objects.all()
+    for i in prd:
+        if(i.brand not in brand):
+            brand.append(i.brand)
+            brand_id.append(i.id)
+        if(i.product_group not in cat):
+            cat.append(i.product_group)
+            cat_id_obj.append(i.id)
+    
+    brand=json.dumps(list(brand))
+    brand_id=json.dumps(list(brand_id))
+    cat_data=json.dumps(list(cat))
+    cat_id=json.dumps(list(cat_id_obj))
+
+
+    context={"search_product":queryset,
+             'brand_data':brand,
+             'brand_id':brand_id,
+             'cat_data':cat_data,
+             'cat_id':cat_id
+            }
     return render(request,'category.html',context)
 
 ################################## this is for displaying the home page ################################## 
