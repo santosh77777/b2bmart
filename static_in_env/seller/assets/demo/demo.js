@@ -263,97 +263,99 @@ $.validator.addMethod("emailnotequal", function(value, element, param) {
   return this.optional(element) || value != $(param).val();
  }, "alternative_landline_no and landline_no should not be the same");
 
+
+
 $('#seller_form').validate({
   rules: {
     first_name:{
-      required:true,
+      // required:true,
       lettersonly:true,
       minlength:2,
     },
     last_name:{
-      required:true,
+      // required:true,
       lettersonly:true,
       minlength:2,
     },
-    promoter_first_name:{
-      required:true,
-      lettersonly:true,
-      minlength:2,
-    },
-    promoter_last_name:{
-      required:true,
-      lettersonly:true,
-      minlength:2,
-    },
-    company:{
-      required:true,
-    },
-    designation:{
-      required:true,
-    },
-    address_building:{
-      required:true,
-    },
-    address_area:{
-      required:true,
-    },
-    landmark:{
-      required:true,
-    },
-    locality:{
-      required:true,
-    },
+    // promoter_first_name:{
+    //   required:true,
+    //   lettersonly:true,
+    //   minlength:2,
+    // },
+    // promoter_last_name:{
+    //   required:true,
+    //   lettersonly:true,
+    //   minlength:2,
+    // },
+    // company:{
+    //   required:true,
+    // },
+    // designation:{
+    //   required:true,
+    // },
+    // address_building:{
+    //   required:true,
+    // },
+    // address_area:{
+    //   required:true,
+    // },
+    // landmark:{
+    //   required:true,
+    // },
+    // locality:{
+    //   required:true,
+    // },
     city:{
-      required:true,
+      // required:true,
       lettersonly:true,
     },
     state:{
-      required:true,
+      // required:true,
       lettersonly:true,
     },
     country:{
-      required:true,
+      // required:true,
       lettersonly:true,
     },
     pincode:{
-      required:true,
+      // required:true,
       minlength:6,
     },
     gstin:{
-      required:true,
+      // required:true,
       minlength:15,
       loginRegex:true,
     },
-    company_website:{
-      required:true,
-    },
+    // company_website:{
+    //   required:true,
+    // },
     mobile:{
-      required:true,
+      // required:true,
       minlength:10,
       mobnotequal:"#alternative_mobile",
     },
     alternative_mobile:{
-      required:true,
+      // required:true,
       minlength:10,
       mobnotequal:"#mobile",
     },
     alternative_email:{
-      required:true,
+      // required:true,
       minlength:10,
-      checkemail:true,
+      // checkemail:true,
       emailnotequal:"#email",
     },
     landline_no:{
-      required:true,
+      // required:true,
       landlinenotequal:"#alternative_landline_no",
     },
     alternative_landline_no:{
-      required:true,
+     
       landlinenotequal:"#landline_no",
     },
-    about_me:{
-      required:true,
-    }
+    // about_me:{
+    //   required:true,
+    // }
 
   }
 });
@@ -453,26 +455,26 @@ $('#Bank_detail').validate({
     
     },
     alternative_bank_name:{
-      required:true,
+      // required:true,
       minlength:3,
      
     },
     alternative_account_no:{
-      required:true,
+      // required:true,
       loginRegex:true,
     
     },
     alternative_bank_account_name:{
-      required:true,
+      // required:true,
       minlength:2,
      
     },
     alternative_bank_ifsc_code:{
-      required:true,
+      // required:true,
     
     },
     alternative_bank_account_type:{
-      required:true,
+      // required:true,
      
     }
   }
@@ -483,68 +485,55 @@ $('#Bank_detail').validate({
 
 $('#add_product').validate({
   rules: {
-    
-    is_available:{
-      required:true,
-    },
+     
     product_group:{
       required:true,
     },
-
-   
+  
     Product_name:{
       required:true,
       minlength:2,
+      maxlength:36,
     },
     
     price:{
       required:true,
     },
-    
-    min_order_qty:{
-      required:true,
-    },
-    product_grp:{
-      required:true,
-    },
+  
     desc:{
       required:true,
     },
-    packing_details:{
-      required:true,
-    },
+  
     brandd:{
       required:true,
     },
-    mat:{
-      required:true,
-    },
-    product_type:{
-      required:true,
-    },
-   
-    warranty:{
-      required:true,
-    },
-    model_no:{
-      required:true,
-    },
-    rating:{
-      required:true,
-    },    
-    product_code:{
-      required:true,
-    },   
-   
 
-    mat_radio:{
+    image1:{
       required:true,
     },
-  
-    cap_radio:{
+
+    image2:{
       required:true,
     },
-    product_group:{
+
+    image3:{
+      required:true,
+    },
+  }
+});
+
+
+
+$('#company').validate({
+  rules: {
+    about:{
+      required:true,
+    },
+    logo:{
+      required:true,
+      img:true,
+    },
+    banner:{
       required:true,
     },
   }

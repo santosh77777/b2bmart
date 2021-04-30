@@ -6,151 +6,98 @@
       <div class="head mt-4">
         <h5>CATEGORY NAME - RICE COOKER <small>(1500 PRODUCTS AVAILABLE)</small></h5>
       </div>
-      <div class="state-list">  
-        <i class="fas fa-map-marker-alt pl-2 pr-2"></i>
-        <span class="pr-2">Location</span>
-        <input type="text" class="mr-2" style=" width: 100px; height: 25px; ">
-        <i class="fas fa-compass"></i>
-
-        <ul>
+      <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <ul class="category-menu mb-4"> 
+            <li> 
+            <i class="fas fa-map-marker-alt pl-3 pr-3"></i>
+            </li>
+            <li>
+            <span class="pr-2">Location</span>
+            </li>
+            <li>
+            <input type="text" class="mr-2" style=" width: 100px; height: 25px; border: 1px solid">
+            </li>
+            <li>
+            <i class="fas fa-compass"></i>
+            </li>
           <li>
-            <a href="#">Near me</a>
+            <a href="#"></a>
           </li>
           <li>
-            <a href="#">All India</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Near me</a>
           </li>
           <li>
-            <a href="#">state 1</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">All India</a>
           </li>
           <li>
-            <a href="#">state 2</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Andhra Pradesh</a>
           </li>
           <li>
-            <a href="#">state 3</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Assam</a>
           </li>
           <li>
-            <a href="#">state 4</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Bihar</a>
           </li>
           <li>
-            <a href="#">state 5</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Chhattisgarh</a>
           </li>
           <li>
-            <a href="#">state 6</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Goa</a>
           </li>
           <li>
-            <a href="#">state 7</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Gujarat</a>
           </li>
           <li>
-            <a href="#">state 8</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Haryana</a>
           </li>
           <li>
-            <a href="#">state 9</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Himachal Pradesh</a>
           </li>
         </ul>
       </div>
+      </div>
+      </div>
 
-      <div class="row mt-4">  
+ <div class="row">  
         <div class="col-md-4 col-lg-3">
           <div class="feature">
             <div class="feature__head">
               <h6>SORT BY BRAND</h6>
-              <a href="#">Show all</a>
+              <a href="#/" onclick="brand_sow_all()">Show all</a>
             </div>
-            <form class="feature__form" action="">
-              <div class="form-group search">
-                <input type="text" class="form-control" placeholder="Search">
+             <form class="feature__form" id="brand_form">
+              <div class="input-group" >
+                  <input type="text" class="form-control" id="search_input" placeholder="Search" oninput="search()">
+                  <div class="input-group-append">
+                  <button   class="btn btn-success" id="success"  ><i class="fa fa-arrow-right" aria-hidden="true"></i></button></div>
               </div>
-              <div class="checkboxs">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="brand1">
-                  <label class="custom-control-label" for="brand1">Brand 1</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="brand2">
-                  <label class="custom-control-label" for="brand2">Brand 2</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="brand3">
-                  <label class="custom-control-label" for="brand3">Brand 3</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="brand4">
-                  <label class="custom-control-label" for="brand4">Brand 4</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="brand5">
-                  <label class="custom-control-label" for="brand5">Brand 5</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="brand6">
-                  <label class="custom-control-label" for="brand6">Brand 6</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="brand7">
-                  <label class="custom-control-label" for="brand7">Brand 7</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="brand8">
-                  <label class="custom-control-label" for="brand8">Brand 8</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="brand9">
-                  <label class="custom-control-label" for="brand9">Brand 9</label>
-                </div>
+              <div class="checkboxs" id="append_brand">
+             
               </div>
-              <button class="btn btn-primary btn-block mt-3">Load More</button>
-            </form>
+              </form> 
+            <button id="sort_brand" class="btn btn-primary btn-block mt-3" >Load More</button>
           </div>
 
           <div class="feature mt-3">
             <div class="feature__head">
               <h6>SORT BY CATEGORY</h6>
-              <a href="#">Show all</a>
+              <a href="#/" onclick="cat_show_all()">Show all</a>
             </div>
-            <form class="feature__form" action="">
-              <div class="form-group search">
-                <input type="text" class="form-control" placeholder="Search">
+            <form class="feature__form"  id="cat_form">
+              
+                  <div class="input-group" >
+                  <input type="text" class="form-control" id="search_input_cat" placeholder="Search" oninput="search_cat()">
+                  <div class="input-group-append">
+                  <button   class="btn btn-success" id="success_cat"><i class="fa fa-arrow-right" aria-hidden="true"></i></button></div>
+              
               </div>
-              <div class="checkboxs">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="category1">
-                  <label class="custom-control-label" for="category1">Category 1</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="category2">
-                  <label class="custom-control-label" for="category2">Category 2</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="category3">
-                  <label class="custom-control-label" for="category3">Category 3</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="category4">
-                  <label class="custom-control-label" for="category4">Category 4</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="category5">
-                  <label class="custom-control-label" for="category5">Category 5</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="category6">
-                  <label class="custom-control-label" for="category6">Category 6</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="category7">
-                  <label class="custom-control-label" for="category7">Category 7</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="category8">
-                  <label class="custom-control-label" for="category8">Category 8</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="category9">
-                  <label class="custom-control-label" for="category9">Category 9</label>
-                </div>
+              <div class="checkboxs" id="append_cat">
+              
               </div>
-              <button class="btn btn-primary btn-block mt-3">Load More</button>
-            </form>
+              <button id="sort_category" class="btn btn-primary btn-block mt-3" >Load More</button>
+          </form>
           </div>
 
           <!-- Related products promo part strat -->
@@ -338,7 +285,7 @@
           <div class="col position-relative">
             <div class="product-detail">
               <div class="title">{{j.brand}}</div>
-              <div class="sub-title mb-3">{{j.description}}</div>
+              <div class="sub-title mb-3">{{j.product_group}}</div>
               <div class="price">MRP: Rs {{j.price}}</div>
               <div class="text-mute">(Inclusive of all taxes)</div>
             </div>
@@ -805,4 +752,333 @@
         </div>
       </div>
     </div>
+
+   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script>
+    {% comment %} document.getElementById('success').disabled = true; {% endcomment %}
+    var data={{brand_data|safe}};
+    var data_id={{brand_id|safe}};
+    var cat_data={{cat_data|safe}};
+    var cat_id={{cat_id|safe}};
+    console.log(cat_data);
+    console.log(cat_id);
+    var len=data.length;
+    var len_cat=cat_data.length;
+
+    
+    fetch_data();
+    fetch_data_cat();
+//FOR CATEGORY###################################################################
+    function fetch_data_cat() {
+        if(len_cat<=8 && len_cat>0 )
+    {
+        for(var i=0;i<len_cat;i++)
+        {
+        template=`
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" onclick="is_checked_cat()" id="category${cat_id[i]}">
+                      <label class="custom-control-label" for="category${cat_id[i]}">${cat_data[i]}</label>
+                  </div>`
+        $("#append_cat").append(template);
+        }
+        
+    }
+    else if(len_cat>0 && len_cat>8)
+    {
+      
+      for(var i=0;i<8;i++)
+        {
+        template=`
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" onclick="is_checked_cat()" id="category${cat_id[i]}">
+                      <label class="custom-control-label" for="category${cat_id[i]}">${cat_data[i]}</label>
+                  </div>`
+         $("#append_cat").append(template);
+        }
+    }
+    }
+    var temp=0;
+    $('#sort_category').click(function(ee){
+      ee.preventDefault();
+        if(temp==0)
+          {
+            temp=8;
+          }
+            if(data.length>8)
+            {
+              temp=temp;
+              var new_temp=temp+4;
+              if(new_temp<len_cat)
+              {
+                for(var i=temp;i<new_temp;i++)
+                {
+                var template=`<div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" onclick="is_checked_cat()" id="category${cat_id[i]}">
+                      <label class="custom-control-label" for="category${cat_id[i]}">${cat_data[i]}</label>
+                  </div>`
+                temp++;
+                $("#append_cat").append(template);
+                }
+              
+              }
+              else
+            {
+              for(var i=temp;i<len_cat;i++)
+            {
+            template=`<div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" onclick="is_checked_cat()" id="category${cat_id[i]}">
+                      <label class="custom-control-label" for="category${cat_id[i]}">${cat_data[i]}</label>
+                  </div>`
+            $("#append_cat").append(template);
+            temp++;
+            }
+            ee.preventDefault();
+            }
+        
+        }
+
+    });
+    function cat_show_all(){
+      
+        document.getElementById('append_cat').innerHTML=``;
+          for(var i=0;i<len_cat;i++)
+        {
+        template=`<div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" onclick="is_checked_cat()" id="category${cat_id[i]}">
+                      <label class="custom-control-label" for="category${cat_id[i]}">${cat_data[i]}</label>
+                  </div>`
+        $("#append_cat").append(template);
+        }
+        $("#sort_category").hide();
+      }
+
+        function search_cat(){
+        document.getElementById('append_cat').innerHTML=``;
+        var xx_cat = document.getElementById("search_input_cat").value;
+        data1_cat=cat_data;
+        data1_cat=data1_cat.map(data1_cat => data1_cat.toLowerCase());
+        xx_cat=xx_cat.toLowerCase();
+        var indexx_cat=data1_cat.findIndex(element => element.includes(xx_cat));
+        console.log(xx_cat.length);
+        if(xx_cat.length>0)
+        {
+          $("#sort_category").hide();
+
+        for(var j=0;j<len_cat;j++)
+        {
+          if(data1_cat[j].includes(xx_cat))
+          {
+            template=`<div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" onclick="is_checked_cat()" id="category${cat_id[j]}">
+                      <label class="custom-control-label" for="category${cat_id[j]}">${cat_data[j]}</label>
+                  </div>`
+          $("#append_cat").append(template);
+          }
+        }
+        }
+        else
+        {
+          $("#sort_category").show();
+          document.getElementById('append_cat').innerHTML=``;
+          temp=0;
+          fetch_data_cat();
+          
+        }
+      }
+      
+       $("#success_cat").click(function(e){
+         var list_cat = [];
+         e.preventDefault();
+          $("input:checkbox").each(function(){
+          if($(this).is(":checked")){
+            list_cat.push($(this).attr("id"));
+          }
+        })
+        console.log(list_cat);
+        ajax2(list_cat);
+       });
+        function ajax2(list_cat){
+            $.ajax({
+          type:'POST',
+          url:'',
+          data:{
+            'cat[]':list_cat,
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+            }
+        }).done(function() {
+  window.location.href="{% url 'product:category' %}";
+});
+}
+// FOR BRAND #################################################################
+    function fetch_data(){
+    //if list length is less than 8 we assume initially 8 brand will be shown
+    if(len<=8 && len>0 )
+    {
+        for(var i=0;i<len;i++)
+        {
+        template=`<div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()" id="${data_id[i]}">
+                <label class="custom-control-label" for="${data_id[i]}">${data[i]}</label>
+          </div>`
+        $("#append_brand").append(template);
+        }
+        
+    }
+     
+      // if len of the list is greater than 8 then it will come in eleseif part
+    else if(len>0 && len>8)
+    {
+      
+      for(var i=0;i<8;i++)
+        {
+        template=`<div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()" id="${data_id[i]}">
+                <label class="custom-control-label" for="${data_id[i]}">${data[i]}</label>
+          </div>`
+        $("#append_brand").append(template);
+        
+        }
+    }
+  }
+      
+    
+var count=0;
+$('#sort_brand').click(function(e){
+  if(count==0)
+  {
+    count=8;
+  }
+   if(data.length>8)
+      {
+        count=count;
+        var new_count=count+4;
+        if(new_count<len)
+        {
+          for(var i=count;i<new_count;i++)
+        {
+        var template=`<div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()" id="${data_id[i]}">
+                <label class="custom-control-label" for="${data_id[i]}">${data[i]}</label>
+          </div>`
+        count++;
+        $("#append_brand").append(template);
+        }
+        e.preventDefault();
+        }
+        else
+        {
+          for(var i=count;i<len;i++)
+        {
+        template=`<div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()" id="${data_id[i]}">
+                <label class="custom-control-label" for="${data_id[i]}">${data[i]}</label>
+          </div>`
+        $("#append_brand").append(template);
+        count++;
+        }
+        e.preventDefault();
+        }
+        
+        }
+});
+      function brand_sow_all(){
+        document.getElementById('append_brand').innerHTML=``;
+          for(var i=0;i<len;i++)
+        {
+        template=`<div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()" id="${data_id[i]}">
+                <label class="custom-control-label" for="${data_id[i]}">${data[i]}</label>
+          </div>`
+        $("#append_brand").append(template);
+        }
+        $("#sort_brand").hide();
+      }
+      function search(){
+        document.getElementById('append_brand').innerHTML=``;
+        var xx = document.getElementById("search_input").value;
+        data1=data;
+        data1=data1.map(data1 => data1.toLowerCase());
+        xx=xx.toLowerCase();
+        var indexx=data1.findIndex(element => element.includes(xx));
+        console.log(xx.length);
+        if(xx.length>0)
+        {
+          $("#sort_brand").hide();
+
+        for(var j=0;j<len;j++)
+        {
+          if(data1[j].includes(xx))
+          {
+            template=`<div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()"  id="${data_id[j]}">
+                <label class="custom-control-label" for="${data_id[j]}">${data[j]}</label>
+          </div>`
+          $("#append_brand").append(template);
+          }
+        }
+        }
+        else
+        {
+          $("#sort_brand").show();
+          document.getElementById('append_brand').innerHTML=``;
+          count=0;
+          fetch_data();
+          
+        }
+      }
+       $("#success").click(function(e){
+         var list = [];
+         e.preventDefault();
+          $("input:checkbox").each(function(){
+          if($(this).is(":checked")){
+            list.push($(this).attr("id"));
+            
+          }
+        })
+        console.log(list);
+        ajax1(list);
+       });
+        function ajax1(list){
+          console.log(list);
+            $.ajax({
+          type:'POST',
+          url:'',
+          data:{
+            'brand[]':list,
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+            }
+        }).done(function() {
+  window.location.href="{% url 'product:category' %}";
+});
+        }
+      document.getElementById('success').disabled=true;
+      document.getElementById('success_cat').disabled=true;
+      function is_checked(){
+      if ($("#brand_form input:checkbox:checked").length > 0)
+      {
+        document.getElementById('success').disabled=false;
+      }
+      
+      else
+      {
+        document.getElementById('success').disabled=true;
+      }
+       }
+
+       function is_checked_cat(){
+      if ($("#cat_form input:checkbox:checked").length > 0)
+      {
+        document.getElementById('success_cat').disabled=false;
+      }
+      
+      else
+      {
+        document.getElementById('success_cat').disabled=true;
+      }
+       }
+        
+        
+      
+      
+    </script>
 {% endblock content %}
