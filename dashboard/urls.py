@@ -40,7 +40,6 @@ urlpatterns = [
     path('seller/remove-home-product/<int:pk>/',views.SellerRemoveHomeView.as_view(), name="seller_remove_home_product"),
 
     path('seller/companey-add/',views.SellersCompanyView, name="seller_company_add"),
-
 ]
 
 

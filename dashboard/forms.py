@@ -37,15 +37,13 @@ class BusinessProfileForm(forms.ModelForm):
 
 
 class SellerCompanyForm(forms.ModelForm):
-    about_seller = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':'about_seller'}), required=True)
-    no_of_employees = forms.IntegerField(widget=forms.NumberInput( attrs={'class': 'form-control', 'id':'noofemployees'}), required=True)
-    legal_status_of_firm = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control', 'id':'legal_status_of_firm'}), required=True)
-    catalogue = forms.FileField(widget=forms.FileInput( attrs={'class': 'form-control', 'id':"catalogue"}), required=False)
-    branded_video = forms.URLField(widget=forms.URLInput(attrs={'class': 'form-control',  'id':"branded_video"}), required=True)
-    logo = forms.ImageField(widget=forms.FileInput( attrs={'class': 'form-control'}), required=False)
-    banner_image = forms.ImageField(widget=forms.FileInput( attrs={'class': 'form-control'}), required=False)
-
-
+    about_seller = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control','name':'about', 'id':'about_seller'}), required=True)
+    no_of_employees = forms.IntegerField(widget=forms.NumberInput( attrs={'class': 'form-control','name':'num', 'id':'noofemployees'}), required=True)
+    legal_status_of_firm = forms.CharField(widget=forms.TextInput( attrs={'class': 'form-control','name':'legal', 'id':'legal_status_of_firm'}), required=True)
+    catalogue = forms.FileField(widget=forms.FileInput( attrs={'class': 'form-control','name':'catalogue','id':"catalogue"}), required=False)
+    branded_video = forms.URLField(widget=forms.URLInput(attrs={'class': 'form-control', 'name':'video' ,'id':"branded_video"}), required=True)
+    logo = forms.ImageField(widget=forms.FileInput( attrs={'class': 'form-control' ,'name':'logo','id':'logo'}), required=False)
+    banner_image = forms.ImageField(widget=forms.FileInput( attrs={'class': 'form-control','name':'banner','id':'banner'}), required=False)
 
     class Meta:
         model = SellerCompany
