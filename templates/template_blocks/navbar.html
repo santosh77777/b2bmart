@@ -15,12 +15,15 @@
         <li class="nav-item">
           <a class="nav-link" href="certificate.html"><span class="critificate-bg">Apply For Unique xxxxxxxxx Certification</span></a>
         </li>
+        {% if request.user.account.business_type == "Seller" %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'dashboard:seller_dashboard' %}">Seller</a>
         </li>
+        {% elif request.user.account.business_type == "Buyer" %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'dashboard:buyer_dashboard' %}">Buyer</a>
         </li>
+        {% endif %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'help' %}">Help</a>
         </li>
