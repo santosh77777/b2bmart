@@ -65,7 +65,7 @@ class Product(models.Model):
     product_code = models.CharField(max_length=50, null=True,blank=True)
     packing_details = models.CharField(max_length=50, null=True,blank=True)
     video_url = models.CharField(max_length=50, null=True,blank=True)
-    is_available = models.BooleanField(default=False)
+    is_available = models.BooleanField(default=False,null=True,blank=True)
     image1=models.ImageField(upload_to="products/",default='')
     image2=models.ImageField(upload_to="products/",default='')
     image3=models.ImageField(upload_to="products/",default='')

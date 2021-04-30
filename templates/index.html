@@ -303,7 +303,7 @@
             <a id = "map-link" target="_blank" style=" position: absolute; margin-bottom: -55px; color: #fff;"></a>
             <form class="form-inline">
               <div class="form-group mr-3">
-                <input type="text" class="form-control" id="location" placeholder="Product Type">
+                <input type="text" class="form-control" id="location" placeholder="{{object.product_group}}">
               </div>
               <button type="submit" class="btn btn-success">
                 <i class="fas fa-search"></i> Search
@@ -315,7 +315,7 @@
          <div class="product-list mt-3">
           <form class="form-inline mb-3">
             <div class="form-group w-50 mr-3">
-              <input type="text" class="form-control w-100" id="location" placeholder="TRUSTED BRANDS | SEARCH BY PRODUCT TYPE">
+              <input type="text" class="form-control w-100" id="location" placeholder="TRUSTED BRANDS | SEARCH BY {{object.product_group}}">
             </div>
             <button type="submit" class="btn btn-primary">
               <i class="fas fa-search"></i> Search
@@ -339,12 +339,12 @@
                     <div class="col-12 col-sm-4 col-md-3">
                       <div class="product-item">
                           <div class="image">
-                            <img src="{{object.image1.url}}" alt="Image 4">
+                            <a href="{% url 'dashboard:seller_product_detail' object.pk %}"><img src="{{object.image1.url}}" alt="Image 4"> </a>
                           </div>
                           <div class="name" style="height:50px;">{{object.name}}</div>
                           
-                          <div class="type">Product Type</div>
-                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                          <div class="type">{{object.product_group}}</div>
+                          <a href="{% url 'product:website_home_list' object.user.account.slug %}" class="btn btn-primary btn-block">Visit our store</a>
                       </div>
                     </div>
                
@@ -407,12 +407,12 @@
                     <div class="col-12 col-sm-4 col-md-3">
                       <div class="product-item">
                           <div class="image">
-                            <img src="{{object.image1.url}}" alt="Image 4">
+                            <a href="{% url 'dashboard:seller_product_detail' object.pk %}"><img src="{{object.image1.url}}" alt="Image 4"> </a>
                           </div>
-                          <div class="name">Product Name</div>
+                          <div class="name" style="height:50px;">{{object.name}}</div>
                           
-                          <div class="type">Product Type</div>
-                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                          <div class="type">{{object.product_group}}</div>
+                          <a href="{% url 'product:website_home_list' object.user.account.slug %}" class="btn btn-primary btn-block">Visit our store</a>
                       </div>
                     </div>
                
@@ -441,7 +441,7 @@
          <div class="product-list">
           <form class="form-inline mb-3">
             <div class="form-group w-50 mr-3">
-              <input type="text" class="form-control w-100" id="location" placeholder="CATEGORY LEADERS | SEARCH BY PRODUCT TYPE">
+              <input type="text" class="form-control w-100" id="location" placeholder="CATEGORY LEADERS | SEARCH BY {{object.product_group}}">
             </div>
             <button type="submit" class="btn btn-primary">
               <i class="fas fa-search"></i> Search
@@ -464,12 +464,11 @@
                     <div class="col-12 col-sm-4 col-md-3">
                       <div class="product-item">
                           <div class="image">
-                            <img src="{{object.image1.url}}" alt="Image 4">
+                            <a href="{% url 'dashboard:seller_product_detail' object.pk %}"><img src="{{object.image1.url}}" alt="Image 4"> </a>
                           </div>
-                          <div class="name">Product Name</div>
-                          
-                          <div class="type">Product Type</div>
-                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                          <div class="name" style="height:50px;">{{object.name}}</div>
+                          <div class="type">{{object.product_group}}</div>
+                          <a href="{% url 'product:website_home_list' object.user.account.slug %}" class="btn btn-primary btn-block">Visit our store</a>
                       </div>
                     </div>
                
@@ -580,7 +579,7 @@
          <div class="product-list mt-3">
           <form class="form-inline mb-3">
             <div class="form-group w-50 mr-3">
-              <input type="text" class="form-control w-100" id="location" placeholder="FAETURED PRODUCT | SEARCH BY PRODUCT TYPE">
+              <input type="text" class="form-control w-100" id="location" placeholder="FAETURED PRODUCT | SEARCH BY {{object.product_group}}">
             </div>
             <button type="submit" class="btn btn-primary">
               <i class="fas fa-search"></i> Search
@@ -603,12 +602,11 @@
                     <div class="col-12 col-sm-4 col-md-3">
                       <div class="product-item">
                           <div class="image">
-                            <img src="{{object.image1.url}}" alt="Image 4">
+                            <a href="{% url 'dashboard:seller_product_detail' object.pk %}"><img src="{{object.image1.url}}" alt="Image 4"> </a>
                           </div>
-                          <div class="name">Product Name</div>
-                          
-                          <div class="type">Product Type</div>
-                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                          <div class="name" style="height:50px;">{{object.name}}</div>
+                          <div class="type">{{object.product_group}}</div>
+                          <a href="{% url 'product:website_home_list' object.user.account.slug %}" class="btn btn-primary btn-block">Visit our store</a>
                       </div>
                     </div>
                
@@ -683,20 +681,18 @@
                     <div class="col-12 col-sm-4 col-md-3">
                       <div class="product-item">
                           <div class="image">
-                            <img src="{{object.image1.url}}" alt="Image 4">
+                            <a href="{% url 'dashboard:seller_product_detail' object.pk %}"><img src="{{object.image1.url}}" alt="Image 4"> </a>
                           </div>
-                          <div class="name">{{object.name}}</div>
-                          
-                          <div class="type">Product Type</div>
-                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                          <div class="name" style="height:50px;">{{object.name}}</div>
+                          <div class="type">{{object.product_group}}</div>
+                          <a href="{% url 'product:website_home_list' object.user.account.slug %}" class="btn btn-primary btn-block">Visit our store</a>
                       </div>
                     </div>
                
-              {% if forloop.counter|divisibleby:"4" or forloop.counter0 == object_list.count|add:-1 %}
+              {% if forloop.counter|divisibleby:"4" %}
                 </div>
               </div>
-              {% endif %}
-               
+              {% endif %}              
           {% endfor %}
         </div>
             
@@ -733,12 +729,11 @@
                     <div class="col-12 col-sm-4 col-md-3">
                       <div class="product-item">
                           <div class="image">
-                            <img src="{{object.image1.url}}" alt="Image 4">
+                            <a href="{% url 'dashboard:seller_product_detail' object.pk %}"><img src="{{object.image1.url}}" alt="Image 4"> </a>
                           </div>
-                          <div class="name">Product Name</div>
-                          
-                          <div class="type">Product Type</div>
-                          <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                          <div class="name" style="height:50px;">{{object.name}}</div>
+                          <div class="type">{{object.product_group}}</div>
+                          <a href="{% url 'product:website_home_list' object.user.account.slug %}" class="btn btn-primary btn-block">Visit our store</a>
                       </div>
                     </div>
                
