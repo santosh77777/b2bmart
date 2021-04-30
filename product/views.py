@@ -61,8 +61,8 @@ def HomeView(request):
              'brand_id':brand_id,
              'object_list':object_list,
              'cat_data':cat_data,
-             'cat_id':cat_id
-             'x':x,           
+             'cat_id':cat_id,
+             'x':x       
              }
     return render(request,'index.html',  context)
     
