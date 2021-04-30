@@ -37,17 +37,7 @@ def HomeView(request):
         print(id_brand)
         print(id_category)
     
-    object_list=Product.objects.filter(add_home=True)
-    user = User.objects.all()
-    user = User.objects.raw('SELECT * from accounts_account WHERE user_id')
-    
-    # object_list=Product.objects.filter(add_home=True).distinct()
-    object_list=Product.objects.raw('select distinct user_id, id from product_product where add_home=True')
-    for o in object_list:
-        print(o.user.id)
-    # data = list(object_list.values())
-    print(type(object_list))
-        # name.append(i.user)
+    object_list=Product.objects.filter(add_home=True).order_by("?")[:8]
     x = list(object_list)
     l = len(x)
     i=0
@@ -141,7 +131,7 @@ class WebsiteHomeList(ListView):
         
         # context['object_list'] = Product.objects.filter(user=user)
         context['object_list'] = Product.objects.filter(user=user, arrange=True)
-        context['all_object_list'] = Product.objects.filter(user=user, arrange=True)
+        context['all_object_list'] = Product.objects.filter(user=user)
         context['seller_company'] = SellerCompany.objects.filter(user=user)
         context['business_profile'] = BusinessProfile.objects.filter(user=user)
         return context

@@ -160,8 +160,8 @@ def SellerBusinessProfileView(request):
             form.save()
             messages.success(request, 'Your profile was updated successfully')
 
-
-    context = {'form':form, 'seller': seller }
+    sellers = SellerProfile.objects.get(user=request.user)
+    context = {'form':form, 'seller': seller,'sellers':sellers }
     return render(request, 'dashboard/seller/business_profile.html', context)
 
 class SellerBankView(LoginRequiredMixin, UserPassesTestMixin, View):
