@@ -38,6 +38,13 @@ def HomeView(request):
         print(id_category)
     
     object_list=Product.objects.filter(add_home=True)
+    user = User.objects.all()
+    user = User.objects.raw('SELECT * from accounts_account WHERE user_id')
+    
+    # object_list=Product.objects.filter(add_home=True).distinct()
+    object_list=Product.objects.raw('select distinct user_id, id from product_product where add_home=True')
+    for o in object_list:
+        print(o.user.id)
     # data = list(object_list.values())
     print(type(object_list))
         # name.append(i.user)
@@ -54,12 +61,17 @@ def HomeView(request):
              'brand_id':brand_id,
              'x':x,  
              'cat_data':cat_data,
-             'cat_id':cat_id,                     
+             'cat_id':cat_id,                           
              }
     return render(request,'index.html',  context)
     
         
 def category(request):
+    if request.is_ajax():
+        global id_brand
+        global id_category
+        id_brand=request.POST.getlist('brand[]')
+        id_category=request.POST.getlist('cat[]')
     show_res=[]
     queryset=[]
     print("cat",id_brand)
@@ -99,7 +111,12 @@ def category(request):
     cat_id=json.dumps(list(cat_id_obj))
 
 
-    context={"search_product":queryset}
+    context={"search_product":queryset,
+             'brand_data':brand,
+             'brand_id':brand_id,
+             'cat_data':cat_data,
+             'cat_id':cat_id
+            }
     return render(request,'category.html',context)
 
 ################################## this is for displaying the home page ################################## 
