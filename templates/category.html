@@ -6,47 +6,58 @@
       <div class="head mt-4">
         <h5>CATEGORY NAME - RICE COOKER <small>(1500 PRODUCTS AVAILABLE)</small></h5>
       </div>
-      <div class="state-list">  
-        <i class="fas fa-map-marker-alt pl-2 pr-2"></i>
-        <span class="pr-2">Location</span>
-        <input type="text" class="mr-2" style=" width: 100px; height: 25px; ">
-        <i class="fas fa-compass"></i>
-
-        <ul>
+      <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <ul class="category-menu mb-4"> 
+            <li> 
+            <i class="fas fa-map-marker-alt pl-3 pr-3"></i>
+            </li>
+            <li>
+            <span class="pr-2">Location</span>
+            </li>
+            <li>
+            <input type="text" class="mr-2" style=" width: 100px; height: 25px; border: 1px solid">
+            </li>
+            <li>
+            <i class="fas fa-compass"></i>
+            </li>
           <li>
-            <a href="#">Near me</a>
+            <a href="#"></a>
           </li>
           <li>
-            <a href="#">All India</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Near me</a>
           </li>
           <li>
-            <a href="#">state 1</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">All India</a>
           </li>
           <li>
-            <a href="#">state 2</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Andhra Pradesh</a>
           </li>
           <li>
-            <a href="#">state 3</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Assam</a>
           </li>
           <li>
-            <a href="#">state 4</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Bihar</a>
           </li>
           <li>
-            <a href="#">state 5</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Chhattisgarh</a>
           </li>
           <li>
-            <a href="#">state 6</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Goa</a>
           </li>
           <li>
-            <a href="#">state 7</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Gujarat</a>
           </li>
           <li>
-            <a href="#">state 8</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Haryana</a>
           </li>
           <li>
-            <a href="#">state 9</a>
+            <a href="#" style="text-align:center;vertical-align: middle; line-height: 45px;">Himachal Pradesh</a>
           </li>
         </ul>
+      </div>
+      </div>
       </div>
 
       <div class="row mt-4">  
@@ -338,7 +349,7 @@
           <div class="col position-relative">
             <div class="product-detail">
               <div class="title">{{j.brand}}</div>
-              <div class="sub-title mb-3">{{j.description}}</div>
+              <div class="sub-title mb-3">{{j.product_group}}</div>
               <div class="price">MRP: Rs {{j.price}}</div>
               <div class="text-mute">(Inclusive of all taxes)</div>
             </div>
