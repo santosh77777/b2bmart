@@ -13,7 +13,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav m-auto w-33">
         <li class="nav-item">
-          <a class="nav-link" href="certificate.html"><span class="critificate-bg">Apply For Unique xxxxxxxxx Certification</span></a>
+          <a class="nav-link" href="{% url 'certificate' %}"><span class="critificate-bg">Apply For Unique xxxxxxxxx Certification</span></a>
         </li>
         {% if request.user.account.business_type == "Seller" %}
         <li class="nav-item">
@@ -24,6 +24,16 @@
           <a class="nav-link" href="{% url 'dashboard:buyer_dashboard' %}">Buyer</a>
         </li>
         {% endif %}
+
+        {% if not request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'dashboard:seller_dashboard' %}">Seller</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'dashboard:buyer_dashboard' %}">Buyer</a>
+        </li>
+        {% endif %}
+
         <li class="nav-item">
           <a class="nav-link" href="{% url 'help' %}">Help</a>
         </li>
@@ -46,19 +56,19 @@
         </li>
         {% endif %}
         <li class="nav-item track-order">
-          <a class="nav-link" href="ordertrack.html">
+          <a class="nav-link" href="{% url 'order_track' %}">
             <img src="{% static 'images/trackorder.png' %}" alt="">
             <span>Track Order</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link cart" href="cart.html">
+          <a class="nav-link cart" href="{% url 'cart' %}">
             <img src="{% static 'images/cart.png' %}" alt="">
             <span>My Cart</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link pr-0" href="advertise.html">
+          <a class="nav-link pr-0" href="{% url 'advertise' %}">
             <img src="{% static 'images/advertizment.png' %}" alt="">
             <span>Advertizment with us</span>
           </a>

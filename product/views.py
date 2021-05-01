@@ -26,17 +26,7 @@ def HomeView(request):
         print(id_brand)
         print(id_category)
     
-    object_list=Product.objects.filter(add_home=True)
-    user = User.objects.all()
-    user = User.objects.raw('SELECT * from accounts_account WHERE user_id')
-    
-    # object_list=Product.objects.filter(add_home=True).distinct()
-    object_list=Product.objects.raw('select distinct user_id, id from product_product where add_home=True')
-    for o in object_list:
-        print(o.user.id)
-    # data = list(object_list.values())
-    print(type(object_list))
-        # name.append(i.user)
+    object_list=Product.objects.filter(add_home=True).order_by("?")[:8]
     x = list(object_list)
     l = len(x)
     i=0
@@ -45,12 +35,11 @@ def HomeView(request):
         l=l+1
         i=i+1
 
-
     context={'brand_data':brand,
              'brand_id':brand_id,
              'x':x,  
              'cat_data':cat_data,
-             'cat_id':cat_id,                           
+             'cat_id':cat_id,                     
              }
     return render(request,'index.html',  context)
     
@@ -99,12 +88,15 @@ def category(request):
     cat_data=json.dumps(list(cat))
     cat_id=json.dumps(list(cat_id_obj))
 
-
+    product = Product.objects.filter().order_by("?")[:4]
+    product1 = Product.objects.filter().order_by("?")[:8]
     context={"search_product":queryset,
              'brand_data':brand,
              'brand_id':brand_id,
              'cat_data':cat_data,
-             'cat_id':cat_id
+             'cat_id':cat_id,
+             'product':product,
+             'product1':product1
             }
     return render(request,'category.html',context)
 
@@ -129,7 +121,7 @@ class WebsiteHomeList(ListView):
         
         # context['object_list'] = Product.objects.filter(user=user)
         context['object_list'] = Product.objects.filter(user=user, arrange=True)
-        context['all_object_list'] = Product.objects.filter(user=user, arrange=True)
+        context['all_object_list'] = Product.objects.filter(user=user)
         context['seller_company'] = SellerCompany.objects.filter(user=user)
         context['business_profile'] = BusinessProfile.objects.filter(user=user)
         return context

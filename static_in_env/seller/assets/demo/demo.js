@@ -493,7 +493,7 @@ $('#add_product').validate({
     Product_name:{
       required:true,
       minlength:2,
-      maxlength:36,
+      maxlength:20,
     },
     
     price:{
