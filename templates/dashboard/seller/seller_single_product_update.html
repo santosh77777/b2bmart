@@ -16,6 +16,7 @@
           </button>
                     <div class="collapse navbar-collapse justify-content-end">
                         <form class="navbar-form">
+
                             <div class="input-group no-border">
                                 <input type="text" value="" class="form-control" placeholder="Search...">
                                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
@@ -80,9 +81,214 @@
                                 <div class="card-body">
 
                                     <form action="" method="POST">
-                                        {% csrf_token %}
-                                        {{ form.as_p }}
-                                         
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group" >
+                                                <label for="product_name" class="bmd-label-floating">Product Name</label>
+                                                    {{form.name}}
+                                                </div>
+                                            </div>
+                                             <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label class="bmd-label-floating" >Color</label>
+                                                    {{form.color}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label class="bmd-label-floating" >Price</label>
+                                                    {{form.price}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label class="bmd-label-floating" >Unit Type</label>
+                                                    {{form.unit_type}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                 <div class="form-group">
+                                                 <label class="bmd-label-floating" >Minimum order quantity</label>
+                                                    {{form.min_order_quantity}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                            <div class="form-group">
+                                            <label class="bmd-label-floating" >Description</label>
+                                                    {{form.description}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                            <div class="tab-pane" id="specification">
+                                                <div class="form-group" style="margin-top:39px;">
+                                                        <label for="product_group" class="bmd-label-floating">Product Group</label>
+                                                        {{form.product_group}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="tab-pane" id="specification">
+                                                {% comment %} <div class="row"> {% endcomment %}
+                                                    <input type="text" style="visibility:hidden;" id="capacity" name="capacity">
+                                                    <div class="form-group">
+                                                    <span class="add">
+                                                
+                                                        <label for="product_group" class="bmd-label-floating">Capacity</label>
+                                                        <select class="form-control" onclick="javascript:yesnoCheck();" id="yesCheck" name="cap">
+                                                        <option value="">Select Option</option>
+                                                        <option value="200ml" >200 ml</option>
+                                                        <option value="500ml" >500 ml</option>
+                                                        <option value="1 L" >1 L</option>
+                                                        <option value="other" >other</option>
+                                                         
+                                                        </select>
+                                                    </div>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-6">
+                                                <div class="tab-pane" id="specification">
+                                                {% comment %} <div class="row"> {% endcomment %}
+                                                    <input type="text" style="visibility:hidden;" id="brand" name="brand">
+                                                    <div class="form-group">
+                                                  
+                                                    <span class="add1">
+
+                                                        <label for="brand" class="bmd-label-floating">Brand</label>
+                                                        <select class="form-control" onclick="javascript:yesnoCheck1();" id="yesCheck1" name="brandd">
+                                                        <option value="">Select Option</option>
+                                                        <option value="prestige" >Prestige</option>
+                                                        <option value="padmini" >Padmini</option>
+                                                        <option value="other" >other</option>
+                                                         
+                                                        </select>
+                                                    </div>
+                                                
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="tab-pane" id="specification">
+                                                {% comment %} <div class="row"> {% endcomment %}
+                                                    <input type="text" style="visibility:hidden;" id="material" name="material">
+                                                    <div class="form-group">
+                                                    <span class="add2">
+                                                
+                                                        <label for="product_group" class="bmd-label-floating">Material</label>
+                                                        <select class="form-control" onclick="javascript:yesnoCheck2();" id="yesCheck2" name="mat">
+                                                        <option value="">Select Option</option>
+                                                        <option value="polycarbonate" >Polycarbonate</option>
+                                                        <option value="pet" >PET</option>
+                                                        
+                                                        <option value="other" >other</option>
+                                                         
+                                                        </select>
+                                                    </div>
+                                                
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Packing Details</label>
+                                                    {{form.packing_details}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Size</label>
+                                                    {{form.size}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Product Code</label>
+                                                    {{form.product_code}}
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-6">
+                                            <div class="form-group">
+                                                    <label class="bmd-label-floating" >Product video URL</label>
+                                                    {{form.video_url}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Power</label>
+                                                    {{form.power}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Warranty</label>
+                                                    {{form.warranty}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Model No.</label>
+                                                    {{form.model_no}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Rating</label>
+                                                    {{form.rating}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Neck Size</label>
+                                                    {{form.neck_size}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating" >Closure Type</label>
+                                                    {{form.closure_type}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                                    
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                               
+                                                    <label for="image1">Product Image 1</label>
+                                                    {{form.image1}}
+                                                
+                                            </div>
+                                            <div class="col-md-4">
+                                               
+                                                    <label for="image2" >Product Image 2</label>
+                                                   {{form.image2}}
+                                               
+                                            </div>
+                                            <div class="col-md-4">
+                                               
+                                                    <label for="image3" >Product Image 3</label>
+                                                    {{form.image3}}
+                                                
+                                            </div>
+                                        </div>
                                         <input class="btn btn-primary" type="submit" name="Update Information">
                                     </form>
 
@@ -93,5 +299,62 @@
                 </div>
             </div>
         </div>
+        <script>
+        function yesnoCheck() {
+    var tem=""
+    if (document.getElementById('yesCheck').value == "other") {
+        $(".add").empty();
+        tem = `<label class="bmd-label-floating" >Capacity</label>
+        <input type="text" class="form-control" id="capacity" name="capacity" placeholder="Capacity">`
+        $('.add').append(tem)
+    }
+    else if (document.getElementById('yesCheck').value == "200ml") {
+        document.getElementById('capacity').value = "200 ml"
+        console.log(document.getElementById('capacity').value)
+    }
+    else if (document.getElementById('yesCheck').value == "500ml") {
+        document.getElementById('capacity').value = "500 ml"
+    }
+    else if (document.getElementById('yesCheck').value == "1L") {
+        document.getElementById('capacity').value = "1 L "
+    } 
+}
+function yesnoCheck1() {     
+     //brand
+    var tem1=""
+    if (document.getElementById('yesCheck1').value == "other") {
+        $(".add1").empty();
+        tem1 = `<label class="bmd-label-floating" >Brand</label>
+        <input type="text" class="form-control" id="brand" name="brand" placeholder="Brand">`
+        $('.add1').append(tem1)
+    }
+    else if (document.getElementById('yesCheck1').value == "prestige") {
+        document.getElementById('brand').value = "Prestige"
+    }
+    else if (document.getElementById('yesCheck1').value == "padmini") {
+        document.getElementById('brand').value = "Padmini"
+    }
+}
+
+function yesnoCheck2() {
+    //material
+    var tem2 = ""
+   if (document.getElementById('yesCheck2').value == "other") {
+        $(".add2").empty();
+        tem2 = `<label class="bmd-label-floating" >Material</label>
+        <input type="text" class="form-control"  id="material" name="material" placeholder="Material">`
+        $('.add2').append(tem2)
+    }
+    else if (document.getElementById('yesCheck2').value == "polycarbonate") {
+        console.log(document.getElementById('yesCheck2').value)
+        document.getElementById('material').value = "Polycarbonate"
+        
+    }
+    else if (document.getElementById('yesCheck2').value == "pet") {
+        document.getElementById('material').value = "PET"
+    }
+
+}
+</script>
         {% endblock content %}
           

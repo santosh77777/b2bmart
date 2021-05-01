@@ -53,12 +53,11 @@ urlpatterns = [
     path('buyer-favourite/',views.BuyerFavouriteView.as_view(), name="buyer_favourite"),
     path('buyer-downloads/',views.BuyerDownloadsView.as_view(), name="buyer_downloads"),
     path('buyer-share/',views.BuyerShareView.as_view(), name="buyer_share"),
-
     path('share-detail/',views.ShareDetailView.as_view(), name="share_detail"),
     path('category/', views.category, name="category")
 
 
-   
+
 ]
 
 

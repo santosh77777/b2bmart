@@ -16,22 +16,24 @@ return this.optional(element) || /^[a-z]+$/i.test(value);
 }, "Letters only please"); 
 
 
-  $.validator.addMethod("lettersonly", function(value, element) {
-    return this.optional(element) || /^[a-z]+$/i.test(value);
-  }, "Letters only please"); 
+$.validator.addMethod("lettersonly", function(value, element) {
+return this.optional(element) || /^[a-z]+$/i.test(value);
+}, "Letters only please"); 
 
-
+$.validator.addMethod("mobileno", function(value, element) {
+    return this.optional(element) || /^(?:(?:\+|0{0,2})91(\s*|[\-])?|[0]?)?([6789]\d{2}([ -]?)\d{3}([ -]?)\d{4})$/i.test(value);
+}, "Invalid phone number"); 
+                                    
 $("#register").validate({
     rules:{
         first_name:{
             required:true,
             minlength:2,
-            // nowhitespace: true,
             lettersonly: true,
         },
         last_name:{
             required:true,
-            nowhitespace: true,
+            minlength:2,
             lettersonly: true,
         },
         email:{
@@ -39,10 +41,8 @@ $("#register").validate({
             checkemail:true,
         },
         mobile:{
+            mobileno:true,
             required:true,
-            digits: true,
-            minlength:10,
-            maxlength:10,
         },
         state:{
             required:true,
@@ -78,9 +78,7 @@ $("#register").validate({
         password2:{
             equalTo: 'password and confirm password must be same',
         },
-        first_name:{
-            nowhitespace:'white spaces not allowed',
-        },
+        
         pincode:{
             minlength:'Invalid pincode',
             maxlength:'Invalid pincode',
