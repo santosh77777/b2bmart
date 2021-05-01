@@ -278,8 +278,9 @@ def SellerBulkPriceUpdateView(request, pk):
 def SellerSingleProductUpdateView(request, pk):
         product = Product.objects.get(id=pk)
         form = SellerSingleProductViewForm(instance=product)
-        if request.method == 'POST':
+        if request.method == 'POST':            
             form = SellerSingleProductViewForm(request.POST, request.FILES, instance=product)
+            print("hiii",product)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Your price updated successfully')
@@ -295,8 +296,7 @@ def sellerDeleteProduct(request, pk):
     context ={} 
     # fetch the object related to passed id 
     obj = get_object_or_404(Product, id = pk) 
-  
-  
+
     if request.method =="POST": 
         # delete object 
         obj.delete() 

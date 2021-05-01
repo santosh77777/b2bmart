@@ -34,21 +34,16 @@ def HomeView(request):
         global id_category
         id_brand=request.POST.getlist('brand[]')
         id_category=request.POST.getlist('cat[]')
-        print(id_brand)
-        print(id_category)
+        val = request.POST.get('alt')
+        print(val)
+      
     
     object_list=Product.objects.filter(add_home=True)
     user = User.objects.all()
     user = User.objects.raw('SELECT * from accounts_account WHERE user_id')
-    
-    # object_list=Product.objects.filter(add_home=True).distinct()
+  
     object_list=Product.objects.raw('select distinct user_id, id from product_product where add_home=True')
-    for o in object_list:
-        print(o.user.id)
-    # data = list(object_list.values())
-    print(type(object_list))
-        # name.append(i.user)
-    x = list(object_list)
+    x = list(object_list) 
     l = len(x)
     i=0
     while(l%4!=0):
