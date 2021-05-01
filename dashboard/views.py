@@ -698,4 +698,4 @@ def category(request):
                'exhaust_hoods': exhaust_hoods, 'sandwich_makers': sandwich_makers, 'toaster': toaster, 'deep_fryers': deep_fryers, 'dough_blenders':dough_blenders,
                'coffee_makers': coffee_makers, 'electric_iron': electric_iron, 'vaccum_cleaner': vaccum_cleaner, 'air_purifiers': air_purifiers,
                'trimmers_and_savers': trimmers_and_savers, 'hair_drier': hair_drier, 'category': category  }
-    return render(request, 'categories.html', context)
+    return render(request, 'kitchen-stoves.html', context)
