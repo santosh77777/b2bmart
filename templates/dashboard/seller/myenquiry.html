@@ -6,7 +6,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">User Profile</a>
+            <a class="navbar-brand" href="javascript:;">Customer Enquiries</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -60,7 +60,7 @@
                   <a class="dropdown-item" href="#">Profile</a>
                   <a class="dropdown-item" href="#">Settings</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Log out</a>
+                  <a class="dropdown-item" href="">Log out</a>
                 </div>
               </li>
             </ul>
@@ -74,93 +74,32 @@
             <div class="col-md-8">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Edit Profile</h4>
-                  <p class="card-category">Complete your profile</p>
+                  <h4 class="card-title">Customer Enquiries</h4>
+                  <p class="card-category">See Customer Enquiries</p>
                 </div>
                 <div class="card-body">
-                  <form>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Company</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Company</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Username</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Email address</label>
-                          <input type="email" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Fist Name</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Last Name</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Adress</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">City</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Country</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Postal Code</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label>About Me</label>
-                          <div class="form-group">
-                            <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                            <textarea class="form-control" rows="5"></textarea>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
-                    <div class="clearfix"></div>
-                  </form>
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">Business Type</th>
+                        <th scope="col">Message</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for det in sharedetail %}
+                      <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ det.name}}</td>
+                        <td>{{ det.mobile}}</td>
+                        <td>{{ det.business_type}}</td>
+                        <td>{{ det.message}}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -168,14 +107,14 @@
               <div class="card card-profile">
                 <div class="card-avatar">
                   <a href="javascript:;">
-                    <img class="img" src="../images/cooker.jpg" />
+                    <img class="img" src="{% static 'images/cooker.jpg' %}" />
                   </a>
                 </div>
                 <div class="card-body">
-                  <h6 class="card-category text-gray">Company Name</h6>
+                  <h6 class="card-category text-gray">{{request.user.businessprofile.company_name}}</h6>
                   <h4 class="card-title">XXXX Mart</h4>
                   <p class="card-description">
-                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                    {{request.user.sellercompany.about_seller}}.
                   </p>
                   <!-- <a href="javascript:;" class="btn btn-primary btn-round">Follow</a> -->
                 </div>

@@ -8,6 +8,8 @@ from accounts.models import *
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import json
+from django.views import View
+
 id_brand=[]
 id_category=[]
 def HomeView(request):
@@ -138,3 +140,58 @@ class WebsiteHomeList(ListView):
         return context
         
 
+class SearchView(View):
+    def get(self, *args ,**kwargs):
+        category = self.request.GET.get("category")
+        if category == "Kitchen Stoves":
+            product = Product.objects.filter(product_group=category)
+        if category == "Mixer Grinder":
+            product = Product.objects.filter(product_group=category)
+        if category == "Rice Cookers":
+            product = Product.objects.filter(product_group=category)
+        if category == "Food Processors":
+            product = Product.objects.filter(product_group=category)
+        if category == "Electric Mixers":
+            product = Product.objects.filter(product_group=category)
+        if category == "Juicers":
+            product = Product.objects.filter(product_group=category)
+        if category == "Blenders":
+            product = Product.objects.filter(product_group=category)
+        if category == "Water Heaters":
+            product = Product.objects.filter(product_group=category)
+        if category == "Water Filters":
+            product = Product.objects.filter(product_group=category)
+        if category == "Induction Cookers":
+            product = Product.objects.filter(product_group=category)
+        if category == "Exhaust Hoods":
+            product = Product.objects.filter(product_group=category)
+        if category == "Sandwich Makers":
+            product = Product.objects.filter(product_group=category)
+        if category == "Toaster":
+            product = Product.objects.filter(product_group=category)
+        if category == "Deep Fryers":
+            product = Product.objects.filter(product_group=category)
+        if category == "Dough Blenders":
+            product = Product.objects.filter(product_group=category)
+        if category == "Coffee Makers":
+            product = Product.objects.filter(product_group=category)
+        if category == "Electric Iron":
+            product = Product.objects.filter(product_group=category)
+        if category == "Vaccum Cleaner":
+            product = Product.objects.filter(product_group=category)
+        if category == "Air Purifiers":
+            product = Product.objects.filter(product_group=category)
+        if category == "Hair Dryer":
+            product = Product.objects.filter(product_group=category)
+        if category == "Trimmers & Savers":
+            product = Product.objects.filter(product_group=category)
+        context = {'product':product
+        }
+        if len(product)<1:
+            messages.warning(self.request, product," not found")
+            return redirect("/")
+        if len(product)>1:
+            length = len(product)
+            # messages.success(self.request, length, product " found")
+        return render(self.request, 'category.html', context)
+            

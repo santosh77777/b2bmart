@@ -88,7 +88,6 @@
                                             <th scope="col">Brand</th>
                                             <th scope="col">Color</th>
                                             <th scope="col">Warranty</th>
-                                            <th scope="col">Availability</th>
                                             <th scope="col">Arrange to my site</th>
                                             <th scope="col">Add to home</th>
                                           </tr>
@@ -101,7 +100,6 @@
                                             <td>{{ i.price }}</td>
                                             <td>{{ i.brand }}</td>
                                             <td>{{ i.color }}</td>
-                                            <td>{{ i.warranty }}</td>
                                             <td>{{ i.warranty }}</td>
                                             <td>{% if i.arrange %}<a href="{% url 'dashboard:seller_unarrange_product' i.id %}">{{ i.arrange }}</a>{% else %}<a href="{% url 'dashboard:seller_arrange_product' i.id %}">{{ i.arrange }}</a>{% endif %}</td>
                                             <td>{% if i.add_home %}<a href="{% url 'dashboard:seller_remove_home_product' i.id %}">{{ i.add_home }}</a>{% else %}<a href="{% url 'dashboard:seller_add_home_product' i.id %}">{{ i.add_home }}</a>{% endif %}</td>

@@ -86,6 +86,10 @@
                                             <th scope="col">Name</th>
                                             <th scope="col">Order Quantity</th>
                                             <th scope="col">Price</th>
+                                            <th scope="col">Model No</th>
+                                            <th scope="col">Product Code</th>
+                                            <th scope="col">Warranty</th>
+                                            <th class="text-center" scope="col" colspan="2">Action</th>
                                           </tr>
                                         </thead>
                                         <tbody>
@@ -95,8 +99,11 @@
                                             <td>{{product.name }}</td>
                                             <td>{{product.min_order_quantity}}</td>
                                             <td>{{product.price}}</td>
-                                            <td><a class="btn btn-sm btn-info" href="{% url 'dashboard:seller_single_product_update' product.id %}">Update</a></td>
-                                            <td><a class="btn btn-sm btn-danger" href="{% url 'dashboard:seller_delete_product' product.id %}">Delete</a></td>
+                                            <td>{{product.model_no}}</td>
+                                            <td>{{product.product_code}}</td>
+                                            <td>{{product.warranty}}</td>
+                                            <td class="text-center"><a class="btn btn-sm btn-info" href="{% url 'dashboard:seller_single_product_update' product.id %}">Update</a></td>
+                                            <td class="text-center"><a class="btn btn-sm btn-danger" href="{% url 'dashboard:seller_delete_product' product.id %}">Delete</a></td>
                                           </tr>
                                         {% endfor %}
                                         </tbody>
