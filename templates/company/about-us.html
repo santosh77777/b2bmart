@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  
+    <div class="page-banner">
+        <h1 class="display-5">About us</h1>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-3 bg-primary pl-0 pr-0">
+          <ul class="nav flex-column pt-3">
+              <li class="nav-item"><a class="nav-link active" href="{% url 'about_us' %}">XXX Mart</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'about_management' %}">Management Team</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'about_media_center' %}">Media Center</a></li>
+              <!-- <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li> -->
+              <li class="nav-item"><a class="nav-link" href="{% url 'certificate' %}">XXXXXXXXX Certificate</a></li>
+              <!-- <li class="nav-item"><a class="nav-link" href="company.html">E-Shoppe Development</a></li> -->
+              <li class="nav-item"><a class="nav-link" href="{% url 'advertise' %}">Adverties Your Brand</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'privacy_policy' %}">privacy policy</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'term_condition' %}">terms & conditons</a></li>
+              <!-- <li class="nav-item"><a class="nav-link" href="seller/user.html">edit Profile</a></li> -->
+            </li>
+          </ul>
+        </div>
+        <div class="col-12 col-sm-9">
+          <p class="lead">xxxxxMART is India’s largest online B2B marketplace, connecting buyers with suppliers. With 60% market share of the online B2B Classified space in India, the channel focuses on providing a platform to Small &amp; Medium Enterprises (SMEs), Large
+              Enterprises as well as individuals. Founded in 1999, the company’s mission is ‘to make doing business easy’.</p>
+          <div class="page-cta">
+              119 Million+ Buyers | 6.4 Million+ Suppliers | 71 Million+ Products &amp; Services
+          </div>
+          <h3>xxxxxxMART for Buyers</h3>
+          <ul class="ulist mb-4">
+              <li>Convenience of connecting with sellers anytime, anywhere</li>
+              <li>rgba($primary1, .7)Convenience of connecting with sellers anytime, anywhere</li>
+              <li>Convenience of connecting with sellers anytime, anywhere</li>
+              <li>rgba($primary1, .7)Convenience of connecting with sellers anytime, anywhere</li>
+              <li>Convenience of connecting with sellers anytime, anywhere</li>
+              <li>rgba($primary1, .7)Convenience of connecting with sellers anytime, anywhere</li>
+          </ul>
+          <p>xxxxxMART is India’s largest online B2B marketplace, connecting buyers with suppliers. With 60% market share of the online B2B Classified space in India, the channel focuses on providing a platform to Small &amp; Medium Enterprises (SMEs), Large
+              Enterprises as well as individuals. Founded in 1999, the company’s mission is ‘to make doing business easy’.</p>
+          <ul class="ulist mb-4">
+              <li><strong>When Your Business Succeeds, We Succeed!</strong> With this tagline, our mission is to ensure safe and secure online business for suppliers as well as buyers. </li>
+              <li>Manufacturers, Exporters, Suppliers, Importers, Wholesalers, Traders and Distributors, Trade Promotional Bodies and Organizations Trade Show Organizers, Multinational Banks, SME's & MSME's</li>
+              <li>With over 20 years of experience in the B2B industry, tradeindia is now delivering 360&deg; digital marketing solutions for all the online businesses.</li>
+              <li>Tradeindia has largest and ever expanding database of 56,32,759 Registered Users. Motivation to deliver the best solutions to customers is the catalyst for its growth and innovation.</li>
+              <li>With cutting edge promotional technology, incisive business insights and technological capabilities, we drive online business for suppliers and buyers, alike</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    {% endblock content %}

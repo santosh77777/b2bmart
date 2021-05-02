@@ -123,6 +123,7 @@ BUSINESS_TYPE_CHOICES = (
         ('Exporter', 'Exporter'),
 )
 class ShareDetail(models.Model):
+    seller = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=100)
     mobile = models.IntegerField()

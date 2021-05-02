@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-3 bg-primary pl-0 pr-0 mt-4">
+          <ul class="nav flex-column pt-3">
+            <li class="nav-item"><a class="nav-link" href="{% url 'about_us' %}">XXX Mart</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'about_management' %}">Management Team</a></li>
+            <li class="nav-item"><a class="nav-link active" href="{% url 'about_media_center' %}">Media Center</a></li>
+            <!-- <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li> -->
+            <li class="nav-item"><a class="nav-link" href="{% url 'certificate' %}">XXXXXXXXX Certificate</a></li>
+            <!-- <li class="nav-item"><a class="nav-link" href="company.html">E-Shoppe Development</a></li> -->
+            <li class="nav-item"><a class="nav-link" href="{% url 'advertise' %}">Adverties Your Brand</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'privacy_policy' %}">privacy policy</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'term_condition' %}">terms & conditons</a></li>
+            <!-- <li class="nav-item"><a class="nav-link" href="seller/user.html">edit Profile</a></li> -->
+            </li>
+          </ul>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="card mt-4">
+            <div class="card-header card-header-primary">
+              <h4>Get the <b>TOP POSITION,</b> place your AD with XXXX</h4>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="h6">Company</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="h6">Email address</label>
+                      <input type="email" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="h6">Fist Name</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="h6">Last Name</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="h6">Mobile No</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="h6">Landline Number</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="category" class="h6">category</label>
+                      <select class="form-control" id="category">
+                        <option>Kitchen stoves</option>
+                        <option>Mixer Grinder</option>
+                        <option>Rice cookers</option>
+                        <option>Food processors</option>
+                        <option>Electric mixers</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="category" class="h6">Add Impressions</label>
+                      <select class="form-control" id="category">
+                        <option>1000-5000</option>
+                        <option>5000-10000</option>
+                        <option>10000-15000</option>
+                        <option>Other Option</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Share with us</label>
+                      <div class="form-group">
+                        <!-- <label class="h6"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label> -->
+                        <textarea class="form-control" rows="3"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+{% endblock content %}

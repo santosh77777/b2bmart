@@ -18,6 +18,9 @@ from product.forms import ProductForm
 from product.models import Product
 from accounts.models import ProfilePicture
 from django.http import HttpResponseRedirect
+from django.conf import settings
+from django.core.mail import send_mail
+from b2bmart.settings import EMAIL_HOST_USER
 
 class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
@@ -160,8 +163,8 @@ def SellerBusinessProfileView(request):
             form.save()
             messages.success(request, 'Your profile was updated successfully')
 
-
-    context = {'form':form, 'seller': seller }
+    sellers = SellerProfile.objects.get(user=request.user)
+    context = {'form':form, 'seller': seller,'sellers':sellers }
     return render(request, 'dashboard/seller/business_profile.html', context)
 
 class SellerBankView(LoginRequiredMixin, UserPassesTestMixin, View):
@@ -370,7 +373,8 @@ class SellerMyEnquiryView(LoginRequiredMixin, UserPassesTestMixin, View):
         return is_seller(self.request.user)
 
     def get(self,request, *args, **kwargs):
-        return render(request, 'dashboard/seller/myenquiry.html')
+        sharedetail = ShareDetail.objects.filter(seller=self.request.user)
+        return render(request, 'dashboard/seller/myenquiry.html', {'sharedetail':sharedetail})
 
 class SellerSettingsView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
@@ -404,8 +408,20 @@ class SellerProductDetailView(DetailView):
     model = Product
     template_name = 'dashboard/productdetail.html'
 
-    def get_object(self, queryset=None):
-        return Product.objects.get(pk=self.kwargs.get("pk"))
+    # def get_object(self, queryset=None):
+    #     return Product.objects.get(pk=self.kwargs.get("pk"))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['object'] = Product.objects.get(pk=self.kwargs.get("pk"))
+        # user = get_object_or_404(User, account__slug=self.kwargs.get("slug"))
+        # context['object_list'] = Product.objects.filter(user=user)
+        context['object_list'] = Product.objects.filter().order_by("?")[:4]
+        context['object_lists'] = Product.objects.filter().order_by("?")[:8]
+        
+        return context
+
+        
 
     def post(self,request, *args, **kwargs):
         if request.method == "POST":
@@ -643,11 +659,11 @@ def sendSimpleEmail(request,emailto):
    res = send_mail("hello paul", "comment tu vas?", "paul@polo.com", [emailto])
    return HttpResponse('%s'%res)
 
-from django.conf import settings
-from django.core.mail import send_mail
-from b2bmart.settings import EMAIL_HOST_USER
+
 class ShareDetailView(View):
     def post(self, *args, **kwargs):
+        user = get_object_or_404(User, account__slug=self.kwargs.get("slug"))
+        print("nameeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", user)
         name = self.request.POST['name']
         email = self.request.POST['email']
         mobile = self.request.POST['mobile']
@@ -662,9 +678,9 @@ class ShareDetailView(View):
             recepient = email
             send_mail(subject, message, settings.EMAIL_HOST_USER, [recepient])
 
-            share_detail = ShareDetail(name=name, email=email, mobile=mobile, business_type=business_type, message=message, send_copy=True)
+            share_detail = ShareDetail(seller=user, name=name, email=email, mobile=mobile, business_type=business_type, message=message, send_copy=True)
             share_detail.save()
         else:
-            share_detail = ShareDetail(name=name, email=email, mobile=mobile, business_type=business_type, message=message)
+            share_detail = ShareDetail(seller=user, name=name, email=email, mobile=mobile, business_type=business_type, message=message)
             share_detail.save()
         return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))

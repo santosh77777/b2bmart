@@ -14,37 +14,37 @@
       <div class="container">
         <div class="row">
           <div class="col-12 col-sm-6 col-lg-2">
-            <a href="index.html">
+            <a href="{% url 'product:home_list' %}">
               <img src="{% static 'images/footerLogo.png' %}" alt="">
             </a>
           </div>
           <div class="col-12 col-sm-6 col-lg-2">
             <ul>
               <li class="head">About Us</li>
-              <li><a href="about-us.html">XXX Mart</a></li>
-              <li><a href="management.html">Management Team</a></li>
-              <li><a href="media-center.html">Media Center</a></li>
-              <li><a href="workWithUs.html">Work With Us</a></li>
-              <li><a href="contact-us.html">Contact Us</a></li>
+              <li><a href="{% url 'about_us' %}">XXX Mart</a></li>
+              <li><a href="{% url 'about_management' %}">Management Team</a></li>
+              <li><a href="{% url 'about_media_center' %}">Media Center</a></li>
+              <li><a href="{% url 'about_work_with_us' %}">Work With Us</a></li>
+              <li><a href="{% url 'about_contact_us' %}">Contact Us</a></li>
             </ul>
           </div>
           <div class="col-12 col-sm-6 col-lg-3">
             <ul>
               <li class="head">Customer Services</li>
-              <li><a href="help.html">Help Center</a></li>
-              <li><a href="privacy-policy.html">privacy policy</a></li>
-              <li><a href="trading-policy.html">Trading policy</a></li>
-              <li><a href="term-condition.html">terms & conditons</a></li>
-              <li><a href="seller/user.html">edit Profile</a></li>
+              <li><a href="{% url 'help_center' %}">Help Center</a></li>
+              <li><a href="{% url 'privacy_policy' %}">privacy policy</a></li>
+              <li><a href="{% url 'trading_policy' %}">Trading policy</a></li>
+              <li><a href="{% url 'term_condition' %}">terms & conditons</a></li>
+              <!-- <li><a href="{% url 'edit_profile' %}">edit Profile</a></li> -->
             </ul>
           </div>
           <div class="col-12 col-sm-6 col-lg-3">
             <ul>
               <li class="head">E-Trade Service</li>
-              <li><a href="certificate.html">XXXXXXXXX Certificate</a></li>
+              <li><a href="{% url 'certificate' %}">XXXXXXXXX Certificate</a></li>
               {% comment %}<li><a href="{% url 'dashboard:seller_company' %}">E-Shoppe Development</a></li>{% endcomment %}
-              <li><a href="media-center.html">Media Center</a></li>
-              <li><a href="advertise.html">Adverties Your Brand</a></li>
+              <li><a href="{% url 'media_center' %}">Media Center</a></li>
+              <li><a href="{% url 'advertise' %}">Adverties Your Brand</a></li>
               <!-- <li><a href="#">Transact To Trade</a></li> -->
             </ul>
           </div>
