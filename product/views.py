@@ -8,6 +8,7 @@ from accounts.models import *
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import json
+from django.contrib import messages
 from django.views import View
 from django.db.models import Q
 from django.core import serializers
@@ -52,6 +53,12 @@ def HomeView(request):
 
     if request.method =='POST' and request.POST['action']=='send_var':
         nav=request.POST.get('alt')
+        
+        try:
+            nav_id=Product.objects.get(product_group=nav)
+        except:
+            messages.success(request,"Sorry this Product group is currently unavailable")
+            return redirect('')
         nav_id=Product.objects.get(product_group=nav)
         id_category.clear()
         id_brand.clear()
