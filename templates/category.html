@@ -250,7 +250,7 @@
                         </div>
                         <div class="name">{{j.name}}</div>
                         <div class="type">{{j.brand}}</div>
-                        <a href="productdetail.html" class="btn btn-primary btn-block">Read More</a>
+                        <a href="{% url 'dashboard:seller_product_detail' j.pk %}" class="btn btn-primary btn-block">Read More</a>
                     </div>
                   </div>
                   {% endfor %}

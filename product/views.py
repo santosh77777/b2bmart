@@ -8,13 +8,24 @@ from accounts.models import *
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import json
+from django.views import View
+from django.db.models import Q
+from django.core import serializers
+from django.http import JsonResponse
+
 id_brand=[]
 id_category=[]
+
 def HomeView(request):
+    if request.method =='POST' and request.POST['action']=='send_var':
+        loc=request.POST.get('alt')
+        print(loc)
+        nav_prd=Product.objects.filter(name=loc)
     brand=[]
     brand_id=[]
     cat=[]
     cat_id_obj=[]
+    prd_name=[]
     prd=Product.objects.all()
     for i in prd:
         if(i.brand not in brand):
@@ -23,52 +34,60 @@ def HomeView(request):
         if(i.product_group not in cat):
             cat.append(i.product_group)
             cat_id_obj.append(i.id)
+        if(i.name not in prd_name):
+            prd_name.append(i.name)
     
     brand=json.dumps(list(brand))
     brand_id=json.dumps(list(brand_id))
     cat_data=json.dumps(list(cat))
     cat_id=json.dumps(list(cat_id_obj))
+    prd_name=json.dumps(list(prd_name))
 
-    if request.method == 'POST' and request.POST['action'] == 'topslider':
+    if request.method =='POST' and request.POST['action']=='list':
         global id_brand
         global id_category
         id_brand=request.POST.getlist('brand[]')
         id_category=request.POST.getlist('cat[]')
-      
-    
-    object_list=Product.objects.filter(add_home=True)
-    user = User.objects.all()
-    user = User.objects.raw('SELECT * from accounts_account WHERE user_id')
-  
-    object_list=Product.objects.raw('select distinct user_id, id from product_product where add_home=True')
-    x = list(object_list) 
+
+
+    if request.method =='POST' and request.POST['action']=='send_var':
+        nav=request.POST.get('alt')
+        nav_id=Product.objects.get(product_group=nav)
+        id_category.clear()
+        id_brand.clear()
+        nav_id="category"+str(nav_id)
+        id_category.append(nav_id)
+
+
+    object_list=Product.objects.filter(add_home=True).order_by("?")[:8]
+    x = list(object_list)
     l = len(x)
     i=0
     while(l%4!=0):
         x.append(x[i])
         l=l+1
         i=i+1
+    print(x)
 
+
+    if request.method =='POST' and request.POST['action']=='location':
+        loc=request.POST.get('loc')
+        data=Product.objects.filter(Q(brand=loc) | Q(product_group=loc) | Q(name=loc))
+
+        x=serializers.serialize('json',list(data))
+        context={
+            'loc_data':x                   
+            }
+        return JsonResponse(context)
 
     context={'brand_data':brand,
              'brand_id':brand_id,
              'x':x,  
              'cat_data':cat_data,
-             'cat_id':cat_id,                     
+             'cat_id':cat_id, 
+             'prd_name':prd_name                    
              }
-    return render(request,'index.html',  context)
-
-query=[]
-def homescroll(request):
-    if request.method == 'POST' and request.POST['action'] == 'topslider':
-        global query
-        query=[]
-        val = request.POST.get('alt')
-        product_detail=Product.objects.filter(product_group=val)
-        if not product_detail.exists():
-            query=[]
-        else:
-            query.append(product_detail)
+    return render(request,'index.html', context)
     
     return render(request,'category.html',context)
 
@@ -114,25 +133,17 @@ def category(request):
     brand_id=json.dumps(list(brand_id))
     cat_data=json.dumps(list(cat))
     cat_id=json.dumps(list(cat_id_obj))
-
-    if len(query)>0:
-        print("query")
-        context={"search_product":query,
-                'brand_data':brand,
-                'brand_id':brand_id,
-                'cat_data':cat_data,
-                'cat_id':cat_id
-                }
-        
-    else:
-        print("queryset")
-        context={"search_product":queryset,
-                'brand_data':brand,
-                'brand_id':brand_id,
-                'cat_data':cat_data,
-                'cat_id':cat_id
-                }
-    
+   
+    product = Product.objects.filter().order_by("?")[:4]
+    product1 = Product.objects.filter().order_by("?")[:8]
+    context={"search_product":queryset,
+             'brand_data':brand,
+             'brand_id':brand_id,
+             'cat_data':cat_data,
+             'cat_id':cat_id,
+             'product':product,
+             'product1':product1
+            }
     return render(request,'category.html',context)
 
 
@@ -160,9 +171,64 @@ class WebsiteHomeList(ListView):
         
         # context['object_list'] = Product.objects.filter(user=user)
         context['object_list'] = Product.objects.filter(user=user, arrange=True)
-        context['all_object_list'] = Product.objects.filter(user=user, arrange=True)
+        context['all_object_list'] = Product.objects.filter(user=user)
         context['seller_company'] = SellerCompany.objects.filter(user=user)
         context['business_profile'] = BusinessProfile.objects.filter(user=user)
         return context
         
 
+class SearchView(View):
+    def get(self, *args ,**kwargs):
+        category = self.request.GET.get("category")
+        if category == "Kitchen Stoves":
+            product = Product.objects.filter(product_group=category)
+        if category == "Mixer Grinder":
+            product = Product.objects.filter(product_group=category)
+        if category == "Rice Cookers":
+            product = Product.objects.filter(product_group=category)
+        if category == "Food Processors":
+            product = Product.objects.filter(product_group=category)
+        if category == "Electric Mixers":
+            product = Product.objects.filter(product_group=category)
+        if category == "Juicers":
+            product = Product.objects.filter(product_group=category)
+        if category == "Blenders":
+            product = Product.objects.filter(product_group=category)
+        if category == "Water Heaters":
+            product = Product.objects.filter(product_group=category)
+        if category == "Water Filters":
+            product = Product.objects.filter(product_group=category)
+        if category == "Induction Cookers":
+            product = Product.objects.filter(product_group=category)
+        if category == "Exhaust Hoods":
+            product = Product.objects.filter(product_group=category)
+        if category == "Sandwich Makers":
+            product = Product.objects.filter(product_group=category)
+        if category == "Toaster":
+            product = Product.objects.filter(product_group=category)
+        if category == "Deep Fryers":
+            product = Product.objects.filter(product_group=category)
+        if category == "Dough Blenders":
+            product = Product.objects.filter(product_group=category)
+        if category == "Coffee Makers":
+            product = Product.objects.filter(product_group=category)
+        if category == "Electric Iron":
+            product = Product.objects.filter(product_group=category)
+        if category == "Vaccum Cleaner":
+            product = Product.objects.filter(product_group=category)
+        if category == "Air Purifiers":
+            product = Product.objects.filter(product_group=category)
+        if category == "Hair Dryer":
+            product = Product.objects.filter(product_group=category)
+        if category == "Trimmers & Savers":
+            product = Product.objects.filter(product_group=category)
+        context = {'product':product
+        }
+        if len(product)<1:
+            messages.warning(self.request, product," not found")
+            return redirect("/")
+        if len(product)>1:
+            length = len(product)
+            # messages.success(self.request, length, product " found")
+        return render(self.request, 'category.html', context)
+            
