@@ -10,27 +10,27 @@
           {% comment %} <form method="POST" action=""> {% endcomment %}
             <li>
               <a>
-                <img src="{% static 'images/icons/kitchen-stoves.png' %}"  alt="Kitchen stoves category">
+                <img src="{% static 'images/icons/kitchen-stoves.png' %}"  alt="Kitchen_stoves">
               </a>
             </li>
             <li>
               <a >
-                <img src="{% static 'images/icons/mixer-grinder.png' %}" alt="Mixer Grinder category">
+                <img src="{% static 'images/icons/mixer-grinder.png' %}" alt="mixture_grinder">
               </a>
             </li>
             <li>
               <a>
-                <img src="{% static 'images/icons/rice-cookers.png' %}" alt="Rice cookers category">
+                <img src="{% static 'images/icons/rice-cookers.png' %}" alt="rice_cookers">
               </a>
             </li>
             <li>
               <a>
-                <img src="{% static 'images/icons/food-processors.png' %}" alt="Food processors category">
+                <img src="{% static 'images/icons/food-processors.png' %}" alt="food_processors">
               </a>
             </li>
             <li>
               <a>
-                <img src="{% static 'images/icons/electric-kettles.png' %}" alt="Electric kettles category">
+                <img src="{% static 'images/icons/electric-kettles.png' %}" alt="electric_mixers">
               </a>
             </li>
             <li>
@@ -40,87 +40,87 @@
             </li>
             <li>
               <a>
-                <img src="{% static 'images/icons/Juicers.png' %}" alt="Juicers category">
+                <img src="{% static 'images/icons/Juicers.png' %}" alt="Juicers">
               </a>
             </li>
             <li>
               <a>
-                <img src="{% static 'images/icons/blenders.png' %}" alt="Blenders category">
+                <img src="{% static 'images/icons/blenders.png' %}" alt="blenders">
               </a>
             </li>
             <li>
               <a >
-                <img src="{% static 'images/icons/water-heaters.png' %}" alt="Water heaters category">
+                <img src="{% static 'images/icons/water-heaters.png' %}" alt="water_heaters">
               </a>
             </li>
             <li>
               <a >
-                <img src="{% static 'images/icons/water-filters.png' %}" alt="Water filters category">
+                <img src="{% static 'images/icons/water-filters.png' %}" alt="water_filters">
               </a>
             </li>
             <li>
               <a >
-                <img src="{% static 'images/icons/induction-cookers.png' %}" alt="Induction cookers category">
+                <img src="{% static 'images/icons/induction-cookers.png' %}" alt="induction cookers">
               </a>
             </li>
             <li>
               <a>
-                <img src="{% static 'images/icons/exhaust-hoods.png' %}" alt="Exhaust hoods category">
+                <img src="{% static 'images/icons/exhaust-hoods.png' %}" alt="exhaust_hoods">
               </a>
             </li>
             <li>
               <a >
-                <img src="{% static 'images/icons/sandwich-makers.png' %}" alt="Sandwich makers category">
+                <img src="{% static 'images/icons/sandwich-makers.png' %}" alt="sandwich_makers">
               </a>
             </li>
             <li>
               <a >
-                <img src="{% static 'images/icons/toaster.png' %}" alt="Toaster category">
+                <img src="{% static 'images/icons/toaster.png' %}" alt="toaster">
               </a>
             </li>
             <li>
               <a >
-                <img src="{% static 'images/icons/deep-fryers.png' %}" alt="Deep fryers category">
+                <img src="{% static 'images/icons/deep-fryers.png' %}" alt="deep_fryers">
               </a>
             </li>
             <li>
               <a >
-                <img src="{% static 'images/icons/dough-blenders.png' %}" alt="Dough Blenders category">
+                <img src="{% static 'images/icons/dough-blenders.png' %}" alt="dough_blenders">
               </a>
             </li>
             <li>
               <a >
-                <img src="{% static 'images/icons/coffe-makers.png' %}" alt="Coffee makers category">
+                <img src="{% static 'images/icons/coffe-makers.png' %}" alt="coffee_makers">
               </a>
             </li>
             <li>
               <a >
-                <img src="{% static 'images/icons/electric-iron.png' %}" alt="Electric iron category">
+                <img src="{% static 'images/icons/electric-iron.png' %}" alt="electric_iron">
               </a>
             </li>
             <li>
               <a >
-                <img src="{% static 'images/icons/vaccum-cleaner.png' %}" alt="Vacuum cleaner category">
+                <img src="{% static 'images/icons/vaccum-cleaner.png' %}" alt="vaccum_cleaner">
               </a>
             </li>
             <li>
               <a >
-                <img src="{% static 'images/icons/air-purifers.png' %}" alt="Air Purifiers category">
+                <img src="{% static 'images/icons/air-purifers.png' %}" alt="air_purifiers">
               </a>
             </li>
-            <li>
+            {% comment %} <li>
               <a >
                 <img src="{% static 'images/icons/hair-dryer.png' %}" alt="Hair straightener category">
               </a>
-            </li>
+            </li> {% endcomment %}
             <li>
               <a >
-                <img src="{% static 'images/icons/trimmers-shavers.png' %}" alt="Trimmers & Shavers category">
+                <img src="{% static 'images/icons/trimmers-shavers.png' %}" alt="trimmers_&_savers">
               </a>
             </li>
             <li>
               <a >
-                <img src="{% static 'images/icons/hair-dryer.png' %}" alt="Hair Dryer category">
+                <img src="{% static 'images/icons/hair-dryer.png' %}" alt="hair_drier">
               </a>
             </li>
             <!-- <li class="ml-auto">
@@ -785,7 +785,7 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
     <script>
     {% comment %} document.getElementById('success').disabled = true; {% endcomment %}
-    var data={{brand_data|safe}};
+    var data=  {{brand_data|safe}} ;
     var data_id={{brand_id|safe}};
     var cat_data={{cat_data|safe}};
     var cat_id={{cat_id|safe}};
@@ -932,6 +932,7 @@
           url:'',
           data:{
             'cat[]':list_cat,
+            action: 'topslider',
             csrfmiddlewaretoken: '{{ csrf_token }}'
             }
         }).done(function() {
@@ -1073,6 +1074,7 @@ $('#sort_brand').click(function(e){
           type:'POST',
           url:'',
           data:{
+            action: 'topslider',
             'brand[]':list,
             csrfmiddlewaretoken: '{{ csrf_token }}'
             }
@@ -1106,18 +1108,21 @@ $('#sort_brand').click(function(e){
        }
    
 $(document).ready(function() {
-    $('img').click(function () {
+  $('img').click(function () {
         var alt = $(this).attr("alt")
         console.log(alt);
         $.ajax({
           type:'POST',
-          url:'',
+          url:'{% url "product:homescroll" %}',
           data:{
             'alt':alt,
+             action: 'topslider',
             csrfmiddlewaretoken: '{{ csrf_token }}',
           }
-        });
-    });
+        }).done(function() {
+      window.location.href="{% url 'product:category' %}";
+  });
+  });
 });
 </script>
 {% endblock content %}

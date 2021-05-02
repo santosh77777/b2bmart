@@ -29,13 +29,11 @@ def HomeView(request):
     cat_data=json.dumps(list(cat))
     cat_id=json.dumps(list(cat_id_obj))
 
-    if request.is_ajax():
+    if request.method == 'POST' and request.POST['action'] == 'topslider':
         global id_brand
         global id_category
         id_brand=request.POST.getlist('brand[]')
         id_category=request.POST.getlist('cat[]')
-        val = request.POST.get('alt')
-        print(val)
       
     
     object_list=Product.objects.filter(add_home=True)
@@ -59,8 +57,22 @@ def HomeView(request):
              'cat_id':cat_id,                     
              }
     return render(request,'index.html',  context)
+
+query=[]
+def homescroll(request):
+    if request.method == 'POST' and request.POST['action'] == 'topslider':
+        global query
+        query=[]
+        val = request.POST.get('alt')
+        product_detail=Product.objects.filter(product_group=val)
+        if not product_detail.exists():
+            query=[]
+        else:
+            query.append(product_detail)
     
-        
+    return render(request,'category.html',context)
+
+
 def category(request):
     if request.is_ajax():
         global id_brand
@@ -74,6 +86,7 @@ def category(request):
         show_res=id_brand
     elif(len(id_category)>0):
         show_res=id_category
+
     temp=[]
     temp=show_res
     show_res=[]
@@ -85,8 +98,6 @@ def category(request):
     for i in show_res:
         product_detail=Product.objects.filter(id=i)
         queryset.append(product_detail)
-
-
     brand=[]
     brand_id=[]
     cat=[]
@@ -98,21 +109,35 @@ def category(request):
             brand_id.append(i.id)
         if(i.product_group not in cat):
             cat.append(i.product_group)
-            cat_id_obj.append(i.id)
-    
+            cat_id_obj.append(i.id)   
     brand=json.dumps(list(brand))
     brand_id=json.dumps(list(brand_id))
     cat_data=json.dumps(list(cat))
     cat_id=json.dumps(list(cat_id_obj))
 
-
-    context={"search_product":queryset,
-             'brand_data':brand,
-             'brand_id':brand_id,
-             'cat_data':cat_data,
-             'cat_id':cat_id
-            }
+    if len(query)>0:
+        print("query")
+        context={"search_product":query,
+                'brand_data':brand,
+                'brand_id':brand_id,
+                'cat_data':cat_data,
+                'cat_id':cat_id
+                }
+        
+    else:
+        print("queryset")
+        context={"search_product":queryset,
+                'brand_data':brand,
+                'brand_id':brand_id,
+                'cat_data':cat_data,
+                'cat_id':cat_id
+                }
+    
     return render(request,'category.html',context)
+
+
+
+   
 
 ################################## this is for displaying the home page ################################## 
 # class HomeView(ListView):
