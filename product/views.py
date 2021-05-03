@@ -81,10 +81,13 @@ def HomeView(request):
         loc=request.POST.get('loc')
         data=Product.objects.filter(Q(brand=loc) | Q(product_group=loc) | Q(name=loc))
 
-        x=serializers.serialize('json',list(data))
+        xx=serializers.serialize('json',list(data))
+        x=serializers.serialize('json',x)
         context={
-            'loc_data':x                   
+            'loc_data':xx,
+            'queryset':x                   
             }
+        
         return JsonResponse(context)
 
     context={'brand_data':brand,

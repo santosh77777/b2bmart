@@ -359,7 +359,13 @@ class SellerPhotoDocumentView(LoginRequiredMixin, UserPassesTestMixin, View):
         return is_seller(self.request.user)
 
     def get(self,request, *args, **kwargs):
-        return render(request, 'dashboard/seller/document.html')
+        detail=SellerCompany.objects.filter(user=request.user)
+        for i in detail:
+            logo=i.logo
+        context={'logo':logo
+
+        }
+        return render(request, 'dashboard/seller/document.html',context)
 
 class SellerMembershipView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
