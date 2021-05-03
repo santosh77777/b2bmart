@@ -20,6 +20,9 @@ from product.forms import ProductForm
 from product.models import *
 from accounts.models import ProfilePicture
 from django.http import HttpResponseRedirect
+from django.conf import settings
+from django.core.mail import send_mail
+from b2bmart.settings import EMAIL_HOST_USER
 
 class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
@@ -372,7 +375,8 @@ class SellerMyEnquiryView(LoginRequiredMixin, UserPassesTestMixin, View):
         return is_seller(self.request.user)
 
     def get(self,request, *args, **kwargs):
-        return render(request, 'dashboard/seller/myenquiry.html')
+        sharedetail = ShareDetail.objects.filter(seller=self.request.user)
+        return render(request, 'dashboard/seller/myenquiry.html', {'sharedetail':sharedetail})
 
 class SellerSettingsView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
@@ -657,11 +661,11 @@ def sendSimpleEmail(request,emailto):
    res = send_mail("hello paul", "comment tu vas?", "paul@polo.com", [emailto])
    return HttpResponse('%s'%res)
 
-from django.conf import settings
-from django.core.mail import send_mail
-from b2bmart.settings import EMAIL_HOST_USER
+
 class ShareDetailView(View):
     def post(self, *args, **kwargs):
+        user = get_object_or_404(User, account__slug=self.kwargs.get("slug"))
+        print("nameeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", user)
         name = self.request.POST['name']
         email = self.request.POST['email']
         mobile = self.request.POST['mobile']
@@ -676,10 +680,10 @@ class ShareDetailView(View):
             recepient = email
             send_mail(subject, message, settings.EMAIL_HOST_USER, [recepient])
 
-            share_detail = ShareDetail(name=name, email=email, mobile=mobile, business_type=business_type, message=message, send_copy=True)
+            share_detail = ShareDetail(seller=user, name=name, email=email, mobile=mobile, business_type=business_type, message=message, send_copy=True)
             share_detail.save()
         else:
-            share_detail = ShareDetail(name=name, email=email, mobile=mobile, business_type=business_type, message=message)
+            share_detail = ShareDetail(seller=user, name=name, email=email, mobile=mobile, business_type=business_type, message=message)
             share_detail.save()
         return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
 

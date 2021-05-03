@@ -2,213 +2,164 @@
 {% load static %}
 {% block content %}
  
+<style>
+* {
+  box-sizing: border-box;
+}
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
 
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+</style>
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <ul class="category-menu mb-3">
-           
-            <form action="{% url 'dashboard:category' %}" method="get">
+          <ul class="category-menu mb-3" id="element">
+          {% comment %} <form method="POST" action=""> {% endcomment %}
             <li>
-              <a href='#'>
-               <img src="{% static 'images/icons/kitchen-stoves.png' %}" alt="Kitchen stoves category">
-               <button type="submit" name='category' value='kitchenstoves'>Kitchen Stoves</button>
-               </a>
-               </li>
-               </form>
-
-               <form action="{% url 'dashboard:category' %}" method="get">
-                <li>
-                  <a href='#'>
-                    <img src="{% static 'images/icons/mixer-grinder.png' %}" alt="Mixer Grinder category">
-                   <button type="submit" name='category' value='mixturegrinder'>Mixer Grinder</button>
-                   </a>
-                   </li>
-                   </form>
-
-                   
-               <form action="{% url 'dashboard:category' %}" method="get">
-                <li>
-                  <a href='#'>
-                    <img src="{% static 'images/icons/rice-cookers.png' %}" alt="Rice cookers category">
-                   <button type="submit" name='category' value='ricecookers'>Rice Cookers</button>
-                   </a>
-                   </li>
-                   </form>
-
-
-                   <form action="{% url 'dashboard:category' %}" method="get">
-                    <li>
-                      <a href='#'>
-                        <img src="{% static 'images/icons/food-processors.png' %}" alt="Food processors category">
-                       <button type="submit" name='category' value='foodprocessors'>FoodProccessors</button>
-                       </a>
-                       </li>
-                       </form>
-                  
-                       <form action="{% url 'dashboard:category' %}" method="get">
-                        <li>
-                          <a href='#'>
-                            <img src="{% static 'images/icons/electric-kettles.png' %}" alt="Electric kettles category">
-                           <button type="submit" name='category' value='electrickettles'>Electric Kettles</button>
-                           </a>
-                           </li>
-                           </form>
-                    <form action="{% url 'dashboard:category' %}" method="get">
-                    <li>
-                      <a href='#'>
-                        <img src="{% static 'images/icons/electric-mixers.png' %}" alt="Electric mixers category">
-                        <button type="submit" name='category' value='electricmixers'>Electric Mixers</button>
-                        </a>
-                        </li>
-                        </form>
-               
-
-                        <form action="{% url 'dashboard:category' %}" method="get">
-                          <li>
-                            <a href='#'>
-                              <img src="{% static 'images/icons/Juicers.png' %}" alt="Juicers category">
-                              <button type="submit" name='category' value='juicers'>Juicers</button>
-                              </a>
-                              </li>
-                              </form>
-                
-                              <form action="{% url 'dashboard:category' %}" method="get">
-                                <li>
-                                  <a href='#'>
-                                    <img src="{% static 'images/icons/blenders.png' %}" alt="Blenders category">
-                                    <button type="submit" name='category' value='blenders'>Blenders</button>
-                                    </a>
-                                    </li>
-                                    </form>
-                                    <form action="{% url 'dashboard:category' %}" method="get">
-                                      <li>
-                                        <a href='#'>
-                                          <img src="{% static 'images/icons/water-heaters.png' %}" alt="Water heaters category">
-                                          <button type="submit" name='category' value='waterheaters'>Water Heaters</button>
-                                          </a>
-                                          </li>
-                                          </form>
-                          <form action="{% url 'dashboard:category' %}" method="get">
-                            <li>
-                              <a href='#'>
-                                <img src="{% static 'images/icons/water-filters.png' %}" alt="Water filters category">
-                                <button type="submit" name='category' value='mixturegrinder'>waterfilters</button>
-                                </a>
-                                </li>
-                                </form>
-                                <form action="{% url 'dashboard:category' %}" method="get">
-                                  <li>
-                                    <a href='#'>
-                                      <img src="{% static 'images/icons/induction-cookers.png' %}" alt="Induction cookers category">
-                                      <button type="submit" name='category' value='inductioncookers'>Induction Cookers</button>
-                                      </a>
-                                      </li>
-                                      </form>
-              
-                                      <form action="{% url 'dashboard:category' %}" method="get">
-                                        <li>
-                                          <a href='#'>
-                                            <img src="{% static 'images/icons/exhaust-hoods.png' %}" alt="Exhaust hoods category">
-                                            <button type="submit" name='category' value='exhausthoods'>Exhaust Hoods</button>
-                                            </a>
-                                            </li>
-                                            </form>
-                                            <form action="{% url 'dashboard:category' %}" method="get">
-                                              <li>
-                                                <a href='#'>
-                                                  <img src="{% static 'images/icons/sandwich-makers.png' %}" alt="Sandwich makers category">
-                                                  <button type="submit" name='category' value='sandwichmakers'>Sandwich Makers</button>
-                                                  </a>
-                                                  </li>
-                                                  </form>
-                                        <form action="{% url 'dashboard:category' %}" method="get">
-                                          <li>
-                                            <a href='#'>
-                                              <img src="{% static 'images/icons/toaster.png' %}" alt="Toaster category">
-                                              <button type="submit" name='category' value='toaster'>Toaster</button>
-                                              </a>
-                                              </li>
-                                              </form>
-
-                                              <form action="{% url 'dashboard:category' %}" method="get">
-                                                <li>
-                                                  <a href='#'>
-                                                    <img src="{% static 'images/icons/deep-fryers.png' %}" alt="Deep fryers category">
-                                                    <button type="submit" name='category' value='deepfryers'>Deep Fryers</button>
-                                                    </a>
-                                                    </li>
-                                                    </form>
-                                                    <form action="{% url 'dashboard:category' %}" method="get">
-                                                      <li>
-                                                        <a href='#'>
-                                                          <img src="{% static 'images/icons/dough-blenders.png' %}" alt="Dough Blenders category">
-                                                          <button type="submit" name='category' value='doughblenders'>Dough Blenders</button>
-                                                          </a>
-                                                          </li>
-                                                          </form>
-                                                          <form action="{% url 'dashboard:category' %}" method="get">
-                                                            <li>
-                                                              <a href='#'>
-                                                                <img src="{% static 'images/icons/coffe-makers.png' %}" alt="Coffee makers category">
-                                                                <button type="submit" name='category' value='coffemakers'>Coffee Makers</button>
-                                                                </a>
-                                                                </li>
-                                                                </form>
-    
-                                                                <form action="{% url 'dashboard:category' %}" method="get">
-                                                                  <li>
-                                                                    <a href='#'>
-                                                                      <img src="{% static 'images/icons/electric-iron.png' %}" alt="Electric iron category">
-                                                                      <button type="submit" name='category' value='electriciron'>Electric Iron</button>
-                                                                      </a>
-                                                                      </li>
-                                                                      </form>
-                                                                      <form action="{% url 'dashboard:category' %}" method="get">
-                                                                        <li>
-                                                                          <a href='#'>
-                                                                            <img src="{% static 'images/icons/vaccum-cleaner.png' %}" alt="Vacuum cleaner category">
-                                                                            <button type="submit" name='category' value='vaccumcleaner'>Vaccum Cleaner</button>
-                                                                            </a>
-                                                                            </li>
-                                                                            </form>
-
-                                  <form action="{% url 'dashboard:category' %}" method="get">
-                                    <li>
-                                      <a href='#'>
-                                        <img src="{% static 'images/icons/air-purifers.png' %}" alt="Air Purifiers category">
-                                        <button type="submit" name='category' value='airpurifers'>Air Purifiers</button>
-                                        </a>
-                                        </li>
-                                        </form>
-                                        <form action="{% url 'dashboard:category' %}" method="get">
-                                          <li>
-                                            <a href='#'>
-                                              <img src="{% static 'images/icons/hair-dryer.png' %}" alt="Hair straightener category">
-                                              <button type="submit" name='category' value='hairstraightener'>Hair Straightener</button>
-                                              </a>
-                                              </li>
-                                              </form>
-
-                                              <form action="{% url 'dashboard:category' %}" method="get">
-                                                <li>
-                                                  <a href='#'>
-                                                    <img src="{% static 'images/icons/trimmers-shavers.png' %}" alt="Trimmers & Shavers category">
-                                                    <button type="submit" name='category' value='trimmersandshavers'>Trimmers & shavers</button>
-                                                    </a>
-                                                    </li>
-                                                    </form>
-                      
-                                                    <form action="{% url 'dashboard:category' %}" method="get">
-                                                      <li>
-                                                        <a href='#'>
-                                                          <img src="{% static 'images/icons/hair-dryer.png' %}" alt="Hair Dryer category">
-                                                          <button type="submit" name='category' value='hairdrier'>Hair Dryer</button>
-                                                          </a>
-                                                          </li>
-                                                          </form>
-                
-      
+              <a>
+                <img src="{% static 'images/icons/kitchen-stoves.png' %}"  alt="Kitchen_stoves">
+              </a>
+            </li>
+            <li>
+              <a >
+                <img src="{% static 'images/icons/mixer-grinder.png' %}" alt="mixture_grinder">
+              </a>
+            </li>
+            <li>
+              <a>
+                <img src="{% static 'images/icons/rice-cookers.png' %}" alt="rice_cookers">
+              </a>
+            </li>
+            <li>
+              <a>
+                <img src="{% static 'images/icons/food-processors.png' %}" alt="food_processors">
+              </a>
+            </li>
+            <li>
+              <a>
+                <img src="{% static 'images/icons/electric-kettles.png' %}" alt="electric_mixers">
+              </a>
+            </li>
+            <li>
+              <a>
+                <img src="{% static 'images/icons/electric-mixers.png' %}" alt="Electric mixers category">
+              </a>
+            </li>
+            <li>
+              <a>
+                <img src="{% static 'images/icons/Juicers.png' %}" alt="Juicers">
+              </a>
+            </li>
+            <li>
+              <a>
+                <img src="{% static 'images/icons/blenders.png' %}" alt="blenders">
+              </a>
+            </li>
+            <li>
+              <a >
+                <img src="{% static 'images/icons/water-heaters.png' %}" alt="water_heaters">
+              </a>
+            </li>
+            <li>
+              <a >
+                <img src="{% static 'images/icons/water-filters.png' %}" alt="water_filters">
+              </a>
+            </li>
+            <li>
+              <a >
+                <img src="{% static 'images/icons/induction-cookers.png' %}" alt="induction cookers">
+              </a>
+            </li>
+            <li>
+              <a>
+                <img src="{% static 'images/icons/exhaust-hoods.png' %}" alt="exhaust_hoods">
+              </a>
+            </li>
+            <li>
+              <a >
+                <img src="{% static 'images/icons/sandwich-makers.png' %}" alt="sandwich_makers">
+              </a>
+            </li>
+            <li>
+              <a >
+                <img src="{% static 'images/icons/toaster.png' %}" alt="toaster">
+              </a>
+            </li>
+            <li>
+              <a >
+                <img src="{% static 'images/icons/deep-fryers.png' %}" alt="deep_fryers">
+              </a>
+            </li>
+            <li>
+              <a >
+                <img src="{% static 'images/icons/dough-blenders.png' %}" alt="dough_blenders">
+              </a>
+            </li>
+            <li>
+              <a >
+                <img src="{% static 'images/icons/coffe-makers.png' %}" alt="coffee_makers">
+              </a>
+            </li>
+            <li>
+              <a >
+                <img src="{% static 'images/icons/electric-iron.png' %}" alt="electric_iron">
+              </a>
+            </li>
+            <li>
+              <a >
+                <img src="{% static 'images/icons/vaccum-cleaner.png' %}" alt="vaccum_cleaner">
+              </a>
+            </li>
+            <li>
+              <a >
+                <img src="{% static 'images/icons/air-purifers.png' %}" alt="air_purifiers">
+              </a>
+            </li>
+            {% comment %} <li>
+              <a >
+                <img src="{% static 'images/icons/hair-dryer.png' %}" alt="Hair straightener category">
+              </a>
+            </li> {% endcomment %}
+            <li>
+              <a >
+                <img src="{% static 'images/icons/trimmers-shavers.png' %}" alt="trimmers_&_savers">
+              </a>
+            </li>
+            <li>
+              <a >
+                <img src="{% static 'images/icons/hair-dryer.png' %}" alt="hair_drier">
+              </a>
+            </li>
             <!-- <li class="ml-auto">
               <img src="./images/categoryRightIcon.png' %}" alt="">
             </li> -->
@@ -400,11 +351,11 @@
 
           <!-- Recommended Products part start -->
          <div class="product-list mt-3">
-          <form class="form-inline mb-3">
-            <div class="form-group w-50 mr-3">
-              <input type="text" class="form-control w-100" id="location" placeholder="TRUSTED BRANDS | SEARCH BY {{object.product_group}}">
+          <form class="form-inline mb-3" id="search_prd_loc_1" autocomplete="off">
+            <div class="form-group w-50 mr-3 autocomplete">
+              <input type="text" class="form-control w-100" name="loc_1" id="location_1" oninput="search_slider_1()" placeholder="TRUSTED BRANDS | SEARCH BY {{object.product_group}}">
             </div>
-            <button type="submit" class="btn btn-primary">
+            <button type="button"  class="btn btn-primary" onclick="get_inpt_val()">
               <i class="fas fa-search"></i> Search
             </button>
           </form>
@@ -413,10 +364,9 @@
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="sr-only">Previous</span>
             </a>
-        <div class="carousel-inner">
+        <div class="carousel-inner" id="car_location_1">
            
           {% for object in x %} 
-
               {% if forloop.counter0|divisibleby:"4" %}
               <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
                   <div class="row">
@@ -875,10 +825,10 @@
     var data_id={{brand_id|safe}};
     var cat_data={{cat_data|safe}};
     var cat_id={{cat_id|safe}};
-    console.log(cat_data);
-    console.log(cat_id);
+    var prd_name={{prd_name|safe}};
     var len=data.length;
     var len_cat=cat_data.length;
+   
 
     
     fetch_data();
@@ -891,7 +841,7 @@
         {
         template=`
                   <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" onclick="is_checked_cat()" id="category${cat_id[i]}">
+                      <input type="checkbox" class="custom-control-input" onclick="is_checked_cat()" autocomplete="off" id="category${cat_id[i]}">
                       <label class="custom-control-label" for="category${cat_id[i]}">${cat_data[i]}</label>
                   </div>`
         $("#append_cat").append(template);
@@ -905,7 +855,7 @@
         {
         template=`
                   <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" onclick="is_checked_cat()" id="category${cat_id[i]}">
+                      <input type="checkbox" class="custom-control-input" autocomplete="off" onclick="is_checked_cat()" id="category${cat_id[i]}">
                       <label class="custom-control-label" for="category${cat_id[i]}">${cat_data[i]}</label>
                   </div>`
          $("#append_cat").append(template);
@@ -928,7 +878,7 @@
                 for(var i=temp;i<new_temp;i++)
                 {
                 var template=`<div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" onclick="is_checked_cat()" id="category${cat_id[i]}">
+                      <input type="checkbox" class="custom-control-input" autocomplete="off" onclick="is_checked_cat()" id="category${cat_id[i]}">
                       <label class="custom-control-label" for="category${cat_id[i]}">${cat_data[i]}</label>
                   </div>`
                 temp++;
@@ -941,7 +891,7 @@
               for(var i=temp;i<len_cat;i++)
             {
             template=`<div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" onclick="is_checked_cat()" id="category${cat_id[i]}">
+                      <input type="checkbox" class="custom-control-input" autocomplete="off" onclick="is_checked_cat()" id="category${cat_id[i]}">
                       <label class="custom-control-label" for="category${cat_id[i]}">${cat_data[i]}</label>
                   </div>`
             $("#append_cat").append(template);
@@ -959,7 +909,7 @@
           for(var i=0;i<len_cat;i++)
         {
         template=`<div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" onclick="is_checked_cat()" id="category${cat_id[i]}">
+                      <input type="checkbox" class="custom-control-input" autocomplete="off" onclick="is_checked_cat()" id="category${cat_id[i]}">
                       <label class="custom-control-label" for="category${cat_id[i]}">${cat_data[i]}</label>
                   </div>`
         $("#append_cat").append(template);
@@ -984,7 +934,7 @@
           if(data1_cat[j].includes(xx_cat))
           {
             template=`<div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" onclick="is_checked_cat()" id="category${cat_id[j]}">
+                      <input type="checkbox" class="custom-control-input" autocomplete="off" onclick="is_checked_cat()" id="category${cat_id[j]}">
                       <label class="custom-control-label" for="category${cat_id[j]}">${cat_data[j]}</label>
                   </div>`
           $("#append_cat").append(template);
@@ -1017,6 +967,7 @@
           type:'POST',
           url:'',
           data:{
+            'action':'list',
             'cat[]':list_cat,
             csrfmiddlewaretoken: '{{ csrf_token }}'
             }
@@ -1032,7 +983,7 @@
         for(var i=0;i<len;i++)
         {
         template=`<div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()" id="${data_id[i]}">
+                <input type="checkbox" class="custom-control-input checking" autocomplete="off" onclick="is_checked()" id="${data_id[i]}">
                 <label class="custom-control-label" for="${data_id[i]}">${data[i]}</label>
           </div>`
         $("#append_brand").append(template);
@@ -1046,7 +997,7 @@
       for(var i=0;i<8;i++)
         {
         template=`<div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()" id="${data_id[i]}">
+                <input type="checkbox" class="custom-control-input checking" autocomplete="off" onclick="is_checked()" id="${data_id[i]}">
                 <label class="custom-control-label" for="${data_id[i]}">${data[i]}</label>
           </div>`
         $("#append_brand").append(template);
@@ -1071,7 +1022,7 @@ $('#sort_brand').click(function(e){
           for(var i=count;i<new_count;i++)
         {
         var template=`<div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()" id="${data_id[i]}">
+                <input type="checkbox" class="custom-control-input checking" autocomplete="off" onclick="is_checked()" id="${data_id[i]}">
                 <label class="custom-control-label" for="${data_id[i]}">${data[i]}</label>
           </div>`
         count++;
@@ -1084,7 +1035,7 @@ $('#sort_brand').click(function(e){
           for(var i=count;i<len;i++)
         {
         template=`<div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()" id="${data_id[i]}">
+                <input type="checkbox" class="custom-control-input checking" autocomplete="off" onclick="is_checked()" id="${data_id[i]}">
                 <label class="custom-control-label" for="${data_id[i]}">${data[i]}</label>
           </div>`
         $("#append_brand").append(template);
@@ -1100,7 +1051,7 @@ $('#sort_brand').click(function(e){
           for(var i=0;i<len;i++)
         {
         template=`<div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()" id="${data_id[i]}">
+                <input type="checkbox" class="custom-control-input checking" autocomplete="off" onclick="is_checked()" id="${data_id[i]}">
                 <label class="custom-control-label" for="${data_id[i]}">${data[i]}</label>
           </div>`
         $("#append_brand").append(template);
@@ -1124,7 +1075,7 @@ $('#sort_brand').click(function(e){
           if(data1[j].includes(xx))
           {
             template=`<div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input checking" onclick="is_checked()"  id="${data_id[j]}">
+                <input type="checkbox" class="custom-control-input checking" autocomplete="off" onclick="is_checked()"  id="${data_id[j]}">
                 <label class="custom-control-label" for="${data_id[j]}">${data[j]}</label>
           </div>`
           $("#append_brand").append(template);
@@ -1158,6 +1109,7 @@ $('#sort_brand').click(function(e){
           type:'POST',
           url:'',
           data:{
+            'action':'list',
             'brand[]':list,
             csrfmiddlewaretoken: '{{ csrf_token }}'
             }
@@ -1199,5 +1151,165 @@ var temp = `
               `
 
               $("#slide").append(temp)   {% endcomment %}
-</script>
+function search_slider_1()
+{
+  var val = document.getElementById("location_1").value;
+}
+function autocomplete(inp,arr){
+    var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert a input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+          b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+let combined_detail=[...data, ...cat_data, ...prd_name]
+autocomplete(document.getElementById("location_1"),combined_detail)
+function get_inpt_val(){
+var v;
+if(document.getElementById("location_1").value)
+{
+  v=document.getElementById("location_1").value;
+}
+$.ajax({
+  type: "POST",
+  url:"",
+  data:{
+    'action':'location',
+    'loc':v,
+     csrfmiddlewaretoken: '{{ csrf_token }}'
+  },
+  dataType: "JSON",
+  success: function(context){
+    document.getElementById("car_location_1").innerHTML=``;
+    var car_data=JSON.parse(context.loc_data)
+    for(var i=0;i<car_data.length;i++){
+      console.log(car_data[i]);
+      template=`
+              <div class="carousel-item active"> 
+                  <div class="row">
+                    <div class="col-12 col-sm-4 col-md-3">
+                      <div class="product-item">
+                          <div class="image">
+                            <a href=""><img src="/media/${car_data[i]['fields']['image1']}" alt="Image 4"> </a>
+                          </div>
+                          <div class="name" style="height:50px;">${car_data[i]['fields']['name']}</div>
+                          
+                          <div class="type">${car_data[i]['fields']['product_group']}</div>
+                          <a href="" class="btn btn-primary btn-block">Visit our store</a>
+                      </div>
+                    </div>
+                    </div>
+              </div>`
+          $("#car_location_1").append(template);
+    }
+  }
+  
+})
+}
+$(document).ready(function() {
+    $('img').click(function () {
+        var alt =($(this).attr("alt"));
+        console.log(alt);
+         $.ajax({
+          type:'POST',
+          url:'',
+          data:{
+            'action':'send_var',
+            'alt':alt,
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+          }
+        }).done(function() {
+  window.location.href="{% url 'product:category' %}";
+});
+    });
+});
+
+</script> 
 {% endblock content %}
