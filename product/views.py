@@ -5,6 +5,7 @@ from django.views.generic import ListView
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from accounts.models import *
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import json
@@ -17,10 +18,6 @@ id_brand=[]
 id_category=[]
 
 def HomeView(request):
-    if request.method =='POST' and request.POST['action']=='send_var':
-        loc=request.POST.get('alt')
-        print(loc)
-        nav_prd=Product.objects.filter(name=loc)
     brand=[]
     brand_id=[]
     cat=[]
@@ -52,12 +49,22 @@ def HomeView(request):
 
     if request.method =='POST' and request.POST['action']=='send_var':
         nav=request.POST.get('alt')
-        nav_id=Product.objects.get(product_group=nav)
+        g = Product.objects.filter(product_group=nav) 
+        msg=0
+        if not g.exists():           
+            msg = 1
+            msg = json.dumps(msg)
+            context = {'msg':msg}
+            return JsonResponse(context)
+
+        nav=Product.objects.filter(product_group=nav) 
         id_category.clear()
         id_brand.clear()
-        nav_id="category"+str(nav_id)
-        id_category.append(nav_id)
-
+        ll = list(nav)
+        for i in ll:
+            nav_id="category"+str(i.id)
+            id_category.append(nav_id) 
+       
 
     object_list=Product.objects.filter(add_home=True).order_by("?")[:8]
     x = list(object_list)
@@ -67,16 +74,16 @@ def HomeView(request):
         x.append(x[i])
         l=l+1
         i=i+1
-    print(x)
-
-
+  
     if request.method =='POST' and request.POST['action']=='location':
         loc=request.POST.get('loc')
         data=Product.objects.filter(Q(brand=loc) | Q(product_group=loc) | Q(name=loc))
 
-        x=serializers.serialize('json',list(data))
+        xx=serializers.serialize('json',list(data))
+        x=serializers.serialize('json',x)
         context={
-            'loc_data':x                   
+            'loc_data':xx,
+            'queryset':x                   
             }
         return JsonResponse(context)
 
@@ -88,8 +95,6 @@ def HomeView(request):
              'prd_name':prd_name                    
              }
     return render(request,'index.html', context)
-    
-    return render(request,'category.html',context)
 
 
 def category(request):
