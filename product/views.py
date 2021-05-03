@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import json
+from django.contrib import messages
 from django.views import View
 from django.db.models import Q
 from django.core import serializers
@@ -85,6 +86,7 @@ def HomeView(request):
             'loc_data':xx,
             'queryset':x                   
             }
+        
         return JsonResponse(context)
 
     context={'brand_data':brand,

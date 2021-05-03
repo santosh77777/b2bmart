@@ -151,7 +151,7 @@
             <h3 class="mb-3">share the details we will call back you</h3>
             <div class="row">
               <div class="col-12 col-sm-8">
-                <form action="{% url 'dashboard:share_detail' %}" method="post">
+                <form action="{% url 'dashboard:share_detail' company.user.account.slug %}" method="post">
                   {% csrf_token %}
                   <div class="row">
                     <div class="form-group col- 12 col-sm-6">
