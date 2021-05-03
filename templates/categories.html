@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if category == "kitchenstoves" %}
+  <h1>All Kitchen Stoves</h1>
+  <ul>
+    {% for stove in kitchen_stoves %}
+      <li>
+        <a href="#">{{ stove.product_group }}</a> - ${{ stove.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "mixturegrinder" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for grinder in mixture_grinder %}
+      <li>
+        <a href="#">{{ grinder.product_group }}</a> - ${{ grinder.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "ricecookers" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for rice in rice_cookers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "foodprocessors" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for food in food_processors %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "electricmixers" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for electric in electric_mixers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "juicers" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for electric in electric_mixers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "blenders" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for electric in electric_mixers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "waterheaters" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for electric in electric_mixers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "waterfilters" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for electric in electric_mixers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "inductioncookers" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for electric in electric_mixers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "exhausthoods" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for electric in electric_mixers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "sandwichmakers" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for electric in electric_mixers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "toaster" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for electric in electric_mixers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "deepfryers" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for electric in electric_mixers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "doughblenders" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for electric in electric_mixers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "coffemakers" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for electric in electric_mixers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "electriciron" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for electric in electric_mixers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "vaccumcleaner" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for electric in electric_mixers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "airpurifers" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for electric in electric_mixers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "trimmersandshavers" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for electric in electric_mixers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% elif category == "hairdrier" %}
+  <h1>All mixers</h1>
+  <ul>
+    {% for electric in electric_mixers %}
+      <li>
+        <a href="#">{{ rice.product_group }}</a> - ${{ rice.price}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no Products.</p>
+  {% endif %} 
+{% endblock %}

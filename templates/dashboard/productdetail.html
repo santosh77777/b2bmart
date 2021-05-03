@@ -99,8 +99,8 @@
           </div>
           <div class="col-1"></div>
           <div class="col-8">
-            <a href="{% url 'cart' %}" class="btn btn-primary mr-2">Add to cart</a>
-            <a href="{% url 'cart' %}" class="btn btn-primary">Buy Now</a>
+            <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary mr-2">Add to cart</a>
+            <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger">Remove From Cart</a>
           </div>
         </div>
       </div>
@@ -157,13 +157,13 @@
         </div>
         <div class="col-12 col-md-7">
           <!-- Promotional vedio start -->
-          <div class="promo-video height mt-0">
+          <!-- <div class="promo-video height mt-0">
             <span>Play our promotional video here</span>
             <i class="fas fa-play"></i>
             <span>Make an impression with your customers</span>
-          </div>
+          </div> -->
           <!-- Promotional vedio end -->
-
+          {% video object.user.sellercompany.branded_video 'medium' %}
           <!-- register form start -->
           <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">

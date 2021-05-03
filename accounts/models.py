@@ -60,3 +60,7 @@ class ProfilePicture(models.Model):
         about_me = models.TextField(blank=True)
         def __str__(self):
             return self.user.username
+
+    
+
+

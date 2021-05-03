@@ -28,7 +28,11 @@ urlpatterns = [
     path('seller/membership/',views.SellerMembershipView.as_view(), name="seller_membership"),
     path('seller/my-enquiry/',views.SellerMyEnquiryView.as_view(), name="seller_my_enquiry"),
     path('seller/settings/',views.SellerSettingsView.as_view(), name="seller_settings"),
+
+    path('seller/social-share/',views.SellerSocialShareView.as_view(), name="seller_social_share"),
     path('seller/paid-service/',views.SellerPaidServiceView.as_view(), name="seller_paid_service"),
+    path('seller/management/',views.SellerManagementView.as_view(), name="seller_management"),
+    path('seller/media-center/',views.SellerMediaCenterView.as_view(), name="seller_media_center"),
 
     path('seller/company/<str:user>/',views.SellerCompanyView.as_view(), name="seller_company"),
     path('seller/product-detail/<int:pk>/',views.SellerProductDetailView.as_view(), name="seller_product_detail"),
@@ -54,6 +58,14 @@ urlpatterns = [
     path('buyer-downloads/',views.BuyerDownloadsView.as_view(), name="buyer_downloads"),
     path('buyer-share/',views.BuyerShareView.as_view(), name="buyer_share"),
     path('share-detail/<str:slug>/',views.ShareDetailView.as_view(), name="share_detail"),
+    path('category/', views.category, name="category"),
+
+
+    path('add-to-cart/<pk>/', views.add_to_cart, name='add-to-cart'),
+    path('remove-from-cart/<pk>/', views.remove_from_cart, name='remove-from-cart'),
+    path('remove-product-from-cart/<pk>/', views.remove_single_product_from_cart, name='remove-single-product-from-cart'),
+    path('cart/', views.CartView.as_view(), name='cart')
+
 ]
 
 
