@@ -9,7 +9,6 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import json
-from django.contrib import messages
 from django.views import View
 from django.db.models import Q
 from django.core import serializers
@@ -50,21 +49,22 @@ def HomeView(request):
 
     if request.method =='POST' and request.POST['action']=='send_var':
         nav=request.POST.get('alt')
-        g = Product.objects.filter(product_group=nav) 
-        msg=0
-        if not g.exists():           
-            msg = 1
-            msg = json.dumps(msg)
-            context = {'msg':msg}
-            return JsonResponse(context)
-
-        nav=Product.objects.filter(product_group=nav) 
-        id_category.clear()
-        id_brand.clear()
-        ll = list(nav)
-        for i in ll:
-            nav_id="category"+str(i.id)
-            id_category.append(nav_id) 
+        
+        
+        nav = Product.objects.filter(product_group=nav)
+        
+        if not nav.exists(): 
+            return JsonResponse({"valid":False}, status = 400)
+        else:
+            nav = list(nav)
+            id_category.clear()
+            id_brand.clear()
+            for i in nav:
+                nav_id="category"+str(i.id)
+                id_category.append(nav_id) 
+            return JsonResponse({"valid":True}, status = 200)
+         
+            
        
 
     object_list=Product.objects.filter(add_home=True).order_by("?")[:8]
@@ -75,7 +75,9 @@ def HomeView(request):
         x.append(x[i])
         l=l+1
         i=i+1
-  
+    print(x)
+
+
     if request.method =='POST' and request.POST['action']=='location':
         loc=request.POST.get('loc')
         data=Product.objects.filter(Q(brand=loc) | Q(product_group=loc) | Q(name=loc))
@@ -86,15 +88,16 @@ def HomeView(request):
             'loc_data':xx,
             'queryset':x                   
             }
-        
         return JsonResponse(context)
 
     context={'brand_data':brand,
              'brand_id':brand_id,
-             'x':x,  
+             'x':x, 
+
              'cat_data':cat_data,
              'cat_id':cat_id, 
-             'prd_name':prd_name                    
+             'prd_name':prd_name
+                                 
              }
     return render(request,'index.html', context)
 

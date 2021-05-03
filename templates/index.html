@@ -43,9 +43,9 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-        <span id="show-msg">
+       <span id="show-msg">
           
-        </span>
+        </span> 
           <ul class="category-menu mb-3" id="element">
           {% comment %} <form method="POST" action=""> {% endcomment %}
             <li>
@@ -356,7 +356,7 @@
          <div class="product-list mt-3">
           <form class="form-inline mb-3" id="search_prd_loc_1" autocomplete="off">
             <div class="form-group w-50 mr-3 autocomplete">
-              <input type="text" class="form-control w-100" name="loc_1" id="location_1" oninput="search_slider_1()" placeholder="TRUSTED BRANDS | SEARCH BY {{object.product_group}}"  >
+              <input type="text" class="form-control w-100" name="loc_1" id="location_1" oninput="search_slider_1()" placeholder="TRUSTED BRANDS | SEARCH BY {{object.product_group}}">
             </div>
             <button type="button"  class="btn btn-primary" onclick="get_inpt_val()">
               <i class="fas fa-search"></i> Search
@@ -831,7 +831,7 @@
     var prd_name={{prd_name|safe}};
     var len=data.length;
     var len_cat=cat_data.length;
-   
+
 
     
     fetch_data();
@@ -1357,25 +1357,21 @@ $(document).ready(function() {
             'alt':alt,
             csrfmiddlewaretoken: '{{ csrf_token }}',
           },
-          dataType: "JSON",
-          success: function(context){
-            if(context.msg==1){
-              console.log(context.msg)
-              document.getElementById("show-msg").innerHTML= `<div class="alert alert-success" role="alert">
-            Sorry this product group is currently unavailable
-            </div> `; 
-              val=1
-            }
-            else{
-              console.log(context.msg)
-              document.getElementById("show-msg").innerHTML=""
-              window.location.href="{% url 'product:category' %}";
-            }
+          success:function(response){
+            document.getElementById("show-msg").innerHTML=""
+            window.location.href="{% url 'product:category' %}"; 
+          },
+          error:function(response){
+            document.getElementById("show-msg").innerHTML=
+              `<div class="alert alert-warning" role="alert">
+                Sorry this product group is currently unavailable!
+              </div>` 
           }
         })
-        
     });
 });
 
 </script> 
+
+
 {% endblock content %}
