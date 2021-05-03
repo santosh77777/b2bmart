@@ -99,8 +99,8 @@
           </div>
           <div class="col-1"></div>
           <div class="col-8">
-            <a href="{% url 'cart' %}" class="btn btn-primary mr-2">Add to cart</a>
-            <a href="{% url 'cart' %}" class="btn btn-primary">Buy Now</a>
+            <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary mr-2">Add to cart</a>
+            <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger">Remove From Cart</a>
           </div>
         </div>
       </div>

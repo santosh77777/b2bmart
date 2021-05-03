@@ -1,4 +1,5 @@
 {% load static %}
+{% load cart_template_tags %}
 {% include 'template_blocks/head_css.html' %}
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
   <div class="container">
@@ -41,6 +42,20 @@
       <ul class="navbar-nav ml-auto right">
         
         {% if request.user.is_authenticated %}  
+       
+        <li class="nav-item track-order">
+          <a class="nav-link" href="{% url 'order_track' %}">
+            <img src="{% static 'images/trackorder.png' %}" alt="">
+            <span>Track Order</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link cart" href="{% url 'dashboard:cart' %}"> 
+            <img src="{% static 'images/cart.png' %}" alt="">
+            <span>My Cart</span>
+            <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_product_count }} </span>
+          </a>
+        </li>
         <li class="nav-item login">
           <a class="nav-link" href="{% url 'account_logout' %}">
             <img src="{% static 'images/login.png' %}" alt="">
@@ -54,19 +69,9 @@
             <span>Log in New User</span>
           </a>
         </li>
+        
         {% endif %}
-        <li class="nav-item track-order">
-          <a class="nav-link" href="{% url 'order_track' %}">
-            <img src="{% static 'images/trackorder.png' %}" alt="">
-            <span>Track Order</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link cart" href="{% url 'cart' %}">
-            <img src="{% static 'images/cart.png' %}" alt="">
-            <span>My Cart</span>
-          </a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link pr-0" href="{% url 'advertise' %}">
             <img src="{% static 'images/advertizment.png' %}" alt="">

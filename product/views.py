@@ -11,8 +11,19 @@ import json
 id_brand=[]
 id_category=[]
 def HomeView(request):
-    brand=Product.objects.values_list('brand', flat=True)
-    brand_id=Product.objects.values_list('id',flat=True)
+    brand=[]
+    brand_id=[]
+    cat=[]
+    cat_id_obj=[]
+    prd=Product.objects.all()
+    for i in prd:
+        if(i.brand not in brand):
+            brand.append(i.brand)
+            brand_id.append(i.id)
+        if(i.product_group not in cat):
+            cat.append(i.product_group)
+            cat_id_obj.append(i.id)
+    
     brand=json.dumps(list(brand))
     brand_id=json.dumps(list(brand_id))
     cat_data=json.dumps(list(cat))
@@ -126,4 +137,5 @@ class WebsiteHomeList(ListView):
         context['business_profile'] = BusinessProfile.objects.filter(user=user)
         return context
         
+
 
