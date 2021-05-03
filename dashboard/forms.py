@@ -106,5 +106,5 @@ class SellerSingleProductViewForm(forms.ModelForm):
         model = Product
         fields = ['name', 'price', 'unit_type', 'min_order_quantity', 'product_group', 'description', 
         'description', 'capacity','material','brand','color','size', 'model_no', 'power', 'warranty', 'neck_size', 'closure_type', 'product_code', 'packing_details','rating'
-          ,'video_url', 'is_available', 'image1', 'image2', 'image3', 'arrange', 'add_home' ]
+          ,'video_url', 'image1', 'image2', 'image3', 'arrange', 'add_home' ]
         

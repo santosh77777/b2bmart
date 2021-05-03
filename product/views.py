@@ -5,18 +5,24 @@ from django.views.generic import ListView
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from accounts.models import *
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import json
 from django.views import View
+from django.db.models import Q
+from django.core import serializers
+from django.http import JsonResponse
 
 id_brand=[]
 id_category=[]
+
 def HomeView(request):
     brand=[]
     brand_id=[]
     cat=[]
     cat_id_obj=[]
+    prd_name=[]
     prd=Product.objects.all()
     for i in prd:
         if(i.brand not in brand):
@@ -25,20 +31,42 @@ def HomeView(request):
         if(i.product_group not in cat):
             cat.append(i.product_group)
             cat_id_obj.append(i.id)
+        if(i.name not in prd_name):
+            prd_name.append(i.name)
     
     brand=json.dumps(list(brand))
     brand_id=json.dumps(list(brand_id))
     cat_data=json.dumps(list(cat))
     cat_id=json.dumps(list(cat_id_obj))
+    prd_name=json.dumps(list(prd_name))
 
-    if request.is_ajax():
+    if request.method =='POST' and request.POST['action']=='list':
         global id_brand
         global id_category
         id_brand=request.POST.getlist('brand[]')
         id_category=request.POST.getlist('cat[]')
-        print(id_brand)
-        print(id_category)
-    
+
+
+    if request.method =='POST' and request.POST['action']=='send_var':
+        nav=request.POST.get('alt')
+        
+        
+        nav = Product.objects.filter(product_group=nav)
+        
+        if not nav.exists(): 
+            return JsonResponse({"valid":False}, status = 400)
+        else:
+            nav = list(nav)
+            id_category.clear()
+            id_brand.clear()
+            for i in nav:
+                nav_id="category"+str(i.id)
+                id_category.append(nav_id) 
+            return JsonResponse({"valid":True}, status = 200)
+         
+            
+       
+
     object_list=Product.objects.filter(add_home=True).order_by("?")[:8]
     x = list(object_list)
     l = len(x)
@@ -47,16 +75,33 @@ def HomeView(request):
         x.append(x[i])
         l=l+1
         i=i+1
+    print(x)
+
+
+    if request.method =='POST' and request.POST['action']=='location':
+        loc=request.POST.get('loc')
+        data=Product.objects.filter(Q(brand=loc) | Q(product_group=loc) | Q(name=loc))
+
+        xx=serializers.serialize('json',list(data))
+        x=serializers.serialize('json',x)
+        context={
+            'loc_data':xx,
+            'queryset':x                   
+            }
+        return JsonResponse(context)
 
     context={'brand_data':brand,
              'brand_id':brand_id,
-             'x':x,  
+             'x':x, 
+
              'cat_data':cat_data,
-             'cat_id':cat_id,                     
+             'cat_id':cat_id, 
+             'prd_name':prd_name
+                                 
              }
-    return render(request,'index.html',  context)
-    
-        
+    return render(request,'index.html', context)
+
+
 def category(request):
     if request.is_ajax():
         global id_brand
@@ -70,6 +115,7 @@ def category(request):
         show_res=id_brand
     elif(len(id_category)>0):
         show_res=id_category
+
     temp=[]
     temp=show_res
     show_res=[]
@@ -81,8 +127,6 @@ def category(request):
     for i in show_res:
         product_detail=Product.objects.filter(id=i)
         queryset.append(product_detail)
-
-
     brand=[]
     brand_id=[]
     cat=[]
@@ -94,13 +138,12 @@ def category(request):
             brand_id.append(i.id)
         if(i.product_group not in cat):
             cat.append(i.product_group)
-            cat_id_obj.append(i.id)
-    
+            cat_id_obj.append(i.id)   
     brand=json.dumps(list(brand))
     brand_id=json.dumps(list(brand_id))
     cat_data=json.dumps(list(cat))
     cat_id=json.dumps(list(cat_id_obj))
-
+   
     product = Product.objects.filter().order_by("?")[:4]
     product1 = Product.objects.filter().order_by("?")[:8]
     context={"search_product":queryset,
@@ -112,6 +155,10 @@ def category(request):
              'product1':product1
             }
     return render(request,'category.html',context)
+
+
+
+   
 
 ################################## this is for displaying the home page ################################## 
 # class HomeView(ListView):
