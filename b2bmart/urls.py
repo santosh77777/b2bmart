@@ -24,7 +24,7 @@ urlpatterns = [
     path('advertise/', TemplateView.as_view(template_name="company/advertise.html"), name="advertise"),
 
     path('order-track/', TemplateView.as_view(template_name="company/ordertrack.html"), name="order_track"),
-    path('cart/', TemplateView.as_view(template_name="company/cart.html"), name="cart"),
+    #path('cart/', TemplateView.as_view(template_name="company/cart.html"), name="cart"),
 
     path('accounts/', include('accounts.urls', namespace="accounts")),
     path('accounts/', include('allauth.urls')),

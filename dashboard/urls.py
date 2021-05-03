@@ -54,6 +54,14 @@ urlpatterns = [
     path('buyer-downloads/',views.BuyerDownloadsView.as_view(), name="buyer_downloads"),
     path('buyer-share/',views.BuyerShareView.as_view(), name="buyer_share"),
     path('share-detail/<str:slug>/',views.ShareDetailView.as_view(), name="share_detail"),
+    path('category/', views.category, name="category"),
+
+
+    path('add-to-cart/<pk>/', views.add_to_cart, name='add-to-cart'),
+    path('remove-from-cart/<pk>/', views.remove_from_cart, name='remove-from-cart'),
+    path('remove-product-from-cart/<pk>/', views.remove_single_product_from_cart, name='remove-single-product-from-cart'),
+    path('cart/', views.CartView.as_view(), name='cart')
+
 ]
 
 
