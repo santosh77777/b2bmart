@@ -205,6 +205,12 @@ class SellerBankView(LoginRequiredMixin, UserPassesTestMixin, View):
             context = None
         return render(request, 'dashboard/seller/bank_details.html', context)
 
+class SellerSocialShareView(LoginRequiredMixin,UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+    def get(self, *args, **kwargs):
+        return render(self.request, 'dashboard/seller/share.html')
+
 class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
         return is_seller(self.request.user)
@@ -391,6 +397,21 @@ class SellerPaidServiceView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/certificate.html')
+
+class SellerManagementView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/management.html')
+
+class SellerMediaCenterView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/media-center.html')
+
 
 class SellerCompanyView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     def test_func(self):
