@@ -28,7 +28,11 @@ urlpatterns = [
     path('seller/membership/',views.SellerMembershipView.as_view(), name="seller_membership"),
     path('seller/my-enquiry/',views.SellerMyEnquiryView.as_view(), name="seller_my_enquiry"),
     path('seller/settings/',views.SellerSettingsView.as_view(), name="seller_settings"),
+
+    path('seller/social-share/',views.SellerSocialShareView.as_view(), name="seller_social_share"),
     path('seller/paid-service/',views.SellerPaidServiceView.as_view(), name="seller_paid_service"),
+    path('seller/management/',views.SellerManagementView.as_view(), name="seller_management"),
+    path('seller/media-center/',views.SellerMediaCenterView.as_view(), name="seller_media_center"),
 
     path('seller/company/<str:user>/',views.SellerCompanyView.as_view(), name="seller_company"),
     path('seller/product-detail/<int:pk>/',views.SellerProductDetailView.as_view(), name="seller_product_detail"),

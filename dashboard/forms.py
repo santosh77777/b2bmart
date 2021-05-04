@@ -157,3 +157,5 @@ class CouponForm(forms.Form):
     }))
 
 
+          ,'video_url', 'image1', 'image2', 'image3', 'arrange', 'add_home' ]
+        

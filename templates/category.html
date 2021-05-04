@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
  {% load embed_video_tags %}
+ 
     <div class="container">
       <div class="head mt-4">
         <h5>CATEGORY NAME - RICE COOKER <small>(1500 PRODUCTS AVAILABLE)</small></h5>
@@ -239,25 +240,29 @@
               <span class="sr-only">Previous</span>
             </a>
             <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="row">
-                {% for i in search_product %}
-                {% for j in i %}
+             {% for i,j in items2 %}
+             
+              {% if forloop.counter0|divisibleby:"4" %}
+              <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
+                  <div class="row">
+              {% endif %} 
                   <div class="col-12 col-sm-4 col-md-3">
                     <div class="product-item">
                         <div class="image">
-                          <img src=" http://127.0.0.1:8000/media/{{j.image1}}" alt="Image 1">
+                          <a href="{% url 'dashboard:seller_product_detail' i.pk %}"><img src="/media/{{i.image1}}" alt="Image 1"></a>
                         </div>
-                        <div class="name">{{j.name}}</div>
-                        <div class="type">{{j.brand}}</div>
-                        <a href="{% url 'dashboard:seller_product_detail' j.pk %}" class="btn btn-primary btn-block">Read More</a>
+                        <div class="name" style="height:50px;">{{i.name}}</div>
+                        <div class="type">{{i.brand}}</div>
+                        <a href="{% url 'product:website_home_list' i.user.account.slug %}" class="btn btn-primary btn-block">Visit our store</a>
                     </div>
                   </div>
-                  {% endfor %}
-                   {% endfor %}
+                  
+              {% if forloop.counter|divisibleby:"4"  or forloop.counter0 == j|add:-1 %}
                 </div>
               </div>
-              
+              {% endif %}
+               
+          {% endfor %}
             </div>
             <a class="btn btn-primary ml-2 p-2 d-flex align-items-center" href="#carouselExampleControls" role="button" data-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
@@ -293,10 +298,10 @@
           <div class="col background">
             <img src="{% static 'images/tag.png' %}" alt="">
             <div class="address">
-              <div class="name">{{j.brand}}</div>
+              <div class="name">{{j.user.businessprofile.company_name}}</div>
               <div class="address-detail">81/1, Harohalli Indrustrial Area, Kanakapura Taluk, Ramanagara, Bangalore, Karnataka 562112, India</div>
             </div>
-            <button class="btn btn-default"><i class="fas fa-cart"></i> Request a quote for Bulk Order</button>
+            <button class="btn btn-default btn-block" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-cart"></i> Request a quote for Bulk Order</button>
           </div>
         </div>
         <div class="row no-gutters mt-2">
@@ -309,8 +314,83 @@
           </div>
         </div>
       </div>
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+
+          <div class="register-form mt-3" >
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            <h5 class="text-uppercase mb-3">we connect manufacturers with wholesale traders & institutions</h5>
+            <div class="row">
+              <div class="col-12 col-sm-8">
+                <form method="post" action="{% url 'dashboard:share_detail' j.user.account.slug %}" id="eshopeform">
+                {% csrf_token %}
+                  <div class="row">
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                    </div>
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="email">E-mail</label>
+                      <input type="email" class="form-control" name="email" id="email" placeholder="shotercarlos@gmail.com">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="mobile">Mobile</label>
+                      <input type="tel" class="form-control" name="mobile" id="mobile" placeholder="+91 0000000000">
+                    </div>
+                    <div class="form-group col- 12 col-sm-6">
+                      <label for="businessType">Business Types</label>
+                      <select class="form-control btn-primary" name="business_type" id="businessType">
+                        <option value="">Select Option</option>
+                        <option value="Wholesaller">Wholesaller</option>
+                        <option value="Manufacturer">Manufacturer</option>
+                        <option value="Retailer">Retailer</option>
+                        <option value="Exporter">Exporter</option>
+                        <option value="Distributor">Distributor</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" name="message" id="message" rows="5"></textarea>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-sm-6">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" name="sendcopy" class="custom-control-input" onclick="javascript:send();" value="False" id="sendCopy">
+                        <label class="custom-control-label" for="sendCopy">Send me a copy</label>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6 text-right">
+                    <input type="submit" class="btn btn-primary pull-right" value="Send">
+                      
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-12 col-sm-4">
+                <div class="right-side">
+                  <div class="top">
+                    <span>become a</span>
+                    <span>xxxx Mart</span>
+                    <span>member today</span>
+                    <span>1000 Ad Impressions Free</span>
+                  </div>
+                  <div class="bottom"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+          </div>
       {% endfor %}
       {% endfor %}
+      
       <!-- Product detail part end -->
 
           <!-- register form start -->
@@ -376,7 +456,7 @@
             </div>
           </div>
           <!-- register form part end -->
-
+          
           <!-- Recommended Products part start -->
           <!-- <div class="product-list mt-3">
             <form class="form-inline mb-3">
@@ -469,7 +549,7 @@
                 </div>
                 <div class="name">{{ obj.name }}</div>
                 <div class="type">{{ obj.product_group }}</div>
-                <a href="{% url 'dashboard:seller_product_detail' obj.pk %}" class="btn btn-primary btn-block">Read More</a>
+                <a href="{% url 'dashboard:seller_product_detail' obj.pk %}" class="btn btn-primary btn-block">Visit Our Store</a>
             </div>
           </div>
           {% endfor %} 

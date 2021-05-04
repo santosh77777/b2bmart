@@ -163,9 +163,11 @@ def SellerBusinessProfileView(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Your profile was updated successfully')
-
-    sellers = SellerProfile.objects.get(user=request.user)
-    context = {'form':form, 'seller': seller,'sellers':sellers }
+    try:
+        sellers = SellerProfile.objects.get(user=request.user)
+        context = {'form':form, 'seller': seller,'sellers':sellers }
+    except:
+        context = {'form':form, 'seller': seller,}
     return render(request, 'dashboard/seller/business_profile.html', context)
 
 class SellerBankView(LoginRequiredMixin, UserPassesTestMixin, View):
@@ -203,6 +205,12 @@ class SellerBankView(LoginRequiredMixin, UserPassesTestMixin, View):
         except:
             context = None
         return render(request, 'dashboard/seller/bank_details.html', context)
+
+class SellerSocialShareView(LoginRequiredMixin,UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+    def get(self, *args, **kwargs):
+        return render(self.request, 'dashboard/seller/share.html')
 
 class SellerAddProductView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
@@ -282,8 +290,9 @@ def SellerBulkPriceUpdateView(request, pk):
 def SellerSingleProductUpdateView(request, pk):
         product = Product.objects.get(id=pk)
         form = SellerSingleProductViewForm(instance=product)
-        if request.method == 'POST':
+        if request.method == 'POST':            
             form = SellerSingleProductViewForm(request.POST, request.FILES, instance=product)
+            print("hiii",product)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Your price updated successfully')
@@ -299,8 +308,7 @@ def sellerDeleteProduct(request, pk):
     context ={} 
     # fetch the object related to passed id 
     obj = get_object_or_404(Product, id = pk) 
-  
-  
+
     if request.method =="POST": 
         # delete object 
         obj.delete() 
@@ -360,7 +368,13 @@ class SellerPhotoDocumentView(LoginRequiredMixin, UserPassesTestMixin, View):
         return is_seller(self.request.user)
 
     def get(self,request, *args, **kwargs):
-        return render(request, 'dashboard/seller/document.html')
+        detail=SellerCompany.objects.filter(user=request.user)
+        for i in detail:
+            logo=i.logo
+        context={'logo':logo
+
+        }
+        return render(request, 'dashboard/seller/document.html',context)
 
 class SellerMembershipView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
@@ -389,6 +403,21 @@ class SellerPaidServiceView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self,request, *args, **kwargs):
         return render(request, 'dashboard/certificate.html')
+
+class SellerManagementView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/management.html')
+
+class SellerMediaCenterView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return is_seller(self.request.user)
+
+    def get(self,request, *args, **kwargs):
+        return render(request, 'dashboard/media-center.html')
+
 
 class SellerCompanyView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     def test_func(self):

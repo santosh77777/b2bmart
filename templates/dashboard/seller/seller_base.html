@@ -49,11 +49,11 @@
                   <a class="nav-link text-light m-0 pl-4" href="{% url 'dashboard:seller_company_add' %}"><p>Company</p> </a>
                 </div>
                 <a class="nav-link text-light m-0" href="{% url 'product:website_home_list' request.user.account.slug %}"> <i class="material-icons">public</i> <p>Website</p> </a>
-                <a class="nav-link text-light m-0" href="share.html"> <i class="material-icons">share</i> <p>Social Share</p> </a>
+                <a class="nav-link text-light m-0" href="{% url 'dashboard:seller_social_share' %}"> <i class="material-icons">share</i> <p>Social Share</p> </a>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="">
+              <a class="nav-link" href="{% url 'dashboard:seller_paid_service' %}">
                 <i class="material-icons">&#8377;</i>
                 <p class="pt-1">paid  Services</p>
               </a>

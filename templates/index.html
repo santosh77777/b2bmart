@@ -43,6 +43,9 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
+       <span id="show-msg">
+          
+        </span> 
           <ul class="category-menu mb-3" id="element">
           {% comment %} <form method="POST" action=""> {% endcomment %}
             <li>
@@ -828,7 +831,7 @@
     var prd_name={{prd_name|safe}};
     var len=data.length;
     var len_cat=cat_data.length;
-   
+
 
     
     fetch_data();
@@ -1156,10 +1159,12 @@ function search_slider_1()
   var val = document.getElementById("location_1").value;
 }
 function autocomplete(inp,arr){
+  console.log(arr)
     var currentFocus;
   /*execute a function when someone writes in the text field:*/
   inp.addEventListener("input", function(e) {
       var a, b, i, val = this.value;
+      console.log(val)
       /*close any already open lists of autocompleted values*/
       closeAllLists();
       if (!val) { return false;}
@@ -1250,6 +1255,7 @@ function autocomplete(inp,arr){
   });
 }
 let combined_detail=[...data, ...cat_data, ...prd_name]
+console.log(combined_detail)
 autocomplete(document.getElementById("location_1"),combined_detail)
 function get_inpt_val(){
 var v;
@@ -1268,13 +1274,59 @@ $.ajax({
   dataType: "JSON",
   success: function(context){
     document.getElementById("car_location_1").innerHTML=``;
+   
     var car_data=JSON.parse(context.loc_data)
+    var c=0
+    if(car_data.length<=0){
+      var data = JSON.parse(context.queryset)
+      for(var i=0;i<data.length;i++){
+
+        if(i%4 == 0){  
+        c=i   
+        if(i==0)
+          var cls="active"
+        else 
+          var cls=""
+        var template=`
+                  <div class="carousel-item ${cls}"> 
+                    <div class="row" id="final${c}">
+                      
+                    </div>
+                  </div>`
+        $("#car_location_1").append(template);
+        }
+        var element = `<div class="col-12 col-sm-4 col-md-3">
+                        <div class="product-item">
+                            <div class="image">
+                              <a href=""><img src="/media/${data[i]['fields']['image1']}" alt="Image 4"> </a>
+                            </div>
+                            <div class="name" style="height:50px;">${data[i]['fields']['name']}</div>
+                            
+                            <div class="type">${data[i]['fields']['product_group']}</div>
+                            <a href="" class="btn btn-primary btn-block">Visit our store</a>
+                        </div>
+                      </div>`     
+        $("#final"+c).append(element)
+      }
+    }
+    else{
     for(var i=0;i<car_data.length;i++){
-      console.log(car_data[i]);
-      template=`
-              <div class="carousel-item active"> 
-                  <div class="row">
-                    <div class="col-12 col-sm-4 col-md-3">
+       
+      if(i%4 == 0){  
+        c=i   
+        if(i==0)
+          var cls="active"
+        else 
+          var cls=""
+        var template=`
+                  <div class="carousel-item ${cls}"> 
+                    <div class="row" id="final${c}">
+                      
+                    </div>
+                  </div>`
+        $("#car_location_1").append(template);
+      }
+      var element = `<div class="col-12 col-sm-4 col-md-3">
                       <div class="product-item">
                           <div class="image">
                             <a href=""><img src="/media/${car_data[i]['fields']['image1']}" alt="Image 4"> </a>
@@ -1284,17 +1336,17 @@ $.ajax({
                           <div class="type">${car_data[i]['fields']['product_group']}</div>
                           <a href="" class="btn btn-primary btn-block">Visit our store</a>
                       </div>
-                    </div>
-                    </div>
-              </div>`
-          $("#car_location_1").append(template);
+                    </div>`     
+      $("#final"+c).append(element)
+      }
     }
-  }
-  
+    }  
 })
 }
 $(document).ready(function() {
+  
     $('img').click(function () {
+        val=0
         var alt =($(this).attr("alt"));
         console.log(alt);
          $.ajax({
@@ -1304,12 +1356,22 @@ $(document).ready(function() {
             'action':'send_var',
             'alt':alt,
             csrfmiddlewaretoken: '{{ csrf_token }}',
+          },
+          success:function(response){
+            document.getElementById("show-msg").innerHTML=""
+            window.location.href="{% url 'product:category' %}"; 
+          },
+          error:function(response){
+            document.getElementById("show-msg").innerHTML=
+              `<div class="alert alert-warning" role="alert">
+                Sorry this product group is currently unavailable!
+              </div>` 
           }
-        }).done(function() {
-  window.location.href="{% url 'product:category' %}";
-});
+        })
     });
 });
 
 </script> 
+
+
 {% endblock content %}
