@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'embed_video',
+    'django_countries',
+    'crispy_forms',
     
 
     # providers
@@ -129,6 +131,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+
+CRISPY_TEMPLATE_PACK = 'uni_form'
 
 
 # Static files (CSS, JavaScript, Images)

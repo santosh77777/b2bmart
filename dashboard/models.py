@@ -6,6 +6,7 @@ from embed_video.fields import EmbedVideoField
 from product.models import Product
 
 
+
 class SellerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     promoter_first_name = models.CharField(max_length=50)

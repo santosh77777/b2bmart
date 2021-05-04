@@ -70,11 +70,11 @@
                      {% if object.get_total %}
                      <tr>
                          <td colspan="3"><b>Order Total</b></td>
-                         <td><b>${{ object.get_total }}</b></td>
+                         <td><b>&#8377;{{ object.get_total }}</b></td>
                      </tr>
                      <tr>
                          <td colspan="5">
-                         <a class='btn btn-warning float-right ml-2' href='/checkout/'>Proceed to checkout</a>
+                         <a class='btn btn-warning float-right ml-2' href='{% url "dashboard:checkout" %}'>Proceed to checkout</a>
                          <a class='btn btn-primary float-right' href='/'>Continue shopping</a>
                          </td>
                      </tr>

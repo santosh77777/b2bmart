@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+import random
+import string
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
@@ -20,9 +22,6 @@ from product.forms import ProductForm
 from product.models import *
 from accounts.models import ProfilePicture
 from django.http import HttpResponseRedirect
-from django.conf import settings
-from django.core.mail import send_mail
-from b2bmart.settings import EMAIL_HOST_USER
 
 class SellerDashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
@@ -375,8 +374,7 @@ class SellerMyEnquiryView(LoginRequiredMixin, UserPassesTestMixin, View):
         return is_seller(self.request.user)
 
     def get(self,request, *args, **kwargs):
-        sharedetail = ShareDetail.objects.filter(seller=self.request.user)
-        return render(request, 'dashboard/seller/myenquiry.html', {'sharedetail':sharedetail})
+        return render(request, 'dashboard/seller/myenquiry.html')
 
 class SellerSettingsView(LoginRequiredMixin, UserPassesTestMixin, View):
     def test_func(self):
@@ -661,11 +659,11 @@ def sendSimpleEmail(request,emailto):
    res = send_mail("hello paul", "comment tu vas?", "paul@polo.com", [emailto])
    return HttpResponse('%s'%res)
 
-
+from django.conf import settings
+from django.core.mail import send_mail
+from b2bmart.settings import EMAIL_HOST_USER
 class ShareDetailView(View):
     def post(self, *args, **kwargs):
-        user = get_object_or_404(User, account__slug=self.kwargs.get("slug"))
-        print("nameeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", user)
         name = self.request.POST['name']
         email = self.request.POST['email']
         mobile = self.request.POST['mobile']
@@ -680,10 +678,10 @@ class ShareDetailView(View):
             recepient = email
             send_mail(subject, message, settings.EMAIL_HOST_USER, [recepient])
 
-            share_detail = ShareDetail(seller=user, name=name, email=email, mobile=mobile, business_type=business_type, message=message, send_copy=True)
+            share_detail = ShareDetail(name=name, email=email, mobile=mobile, business_type=business_type, message=message, send_copy=True)
             share_detail.save()
         else:
-            share_detail = ShareDetail(seller=user, name=name, email=email, mobile=mobile, business_type=business_type, message=message)
+            share_detail = ShareDetail(name=name, email=email, mobile=mobile, business_type=business_type, message=message)
             share_detail.save()
         return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
 
@@ -821,3 +819,217 @@ def remove_single_product_from_cart(request, pk):
     else:
         messages.info(request, "You do not have an active order")
         return redirect("dashboard:seller_product_detail", pk=pk)
+
+
+def create_ref_code():
+    return ''.join(random.choices(string.ascii_lowercase + string.digits, k=20))
+
+
+def is_valid_form(values):
+    valid = True
+    for field in values:
+        if field == '':
+            valid = False
+    return valid
+
+
+class CheckoutView(View):
+    def get(self, *args, **kwargs):
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            form = CheckoutForm()
+            context = {
+                'form': form,
+                'couponform': CouponForm(),
+                'order': order,
+                'DISPLAY_COUPON_FORM': True
+            }
+
+            shipping_address_qs = Address.objects.filter(
+                user=self.request.user,
+                address_type='S',
+                default=True
+            )
+            if shipping_address_qs.exists():
+                context.update(
+                    {'default_shipping_address': shipping_address_qs[0]})
+
+            billing_address_qs = Address.objects.filter(
+                user=self.request.user,
+                address_type='B',
+                default=True
+            )
+            if billing_address_qs.exists():
+                context.update(
+                    {'default_billing_address': billing_address_qs[0]})
+            return render(self.request, "company/checkout.html", context)
+        except ObjectDoesNotExist:
+            messages.info(self.request, "You do not have an active order")
+            return redirect("core:checkout")
+
+    def post(self, *args, **kwargs):
+        form = CheckoutForm(self.request.POST or None)
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            if form.is_valid():
+
+                use_default_shipping = form.cleaned_data.get(
+                    'use_default_shipping')
+                if use_default_shipping:
+                    print("Using the defualt shipping address")
+                    address_qs = Address.objects.filter(
+                        user=self.request.user,
+                        address_type='S',
+                        default=True
+                    )
+                    if address_qs.exists():
+                        shipping_address = address_qs[0]
+                        order.shipping_address = shipping_address
+                        order.save()
+                    else:
+                        messages.info(
+                            self.request, "No default shipping address available")
+                        return redirect('dashboard:checkout')
+                else:
+                    print("User is entering a new shipping address")
+                    shipping_address1 = form.cleaned_data.get(
+                        'shipping_address')
+                    shipping_address2 = form.cleaned_data.get(
+                        'shipping_address2')
+                    shipping_country = form.cleaned_data.get(
+                        'shipping_country')
+                    shipping_zip = form.cleaned_data.get('shipping_zip')
+
+                    if is_valid_form([shipping_address1, shipping_country, shipping_zip]):
+                        shipping_address = Address(
+                            user=self.request.user,
+                            street_address=shipping_address1,
+                            apartment_address=shipping_address2,
+                            country=shipping_country,
+                            zip=shipping_zip,
+                            address_type='S'
+                        )
+                        shipping_address.save()
+
+                        order.shipping_address = shipping_address
+                        order.save()
+
+                        set_default_shipping = form.cleaned_data.get(
+                            'set_default_shipping')
+                        if set_default_shipping:
+                            shipping_address.default = True
+                            shipping_address.save()
+
+                    else:
+                        messages.info(
+                            self.request, "Please fill in the required shipping address fields")
+
+                use_default_billing = form.cleaned_data.get(
+                    'use_default_billing')
+                same_billing_address = form.cleaned_data.get(
+                    'same_billing_address')
+
+                if same_billing_address:
+                    billing_address = shipping_address
+                    billing_address.pk = None
+                    billing_address.save()
+                    billing_address.address_type = 'B'
+                    billing_address.save()
+                    order.billing_address = billing_address
+                    order.save()
+
+                elif use_default_billing:
+                    print("Using the defualt billing address")
+                    address_qs = Address.objects.filter(
+                        user=self.request.user,
+                        address_type='B',
+                        default=True
+                    )
+                    if address_qs.exists():
+                        billing_address = address_qs[0]
+                        order.billing_address = billing_address
+                        order.save()
+                    else:
+                        messages.info(
+                            self.request, "No default billing address available")
+                        return redirect('core:checkout')
+                else:
+                    print("User is entering a new billing address")
+                    billing_address1 = form.cleaned_data.get(
+                        'billing_address')
+                    billing_address2 = form.cleaned_data.get(
+                        'billing_address2')
+                    billing_country = form.cleaned_data.get(
+                        'billing_country')
+                    billing_zip = form.cleaned_data.get('billing_zip')
+
+                    if is_valid_form([billing_address1, billing_country, billing_zip]):
+                        billing_address = Address(
+                            user=self.request.user,
+                            street_address=billing_address1,
+                            apartment_address=billing_address2,
+                            country=billing_country,
+                            zip=billing_zip,
+                            address_type='B'
+                        )
+                        billing_address.save()
+
+                        order.billing_address = billing_address
+                        order.save()
+
+                        set_default_billing = form.cleaned_data.get(
+                            'set_default_billing')
+                        if set_default_billing:
+                            billing_address.default = True
+                            billing_address.save()
+
+                    else:
+                        messages.info(
+                            self.request, "Please fill in the required billing address fields")
+                        return redirect('dashboard:checkout')
+
+                payment_option = form.cleaned_data.get('payment_option')
+
+                if payment_option == 'C':
+                    order = Order.objects.get(user=self.request.user)
+                    order.payment = 'COD'
+                    order.save()
+                    return redirect('dashboard:cart')
+                if payment_option == 'S':
+                    return redirect('dashboard:cart')
+                elif payment_option == 'P':
+                    return redirect('dashboard:cart')
+                else:
+                    messages.warning(
+                        self.request, "Invalid payment option selected")
+                    return redirect('core:checkout')
+        except ObjectDoesNotExist:
+            messages.warning(self.request, "You do not have an active order")
+            return redirect('dashboard:cart')
+
+
+
+def get_coupon(request, code):
+    try:
+        coupon = Coupon.objects.get(code=code)
+        return coupon
+    except ObjectDoesNotExist:
+        messages.info(request, "This coupon does not exist")
+        return redirect("dashboard:checkout")
+
+
+class AddCouponView(View):
+    def post(self, *args, **kwargs):
+        form = CouponForm(self.request.POST or None)
+        if form.is_valid():
+            try:
+                code = form.cleaned_data.get('code')
+                order = Order.objects.get(
+                    user=self.request.user, ordered=False)
+                order.coupon = get_coupon(self.request, code)
+                order.save()
+                messages.success(self.request, "Successfully added coupon")
+                return redirect("dashboard:checkout")
+            except ObjectDoesNotExist:
+                messages.info(self.request, "You do not have an active order")
+                return redirect("dashboard:checkout")
