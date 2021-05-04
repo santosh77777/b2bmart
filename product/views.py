@@ -127,6 +127,11 @@ def category(request):
     for i in show_res:
         product_detail=Product.objects.filter(id=i)
         queryset.append(product_detail)
+
+
+    from itertools import chain
+    items2 = (chain.from_iterable(queryset))
+    
     brand=[]
     brand_id=[]
     cat=[]
@@ -146,7 +151,10 @@ def category(request):
    
     product = Product.objects.filter().order_by("?")[:4]
     product1 = Product.objects.filter().order_by("?")[:8]
-    context={"search_product":queryset,
+    
+    x = [len(queryset)]*len(queryset)
+    context={'items2':zip(items2,x),
+            'search_product':queryset,
              'brand_data':brand,
              'brand_id':brand_id,
              'cat_data':cat_data,
@@ -154,6 +162,7 @@ def category(request):
              'product':product,
              'product1':product1
             }
+   
     return render(request,'category.html',context)
 
 
