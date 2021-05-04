@@ -253,7 +253,7 @@
                         </div>
                         <div class="name" style="height:50px;">{{i.name}}</div>
                         <div class="type">{{i.brand}}</div>
-                        <a href="" class="btn btn-primary btn-block">Visit our store</a>
+                        <a href="{% url 'product:website_home_list' i.user.account.slug %}" class="btn btn-primary btn-block">Visit our store</a>
                     </div>
                   </div>
                   
